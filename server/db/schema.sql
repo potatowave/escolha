@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS alternatives_criterias;
-DROP TABLE IF EXISTS criterias;
+DROP TABLE IF EXISTS alternatives_objectives;
+DROP TABLE IF EXISTS objectives;
 DROP TABLE IF EXISTS alternatives;
 DROP TABLE IF EXISTS cases;
 DROP TABLE IF EXISTS users;
@@ -18,14 +18,14 @@ CREATE TABLE cases (
   update_at DATE
 );
 
-CREATE TABLE criterias (
+CREATE TABLE objectives (
   id BIGSERIAL PRIMARY KEY,
   name VARCHAR(75),
+  sub_name VARCHAR(75),
   case_id INTEGER REFERENCES cases(id) ON DELETE CASCADE,
-  description VARCHAR(255),
-  low BOOLEAN,
+  evaluation_criteria VARCHAR(255),
+  low_is_better BOOLEAN,
   "order" INTEGER,
-  parent INTEGER REFERENCES criterias(id),
   unit_name VARCHAR(75),
   unit_prefix VARCHAR(75),
   unit_suffix VARCHAR(75),
@@ -41,8 +41,8 @@ CREATE TABLE alternatives (
   "order" INTEGER
 );
 
-CREATE TABLE alternatives_criterias (
+CREATE TABLE alternatives_objectives (
   alternative_id INTEGER REFERENCES alternatives(id) ON DELETE CASCADE,
-  criteria_id INTEGER REFERENCES criterias(id) ON DELETE CASCADE,
+  criteria_id INTEGER REFERENCES objectives(id) ON DELETE CASCADE,
   value REAL
 );
