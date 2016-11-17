@@ -16,8 +16,8 @@ SELECT
   alternatives.order AS alternative_order,
   objectives.order AS objective_order,
 
-  objectives.description AS objective_description,
-  objectives.low AS objective_low,
+  objectives.evaluation_object AS objective_evaluation_object,
+  objectives.low_is_better AS objective_low_is_better,
   objectives.unit_name,
   objectives.unit_prefix,
   objectives.unit_suffix

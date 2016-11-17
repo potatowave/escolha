@@ -23,7 +23,7 @@ CREATE TABLE objectives (
   name VARCHAR(75),
   sub_name VARCHAR(75),
   case_id INTEGER REFERENCES cases(id) ON DELETE CASCADE,
-  evaluation_criteria VARCHAR(255),
+  evaluation_objective VARCHAR(255),
   low_is_better BOOLEAN,
   "order" INTEGER,
   unit_name VARCHAR(75),
@@ -43,6 +43,6 @@ CREATE TABLE alternatives (
 
 CREATE TABLE alternatives_objectives (
   alternative_id INTEGER REFERENCES alternatives(id) ON DELETE CASCADE,
-  criteria_id INTEGER REFERENCES objectives(id) ON DELETE CASCADE,
+  objective_id INTEGER REFERENCES objectives(id) ON DELETE CASCADE,
   value REAL
 );
