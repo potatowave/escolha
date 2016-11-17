@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS alternatives_criterias;
 CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY,
   email VARCHAR(255),
-  name VARCHAR(255),
+  name VARCHAR(255)
 );
 
 CREATE TABLE cases (
