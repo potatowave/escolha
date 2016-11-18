@@ -206,4 +206,47 @@ Returning Example of the last query:
   }
 ]
 
+[
+  {alternative_id: 1, objective_id: 2},
+  {alternative_id: 1, objective_id: 2},
+  {alternative_id: 1, objective_id: 2},
+  {alternative_id: 1, objective_id: 2},
+]
+*/
+
+
+/*
+Best Way for redux: leave like a relational database
+Just query separated
+
+
+Users: SELECT * FROM users WHERE id = 1
+Cases: SELECT * FROM cases WHERE user_id = 1
+
+Objectives:
+SELECT objectives.* FROM objectives
+JOIN cases ON cases.id = objectives.case_id
+JOIN users ON users.id = cases.user_id
+WHERE users.id = 1
+
+Alternatives:
+SELECT alternatives.* FROM alternatives
+JOIN cases ON cases.id = alternatives.case_id
+JOIN users ON users.id = cases.user_id
+WHERE users.id = 1
+
+Alternatives_objectives:
+
+
+Monica Example:
+{
+  users: [ {} ],
+  cases: [
+    {} // all cases for user
+  ],
+  alternatives: [
+    {} // alternatives for all cases of user
+  ]
+}
+
 */
