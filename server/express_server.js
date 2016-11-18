@@ -1,19 +1,37 @@
 // Required Frameworks
 
 const express = require('express');
-
-const app = express();
 const bodyParser = require('body-parser');
 const randString = require('./scripts/randomstring');
 const pg = require('pg');
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const config = require('./webpack.config');
+
 const connectionString = 'pg://development:development@localhost:5432/escolha';
+const app = express();
+
 app.use(bodyParser.urlencoded({ extended: true }));
+
+new WebpackDevServer(webpack(config), {
+    publicPath: config.output.publicPath,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    }
+  })
+  .listen(3000, '0.0.0.0', function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+
+    console.log('Running at http://0.0.0.0:3000');
+  });
 
 // Configuration
 
-const PORT = process.env.PORT || 3000; // default port 3000
+const PORT = process.env.PORT || 3001; // set to 3001
 app.set('view engine', 'ejs'); // Set View Engine to ejs
-
 
 const client = new pg.Client(connectionString);
 client.connect();
