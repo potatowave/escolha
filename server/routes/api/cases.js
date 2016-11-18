@@ -2,17 +2,98 @@
 
 const express = require('express');
 const router  = express.Router();
+const pg = require('pg');
+const connectionString = 'pg://development:development@localhost:5432/escolha';
 
-module.exports = () => {
-
-  const user_id = 1;
-
-  // --------------------------------------------------------------------------
-  // Get all cases
+const client = new pg.Client(connectionString);
+client.connect();
 
   router.get("/", (req, res) => {
-    res.json('hello there');
+
+      const results = [];
+  // Get a Postgres client from the connection pool
+  pg.connect(connectionString, (err, client, done) => {
+    // Handle connection errors
+    if (err) {
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err });
+    }
+    // SQL Query > Select Data
+    const query = client.query(
+
+      'SELECT * FROM ( ' +
+        'SELECT DISTINCT ON (alternatives_objectives.objective_id) ' +
+      'alternatives_objectives.objective_id, ' +
+
+      'objectives.name     AS objective_name, ' +
+      'objectives.sub_name   AS objective_sub_name, ' +
+      'objectives.order    AS objective_order, ' +
+
+      'objectives.evaluation_objective AS objective_evaluation_object, ' +
+      'objectives.low_is_better AS objective_low_is_better, ' +
+      'objectives.unit_name, ' +
+      'objectives.unit_prefix, ' +
+      'objectives.unit_suffix ' +
+
+      'FROM alternatives_objectives ' +
+        'JOIN alternatives   ON alternatives_objectives.alternative_id  = alternatives.id ' +
+        'JOIN objectives     ON alternatives_objectives.objective_id    = objectives.id ' +
+
+       'WHERE objectives.case_id = 1 ' +
+        ') tab1 ' +
+
+         'JOIN ( ' +
+
+        'SELECT ' +
+          'array_agg(alternative_id) AS alternatives_ids, ' +
+          'array_agg(alternative_order) AS alternatives_orders, ' +
+          'array_agg(value) AS values, ' +
+          'array_agg(alternative_name) AS alternative_names, ' +
+          'objective_id ' +
+        'FROM ( ' +
+        '  SELECT ' +
+            'alternatives_objectives.*, ' +
+
+            'alternatives.name AS alternative_name, ' +
+            'objectives.name AS objective_name, ' +
+            'objectives.sub_name AS objective_sub_name, ' +
+
+            'alternatives.order AS alternative_order, ' +
+            'objectives.order AS objective_order, ' +
+
+            'objectives.evaluation_objective AS objective_evaluation_object, ' +
+            'objectives.low_is_better AS objective_low_is_better, ' +
+            'objectives.unit_name, ' +
+            'objectives.unit_prefix, ' +
+            'objectives.unit_suffix ' +
+
+          'FROM alternatives_objectives ' +
+          'JOIN alternatives   ON alternatives_objectives.alternative_id  = alternatives.id ' +
+          'JOIN objectives     ON alternatives_objectives.objective_id     = objectives.id ' +
+
+          'WHERE objectives.case_id = 1 ' +
+        ') as matrix ' +
+
+        'GROUP BY matrix.objective_id ' +
+
+    ') as tab2 ' +
+
+ 'ON tab1.objective_id = tab2.objective_id'
+
+      );
+    // Stream results back one row at a time
+    query.on('row', (row) => {
+      results.push(row);
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      done();
+      return res.json(results);
+    });
   });
 
-  return router;
-}
+
+  });
+
+module.exports = router;

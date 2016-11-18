@@ -215,7 +215,7 @@ Returning Example of the last query:
 */
 
 
-/*
+
 Best Way for redux: leave like a relational database
 Just query separated
 
