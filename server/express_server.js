@@ -28,7 +28,10 @@ new WebpackDevServer(webpack(config), {
     console.log('Running at http://0.0.0.0:3000');
   });
 
-// Configuration
+// ----------------------------------------------------------------------------
+// API - Configuration
+
+const apiCasesRoute   = require("./routes/api/cases.js");
 
 const PORT = process.env.PORT || 3001; // set to 3001
 app.set('view engine', 'ejs'); // Set View Engine to ejs
@@ -37,6 +40,11 @@ const client = new pg.Client(connectionString);
 client.connect();
 
 app.use(express.static('public'));
+
+
+
+app.use("/api/cases", apiCasesRoute);
+
 
 app.get('/case', (req, res) => {
   const results = [];
