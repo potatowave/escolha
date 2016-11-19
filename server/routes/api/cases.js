@@ -2,6 +2,109 @@
 
 const express = require('express');
 const router  = express.Router();
+const Case    = require('../../models/Case');
+
+module.exports = (knex) => {
+
+  // --------------------------------------------------------------------------
+  // POST ROUTE
+
+  router.post("/", (req, res) => {
+    const data = JSON.parse(req.body.data);
+
+    // Call the Model to interact with data
+    Case(knex).insertCase(data, (msg) => {
+      res.send(msg)
+    });
+  });
+
+
+  return router;
+}
+
+/*
+JSON Expected into POST Request
+data = {
+  "name": "Car",
+  "description": "I want to choose some car",
+
+  "objectives": [{
+      "id_frontend": 99,
+      "objective": "Cost",
+      "subObjective": "Price",
+      "criterion": "Just the car price",
+      "low_is_better": true,
+      "unit_name": "money",
+      "unit_prefix": "$",
+      "unit_suffix": "",
+      "scale_type": "this is managed on the front-end"
+    },
+
+    {
+      "id_frontend": 88,
+      "objective": "Cost",
+      "subObjective": "Mainetence",
+      "criterion": "Per year mainetence",
+      "low_is_better": true,
+      "unit_name": "money",
+      "unit_prefix": "$",
+      "unit_suffix": "",
+      "scale_type": "this is managed on the front-end"
+    }
+  ],
+
+  "alternatives": [{
+      "id_frontend": 11,
+      "name": "Ferrari",
+      "image_url": "https://s-media-cache-ak0.pinimg.com/236x/89/5c/b1/895cb18bd918640844fdd3bc6297fddd.jpg"
+    },
+
+    {
+      "id_frontend": 22,
+      "name": "Lamborghini",
+      "image_url": "https://s-media-cache-ak0.pinimg.com/236x/c8/71/07/c871079f871b72609735e584235f1f12.jpg"
+    },
+
+    {
+      "id_frontend": 33,
+      "name": "Lamborghini",
+      "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSyqYUmFsqlT5RtmrxJNGhq70lk2ePKuffpBILv1UtIfk71nE5X"
+    }
+  ],
+
+  "values": [{
+      "objective_id": 99,
+      "alternative_id": 11,
+      "value": 150000
+    }, {
+      "objective_id": 99,
+      "alternative_id": 22,
+      "value": 390888
+    }, {
+      "objective_id": 99,
+      "alternative_id": 33,
+      "value": 420123
+    },
+
+    {
+      "objective_id": 88,
+      "alternative_id": 11,
+      "value": 120
+    }, {
+      "objective_id": 88,
+      "alternative_id": 22,
+      "value": 99
+    }, {
+      "objective_id": 88,
+      "alternative_id": 33,
+      "value": 560
+    }
+  ]
+}
+
+
+
+*/
 //const pg = require('pg');
 //const connectionString = 'pg://development:development@localhost:5432/development';
 //const client = new pg.Client(connectionString);
@@ -95,250 +198,4 @@ const router  = express.Router();
 
 
   });
-  */
-
-module.exports = (knex) => {
-
-  const user_id       = 1;
-
-  // Tracking the aSync count of rows inserted into database
-  let totalObjectives;
-  let totalAlternatives;
-
-  // Mapping id from front-end to database id in order to be able to add values
-  // Format should be: [idFrontEnd, idBackEnd]
-  let objectivesMap       = [];
-  let alternativesMap     = [];
-
-  /**
-  * Checking if Alternatives AND objectives were ALL added
-  * @return {object} objective - All informations about the objective
-  */
-  function isDoneInserting() {
-    // Just console log if ALL the alternatives is added to database
-    // if ((alternativesMap.length == totalAlternatives) && (objectivesMap.length == totalObjectives)) {
-    //   return true;
-    // }
-    // return false;
-
-    return (alternativesMap.length == totalAlternatives) && (objectivesMap.length == totalObjectives);
-  }
-
-  /**
-  * Insert values into database
-  * @param {object}   values    - all cell values data from frontend
-  */
-
-  function insertValues(values) {
-
-    console.log("Now I can add the values in here!");
-    console.log(values);
-
-    /*
-    knex.insert({
-      alternative_id: alternative_id,
-      objective_id:   objective_id,
-      value:          value
-    })
-    .into('alternatives_objectives')
-    .then( (objective_id) => {
-
-    })
-    .catch(function(error) { console.error(error); });
-    */
-  }
-
-
-  /**
-  * Insert an objetive into database
-  * @param {object}   objective - All informations about the objective
-  * @param {integer}  case_id   - To which course objective belongs
-  * @param {object}   values    - all cell values data from frontend
-  */
-
-  function insertObjective(objective, case_id, order, values) {
-
-    knex.insert({
-      name:                   objective.objective,
-      sub_name:               objective.subObjective,
-      case_id:                parseInt(case_id),
-      evaluation_objective:   objective.criterion,
-      low_is_better:          objective.low_is_better,
-      order:                  parseInt(order),
-      unit_name:              objective.unit_name,
-      unit_prefix:            objective.unit_prefix,
-      unit_suffix:            objective.unit_suffix,
-    }, 'id')
-    .into('objectives')
-    .then( (objective_id) => {
-
-      // Maping id_front-end to the new id from database
-      objectivesMap.push([objective.id_frontend, objective_id[0]]);
-
-      // Insert to alternatives_objectives only if all other data is alredy
-      // inserted
-      if (isDoneInserting()) {
-        insertValues(values)
-      }
-    })
-    .catch(function(error) { console.error(error); });
-  }
-
-  /**
-  * Insert an alternative to database
-  * @param {object} objective - All informations about the objective
-  * @param {integer} case_id  - To which course objective belongs
-  * @param {object}   values    - all cell values data from frontend
-  */
-  function insertAlternative(alternative, case_id, order, values) {
-
-    knex.insert({
-      case_id:                parseInt(case_id),
-      name:                   alternative.name,
-      image_url:              alternative.image_url,
-      order:                  parseInt(order),
-    }, 'id')
-    .into('alternatives')
-    .then( (alternative_id) => {
-
-      // Mapping id_front-end to the new id from database
-      alternativesMap.push([alternative.id_frontend, alternative_id[0]]);
-
-      // Insert to alternatives_objectives only if all other data is alredy
-      // inserted
-      if (isDoneInserting()) {
-        insertValues(values)
-      }
-    })
-    .catch(function(error) { console.error(error); });
-  }
-
-
-  /**
-  * Insert a case
-  * @param {object} data      - Json data with all case data
-  * @param {integer} user_id  - Which user own the case
-  */
-  function insertCase(data, user_id) {
-
-    knex.insert({
-      user_id: user_id,
-      name: data.name,
-      description: data.description
-    }, 'id')
-    .into('cases')
-    .then( (case_id) => {
-
-      // To be track of numbers of aSync request and know when is done
-      totalObjectives   = data.objectives.length;
-      totalAlternatives = data.alternatives.length;
-
-      // Add Objectives
-      data.objectives.forEach((objective, index) => {
-        let order = index + 1;
-        insertObjective(objective, case_id, order, data.values)
-      });
-
-      // Add alternatives
-      data.alternatives.forEach((alternative, index) => {
-        let order = index + 1;
-        insertAlternative(alternative, case_id, order, data.values)
-      });
-
-    })
-    .catch(function(error) { console.error(error); });
-  }
-
-  // --------------------------------------------------------------------------
-  // POST ROUTE
-
-  router.post("/", (req, res) => {
-    const data = JSON.parse(req.body.data);
-    insertCase(data, user_id);
-  });
-
-  return router;
-}
-
-/*
-DATA FROM POST:
-
-data = {
-  "name": "Car",
-  "description": "I want to choose some car",
-
-  "objectives": [{
-      "id_frontend": 99,
-      "objective": "Cost",
-      "subObjective": "Price",
-      "criterion": "Just the car price",
-      "low_is_better": true,
-      "unit_name": "money",
-      "unit_prefix": "$",
-      "unit_suffix": "",
-      "scale_type": "this is managed on the front-end"
-    },
-
-    {
-      "id_frontend": 88,
-      "objective": "Cost",
-      "subObjective": "Mainetence",
-      "criterion": "Per year mainetence",
-      "low_is_better": true,
-      "unit_name": "money",
-      "unit_prefix": "$",
-      "unit_suffix": "",
-      "scale_type": "this is managed on the front-end"
-    }
-  ],
-
-  "alternatives": [{
-      "id_frontend": 11,
-      "name": "Ferrari",
-      "image_url": "https://s-media-cache-ak0.pinimg.com/236x/89/5c/b1/895cb18bd918640844fdd3bc6297fddd.jpg"
-    },
-
-    {
-      "id_frontend": 22,
-      "name": "Lamborghini",
-      "image_url": "https://s-media-cache-ak0.pinimg.com/236x/c8/71/07/c871079f871b72609735e584235f1f12.jpg"
-    },
-
-    {
-      "id_frontend": 33,
-      "name": "Lamborghini",
-      "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSyqYUmFsqlT5RtmrxJNGhq70lk2ePKuffpBILv1UtIfk71nE5X"
-    }
-  ],
-
-  "values": [{
-      "objective_id": 99,
-      "alternative_id": 11,
-      "value": 150000
-    }, {
-      "objective_id": 99,
-      "alternative_id": 22,
-      "value": 390888
-    }, {
-      "objective_id": 99,
-      "alternative_id": 33,
-      "value": 420123
-    },
-
-    {
-      "objective_id": 88,
-      "alternative_id": 11,
-      "value": 120
-    }, {
-      "objective_id": 88,
-      "alternative_id": 22,
-      "value": 99
-    }, {
-      "objective_id": 88,
-      "alternative_id": 33,
-      "value": 560
-    }
-  ]
-}
-
 */
