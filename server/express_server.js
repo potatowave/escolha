@@ -1,15 +1,22 @@
-// Required Frameworks
+"use strict";
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const randString = require('./scripts/randomstring');
-const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const config = require('./webpack.config');
+require('dotenv').config();
 
-const app = express();
+const express           = require('express');
+const bodyParser        = require('body-parser');
+const randString        = require('./scripts/randomstring');
+const webpack           = require('webpack');
+const WebpackDevServer  = require('webpack-dev-server');
+const config            = require('./webpack.config');
+const ENV               = process.env.ENV || "development";
+const knexConfig        = require("./knexfile.js");
+const knex              = require("knex")(knexConfig[ENV]);
+const app               = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// ----------------------------------------------------------------------------
+// Webpack - Server
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
@@ -27,20 +34,18 @@ new WebpackDevServer(webpack(config), {
   });
 
 // ----------------------------------------------------------------------------
-// API - Configuration
+// API - Server
 
+// Routes
 const apiCasesRoute = require("./routes/api/cases.js");
+app.use("/api/cases", apiCasesRoute(knex));
 
 const PORT = process.env.PORT || 3001; // set to 3001
 app.set('view engine', 'ejs'); // Set View Engine to ejs
 
-
 app.use(express.static('public'));
 
-app.use("/api/cases", apiCasesRoute);
-
 // Tell the console the server is running
-
 app.listen(PORT, () => {
   console.log(`Web Server listening on port ${PORT}!`);
 });

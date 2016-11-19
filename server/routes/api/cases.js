@@ -2,12 +2,12 @@
 
 const express = require('express');
 const router  = express.Router();
-const pg = require('pg');
-const connectionString = 'pg://development:development@localhost:5432/escolha';
+//const pg = require('pg');
+//const connectionString = 'pg://development:development@localhost:5432/development';
+//const client = new pg.Client(connectionString);
+//client.connect();
 
-const client = new pg.Client(connectionString);
-client.connect();
-
+/*
   router.get("/", (req, res) => {
 
       const results = [];
@@ -95,5 +95,26 @@ client.connect();
 
 
   });
+  */
 
-module.exports = router;
+module.exports = (knex) => {
+
+  router.post("/", (req, res) => {
+    const cases = JSON.parse(req.body.data);
+    //res.send(cases);
+
+    knex
+      .select("*")
+      .from("users")
+      .where({
+        id: 1,
+      })
+      .then((results) => {
+        res.json(results);
+    });
+
+
+  });
+
+  return router;
+}
