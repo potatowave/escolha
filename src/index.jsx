@@ -1,16 +1,15 @@
-// Application entrypoint.
-
-// Load up the application styles
-require("../styles/application.scss");
-
-// Render the top-level React component
-import { Provider } from 'react-redux'
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux'
-import createLogger from 'redux-logger'  // set up logging in the console so we can see how actions are fired
-import rootReducer from './reducers.js'
-import App from './App.jsx';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import createLogger from 'redux-logger';  // set up logging in the console so we can see how actions are fired
+import rootReducer from './reducers';
+import App from './App';
+
+// Load up the application styles
+require('../styles/application.scss');
+
+// Render the top-level React component
 
 
 // Configure the Redux Store
@@ -18,8 +17,9 @@ import App from './App.jsx';
 const store = createStore(
   rootReducer,
   {},
-  applyMiddleware(createLogger()) // apply the 'logger' middleware. this will console.log every action that is sent to the redux store.
-)
+  // apply the 'logger' middleware. this will console.log every action that is sent to the redux store.
+  applyMiddleware(createLogger())
+);
 
 // Wrap the component in a <Provider>
 ReactDOM.render(
@@ -27,4 +27,4 @@ ReactDOM.render(
     <App />
   </Provider>,
   document.getElementById('root')
-)
+);

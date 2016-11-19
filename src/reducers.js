@@ -7,8 +7,10 @@ import { combineReducers } from 'redux';
 
 // the keys are the names of the store property
 const rootReducer = combineReducers({
-  contacts: contactsReducer,
-  uiState: uiStateReducer
-})
+  // users: usersReducer,
+  // cases: casesReducer,
+  // objectives: objectivesReducer,
+  // uiState: uiStateReducer
+});
 
-export default rootReducer
+export default rootReducer;
