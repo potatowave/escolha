@@ -14,16 +14,28 @@ module.exports = {
   },
   module: {
     loaders: [
-      {
 
+      {
         test: /\.jsx?$/,
-        loaders: ['babel'],
-        include: path.join(__dirname, 'src')
+        loader: 'babel',
+        exclude: /node_modules/,
+        query: {
+          cacheDirectory: true,
+          presets: ['react', 'es2015'],
+        }
       },
       {
         test: /\.scss$/,
         loaders: ["style", "css", "sass"]
-      }
+      },
+      { test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/ }
     ]
-  }
+  },
+    resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
 }
+
+

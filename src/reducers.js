@@ -11,6 +11,6 @@ const rootReducer = combineReducers({
   // cases: casesReducer,
   // objectives: objectivesReducer,
   // uiState: uiStateReducer
-})
+});
 
 export default rootReducer;
