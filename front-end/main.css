@@ -1,0 +1,234 @@
+/* NOTE - use CSS stuff here to clear the CSS browser settings, set things up cleanly for our project*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/* DISCARD THE ABOVE AND USE THIS: https://github.com/shannonmoeller/reset-css*/
+/* =======================     */
+
+/*should be rocking box-sizing: border-box; - otherwise any padding or border on that container and it would be wider than 100% and that's the worst.*/
+*, *:before, *:after  {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+/* Other CSS */
+body {
+  font-family: 'Roboto', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+}
+
+main { 
+  margin-top: 80px;
+}
+
+h1 {
+  font-size: 2em;
+  padding: 10px;
+}
+
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  height: 50px;
+  /*background-color: #4285f4;*/
+  background-color: #3367d6;
+  color: white;
+  margin: 0;
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+  z-index: 999;
+  padding: 0px 30px 0px 30px;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar .brand {
+  font-size: 1.5em;
+  color: darkblue;
+}
+
+.navbar .nav-links {
+  min-width: 200px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95em;
+  margin-right: 250px;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+}
+
+.case-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.case-description {
+    display: flex;
+    align-items: center;
+    /*text-align: center;*/
+    margin: 10px 250px 25px 250px;
+    line-height: 1.5em;
+}
+
+.header {
+  font-weight: 800;
+}
+
+.r1, .r2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.c1, .c2, .c3, .c4, .c5, .c6 {
+  min-width: 130px;
+  min-height: 45px;
+  padding: 10px;
+  margin: 1px;
+  background-color: lightblue;
+  color: #353535;
+  text-align: center;
+  line-height: 1.6em;
+  /*box-shadow: 2px 2px 7px rgba(0,0,0,.4)*/
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+}
+
+.header1, .header2, .header3, .header4, .header5, .header6 {
+  min-width: 130px;
+  padding: 10px;
+  margin: 1px;
+  background-color: #4285f4;
+  color: white;
+  text-align: center; 
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+}
+
+.header-objectives {
+  min-width: 130px;
+  min-height: 30px;
+  padding: 10px;
+  margin: 1px;
+  /*box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);*/
+}
+
+.header-units {
+  min-width: 80px;
+  min-height: 30px;
+  padding: 10px;
+  margin: 1px;
+  /*box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);*/
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  min-width: 100px;
+}
+
+.sub-objective-name {
+  margin-left: 10px;
+}
+
+.highlight {
+  background-color: #aaa;
+  z-index: 99;
+}
+
+.units {
+  text-align: center;
+  min-width: 80px;
+  min-height: 45px;
+  line-height: 2em;
+  margin: 1px;
+  padding: 5px;
+  /*background-color: lightblue;*/
+  color: black; 
+  /*box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);*/
+}
+
+.objective-name-container {
+  min-width: 130px;
+  min-height: 45px;
+  margin: 1px;
+  padding: 5px;
+  /*background-color: lightblue;*/
+  color: black;
+  /*box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);*/
+}
+
+.search-area {
+  width: 250px;
+  height: 35px;
+  padding: 5px;
+  /*border: 1px solid darkgrey;*/
+  border-radius: 4px;
+  background-color: #4285f4;
+  text-align: center;
+  line-height: 1.8em;
+  margin-left: 20px;
+}
+
+.table-area {
+}
+
+.objective-description-area {
+}
