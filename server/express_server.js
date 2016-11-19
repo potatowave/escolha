@@ -1,5 +1,4 @@
 // Required Frameworks
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const randString = require('./scripts/randomstring');
@@ -7,7 +6,6 @@ const pg = require('pg');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
-
 const connectionString = 'pg://development:development@localhost:5432/escolha';
 const app = express();
 
