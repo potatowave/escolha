@@ -101,8 +101,23 @@ module.exports = (knex) => {
 
   router.post("/", (req, res) => {
     const cases = JSON.parse(req.body.data);
-    //res.send(cases);
+    res.send(cases.name);
 
+    knex.select('*')
+    .from('users')
+    .where({name: 'Tim'})
+    .then(function(rows) {
+    return knex.insert({user_id: rows[0].id, name: 'Test'}, 'id').into('accounts');
+    })
+    .then(function(id) {
+    console.log('Inserted Account ' + id);
+    })
+    .catch(function(error) { console.error(error); });
+
+
+
+
+    /*
     knex
       .select("*")
       .from("users")
@@ -112,6 +127,7 @@ module.exports = (knex) => {
       .then((results) => {
         res.json(results);
     });
+    */
 
 
   });

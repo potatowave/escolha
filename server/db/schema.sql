@@ -14,6 +14,7 @@ CREATE TABLE cases (
   id BIGSERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   name VARCHAR(255),
+  description VARCHAR(255),
   create_at DATE,
   update_at DATE
 );
@@ -37,6 +38,7 @@ CREATE TABLE objectives (
 CREATE TABLE alternatives (
   id BIGSERIAL PRIMARY KEY,
   name VARCHAR(75),
+  image_url TEXT,
   case_id INTEGER REFERENCES cases(id) ON DELETE CASCADE,
   "order" INTEGER
 );
