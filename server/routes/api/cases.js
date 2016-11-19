@@ -110,18 +110,18 @@ module.exports = (knex) => {
   let objectivesMap       = [];
   let alternativesMap     = [];
 
-
   /**
   * Checking if Alternatives AND objectives were ALL added
   * @return {object} objective - All informations about the objective
   */
   function isDoneInserting() {
     // Just console log if ALL the alternatives is added to database
-    if ((alternativesMap.length == totalAlternatives) && (objectivesMap.length == totalObjectives)) {
-      return true;
-    }
+    // if ((alternativesMap.length == totalAlternatives) && (objectivesMap.length == totalObjectives)) {
+    //   return true;
+    // }
+    // return false;
 
-    return false;
+    return (alternativesMap.length == totalAlternatives) && (objectivesMap.length == totalObjectives);
   }
 
   /**
@@ -201,7 +201,7 @@ module.exports = (knex) => {
     .into('alternatives')
     .then( (alternative_id) => {
 
-      // Maping id_front-end to the new id from database
+      // Mapping id_front-end to the new id from database
       alternativesMap.push([alternative.id_frontend, alternative_id[0]]);
 
       // Insert to alternatives_objectives only if all other data is alredy
@@ -259,3 +259,86 @@ module.exports = (knex) => {
 
   return router;
 }
+
+/*
+DATA FROM POST:
+
+data = {
+  "name": "Car",
+  "description": "I want to choose some car",
+
+  "objectives": [{
+      "id_frontend": 99,
+      "objective": "Cost",
+      "subObjective": "Price",
+      "criterion": "Just the car price",
+      "low_is_better": true,
+      "unit_name": "money",
+      "unit_prefix": "$",
+      "unit_suffix": "",
+      "scale_type": "this is managed on the front-end"
+    },
+
+    {
+      "id_frontend": 88,
+      "objective": "Cost",
+      "subObjective": "Mainetence",
+      "criterion": "Per year mainetence",
+      "low_is_better": true,
+      "unit_name": "money",
+      "unit_prefix": "$",
+      "unit_suffix": "",
+      "scale_type": "this is managed on the front-end"
+    }
+  ],
+
+  "alternatives": [{
+      "id_frontend": 11,
+      "name": "Ferrari",
+      "image_url": "https://s-media-cache-ak0.pinimg.com/236x/89/5c/b1/895cb18bd918640844fdd3bc6297fddd.jpg"
+    },
+
+    {
+      "id_frontend": 22,
+      "name": "Lamborghini",
+      "image_url": "https://s-media-cache-ak0.pinimg.com/236x/c8/71/07/c871079f871b72609735e584235f1f12.jpg"
+    },
+
+    {
+      "id_frontend": 33,
+      "name": "Lamborghini",
+      "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSyqYUmFsqlT5RtmrxJNGhq70lk2ePKuffpBILv1UtIfk71nE5X"
+    }
+  ],
+
+  "values": [{
+      "objective_id": 99,
+      "alternative_id": 11,
+      "value": 150000
+    }, {
+      "objective_id": 99,
+      "alternative_id": 22,
+      "value": 390888
+    }, {
+      "objective_id": 99,
+      "alternative_id": 33,
+      "value": 420123
+    },
+
+    {
+      "objective_id": 88,
+      "alternative_id": 11,
+      "value": 120
+    }, {
+      "objective_id": 88,
+      "alternative_id": 22,
+      "value": 99
+    }, {
+      "objective_id": 88,
+      "alternative_id": 33,
+      "value": 560
+    }
+  ]
+}
+
+*/
