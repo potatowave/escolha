@@ -255,6 +255,12 @@ module.exports = (knex) => {
     });
   }
 
+  /**
+  * Delivery JSON to front-end
+  * @param {integer} caseId     - Getting all data from a specific caseId
+  * @param {function} callback  - Callback function to run after aSync DB call
+  * @returns {void}             - It will call Callback function aSync
+  */
   function deliverContent(caseId, callback) {
     const data = {};
 
