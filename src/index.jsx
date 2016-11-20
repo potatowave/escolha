@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';  // set up logging in the console so we can see how actions are fired
 import rootReducer from './reducers';
-import App from './App';
+import App from './App.jsx';
 
 // Load up the application styles
 require('../styles/application.scss');
@@ -26,5 +26,5 @@ ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('react-root')
 );

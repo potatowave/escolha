@@ -69,7 +69,7 @@ body {
 }
 
 main { 
-  margin-top: 80px;
+  margin-top: 70px;
 }
 
 h1 {
@@ -112,8 +112,21 @@ h1 {
 }
 
 .main-container {
-  display: flex;
-  justify-content: center;
+/*  display: flex;
+  justify-content: center;*/
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   /* You can set flex-wrap and flex-direction individually */
+   flex-direction: row;
+   /*flex-wrap: wrap;*/
+   /* Or do it all in one line with flex flow */
+   /*flex-flow: row wrap;*/
+   /* tweak the where items line up on the row */
+   /* valid values are: flex-start, flex-end, space-between, space-around, stretch */
+   align-content: flex-end;
+
+
 }
 
 .case-title {
@@ -234,4 +247,28 @@ h1 {
 }
 
 .objective-description-area {
+}
+
+.hide-button {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px; 
+  border: 2px solid #999;
+}
+
+.selected {
+  background: darkgrey;
+}
+
+.alt-image-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.alt-image-1, .alt-image-2, .alt-image-3, .alt-image-4, .alt-image-5, .alt-image-6{
+  border-radius: 50%;
+  width: 60px;
+  height: 60px; 
+  border: 2px solid #999;
 }
