@@ -36,7 +36,7 @@ module.exports = (knex) => {
   router.get("/:id", (req, res) => {
     const case_id = req.params.id
     Case(knex).deliverContent(case_id, (data) => {
-      res.send(data);
+      res.json(data);
     })
   });
 
