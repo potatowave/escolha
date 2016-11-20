@@ -266,8 +266,17 @@ module.exports = (knex) => {
       });
     });
   }
+
+  function deliverContent (case_id, callback) {
+
+    callback("Hello world");
+
+  };
+
+
   return {
     insertCase,
-    updateCase
+    updateCase,
+    deliverContent
   };
 };
