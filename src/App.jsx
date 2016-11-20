@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import Heading from './Heading.jsx';
 
 class App extends Component {
   render() {
     console.log('Rendering <App/>');
     return (
-      // <div><h1>Hello React :)</h1></div>
 
-      <div className="container">
+      <div className="wrapper">
 
         <nav className="navbar">
           <div className="brand">Escol.ia</div>
@@ -22,14 +22,10 @@ class App extends Component {
           <div className="login">Signed in as Christian</div>
         </nav>
 
-        <main>
-          <div className="case-title">
-            <h1>Case Title</h1>
-          </div>
 
-          <div className="case-description">
-            <p>Activated charcoal wolf locavore yuccie. Paleo pork belly readymade, chia direct trade ethical narwhal man braid post-ironic pickled iceland. Cardigan twee swag VHS.</p>
-          </div>
+        <main>
+
+          <Heading />
 
           <div className="main-container">
 
@@ -208,6 +204,7 @@ class App extends Component {
             </div>
 
             <div className="hide-buttons-rows">
+              <div className="hide-button-spacer"></div>
               <div className="hide-button"></div>
               <div className="hide-button selected"></div>
               <div className="hide-button"></div>
@@ -226,8 +223,6 @@ class App extends Component {
     );
   }
 }
-
-
 
 function mapStateToProps(state) {
   return {
