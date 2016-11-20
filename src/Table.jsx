@@ -16,7 +16,7 @@ class Table extends Component {
                   <Objectiverow />
                 <div className="table-area">
                   <Tableheader />
-                  <Tablerow />
+                      <Tablerow />
                 </div>
               </div>
         </div>

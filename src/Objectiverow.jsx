@@ -24,7 +24,6 @@ class Objectiverow extends Component {
               <label className="units"> $ </label>
             </div>
 
-
       </div>
 
     );
