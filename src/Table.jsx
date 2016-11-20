@@ -13,7 +13,7 @@ class Table extends Component {
 
         <div className="main-container">
               <div className="table-container">
-              <Objectiverow />
+                  <Objectiverow />
                 <div className="table-area">
                   <Tableheader />
                   <Tablerow />

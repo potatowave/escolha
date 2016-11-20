@@ -17,6 +17,15 @@ class Tablerow extends Component {
           <div className="c6">$40,000</div>
         </div>
 
+      </div>
+    );
+  }
+}
+
+export default Tablerow;
+
+/*
+
         <div className="r2">
           <div className="c1">$3,000</div>
           <div className="c2 highlight">$1,000</div>
@@ -79,9 +88,4 @@ class Tablerow extends Component {
           <div className="c5">$500</div>
           <div className="c6">$400</div>
         </div>
-      </div>
-    );
-  }
-}
-
-export default Tablerow;
+*/

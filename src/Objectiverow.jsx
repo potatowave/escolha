@@ -24,6 +24,17 @@ class Objectiverow extends Component {
               <label className="units"> $ </label>
             </div>
 
+
+      </div>
+
+    );
+  }
+}
+
+export default Objectiverow;
+
+/*
+
             <div className="r2">
               <div className="objective-name-container">
                 <label className="objective-name">Cost</label>
@@ -86,11 +97,4 @@ class Objectiverow extends Component {
 
               <label className="units"> $ </label>
             </div>
-
-      </div>
-
-    );
-  }
-}
-
-export default Objectiverow;
+*/
