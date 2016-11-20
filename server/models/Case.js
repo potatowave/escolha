@@ -266,8 +266,68 @@ module.exports = (knex) => {
       });
     });
   }
+
+  function deliverContent (case_id, callback) {
+
+    data = {};
+
+    function isDone() {
+      return (data.objectives && data.alternatives && data.cases && data.values);
+    }
+
+    knex('objectives')
+      .where('case_id', case_id)
+      .select()
+      .then(function(result) {
+        data.objectives = result;
+        console.log(data)
+      if (isDone()) {
+        callback(data);
+      }
+
+    });
+
+    knex('cases')
+      .where("user_id", user_id)
+      .where("id", case_id)
+      .select()
+      .then(function(result) {
+        data.cases = result;
+        console.log(data)
+      if (isDone()) {
+        callback(data);
+      }
+
+    });
+
+    knex('alternatives')
+      .where("case_id", case_id)
+      .select()
+      .then(function(result) {
+        data.alternatives = result;
+      if (isDone()) {
+        callback(data);
+      }
+
+    });
+
+    knex.from('alternatives_objectives')
+      .innerJoin('alternatives','alternatives_objectives.alternative_id','alternatives.id')
+      .where("case_id", case_id)
+      .then(function(result) {
+        data.values = result;
+      if (isDone()) {
+        callback(data);
+      }
+
+    });
+
+  };
+
+
   return {
     insertCase,
-    updateCase
+    updateCase,
+    deliverContent
   };
 };
