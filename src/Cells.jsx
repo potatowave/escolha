@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-class Tablecell extends Component {
+class Cells extends Component {
 
   render() {
-    console.log("Rendering <Tablecell />");
+    console.log("Rendering <Cells />");
 
     return (
       <div>
@@ -85,4 +85,4 @@ class Tablecell extends Component {
   }
 }
 
-export default Tablecell;
+export default Cells;

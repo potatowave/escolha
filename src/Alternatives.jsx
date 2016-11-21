@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import Value from './Value.jsx'
+import Cells from './Cells.jsx'
 
-class Alternative extends Component {
+class Alternatives extends Component {
 
   render() {
-    console.log("Rendering <Alternative />");
+    console.log("Rendering <Alternatives />");
 
     return (
 
@@ -20,7 +20,7 @@ class Alternative extends Component {
           <label className="header6">Alternative 6</label>
         </div>
 
-        <Value />
+        <Cells />
 
       </div>
 
@@ -28,4 +28,4 @@ class Alternative extends Component {
   }
 }
 
-export default Alternative;
+export default Alternatives;

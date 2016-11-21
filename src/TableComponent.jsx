@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import Alternative from './Alternative.jsx'
+import Alternatives from './Alternatives.jsx'
 
-import Objective from './Objective.jsx'
+import ObjectiveDescriptions from './ObjectiveDescriptions.jsx'
 
-class Table extends Component {
+class TableComponent extends Component {
 
   render() {
     console.log("Rendering <Table />");
@@ -14,8 +14,8 @@ class Table extends Component {
         <div className="main-container">
 
           <div className="table-container">
-            <Objective />
-            <Alternative />
+            <ObjectiveDescriptions />
+            <Alternatives />
           </div>
 
         </div>
@@ -24,7 +24,7 @@ class Table extends Component {
   }
 }
 
-export default Table;
+export default TableComponent;
 
 /*
   <div className="alt-image-container">

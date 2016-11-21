@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-class Objective extends Component {
+class ObjectiveDescriptions extends Component {
 
   render() {
-    console.log("Rendering <Objective />");
+    console.log("Rendering <ObjectiveDescriptions />");
 
     return (
 
@@ -93,4 +93,4 @@ class Objective extends Component {
   }
 }
 
-export default Objective;
+export default ObjectiveDescriptions;

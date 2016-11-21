@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Heading from './Heading.jsx';
 import Nav from './Nav.jsx';
-import Table from './Table.jsx';
+import TableComponent from './TableComponent.jsx';
 
 class App extends Component {
   render() {
@@ -14,7 +14,7 @@ class App extends Component {
         <Nav />
         <main>
           <Heading />
-          <Table />
+          <TableComponent />
         </main>
 
       </div>
@@ -25,7 +25,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    someProp: state.someProp
+    someProp: state.cases.description
   }
 }
 
