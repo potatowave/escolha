@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import Heading from './Heading.jsx';
 import Nav from './Nav.jsx';
 import Table from './Table.jsx';
+import { Router, Route, Link } from 'react-router'
+import { Button, Alert, Spinner, Modal } from 'elemental'
+
 
 class App extends Component {
   render() {

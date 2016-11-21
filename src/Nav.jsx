@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router'
 
 class Nav extends Component {
 
@@ -12,7 +13,7 @@ class Nav extends Component {
           <div className="brand">Escol.ia</div>
 
           <div className="nav-links">
-            <div className="home-button">Home</div>
+            <div className="home-button"><Link to="/new">Home</Link></div>
             <div className="editor-button">Edit</div>
             <div className="create-button">Create</div>
           </div>
@@ -20,6 +21,8 @@ class Nav extends Component {
           <div className="search-area">Search</div>
           <div className="login">Signed in as Christian</div>
         </nav>
+
+
 
     );
   }

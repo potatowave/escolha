@@ -5,6 +5,8 @@ import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';  // set up logging in the console so we can see how actions are fired
 import rootReducer from './reducers';
 import App from './App.jsx';
+import Onboard from './Onboard.jsx';
+import { Router, Route, hashHistory } from 'react-router'
 
 import $ from 'jquery';
 
@@ -24,13 +26,22 @@ const store = createStore(
   applyMiddleware(createLogger())
 );
 
-// Wrap the component in a <Provider>
-ReactDOM.render(
+ReactDOM.render((
   <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('react-root')
-);
+  <Router history={hashHistory} store={store} >
+    <Route path="/" component={App} />
+    <Route path="/new" component={Onboard} />
+  </Router>
+  </Provider>
+), document.getElementById('react-root'))
+
+// // Wrap the component in a <Provider>
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <App />
+//   </Provider>,
+//   document.getElementById('react-root')
+// );
 
 $.get("http://localhost:3001/api/cases/1")
 .done(function(data) {
