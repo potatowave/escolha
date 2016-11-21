@@ -37,11 +37,11 @@ ReactDOM.render(
 // })
 
 
-const test_data = { 
+const test_data = {
   users: [
     {id: 1, name: "Bob"},
   ],
-  
+
   cases: [{
     name: "Choosing a Car",
     description: "FROM TEST DATA: Activated charcoal wolf locavore yuccie. Paleo pork belly readymade, chia direct trade ethical narwhal man braid post-ironic pickled iceland. Cardigan twee swag VHS." }],
@@ -79,29 +79,29 @@ const test_data = {
        image_url: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSyqYUmFsqlT5RtmrxJNGhq70lk2ePKuffpBILv1UtIfk71nE5X' } ],
 
   values:
-   [ { objective_id_frontend: 99,
-       alternative_id_frontend: 11,
+   [ { objective_id_frontend: 1,
+       alternative_id_frontend: 1,
        value: 150000 },
-     { objective_id_frontend: 99,
-       alternative_id_frontend: 22,
+     { objective_id_frontend: 1,
+       alternative_id_frontend: 2,
        value: 390888 },
-     { objective_id_frontend: 99,
-       alternative_id_frontend: 33,
+     { objective_id_frontend: 1,
+       alternative_id_frontend: 3,
        value: 420123 },
-     { objective_id_frontend: 88,
-       alternative_id_frontend: 11,
+     { objective_id_frontend: 2,
+       alternative_id_frontend: 1,
        value: 120 },
-     { objective_id_frontend: 88,
-       alternative_id_frontend: 22,
+     { objective_id_frontend: 2,
+       alternative_id_frontend: 2,
        value: 99 },
-     { objective_id_frontend: 88,
-       alternative_id_frontend: 33,
-       value: 560 } ], 
+     { objective_id_frontend: 2,
+       alternative_id_frontend: 3,
+       value: 560 } ],
 
   uiState: {
     currentCaseId: 1,
     currentAlternativeId: 2,
-  } 
+  }
 }
 
 console.log("Loading data in the Store", test_data)

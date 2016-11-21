@@ -13,7 +13,8 @@ class App extends Component {
 
         <Nav />
         <main>
-          <Heading />
+          { this.props.case.map(function(item) {
+              return <Heading name={item.name} description={item.description} /> })}
           <TableComponent />
         </main>
 
@@ -25,7 +26,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    someProp: state.cases.description
+    case: state.cases
   }
 }
 
