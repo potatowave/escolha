@@ -25,7 +25,7 @@ body {
   /*font-family: 'Open Sans', sans-serif;*/
 }
 
-main { 
+main {
   margin-top: 65px;
 }
 
@@ -50,10 +50,10 @@ p {
 }
 
 .alt-image-1, .alt-image-2, .alt-image-3, .alt-image-4, .alt-image-5, .alt-image-6{
-  
+
   border-radius: 50%;
   width: $circle-diameter;
-  height: $circle-diameter; 
+  height: $circle-diameter;
   border: 2px solid #999;
   margin-left: ($cell-width - $circle-diameter)/2;
   margin-right: ($cell-width - $circle-diameter)/2;
@@ -101,7 +101,7 @@ p {
   background-color: #4285f4;
   border: 1px solid #3D75D1;
   color: white;
-  text-align: center; 
+  text-align: center;
   box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
 }
 
@@ -124,7 +124,7 @@ p {
 .hide-button {
   border-radius: 50%;
   width: $hide-button-diameter;
-  height: $hide-button-diameter; 
+  height: $hide-button-diameter;
   border: 2px solid #999;
   margin-top: ($cell-height - $hide-button-diameter)/2;
   margin-bottom: ($cell-height - $hide-button-diameter)/2;
@@ -148,7 +148,7 @@ p {
   border: 1px solid #999;
 }
 
-.main-container {  
+.main-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -240,7 +240,7 @@ p {
   margin: 1px;
   padding: 5px;
   /*background-color: lightblue;*/
-  color: black; 
+  color: black;
   /*box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);*/
 }
 

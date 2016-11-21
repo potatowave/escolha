@@ -2,3 +2,7 @@
 
 node_modules/
 server/.env
+.env
+npm-debug.log
+npm-debug.log
+/server/routes/expectedjson.js
