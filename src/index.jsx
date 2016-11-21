@@ -38,70 +38,149 @@ ReactDOM.render(
 
 
 const test_data = {
-  users: [
-    {id: 1, name: "Bob"},
+  "objectives": [
+    {
+      "id": 1,
+      "case_id": 1,
+      "name": "Cost",
+      "sub_name": "Salary",
+      "evaluation_objective": "Salary + benefits",
+      "low_is_better": false,
+      "order": 1,
+      "unit_name": "Money",
+      "unit_prefix": "$",
+      "unit_suffix": null,
+      "created_at": "2016-12-17T00:00:00.000Z",
+      "updated_at": null
+    },
+    {
+      "id": 2,
+      "case_id": 1,
+      "name": "Location",
+      "sub_name": "Distance",
+      "evaluation_objective": "Distance from home",
+      "low_is_better": true,
+      "order": 2,
+      "unit_name": "Meters",
+      "unit_prefix": null,
+      "unit_suffix": "m",
+      "created_at": "2016-12-17T00:00:00.000Z",
+      "updated_at": null
+    }
   ],
-
-  cases: [{
-    name: "Choosing a Car",
-    description: "FROM TEST DATA: Activated charcoal wolf locavore yuccie. Paleo pork belly readymade, chia direct trade ethical narwhal man braid post-ironic pickled iceland. Cardigan twee swag VHS." }],
-
-  objectives:
-   [ { id_frontend: 1,
-       name: 'Cost',
-       sub_name: 'Price',
-       evaluation_objective: 'Just the car price',
-       low_is_better: true,
-       unit_name: '          money',
-       unit_prefix: '$',
-       unit_suffix: '',
-       scale_type: 'this is managed on the front-end' },
-
-     { id_frontend: 2,
-       name: 'Cost',
-       sub_name: 'Mainetence',
-       evaluation_objective: 'Per year mainetence',
-       low_is_better: true,
-       unit_name: 'money',
-       unit_prefix: '$',
-       unit_suffix: '',
-       scale_type: 'this is managed on the front-end' } ],
-
-  alternatives:
-   [ { id_frontend: 1,
-       name: 'Ferrari',
-       image_url: 'https://s-media-cache-ak0.pinimg.com/236x/89/5c/b1/895cb18bd918640844fdd3bc6297fddd.jpg' },
-     { id_frontend: 2,
-       name: 'Lamborghini',
-       image_url: 'https://s-media-cache-ak0.pinimg.com/236x/c8/71/07/c871079f871b72609735e584235f1f12.jpg' },
-     { id_frontend: 3,
-       name: 'Lamborghini',
-       image_url: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSyqYUmFsqlT5RtmrxJNGhq70lk2ePKuffpBILv1UtIfk71nE5X' } ],
-
-  values:
-   [ { objective_id_frontend: 1,
-       alternative_id_frontend: 1,
-       value: 150000 },
-     { objective_id_frontend: 1,
-       alternative_id_frontend: 2,
-       value: 390888 },
-     { objective_id_frontend: 1,
-       alternative_id_frontend: 3,
-       value: 420123 },
-     { objective_id_frontend: 2,
-       alternative_id_frontend: 1,
-       value: 120 },
-     { objective_id_frontend: 2,
-       alternative_id_frontend: 2,
-       value: 99 },
-     { objective_id_frontend: 2,
-       alternative_id_frontend: 3,
-       value: 560 } ],
-
-  uiState: {
-    currentCaseId: 1,
-    currentAlternativeId: 2,
-  }
+  "cases": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "name": "Jobs",
+      "description": "This is a case for searching a developer job in vancouver",
+      "created_at": null,
+      "updated_at": null
+    }
+  ],
+  "alternatives": [
+    {
+      "id": 1,
+      "case_id": 1,
+      "name": "Facebook",
+      "image_url": "1",
+      "order": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 2,
+      "case_id": 1,
+      "name": "Google",
+      "image_url": "2",
+      "order": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 3,
+      "case_id": 1,
+      "name": "LightHouse",
+      "image_url": "3",
+      "order": null,
+      "created_at": null,
+      "updated_at": null
+    }
+  ],
+  "values": [
+    {
+      "alternative_id": 1,
+      "objective_id": 1,
+      "value": 120000,
+      "id": 1,
+      "case_id": 1,
+      "name": "Facebook",
+      "image_url": "1",
+      "order": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "alternative_id": 2,
+      "objective_id": 1,
+      "value": 150000,
+      "id": 2,
+      "case_id": 1,
+      "name": "Google",
+      "image_url": "2",
+      "order": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "alternative_id": 3,
+      "objective_id": 1,
+      "value": 95000,
+      "id": 3,
+      "case_id": 1,
+      "name": "LightHouse",
+      "image_url": "3",
+      "order": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "alternative_id": 1,
+      "objective_id": 2,
+      "value": 10,
+      "id": 1,
+      "case_id": 1,
+      "name": "Facebook",
+      "image_url": "1",
+      "order": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "alternative_id": 2,
+      "objective_id": 2,
+      "value": 25,
+      "id": 2,
+      "case_id": 1,
+      "name": "Google",
+      "image_url": "2",
+      "order": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "alternative_id": 3,
+      "objective_id": 2,
+      "value": 5,
+      "id": 3,
+      "case_id": 1,
+      "name": "LightHouse",
+      "image_url": "3",
+      "order": null,
+      "created_at": null,
+      "updated_at": null
+    }
+  ]
 }
 
 console.log("Loading data in the Store", test_data)

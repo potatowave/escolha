@@ -14,13 +14,14 @@ class Alternatives extends Component {
     <div className="table-area">
 
         <div className="header">
-        { this.props.alternatives.map(function(item, index) {
-              return <label className={"header"+(index + 1)}> {item.name} </label> })}
+        { this.props.alternatives.map(function(item) {
+              return <label key={item.id} className={"header"+(item.id)}> {item.name} </label> })}
         </div>
 
          { this.props.objectives.map(function(item) {
               return <Cells
-                row={item.id_frontend} /> })}
+                key={`r${item.id}`}
+                row={item.order} /> })}
     </div>
 </div>
 

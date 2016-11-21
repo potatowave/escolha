@@ -14,7 +14,7 @@ class App extends Component {
         <Nav />
         <main>
           { this.props.case.map(function(item) {
-              return <Heading name={item.name} description={item.description} /> })}
+              return <Heading key={item.id} name={item.name} description={item.description} /> })}
           <TableComponent />
         </main>
 
