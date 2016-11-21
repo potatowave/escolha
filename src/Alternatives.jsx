@@ -18,9 +18,9 @@ class Alternatives extends Component {
               return <label className={"header"+(index + 1)}> {item.name} </label> })}
         </div>
 
-         { this.props.values.map(function(item, index) {
+         { this.props.objectives.map(function(item) {
               return <Cells
-                row={item.objective_id_frontend} /> })}
+                row={item.id_frontend} /> })}
     </div>
 </div>
 
@@ -30,6 +30,7 @@ class Alternatives extends Component {
 
 function mapStateToProps(state) {
   return {
+    objectives: state.objectives,
     alternatives: state.alternatives,
     values: state.values
   }

@@ -47,7 +47,7 @@ const test_data = {
     description: "FROM TEST DATA: Activated charcoal wolf locavore yuccie. Paleo pork belly readymade, chia direct trade ethical narwhal man braid post-ironic pickled iceland. Cardigan twee swag VHS." }],
 
   objectives:
-   [ { id_frontend: 99,
+   [ { id_frontend: 1,
        name: 'Cost',
        sub_name: 'Price',
        evaluation_objective: 'Just the car price',
@@ -57,7 +57,7 @@ const test_data = {
        unit_suffix: '',
        scale_type: 'this is managed on the front-end' },
 
-     { id_frontend: 88,
+     { id_frontend: 2,
        name: 'Cost',
        sub_name: 'Mainetence',
        evaluation_objective: 'Per year mainetence',
@@ -68,13 +68,13 @@ const test_data = {
        scale_type: 'this is managed on the front-end' } ],
 
   alternatives:
-   [ { id_frontend: 11,
+   [ { id_frontend: 1,
        name: 'Ferrari',
        image_url: 'https://s-media-cache-ak0.pinimg.com/236x/89/5c/b1/895cb18bd918640844fdd3bc6297fddd.jpg' },
-     { id_frontend: 22,
+     { id_frontend: 2,
        name: 'Lamborghini',
        image_url: 'https://s-media-cache-ak0.pinimg.com/236x/c8/71/07/c871079f871b72609735e584235f1f12.jpg' },
-     { id_frontend: 33,
+     { id_frontend: 3,
        name: 'Lamborghini',
        image_url: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSyqYUmFsqlT5RtmrxJNGhq70lk2ePKuffpBILv1UtIfk71nE5X' } ],
 
