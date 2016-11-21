@@ -37,17 +37,17 @@ ReactDOM.render(
 // })
 
 
-const test_data = { 
+const test_data = {
   users: [
     {id: 1, name: "Bob"},
   ],
-  
+
   cases: [{
     name: "Choosing a Car",
     description: "FROM TEST DATA: Activated charcoal wolf locavore yuccie. Paleo pork belly readymade, chia direct trade ethical narwhal man braid post-ironic pickled iceland. Cardigan twee swag VHS." }],
 
   objectives:
-   [ { id_frontend: 99,
+   [ { id_frontend: 1,
        name: 'Cost',
        sub_name: 'Price',
        evaluation_objective: 'Just the car price',
@@ -57,7 +57,7 @@ const test_data = {
        unit_suffix: '',
        scale_type: 'this is managed on the front-end' },
 
-     { id_frontend: 88,
+     { id_frontend: 2,
        name: 'Cost',
        sub_name: 'Mainetence',
        evaluation_objective: 'Per year mainetence',
@@ -68,40 +68,40 @@ const test_data = {
        scale_type: 'this is managed on the front-end' } ],
 
   alternatives:
-   [ { id_frontend: 11,
+   [ { id_frontend: 1,
        name: 'Ferrari',
        image_url: 'https://s-media-cache-ak0.pinimg.com/236x/89/5c/b1/895cb18bd918640844fdd3bc6297fddd.jpg' },
-     { id_frontend: 22,
+     { id_frontend: 2,
        name: 'Lamborghini',
        image_url: 'https://s-media-cache-ak0.pinimg.com/236x/c8/71/07/c871079f871b72609735e584235f1f12.jpg' },
-     { id_frontend: 33,
+     { id_frontend: 3,
        name: 'Lamborghini',
        image_url: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSyqYUmFsqlT5RtmrxJNGhq70lk2ePKuffpBILv1UtIfk71nE5X' } ],
 
   values:
-   [ { objective_id_frontend: 99,
-       alternative_id_frontend: 11,
+   [ { objective_id_frontend: 1,
+       alternative_id_frontend: 1,
        value: 150000 },
-     { objective_id_frontend: 99,
-       alternative_id_frontend: 22,
+     { objective_id_frontend: 1,
+       alternative_id_frontend: 2,
        value: 390888 },
-     { objective_id_frontend: 99,
-       alternative_id_frontend: 33,
+     { objective_id_frontend: 1,
+       alternative_id_frontend: 3,
        value: 420123 },
-     { objective_id_frontend: 88,
-       alternative_id_frontend: 11,
+     { objective_id_frontend: 2,
+       alternative_id_frontend: 1,
        value: 120 },
-     { objective_id_frontend: 88,
-       alternative_id_frontend: 22,
+     { objective_id_frontend: 2,
+       alternative_id_frontend: 2,
        value: 99 },
-     { objective_id_frontend: 88,
-       alternative_id_frontend: 33,
-       value: 560 } ], 
+     { objective_id_frontend: 2,
+       alternative_id_frontend: 3,
+       value: 560 } ],
 
   uiState: {
     currentCaseId: 1,
     currentAlternativeId: 2,
-  } 
+  }
 }
 
 console.log("Loading data in the Store", test_data)

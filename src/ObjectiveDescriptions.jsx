@@ -8,87 +8,13 @@ class ObjectiveDescriptions extends Component {
 
     return (
 
-      <div className="objective-description-area">
-
-            <div className="header">
-              <label className="header-objectives">Objectives</label>
-              <label className="header-units">Units</label>
-            </div>
-
-            <div className="r1">
+            <div className={"r" + (this.props.row + 1) }>
               <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Purchase Price</label>
+                <label className="objective-name">{this.props.name}</label>
+                <label className="sub-objective-name">{this.props.subname}</label>
               </div>
-
-              <label className="units"> $ </label>
+                <label className="units">{this.props.unit}</label>
             </div>
-
-             <div className="r2">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Upkeep</label>
-              </div>
-
-              <label className="units"> $ </label>
-            </div>
-
-            <div className="r3">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Purchase Price</label>
-              </div>
-
-              <label className="units"> $ </label>
-            </div>
-
-            <div className="r4">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Upkeep</label>
-              </div>
-
-              <label className="units"> $ </label>
-            </div>
-
-            <div className="r5">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Purchase Price</label>
-              </div>
-
-              <label className="units"> $ </label>
-            </div>
-
-            <div className="r6">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Upkeep</label>
-              </div>
-
-              <label className="units"> $ </label>
-            </div>
-
-            <div className="r7">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Purchase Price</label>
-              </div>
-
-              <label className="units"> $ </label>
-            </div>
-
-            <div className="r8">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Upkeep</label>
-              </div>
-
-              <label className="units"> $ </label>
-            </div>
-
-      </div>
-
     );
   }
 }

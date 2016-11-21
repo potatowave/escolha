@@ -14,8 +14,22 @@ class TableComponent extends Component {
         <div className="main-container">
 
           <div className="table-container">
-            <ObjectiveDescriptions />
-            <Alternatives />
+            <div className="objective-description-area">
+              <div className="header">
+                <label className="header-objectives">Objectives</label>
+                <label className="header-units">Units</label>
+              </div>
+            { this.props.objectives.map(function(item, index) {
+                return <ObjectiveDescriptions
+                  row={index}
+                  name={item.name}
+                  subname={item.sub_name}
+                  unit={item.unit_prefix} /> })}
+            </div>
+
+
+              <Alternatives />
+
           </div>
 
         </div>
@@ -24,7 +38,19 @@ class TableComponent extends Component {
   }
 }
 
-export default TableComponent;
+function mapStateToProps(state) {
+  return {
+    objectives: state.objectives
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    somePropFunction: function() {
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(TableComponent);
 
 /*
   <div className="alt-image-container">

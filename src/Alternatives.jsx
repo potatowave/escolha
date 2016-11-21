@@ -9,23 +9,38 @@ class Alternatives extends Component {
 
     return (
 
-      <div className="table-area">
+
+<div>
+    <div className="table-area">
 
         <div className="header">
-          <label className="header1">Alternative 1</label>
-          <label className="header2 highlight">Alternative 2</label>
-          <label className="header3">Alternative 3</label>
-          <label className="header4">Alternative 4</label>
-          <label className="header5">Alternative 5</label>
-          <label className="header6">Alternative 6</label>
+        { this.props.alternatives.map(function(item, index) {
+              return <label className={"header"+(index + 1)}> {item.name} </label> })}
         </div>
 
-        <Cells />
-
-      </div>
+         { this.props.objectives.map(function(item) {
+              return <Cells
+                row={item.id_frontend} /> })}
+    </div>
+</div>
 
     );
   }
 }
 
-export default Alternatives;
+function mapStateToProps(state) {
+  return {
+    objectives: state.objectives,
+    alternatives: state.alternatives,
+    values: state.values
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    somePropFunction: function() {
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Alternatives);
