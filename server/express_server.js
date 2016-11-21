@@ -10,7 +10,7 @@ const randString = require('./scripts/randomstring');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
-const knexConfig = require('./knexfile.js');
+const knexConfig = require('../knexfile.js');
 const knex = require('knex')(knexConfig[ENV]);
 
 const app = express();

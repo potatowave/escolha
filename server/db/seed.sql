@@ -31,22 +31,22 @@ INSERT INTO alternatives VALUES(6, 2, 'Lamborghini', 3);
 
 /* JOBS */
   /* For Salary */
-  INSERT INTO alternatives_objectives VALUES(1, 1, 1, 120000);
-  INSERT INTO alternatives_objectives VALUES(2, 2, 1, 150000);
-  INSERT INTO alternatives_objectives VALUES(3, 3, 1, 95000);
+  INSERT INTO alternatives_objectives VALUES(1, 1, 120000);
+  INSERT INTO alternatives_objectives VALUES(2, 1, 150000);
+  INSERT INTO alternatives_objectives VALUES(3, 1, 95000);
 
   /* For Location */
-  INSERT INTO alternatives_objectives VALUES(4, 1, 2, 10);
-  INSERT INTO alternatives_objectives VALUES(5, 2, 2, 25);
-  INSERT INTO alternatives_objectives VALUES(6, 3, 2, 5);
+  INSERT INTO alternatives_objectives VALUES(1, 2, 10);
+  INSERT INTO alternatives_objectives VALUES(2, 2, 25);
+  INSERT INTO alternatives_objectives VALUES(3, 2, 5);
 
 /* CARS */
   /* For Price */
-  INSERT INTO alternatives_objectives VALUES(7, 4, 3, 550000);
-  INSERT INTO alternatives_objectives VALUES(8, 5, 3, 420000);
-  INSERT INTO alternatives_objectives VALUES(9, 6, 3, 650000);
+  INSERT INTO alternatives_objectives VALUES(4, 3, 550000);
+  INSERT INTO alternatives_objectives VALUES(5, 3, 420000);
+  INSERT INTO alternatives_objectives VALUES(6, 3, 650000);
 
   /* For Mileage */
-  INSERT INTO alternatives_objectives VALUES(10, 4, 4, 10);
-  INSERT INTO alternatives_objectives VALUES(11, 5, 4, 25);
-  INSERT INTO alternatives_objectives VALUES(12, 6, 4, 5);
+  INSERT INTO alternatives_objectives VALUES(4, 4, 10);
+  INSERT INTO alternatives_objectives VALUES(5, 4, 25);
+  INSERT INTO alternatives_objectives VALUES(6, 4, 5);

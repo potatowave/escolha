@@ -43,7 +43,6 @@ exports.up = function(knex, Promise) {
     }),
 
     knex.schema.createTable('alternatives_objectives', function (table) {
-      table.increments();
       table.integer('alternative_id').unsigned();
       table.foreign('alternative_id').references('alternatives.id');
       table.integer('objective_id').unsigned();
