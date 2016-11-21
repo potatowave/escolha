@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-class Tablerow extends Component {
+class Tablecell extends Component {
 
   render() {
-    console.log("Rendering <Tablerow />");
+    console.log("Rendering <Tablecell />");
 
     return (
       <div>
@@ -16,15 +16,6 @@ class Tablerow extends Component {
           <div className="c5">$28,000</div>
           <div className="c6">$40,000</div>
         </div>
-
-      </div>
-    );
-  }
-}
-
-export default Tablerow;
-
-/*
 
         <div className="r2">
           <div className="c1">$3,000</div>
@@ -88,4 +79,10 @@ export default Tablerow;
           <div className="c5">$500</div>
           <div className="c6">$400</div>
         </div>
-*/
+
+      </div>
+    );
+  }
+}
+
+export default Tablecell;

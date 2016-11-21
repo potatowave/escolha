@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-class Objectiverow extends Component {
+class Objective extends Component {
 
   render() {
-    console.log("Rendering <Objectiverow />");
+    console.log("Rendering <Objective />");
 
     return (
 
@@ -24,17 +24,7 @@ class Objectiverow extends Component {
               <label className="units"> $ </label>
             </div>
 
-      </div>
-
-    );
-  }
-}
-
-export default Objectiverow;
-
-/*
-
-            <div className="r2">
+             <div className="r2">
               <div className="objective-name-container">
                 <label className="objective-name">Cost</label>
                 <label className="sub-objective-name">Upkeep</label>
@@ -96,4 +86,11 @@ export default Objectiverow;
 
               <label className="units"> $ </label>
             </div>
-*/
+
+      </div>
+
+    );
+  }
+}
+
+export default Objective;

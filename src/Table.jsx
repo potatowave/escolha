@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import Tableheader from './Tableheader.jsx'
-import Tablerow from './Tablerow.jsx'
-import Objectiverow from './Objectiverow.jsx'
+import Alternative from './Alternative.jsx'
+
+import Objective from './Objective.jsx'
 
 class Table extends Component {
 
@@ -12,13 +12,12 @@ class Table extends Component {
     return (
 
         <div className="main-container">
-              <div className="table-container">
-                  <Objectiverow />
-                <div className="table-area">
-                  <Tableheader />
-                      <Tablerow />
-                </div>
-              </div>
+
+          <div className="table-container">
+            <Objective />
+            <Alternative />
+          </div>
+
         </div>
 
     );

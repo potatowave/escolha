@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import Value from './Value.jsx'
 
-class Tableheader extends Component {
+class Alternative extends Component {
 
   render() {
-    console.log("Rendering <Tableheader />");
+    console.log("Rendering <Alternative />");
 
     return (
+
+      <div className="table-area">
 
         <div className="header">
           <label className="header1">Alternative 1</label>
@@ -17,8 +20,12 @@ class Tableheader extends Component {
           <label className="header6">Alternative 6</label>
         </div>
 
+        <Value />
+
+      </div>
+
     );
   }
 }
 
-export default Tableheader;
+export default Alternative;
