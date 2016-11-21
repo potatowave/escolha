@@ -6,6 +6,9 @@ import createLogger from 'redux-logger';  // set up logging in the console so we
 import rootReducer from './reducers';
 import App from './App.jsx';
 
+import $ from 'jquery';
+
+
 // Load up the application styles
 require('../styles/application.scss');
 
@@ -28,3 +31,10 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('react-root')
 );
+
+$.get("http://localhost:3001/api/cases/1")
+.done(function(data) {
+  console.log("Got data from API: ", data);
+  // Dispatch an action to send the contacts to the redux store.
+  store.dispatch({type: 'LOAD_CASES', cases: data})
+});

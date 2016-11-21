@@ -11,10 +11,12 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
 const knexConfig = require('./knexfile.js');
+const cors = require('cors')
 const knex = require('knex')(knexConfig[ENV]);
 
 const app = express();
 
+app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 

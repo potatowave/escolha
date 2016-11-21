@@ -11,7 +11,7 @@ class Objectiverow extends Component {
       <div className="objective-description-area">
 
             <div className="header">
-              <label className="header-objectives">Objectives</label>
+              <label className="header-objectives"></label>
               <label className="header-units">Units</label>
             </div>
 

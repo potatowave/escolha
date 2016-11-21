@@ -32,7 +32,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     somePropFunction: function() {
-      const action = { type: 'ADD_CONTACT', contact: { id: 1, name: "Bob" } };
+      const action = { type: 'ADD_CASE', case: { id: 1, name: "Bob" } };
       dispatch(action);
     }
   }

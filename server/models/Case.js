@@ -23,7 +23,7 @@ module.exports = (knex) => {
 
   /**
   * Insert values into database
-  * @param {object}   values      - all cell values data from frontend
+  * @param { object}   values      - all cell values data from frontend
   * @param {function} callback    - Callback function to run after aSync DB call
   * @returns {void}               - It will call Callback function aSync
   */
