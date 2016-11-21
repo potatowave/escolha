@@ -1,50 +1,40 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import createLogger from 'redux-logger';  // set up logging in the console so we can see how actions are fired
-import rootReducer from './reducers';
-import App from './App.jsx';
-
-// Load up the application styles
-require('../styles/application.scss');
-
-// Render the top-level React component
-
-
-// Configure the Redux Store
-
-const store = createStore(
-  rootReducer,
-  {},
-  // apply the 'logger' middleware. this will console.log every action that is sent to the redux store.
-  applyMiddleware(createLogger())
-);
-
-// Wrap the component in a <Provider>
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('react-root')
-);
-
-// index.jsx
-// $.get("./test_redux_store.jsx")
-// .done(function(data){
-//   console.log("Got Data!", data)
-//   store.dispatch({type: 'DATA_LOADED', data: data})  // calls all your reducers
-// })
+// store state
+// {
+//   users: [
+//     {id: 1, name: "Bob"}
+//   ],
+//   cases: [
+//     {id: 1, title: "Car Purchase"}
+//   ],
+//   alternatives: [
+//     {id: 1, title: "Toyota Corolla", case_id: 1, order: 1}
+//     {id: 2, title: "Honda Civic", case_id: 1, order: 2}
+//   ],
+//   objectives: [
+//     {id: 1, title: "Cost - Purchase Price", unit: "$", case_id: 1, order: 1}
+//     {id: 2, title: "Cost - Upkeep", unit: "$", case_id: 1, order: 2}
+//   ],
+//   cells: [
+//     {id: 1, value: 12000, objective_id: 1, alternative_id: 1},
+//     {id: 2, value: 12000, objective_id: 1, alternative_id: 2},
+//     {id: 3, value: 12000, objective_id: 2, alternative_id: 1},
+//     {id: 4, value: 12000, objective_id: 2, alternative_id: 2},
+//   ],
+//   uiState: {
+//     currentCaseId: 1,
+//     currentAlternativeId: 2,
+//   }
+// }
 
 
-const test_data = { 
+test_data = { 
   users: [
     {id: 1, name: "Bob"},
   ],
   
   cases: [{
-    name: "Choosing a Car",
-    description: "FROM TEST DATA: Activated charcoal wolf locavore yuccie. Paleo pork belly readymade, chia direct trade ethical narwhal man braid post-ironic pickled iceland. Cardigan twee swag VHS." }],
+    name: "Car",
+    description: "I want to choose some car" }],
 
   objectives:
    [ { id_frontend: 99,
@@ -96,15 +86,10 @@ const test_data = {
        value: 99 },
      { objective_id_frontend: 88,
        alternative_id_frontend: 33,
-       value: 560 } ], 
+       value: 560 } ] 
 
   uiState: {
     currentCaseId: 1,
     currentAlternativeId: 2,
   } 
 }
-
-console.log("Loading data in the Store", test_data)
-store.dispatch({type: 'DATA_LOADED', data: test_data})  // calls all your reducers
-
-
