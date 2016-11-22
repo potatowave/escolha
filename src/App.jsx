@@ -2,12 +2,17 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Heading from './Heading.jsx';
 import Nav from './Nav.jsx';
+<<<<<<< HEAD
 import Table from './Table.jsx';
 import { Router, Route, Link } from 'react-router';
 import Onboard from './Onboard.jsx';
+=======
+import TableComponent from './TableComponent.jsx';
+>>>>>>> master
 
 
 
+<<<<<<< HEAD
 var App = React.createClass({
     showModal: function(){
         this.refs.modal.show();
@@ -15,6 +20,14 @@ var App = React.createClass({
     hideModal: function(){
         this.refs.modal.hide();
     },
+=======
+        <Nav />
+        <main>
+          { this.props.case.map(function(item) {
+              return <Heading key={item.id} name={item.name} description={item.description} /> })}
+          <TableComponent />
+        </main>
+>>>>>>> master
 
     callback: function(event){
         console.log(event);
@@ -41,7 +54,7 @@ var App = React.createClass({
 
 function mapStateToProps(state) {
   return {
-    someProp: state.someProp
+    case: state.cases
   }
 }
 

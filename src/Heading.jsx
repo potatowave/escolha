@@ -10,13 +10,11 @@ class Heading extends Component {
 
       <div className="heading-component">
         <div className="case-title">
-          <h1>Case Title</h1>
+          <h1>{this.props.name}</h1>
         </div>
 
         <div className="case-description">
-          <p>Activated charcoal wolf locavore yuccie. Paleo pork belly
-          readymade, chia direct trade ethical narwhal man braid post-ironic
-          pickled iceland. Cardigan twee swag VHS.</p>
+            <p>{this.props.description}</p>
         </div>
       </div>
 
@@ -27,8 +25,23 @@ class Heading extends Component {
 
 function mapStateToProps(state) {
   return {
+
     cases: state.cases
   }
 }
 
 export default connect(mapStateToProps, null)(Heading)
+
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    somePropFunction: function() {
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Heading);
+
+// export default Heading;
