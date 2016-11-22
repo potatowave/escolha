@@ -6,32 +6,17 @@ class Cells extends Component {
   render() {
     console.log("Rendering <Cells />");
 
-
-    function findSelectedValues(item) { 
-       return item.alternative_id === this.props.alt;
-    }
-
-    function matchingPropsRow(item) {
-      return item.objective_id === this.props.row;
-    }
-
-    var thisRowsSelectedValue = this.props.values.filter(findSelectedValues, this).find(matchingPropsRow, this);
-    console.log("selected_value", thisRowsSelectedValue)
-    // var selected_value = 130000
-
-
     return (
         <div className={"r"+this.props.row}>
 
-          { this.props.values.filter(matchingPropsRow, this).map((item) => {
 
-            // grab selected_value from the store
-            
+          { this.props.values.map((item) => {
 
               //var selected_value = 130000
+            
+              // this.props.values.find(alternative_id === this.props.alt)         
 
-
-              // if(this.props.row === item.objective_id) {
+              if(this.props.row === item.objective_id) {
                 
                 var test = ""
 
@@ -41,16 +26,14 @@ class Cells extends Component {
               
                 var compare_tag = ""
 
-                // var thisRowsSelectedValue = selectedValuesAcrossRows.find(matchingRow, this);
-
-                  if (this.props.low_is_better) {
+                if (this.props.low_is_better) {
                   // put logic here 
             
                   // Put in uistate the alternative_id of the selected column
                   // Then get the value of the cell in that column for the current objective row
-                  if (item.value < thisRowsSelectedValue.value) {
+                  if (lessThanSelectedValue(item.value, this)) {
                     compare_tag = "better"
-                  } else if (item.value > thisRowsSelectedValue.value) {
+                  } else if (greaterThanSelectedValue(item.value, this)) {
                     compare_tag = "worse"
                   }
                   // Use that to compare against
@@ -59,17 +42,14 @@ class Cells extends Component {
                   // For the 'else' statement below, do the opposite colour code.
                   // STRETCH - test if the value is > or < 10% (or a user settable threshold) different - colour it WHITE if it is within that threshold
 
-                } else {
-                  if (item.value > thisRowsSelectedValue.value) {
-                    compare_tag = "better"
-                  } else if (item.value < thisRowsSelectedValue.value) {
-                    compare_tag = "worse"
-                  }
+                // } else {
+                //   if (item.value > selected_value) {
+                //     compare_tag = "better"
+                //   } else if (item.value < selected_value) {
+                //     compare_tag = "worse"
+                //   }
                 }
 
-                // }, this);
-
-                
                 // var junk = this.props.low_is_better;
 
                 // if (this.props.lower_is_better === false) {
@@ -79,12 +59,26 @@ class Cells extends Component {
                 var stuff = <div key={`c${item.alternative_id}`} className={"c"+item.alternative_id+" "+test+" "+compare_tag}>{item.value}</div>
                 
                 return stuff
-              // }
+              }
             })}
         </div>
 
     );
   }
+}
+
+function getSelectedValue() {
+  return this.props.values.find((item) => {(item.alternative_id === this.props.alt)})
+}
+
+function lessThanSelectedValue(valueToCompare, that) {
+  var selected_value = getSelectedValue.call(that);
+  return selected_value < valueToCompare
+}
+
+function greaterThanSelectedValue(valueToCompare, that) {
+  var selected_value = getSelectedValue.call(that);
+  return selected_value > valueToCompare
 }
 
 function mapStateToProps(state) {
@@ -100,10 +94,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveSelectedValue: function(value) {
-      const action = { type: 'saveSelectedVal', value: value };
-      // alert('here');
-      dispatch(action);
+    somePropFunction: function() {
     }
   }
 }

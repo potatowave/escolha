@@ -31,8 +31,8 @@ class Alternatives extends Component {
 
             var stuff = <Cells
               key={`r${item.id}`}
-              row={item.order}
-              alt={this.props.uistate}
+              row={item.id} // Pass the 'id' for the current objective
+              alt={this.props.uistate} // Selected alternative
               values={this.props.values}
               low_is_better = {item.low_is_better} />;
 

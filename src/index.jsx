@@ -41,15 +41,15 @@ ReactDOM.render(
 );
 
 
-store.dispatch(fetchCase(1)).then(() =>
-  console.log(store.getState())
-)
+// store.dispatch(fetchCase(1)).then(() =>
+//   console.log(store.getState())
+// )
 
-/*
+
 const test_data = {
   "objectives": [
     {
-      "id": 1,
+      "id": 7,
       "case_id": 1,
       "name": "Cost",
       "sub_name": "Salary",
@@ -63,7 +63,7 @@ const test_data = {
       "updated_at": null
     },
     {
-      "id": 2,
+      "id": 8,
       "case_id": 1,
       "name": "Location",
       "sub_name": "Distance",
@@ -119,7 +119,7 @@ const test_data = {
   "values": [
     {
       "alternative_id": 1,
-      "objective_id": 1,
+      "objective_id": 7,
       "value": 120000,
       "id": 1,
       "case_id": 1,
@@ -131,7 +131,7 @@ const test_data = {
     },
     {
       "alternative_id": 2,
-      "objective_id": 1,
+      "objective_id": 7,
       "value": 150000,
       "id": 2,
       "case_id": 1,
@@ -143,7 +143,7 @@ const test_data = {
     },
     {
       "alternative_id": 3,
-      "objective_id": 1,
+      "objective_id": 7,
       "value": 95000,
       "id": 3,
       "case_id": 1,
@@ -155,7 +155,7 @@ const test_data = {
     },
     {
       "alternative_id": 1,
-      "objective_id": 2,
+      "objective_id": 8,
       "value": 10,
       "id": 1,
       "case_id": 1,
@@ -167,7 +167,7 @@ const test_data = {
     },
     {
       "alternative_id": 2,
-      "objective_id": 2,
+      "objective_id": 8,
       "value": 25,
       "id": 2,
       "case_id": 1,
@@ -179,7 +179,7 @@ const test_data = {
     },
     {
       "alternative_id": 3,
-      "objective_id": 2,
+      "objective_id": 8,
       "value": 5,
       "id": 3,
       "case_id": 1,
@@ -190,12 +190,13 @@ const test_data = {
       "updated_at": null
     }
   ],
-  "uistate": {
-    highlight: true,
-    selected_alternative_id: 3
-  }
+  "uistate": 3
 }
 
 console.log("Loading data in the Store", test_data)
 store.dispatch({type: 'DATA_LOADED', data: test_data})  // calls all your reducers
-*/
+
+  // "uistate": {
+  //   highlight: true,
+  //   selected_alternative_id: 3
+  // }

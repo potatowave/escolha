@@ -44,6 +44,8 @@ function uiStateReducer(state = [], action) {
       return action.data.uistate;
     case 'AlternativesSelected':
       return action.cats; // How to set state from a reducer?
+    case 'saveSelectedVal':
+      return action.value;
     default:
       return state
   }

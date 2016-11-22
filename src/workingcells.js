@@ -7,23 +7,19 @@ class Cells extends Component {
     console.log("Rendering <Cells />");
 
 
-    function findSelectedValues(item) { 
+    function findValue(item) { 
        return item.alternative_id === this.props.alt;
     }
 
-    function matchingPropsRow(item) {
-      return item.objective_id === this.props.row;
-    }
-
-    var thisRowsSelectedValue = this.props.values.filter(findSelectedValues, this).find(matchingPropsRow, this);
-    console.log("selected_value", thisRowsSelectedValue)
+    var selectedValuesAcrossRows = this.props.values.filter(findValue, this)
+    console.log("selected_value", selectedValuesAcrossRows)
     // var selected_value = 130000
 
 
     return (
         <div className={"r"+this.props.row}>
 
-          { this.props.values.filter(matchingPropsRow, this).map((item) => {
+          { this.props.values.map((item) => {
 
             // grab selected_value from the store
             
@@ -31,7 +27,7 @@ class Cells extends Component {
               //var selected_value = 130000
 
 
-              // if(this.props.row === item.objective_id) {
+              if(this.props.row === item.objective_id) {
                 
                 var test = ""
 
@@ -41,7 +37,7 @@ class Cells extends Component {
               
                 var compare_tag = ""
 
-                // var thisRowsSelectedValue = selectedValuesAcrossRows.find(matchingRow, this);
+                var thisRowsSelectedValue = selectedValuesAcrossRows.find(item => item.objective_id == this.props.row);
 
                   if (this.props.low_is_better) {
                   // put logic here 
@@ -79,7 +75,7 @@ class Cells extends Component {
                 var stuff = <div key={`c${item.alternative_id}`} className={"c"+item.alternative_id+" "+test+" "+compare_tag}>{item.value}</div>
                 
                 return stuff
-              // }
+              }
             })}
         </div>
 
