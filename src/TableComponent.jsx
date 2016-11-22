@@ -20,15 +20,14 @@ class TableComponent extends Component {
               <label className="header-units">Units</label>
             </div>
             { this.props.objectives.map(function(item, index) {
-                return <ObjectiveDescriptions
-                  key={item.id}
-                  row={item.order}
-                  name={item.name}
-                  subname={item.sub_name}
-                  prefix={item.unit_prefix}
-                  suffix={item.unit_suffix} /> })}
+              return <ObjectiveDescriptions
+                key={item.id}
+                row={item.id}
+                name={item.name}
+                subname={item.sub_name}
+                prefix={item.unit_prefix}
+                suffix={item.unit_suffix} /> })}
           </div>
-
 
           <Alternatives />
 

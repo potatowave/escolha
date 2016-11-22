@@ -9,6 +9,7 @@ class Cells extends Component {
     return (
         <div className={"r"+this.props.row}>
           { this.props.values.map((item) => {
+              console.log(this.props.row);
               if(this.props.row === item.objective_id) {
 
                 var test = ""
@@ -41,7 +42,7 @@ class Cells extends Component {
                 //   junk = "lower";
                 // }
 
-                var stuff = <div key={`c${item.alternative_id}`} className={"c"+item.alternative_id+" "+test+" "+junk}>{item.value}</div>
+                var stuff = <div key={`c-${item.objective_id}-${item.alternative_id}`} className={"c"+item.alternative_id+" "+test+" "+junk}>{item.value}</div>
 
                 return stuff
               }
