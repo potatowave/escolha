@@ -41,7 +41,7 @@ ReactDOM.render(
 );
 
 
-store.dispatch(fetchCase(2)).then(() =>
+store.dispatch(fetchCase(1)).then(() =>
   console.log(store.getState())
 )
 
