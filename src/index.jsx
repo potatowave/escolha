@@ -183,7 +183,7 @@ const test_data = {
   ],
   "uistate": {
     highlight: true,
-    alternative_id: 3
+    selected_alternative_id: 3
   }
 }
 
