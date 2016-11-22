@@ -15,13 +15,13 @@ class ObjectiveDescriptions extends Component {
               </div>
               { this.props.objectives.map((item, index) => {
 
-                  if(this.props.row === item.id) {
+
                     if(item.unit_suffix === null) {
                       return <label key={item.id} className="units">{this.props.prefix}</label>
                     } else {
                       return <label key={item.id} className="units">{this.props.suffix}</label>
                     }
-                  }
+
                  })}
 
             </div>
