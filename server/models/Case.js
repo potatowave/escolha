@@ -276,9 +276,10 @@ module.exports = (knex) => {
     knex('objectives')
       .where('case_id', caseId)
       .select()
+      .orderBy('objectives.order', 'ASC')
       .then((result) => {
         data.objectives = result;
-        console.log(data);
+        //console.log(data);
         if (isDone()) {
           callback(data);
         }
@@ -290,7 +291,7 @@ module.exports = (knex) => {
       .select()
       .then((result) => {
         data.cases = result;
-        console.log(data);
+        //console.log(data);
         if (isDone()) {
           callback(data);
         }
@@ -299,6 +300,7 @@ module.exports = (knex) => {
     knex('alternatives')
       .where('case_id', caseId)
       .select()
+      .orderBy('alternatives.order', 'ASC')
       .then((result) => {
         data.alternatives = result;
         if (isDone()) {

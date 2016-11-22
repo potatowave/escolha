@@ -33,6 +33,7 @@ class Cells extends Component {
 
               // if(this.props.row === item.objective_id) {
                 
+
                 var test = ""
 
                 if (item.alternative_id === this.props.alt) {
@@ -68,7 +69,6 @@ class Cells extends Component {
                 }
 
                 // }, this);
-
                 
                 // var junk = this.props.low_is_better;
 
@@ -76,7 +76,9 @@ class Cells extends Component {
                 //   junk = "lower";
                 // }
 
-                var stuff = <div key={`c${item.alternative_id}`} className={"c"+item.alternative_id+" "+test+" "+compare_tag}>{item.value}</div>
+                var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`} className={"c"+item.alternative_id+" "+test+" "+compare_tag}>{item.value}</div>
+
+                // var stuff = <div key={`c-${item.objective_id}-${item.alternative_id}`} className={"c"+item.alternative_id+" "+test+" "+junk}>{item.value}</div>
                 
                 return stuff
               // }
@@ -91,10 +93,10 @@ function mapStateToProps(state) {
   return {
     // NOTE: This is a 'dumb' component, so instead of grabbing values from the store,
     // we can pass these from the parent component down here
-  
+
     objectives: state.objectives
     // values: state.values
-    
+
   }
 }
 
