@@ -9,8 +9,8 @@ class Cells extends Component {
     return (
         <div className={"r"+this.props.row}>
           { this.props.values.map((item) => {
-              if(this.props.row === item.objective_id_frontend) {
-                return <div classname={"c"+item.alternative_id_frontend }>{item.value}</div>
+              if(this.props.row === item.objective_id) {
+                return <div key={`c${item.alternative_id}`} className={"c"+item.alternative_id }>{item.value}</div>
 
               }
             })}

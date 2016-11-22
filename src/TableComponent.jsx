@@ -21,10 +21,12 @@ class TableComponent extends Component {
               </div>
             { this.props.objectives.map(function(item, index) {
                 return <ObjectiveDescriptions
-                  row={index}
+                  key={item.id}
+                  row={item.order}
                   name={item.name}
                   subname={item.sub_name}
-                  unit={item.unit_prefix} /> })}
+                  prefix={item.unit_prefix}
+                  suffix={item.unit_suffix} /> })}
             </div>
 
 
