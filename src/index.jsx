@@ -7,6 +7,7 @@ import rootReducer from './reducers';
 import App from './App.jsx';
 import Onboard from './Onboard.jsx';
 import { Router, Route, hashHistory } from 'react-router'
+import { combineForms } from 'react-redux-form';
 
 import $ from 'jquery';
 
