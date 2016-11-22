@@ -1,8 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+
+// Middlewares
+import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';  // set up logging in the console so we can see how actions are fired
+
+// Actions
+import { fetchCase } from './actions/api'
+
+
+import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers';
 import App from './App.jsx';
 
@@ -11,14 +19,17 @@ require('../styles/application.scss');
 
 // Render the top-level React component
 
-
-// Configure the Redux Store
+// Configure the Redux Store: .
+// 'logger' middleware: this will console.log every action that is sent to the redux store.
+const loggerMiddleware = createLogger()
 
 const store = createStore(
   rootReducer,
   {},
-  // apply the 'logger' middleware. this will console.log every action that is sent to the redux store.
-  applyMiddleware(createLogger())
+  applyMiddleware(
+    loggerMiddleware,
+    thunkMiddleware
+  )
 );
 
 // Wrap the component in a <Provider>
@@ -29,14 +40,12 @@ ReactDOM.render(
   document.getElementById('react-root')
 );
 
-// index.jsx
-// $.get("./test_redux_store.jsx")
-// .done(function(data){
-//   console.log("Got Data!", data)
-//   store.dispatch({type: 'DATA_LOADED', data: data})  // calls all your reducers
-// })
 
+store.dispatch(fetchCase(1)).then(() =>
+  console.log(store.getState())
+)
 
+/*
 const test_data = {
   "objectives": [
     {
@@ -189,5 +198,4 @@ const test_data = {
 
 console.log("Loading data in the Store", test_data)
 store.dispatch({type: 'DATA_LOADED', data: test_data})  // calls all your reducers
-
-
+*/

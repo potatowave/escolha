@@ -1,11 +1,13 @@
-
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('users').del()
+  return knex('alternatives_objectives').del()
     .then(function () {
       return Promise.all([
         // Inserts seed entries
-        knex('users').insert({id: 1, email: 'mail@mail.com', name: 'Bob'})
+        knex('objectives').del(),
+        knex('alternatives').del(),
+        knex('cases').del(),
+        knex('users').del()
       ]);
     });
 };
