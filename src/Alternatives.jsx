@@ -9,22 +9,33 @@ class Alternatives extends Component {
 
     return (
 
+      <div>
+        <div className="table-area">
 
-<div>
-    <div className="table-area">
+          <div className="header">
+            { this.props.alternatives.map((item) => {
+                
+              var test = ""
+              if (item.id === this.props.uistate) {
+                test = "highlight";
+              }
 
-        <div className="header">
-        { this.props.alternatives.map(function(item) {
-              return <label key={item.id} className={"header"+(item.id)}> {item.name} </label> })}
+              var stuff = <label onClick={ () => this.props.highlightFunction(item.id) } key={item.id} className={"header"+(item.id)+" "+test}> {item.name} </label> 
+
+              return stuff
+              }
+            )}
+          </div>
+
+          { this.props.objectives.map((item) => {
+
+            var stuff = <Cells
+              key={`r${item.id}`}
+              row={item.order} />;
+
+            return stuff })}
         </div>
-
-         { this.props.objectives.map(function(item) {
-              return <Cells
-                key={`r${item.id}`}
-                row={item.order} /> })}
-    </div>
-</div>
-
+      </div>
     );
   }
 }
@@ -33,13 +44,18 @@ function mapStateToProps(state) {
   return {
     objectives: state.objectives,
     alternatives: state.alternatives,
-    values: state.values
+    values: state.values,
+    uistate: state.uistate
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    somePropFunction: function() {
+    highlightFunction: function(id) {
+      const action = { type: 'AlternativesSelected', cats: id };
+      // alert('here');
+      dispatch(action);
+
     }
   }
 }

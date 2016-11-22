@@ -11,14 +11,14 @@ class TableComponent extends Component {
 
     return (
 
-        <div className="main-container">
+      <div className="main-container">
 
-          <div className="table-container">
-            <div className="objective-description-area">
-              <div className="header">
-                <label className="header-objectives">Objectives</label>
-                <label className="header-units">Units</label>
-              </div>
+        <div className="table-container">
+          <div className="objective-description-area">
+            <div className="header">
+              <label className="header-objectives">Objectives</label>
+              <label className="header-units">Units</label>
+            </div>
             { this.props.objectives.map(function(item, index) {
                 return <ObjectiveDescriptions
                   key={item.id}
@@ -27,14 +27,14 @@ class TableComponent extends Component {
                   subname={item.sub_name}
                   prefix={item.unit_prefix}
                   suffix={item.unit_suffix} /> })}
-            </div>
-
-
-              <Alternatives />
-
           </div>
 
+
+          <Alternatives />
+
         </div>
+
+      </div>
 
     );
   }

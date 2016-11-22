@@ -82,7 +82,7 @@ const test_data = {
     {
       "id": 1,
       "case_id": 1,
-      "name": "Facebook",
+      "name": "LinkedIn",
       "image_url": "1",
       "order": null,
       "created_at": null,
@@ -180,7 +180,11 @@ const test_data = {
       "created_at": null,
       "updated_at": null
     }
-  ]
+  ],
+  "uistate": {
+    highlight: true,
+    alternative_id: 3
+  }
 }
 
 console.log("Loading data in the Store", test_data)

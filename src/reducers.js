@@ -37,6 +37,19 @@ function valuesReducer(state = [], action) {
   }
 }
 
+function uiStateReducer(state = [], action) {
+  switch(action.type) {
+    // case 'AlternativesSelected':
+    case 'DATA_LOADED':
+      return action.data.uistate;
+    case 'AlternativesSelected':
+      return action.cats; // How to set state from a reducer?
+    default:
+      return state
+  }
+}
+
+
 
 // the keys are the names of the store property
 const rootReducer = combineReducers({
@@ -44,8 +57,8 @@ const rootReducer = combineReducers({
   cases: casesReducer,
   objectives: objectivesReducer,
   alternatives: alternativesReducer,
-  values: valuesReducer
-  // uiState: uiStateReducer
+  values: valuesReducer,
+  uistate: uiStateReducer
 });
 
 
