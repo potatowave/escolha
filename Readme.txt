@@ -1,15 +1,17 @@
 Readme.txt
 
-Setting up the DB: 
-* "psql" then "CREATE DATABASE escolha" to create database
-*  open the file "db/schema.sql" and copy and paste inside the psql terminal
-*  or using the terminal: "psql escolha < server/db/schema.sql"
+# Setting up the database:
+- "psql" then "CREATE DATABASE escolha" to create database
+- Copy .env.example to .env
+- Create tables running migrations: `knex migrate:latest`
+- Insert data using seeds: `knex seed:run`
 
-Set up a .env file in the /server folder with the following info:
-DB_HOST=...
-DB_USER=...
-DB_PASS=...
-DB_NAME=...
-DB_PORT=...
-DB_SSL=...
+# Starting the application:
+- npm install
+- npm start
+
+## Front-end and API servers
+- Front-end will be running at localhost:3000
+- Back-end API will be running at localhost:3001
+
 
