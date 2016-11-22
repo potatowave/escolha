@@ -15,7 +15,7 @@ class Cells extends Component {
       return item.objective_id === this.props.row;
     }
 
-    var thisRowsSelectedValue = this.props.values.filter(findSelectedValues, this).find(matchingPropsRow, this);
+    var thisRowsSelectedValue = this.props.cells.filter(findSelectedValues, this).find(matchingPropsRow, this);
     console.log("selected_value", thisRowsSelectedValue)
     // var selected_value = 130000
 
@@ -23,7 +23,7 @@ class Cells extends Component {
     return (
         <div className={"r"+this.props.row}>
 
-          { this.props.values.filter(matchingPropsRow, this).map((item) => {
+          { this.props.cells.filter(matchingPropsRow, this).map((item) => {
 
             // grab selected_value from the store
             

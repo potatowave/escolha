@@ -116,7 +116,7 @@ const test_data = {
       "updated_at": null
     }
   ],
-  "values": [
+  "cells": [
     {
       "alternative_id": 1,
       "objective_id": 7,

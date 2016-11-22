@@ -28,10 +28,10 @@ function alternativesReducer(state = [], action) {
       return state
   }
 }
-function valuesReducer(state = [], action) {
+function cellsReducer(state = [], action) {
   switch(action.type) {
     case 'DATA_LOADED':
-      return action.data.values;
+      return action.data.cells;
     default:
       return state
   }
@@ -59,7 +59,7 @@ const rootReducer = combineReducers({
   cases: casesReducer,
   objectives: objectivesReducer,
   alternatives: alternativesReducer,
-  values: valuesReducer,
+  cells: cellsReducer,
   uistate: uiStateReducer
 });
 

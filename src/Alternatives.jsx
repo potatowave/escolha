@@ -33,7 +33,7 @@ class Alternatives extends Component {
               key={`r${item.id}`}
               row={item.id} // Pass the 'id' for the current objective
               alt={this.props.uistate} // Selected alternative
-              values={this.props.values}
+              cells={this.props.cells}
               low_is_better = {item.low_is_better} />;
 
             return stuff })}
@@ -47,7 +47,7 @@ function mapStateToProps(state) {
   return {
     objectives: state.objectives,
     alternatives: state.alternatives,
-    values: state.values,
+    cells: state.cells,
     uistate: state.uistate
   }
 }
