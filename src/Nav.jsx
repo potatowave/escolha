@@ -50,9 +50,7 @@ function mapDispatchToProps(dispatch) {
   return {
     loadCase: function(id) {
       const action = { type: 'REQUEST_CASE', case_id: id };
-      dispatch(fetchCase(id)).then(() =>
-        store.getState()
-      )
+      dispatch(fetchCase(id)).then()
 
     }
   }
