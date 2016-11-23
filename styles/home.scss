@@ -143,9 +143,11 @@ p {
 }
 
 .highlight {
-  background-color: #bbb;
+  // background-color: #bbb;
+  background-color: #fcff82;
   z-index: 99;
   border: 1px solid #999;
+  color: black;
 }
 
 .main-container {
