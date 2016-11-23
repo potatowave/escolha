@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { fetchCase } from './actions/api'
 
 class Nav extends Component {
 
@@ -19,13 +20,11 @@ class Nav extends Component {
             <div className="dropdown">
               <div className="dropbtn">Cases</div>
               <div className="dropdown-content">
-              
-              {// Paulo - put your loop here :) 
+              {
+                this.props.userCases.map((item) => {
+                    return <a key={item.id} onClick={ () => this.props.loadCase(item.id) }>{item.name}</a>
+                  })
               }
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a> 
-
               </div>
             </div>
 
@@ -40,4 +39,24 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+
+function mapStateToProps(state) {
+  return {
+    userCases: state.userCases
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    loadCase: function(id) {
+      const action = { type: 'REQUEST_CASE', case_id: id };
+      dispatch(fetchCase(id)).then(() =>
+        store.getState()
+      )
+
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

@@ -3,6 +3,14 @@
 import { combineReducers } from 'redux';
 
 // define reducer functions.
+function userCases(state = [], action) {
+  switch(action.type) {
+    case 'USER_CASES':
+      return action.data.cases;
+    default:
+      return state
+  }
+}
 
 function casesReducer(state = [], action) {
   switch(action.type) {
@@ -56,6 +64,7 @@ function uiStateReducer(state = [], action) {
 // the keys are the names of the store property
 const rootReducer = combineReducers({
   // users: usersReducer,
+  userCases: userCases,
   cases: casesReducer,
   objectives: objectivesReducer,
   alternatives: alternativesReducer,
