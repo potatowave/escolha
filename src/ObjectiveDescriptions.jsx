@@ -10,16 +10,19 @@ class ObjectiveDescriptions extends Component {
 
             <div className={ "r" + this.props.row }>
               <div className="objective-name-container">
-                <label className="objective-name">{this.props.name}</label>
-                <label className="sub-objective-name">{this.props.subname}</label>
+               <div className="table-area">
+
+                <label className="objective-name">{this.props.name}</label><br />
+                <label className="sub-objective-name">*{this.props.subname}</label>
+                </div>
               </div>
               { this.props.objectives.map((item, index) => {
 
                   if(this.props.row === item.id) {
                     if(item.unit_suffix === null) {
-                      return <label key={item.id} className="units">{this.props.prefix}</label>
+                      return <label key={item.id} className="units">{item.unit_suffix}</label>
                     } else {
-                      return <label key={item.id} className="units">{this.props.suffix}</label>
+                      return <label key={item.id} className="units">{item.unit_prefix}</label>
                     }
                   }
                  })}

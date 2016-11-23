@@ -11,7 +11,7 @@ class Cells extends Component {
       // console.log("** in findSelectedCells **");
       // console.log("item.order", item.order)
       // console.log("this.props.alt", this.props.alt_id);
-      
+
       return item.alternative_id === this.props.alt_id;
       // NOTE: item refers to the current cell - need to get 'order' from Alt_id, not from Cells
     }
@@ -38,12 +38,12 @@ class Cells extends Component {
     return (
       <div className={"r"+this.props.row}>
 
-      { this.props.cells.filter(matchingPropsRow, this).map((item) => {
+      { this.props.cells.filter(matchingPropsRow, this).map((item , index) => {
 
         var test = ""
 
         // if (item.alternative_id === this.props.alt) {
-        
+
         // console.log("*************");
         // console.log("this.props.alt_order", this.props.alt_order);
         // console.log("this.props.alt_order === null", this.props.alt_order === null);
@@ -78,7 +78,9 @@ class Cells extends Component {
         // var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`} className={"c"+item.order+" "+test+" "+compare_tag}>{item.value}</div>
         // var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`} className={"c"+this.props.alt_order+" "+test+" "+compare_tag}>{item.value}</div>
 
-        var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`} className={"c"+item.alternative_id+" "+test+" "+compare_tag}>{item.value}</div>
+        var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`}
+        // className={"c"+item.alternative_id+" "+test+" "+compare_tag}>{item.value}
+        className={"c"+(index+1) +" "+test+" "+compare_tag}>{item.value}</div>
 
         return stuff
 

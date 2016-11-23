@@ -12,10 +12,10 @@ class Heading extends Component {
         <div className="case-title">
           <h1>{this.props.name}</h1>
         </div>
-
         <div className="case-description">
             <p>{this.props.description}</p>
         </div>
+
       </div>
 
     );
