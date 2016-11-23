@@ -48,13 +48,40 @@ class Cells extends Component {
         // console.log("this.props.alt_order", this.props.alt_order);
         // console.log("this.props.alt_order === null", this.props.alt_order === null);
 
-        if (this.props.alt_order !== null && (item.alternative_id === this.props.alt_id)) {
-          test = "highlight";
 
+
+        // if (this.props.alt_order !== null && (item.alternative_id === this.props.alt_id)) {
+        //   test = "highlight";
+        //   console.log("HIGHLIGHT IS TRUE");
+        // }
+
+
+        if (this.props.highlight && (item.alternative_id === this.props.alt_id)) {
+          test = "highlight";
+          console.log("HIGHLIGHT IS **TRUE**");
+        } else {
+          test = "";
+          console.log("HIGHLIGHT IS **FALSE**");
         }
 
+        console.log("HIGHLIGHT ACTUALLY IS:", this.props.highlight);
+
+
+        // if(this.props.isHilight) {
+        //   var makeClassString= '+" "+test+" "+compare_tag';
+        // } else {  
+        //     var makeClassString= "c"+(index+1);
+        // }
+        
+        // var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`}
+        // // className={"c"+item.alternative_id+" "+test+" "+compare_tag}>{item.value}
+        // className={makeClassString}>{item.value}</div>
+
+
+
         var compare_tag = ""
-        if (this.props.alt_order !== null) {
+        // if (this.props.alt_order !== null) {
+        if (this.props.highlight) {
           if (this.props.low_is_better) {
             // console.log("item.value", item.value)
             // console.log("thisRowsSelectedValue.value", thisRowsSelectedValue.value)

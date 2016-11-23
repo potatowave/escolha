@@ -16,12 +16,12 @@ class Alternatives extends Component {
             { this.props.alternatives.map((item) => {
 
               var test = ""
-              if (item.order === this.props.uistate_order) {
+              if (this.props.uistate_highlight && item.order === this.props.uistate_order) {
                 test = "highlight";
               }
 
               // var stuff = <label onClick={ () => this.props.highlightFunction(item.id) } key={item.id} className={"header"+(item.id)+" "+test}> {item.name} </label>
-              var stuff = <label onClick={ () => this.props.highlightFunction(item) } key={item.id} className={"header"+(item.order)+" "+test}> {item.name} </label>              
+              var stuff = <label onClick={ this.props.highlightFunction.bind(this, item) } key={item.id} className={"header"+(item.order)+" "+test}> {item.name} </label>              
 
               return stuff
               }
@@ -36,6 +36,7 @@ class Alternatives extends Component {
               objective_id={item.id}
               alt_order={this.props.uistate_order} // Selected alternative
               alt_id={this.props.uistate_alt_id}
+              highlight={this.props.uistate_highlight}
               cells={this.props.cells}
               low_is_better = {item.low_is_better} />;
 
@@ -52,14 +53,21 @@ function mapStateToProps(state) {
     alternatives: state.alternatives,
     cells: state.cells,
     uistate_order: state.uistate.order,
-    uistate_alt_id: state.uistate.alt_id
+    uistate_alt_id: state.uistate.alt_id,
+    uistate_highlight: state.uistate.highlight
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     highlightFunction: function(item) {
-      const action = { type: 'AlternativesSelected', uistate: {order: item.order, alt_id: item.id}};
+      var action;
+
+      if (this.props.uistate_highlight && this.props.uistate_alt_id === item.id) {
+        action = { type: 'AlternativesSelected', uistate: {order: item.order, alt_id: item.id, highlight: false}};
+      } else {
+        action = { type: 'AlternativesSelected', uistate: {order: item.order, alt_id: item.id, highlight: true}};
+      }
 
       // const action = { type: 'AlternativesSelected', uistate: {order: item.order, alt_id: item.id }};
       // alert('here');

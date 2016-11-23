@@ -51,9 +51,9 @@ ReactDOM.render(
 // )
 
 // Read a specific case
-store.dispatch(fetchCase(1)).then(() =>
-  store.getState()
-)
+// store.dispatch(fetchCase(1)).then(() =>
+//   store.getState()
+// )
 
 
 // var data_insert = {
@@ -705,7 +705,8 @@ const test_bad_data = {
   ],
   "uistate": {
     "order": null,
-    "alt_id": null
+    "alt_id": null,
+    "highlight": true
   }
 }
 
@@ -855,11 +856,12 @@ const test_data = {
   ],
   "uistate": {
     "order": null,
-    "alt_id": null
+    "alt_id": null,
+    "highlight": false
   }
 }
 // console.log("Loading data in the Store", test_data)
-// store.dispatch({type: 'DATA_LOADED', data: test_data})  // calls all your reducers
+store.dispatch({type: 'DATA_LOADED', data: test_data})  // calls all your reducers
 // store.dispatch({type: 'DATA_LOADED', data: test_bad_data})  // calls all your reducers
 
   // "uistate": {
