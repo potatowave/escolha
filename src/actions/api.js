@@ -1,5 +1,41 @@
 import fetch from 'isomorphic-fetch'
 
+// ----------------------------------------------------------------------------
+// Save Case to Database
+
+export const REQUEST_SAVE_CASE = 'REQUEST_SAVE_CASE'
+
+export function requestSaveCase(data) {
+  return {
+    type: REQUEST_SAVE_CASE,
+    data
+  }
+}
+
+export const RECEIVE_SAVE_CASE = 'RECEIVE_SAVE_CASE'
+
+export function receiveSaveCase(json) {
+  return {type: 'DATA_LOADED', data: json}
+}
+
+export function saveCase(data) {
+  return dispatch => {
+    dispatch(requestSaveCase(data));
+    return fetch('http://localhost:3001/api/cases', {
+      method: 'post',
+      body: JSON.stringify({data}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(json => dispatch(receiveSaveCase(json)))
+  }
+}
+// ----------------------------------------------------------------------------
+// Read Case from Database
+
+
 // Trigger this action when REQUEST to fetch data from API
 export const REQUEST_CASE = 'REQUEST_CASE'
 
