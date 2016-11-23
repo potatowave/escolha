@@ -9,7 +9,6 @@ class Cells extends Component {
     return (
         <div className={"r"+this.props.row}>
           { this.props.values.map((item) => {
-              console.log(this.props.row);
               if(this.props.row === item.objective_id) {
 
                 var test = ""

@@ -8,6 +8,7 @@ import createLogger from 'redux-logger';  // set up logging in the console so we
 
 // Actions
 import { fetchCase } from './actions/api'
+import { saveCase } from './actions/api'
 
 
 import { createStore, applyMiddleware } from 'redux';
@@ -40,10 +41,104 @@ ReactDOM.render(
   document.getElementById('react-root')
 );
 
+// ----------------------------------------------------------------------------
+// Actions using the API
 
+/*
+// Read a case
 store.dispatch(fetchCase(1)).then(() =>
-  console.log(store.getState())
+  store.getState()
 )
+*/
+
+/*
+// Save a case
+store.dispatch(saveCase(data_insert)).then(() =>
+  store.getState()
+)
+
+var data_insert = {
+  "case": {
+    "name": "Car",
+    "description": "I want to choose some car"
+  },
+
+  "objectives": [{
+      "id_frontend":          99,
+      "name":                 "Cost",
+      "sub_name":             "Price",
+      "evaluation_objective": "Just the car price",
+      "low_is_better":        true,
+      "unit_name":            "money",
+      "unit_prefix":          "$",
+      "unit_suffix":          "",
+      "scale_type":           "this is managed on the front-end"
+    },
+
+    {
+      "id_frontend":          88,
+      "name":                 "Cost",
+      "sub_name":             "Mainetence",
+      "evaluation_objective": "Per year mainetence",
+      "low_is_better":        true,
+      "unit_name":            "money",
+      "unit_prefix":          "$",
+      "unit_suffix":          "",
+      "scale_type":           "this is managed on the front-end"
+    }
+  ],
+
+  "alternatives": [{
+      "id_frontend": 11,
+      "name":       "Ferrari",
+      "image_url":  "https://s-media-cache-ak0.pinimg.com/236x/89/5c/b1/895cb18bd918640844fdd3bc6297fddd.jpg"
+    },
+
+    {
+      "id_frontend": 22,
+      "name":       "Lamborghini",
+      "image_url":  "https://s-media-cache-ak0.pinimg.com/236x/c8/71/07/c871079f871b72609735e584235f1f12.jpg"
+    },
+
+    {
+      "id_frontend": 33,
+      "name":       "Lamborghini",
+      "image_url":  "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSyqYUmFsqlT5RtmrxJNGhq70lk2ePKuffpBILv1UtIfk71nE5X"
+    }
+  ],
+
+  "values": [{
+      "objective_id_frontend": 99,
+      "alternative_id_frontend": 11,
+      "value": 150000
+    }, {
+      "objective_id_frontend": 99,
+      "alternative_id_frontend": 22,
+      "value": 390888
+    }, {
+      "objective_id_frontend": 99,
+      "alternative_id_frontend": 33,
+      "value": 420123
+    },
+
+    {
+      "objective_id_frontend": 88,
+      "alternative_id_frontend": 11,
+      "value": 120
+    }, {
+      "objective_id_frontend": 88,
+      "alternative_id_frontend": 22,
+      "value": 99
+    }, {
+      "objective_id_frontend": 88,
+      "alternative_id_frontend": 33,
+      "value": 560
+    }
+  ]
+};
+
+
+*/
 
 /*
 const test_data = {
