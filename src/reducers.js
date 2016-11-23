@@ -60,7 +60,7 @@ const rootReducer = combineReducers({
   objectives: objectivesReducer,
   alternatives: alternativesReducer,
   cells: cellsReducer,
-  uistate: uiStateReducer
+  //uistate: uiStateReducer
 });
 
 

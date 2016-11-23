@@ -273,7 +273,7 @@ module.exports = (knex) => {
         data.objectives &&
         data.alternatives &&
         data.cases &&
-        data.values
+        data.cells
       );
     }
 
