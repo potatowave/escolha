@@ -136,12 +136,8 @@ var data_insert = {
     }
   ]
 };
-
-
 */
 
-/*
->>>>>>> react/post-case
 const test_data = {
   "objectives": [
     {
