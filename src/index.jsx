@@ -47,15 +47,15 @@ ReactDOM.render(
 
 
 // // THIS IS NEW:
-store.dispatch(fetchUserCases()).then(() =>
+store.dispatch(fetchUserCases()).then(() => {
+  store.getState()
+})
+
+
+//Read a specific case
+store.dispatch(fetchCase(2)).then(() =>
   store.getState()
 )
-
-
-// Read a specific case
-// store.dispatch(fetchCase(1)).then(() =>
-//   store.getState()
-// )
 
 
 // var data_insert = {

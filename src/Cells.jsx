@@ -78,17 +78,39 @@ class Cells extends Component {
         // var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`} className={"c"+item.order+" "+test+" "+compare_tag}>{item.value}</div>
         // var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`} className={"c"+this.props.alt_order+" "+test+" "+compare_tag}>{item.value}</div>
 
-        var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`}
-        // className={"c"+item.alternative_id+" "+test+" "+compare_tag}>{item.value}
-        className={"c"+(index+1) +" "+test+" "+compare_tag}>{item.value}</div>
+        // Working
+        // var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`}
+        // // className={"c"+item.alternative_id+" "+test+" "+compare_tag}>{item.value}
+        // className={"c"+(index+1) +" "+test+" "+compare_tag}>{item.value}</div>
 
-        return stuff
+        return (
+          <div
+            key={`c${item.alternative_id}-${item.alternative_id}`}
+            className={"c"+(index+1) +" "+test+" "+compare_tag}
+            >
+            {item.value}
+            { item.isEditVisible && <input type="text" value={item.value}/> }
+          </div>
+        )
 
       })}
 
       </div>
     );
   }
+
+
+  toggleIsEditVisible(item) {
+    var toog = (item.isEditVisible === true) ? false : true;
+    this.props.isEditVisible = toog
+    this.props.toggleEdit(cell)
+  }
+
+
+
+
+
+
 }
 
 function mapStateToProps(state) {
@@ -96,9 +118,8 @@ function mapStateToProps(state) {
     // NOTE: This is a 'dumb' component, so instead of grabbing values from the store,
     // we can pass these from the parent component down here
 
-    objectives: state.objectives
-    // values: state.values
-
+    objectives: state.objectives,
+    cells: state.cells
   }
 }
 
@@ -107,6 +128,9 @@ function mapDispatchToProps(dispatch) {
     saveSelectedValue: function(value) {
       const action = { type: 'saveSelectedVal', value: value };
       dispatch(action);
+    },
+    toggleEdit: function(cell) {
+      dispatch( { type: 'CELL_TOGGLED', cell: cell})
     }
   }
 }

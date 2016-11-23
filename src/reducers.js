@@ -39,7 +39,10 @@ function alternativesReducer(state = [], action) {
 function cellsReducer(state = [], action) {
   switch(action.type) {
     case 'DATA_LOADED':
-      return action.data.cells;
+      return action .data.cells.map((cell)=>{
+        cell.isEditVisible = false
+        return cell
+      });
     default:
       return state
   }
