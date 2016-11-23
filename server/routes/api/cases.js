@@ -11,11 +11,12 @@ module.exports = (knex) => {
   * Add a full case
   */
   router.post("/", (req, res) => {
-    const data = JSON.parse(req.body.data);
+    //res.json('{ "oi": "alow"}');
 
+    const data = req.body.data;
     // Call the Model to interact with data
     Case(knex).insertCase(data, (msg) => {
-      res.send(msg);
+      res.json(msg);
     });
   });
 

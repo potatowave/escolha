@@ -27,7 +27,7 @@ module.exports = (knex) => {
   * @param {function} callback    - Callback function to run after aSync DB call
   * @returns {void}               - It will call Callback function aSync
   */
-  function insertValue(value, callback) {
+  function insertValue(value, caseId, callback) {
     // Insert values into database
     knex.insert({
       alternative_id: parseInt(value.alternative_id, 10),
@@ -39,7 +39,7 @@ module.exports = (knex) => {
       console.log('Insert Value');
       countInsertedValues += 1;
       if (countInsertedValues === totalObjectives * totalAlternatives) {
-        callback('Case created successful');
+        deliverContent(parseInt(caseId,10), callback)
       }
     })
     .catch((error) => { console.error(error); });
@@ -51,7 +51,7 @@ module.exports = (knex) => {
   * @param {function} callback    - Callback function to run after aSync DB call
   * @returns {void}               - It will call Callback function aSync
   */
-  function swapFrontendIdToDatabaseId(values, callback) {
+  function swapFrontendIdToDatabaseId(values, caseId, callback) {
     const valuesWithDatabaseId = values.map((obj) => {
       const objBackEnd = {};
       objBackEnd.objective_id = objectivesMap[obj.objective_id_frontend];
@@ -63,7 +63,7 @@ module.exports = (knex) => {
     console.log('Swap front-end ids to backend ids');
 
     valuesWithDatabaseId.forEach((value) => {
-      insertValue(value, callback);
+      insertValue(value, caseId, callback);
     });
   }
 
@@ -78,15 +78,16 @@ module.exports = (knex) => {
   */
   function insertObjective(objective, caseId, order, values, callback) {
     knex.insert({
-      name: objective.objective,
-      sub_name: objective.subObjective,
+      name: objective.name,
+      sub_name: objective.sub_name,
       case_id: parseInt(caseId, 10),
-      evaluation_objective: objective.criterion,
+      evaluation_objective: objective.evaluation_objective,
       low_is_better: objective.low_is_better,
       order: parseInt(order, 10),
       unit_name: objective.unit_name,
       unit_prefix: objective.unit_prefix,
       unit_suffix: objective.unit_suffix,
+      created_at: new Date().toLocaleString()
     }, 'id')
     .into('objectives')
     .then((objectiveId) => {
@@ -98,7 +99,7 @@ module.exports = (knex) => {
       // Insert to alternatives_objectives only if all other data is alredy
       // inserted
       if (isDoneInserting()) {
-        swapFrontendIdToDatabaseId(values, callback);
+        swapFrontendIdToDatabaseId(values, caseId, callback);
       }
     })
     .catch((error) => { console.error(error); });
@@ -119,6 +120,7 @@ module.exports = (knex) => {
       name: alternative.name,
       image_url: alternative.image_url,
       order: parseInt(order, 10),
+      created_at: new Date().toLocaleString()
     }, 'id')
     .into('alternatives')
     .then((alternativeId) => {
@@ -130,7 +132,7 @@ module.exports = (knex) => {
       // Insert to alternatives_objectives only if all other data is alredy
       // inserted
       if (isDoneInserting()) {
-        swapFrontendIdToDatabaseId(values, callback);
+        swapFrontendIdToDatabaseId(values, caseId, callback);
       }
     })
     .catch((error) => { console.error(error); });
@@ -144,9 +146,10 @@ module.exports = (knex) => {
   */
   function insertCase(data, callback) {
     knex.insert({
-      userId,
-      name: data.name,
-      description: data.description,
+      user_id: userId,
+      name: data.case.name,
+      description: data.case.description,
+      created_at: new Date().toLocaleString()
     }, 'id')
     .into('cases')
     .then((caseId) => {
@@ -240,14 +243,14 @@ module.exports = (knex) => {
     });
 
     // Update values
-    data.values.forEach((value) => {
+    data.cells.forEach((value) => {
       knex('alternatives_objectives')
       .where('alternative_id', parseInt(value.alternative_id, 10))
       .andWhere('objective_id', parseInt(value.objective_id, 10))
       .update(value)
       .then((n) => {
         countValues += 1;
-        console.log(`Value Updated: ${n}`);
+        console.log(`Cell Updated: ${n}`);
         if (isDoneUpdating()) {
           callback(msg);
         }
@@ -263,6 +266,7 @@ module.exports = (knex) => {
   */
   function deliverContent(caseId, callback) {
     const data = {};
+    console.log("Delivering content",caseId);
 
     function isDone() {
       return (
@@ -312,7 +316,7 @@ module.exports = (knex) => {
       .innerJoin('alternatives', 'alternatives_objectives.alternative_id', 'alternatives.id')
       .where('case_id', caseId)
       .then((result) => {
-        data.values = result;
+        data.cells = result;
         if (isDone()) {
           callback(data);
         }

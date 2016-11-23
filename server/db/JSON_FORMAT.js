@@ -4,7 +4,7 @@
 // ----------------------------------------------------------------------------
 
 data = {
-  case: {
+  "case": {
     "name": "Car",
     "description": "I want to choose some car"
   },
@@ -53,7 +53,7 @@ data = {
     }
   ],
 
-  "values": [{
+  "cells": [{
       "objective_id_frontend": 99,
       "alternative_id_frontend": 11,
       "value": 150000
@@ -138,7 +138,7 @@ data = {
     }
   ],
 
-  "values": [{
+  "cells": [{
       "alternative_id":   157,
       "objective_id":     107,
       "value":            999999
