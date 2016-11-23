@@ -1,49 +1,11 @@
 // reducers.js
 // Define the reducer
-import { combineReducers } from 'redux';
+import { createStore, combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form'
 
 // define reducer functions.
 
 function casesReducer(state = [], action) {
-<<<<<<< HEAD
-  if(action.type === 'LOAD_CASES') {
-    return action.cases;
-  } else {
-    // return default state
-    return state
-  }
-}
-
-function objectivesReducer(state = [], action) {
-  if(action.type === 'LOAD_OBJECTIVES') {
-    return action.objectives;
-  } else {
-    // return default state
-    return state
-  }
-}
-
-function alternativesReducer(state = [], action) {
-  if(action.type === 'LOAD_ALTERNATIVES') {
-    return action.alternatives;
-  } else {
-    // return default state
-    return state
-  }
-}
-
-function valuesReducer(state = [], action) {
-  if(action.type === 'LOAD_VALUES') {
-    return action.values;
-  } else {
-    // return default state
-    return state
-  }
-}
-
-// the keys are the names of the store property
-const rootReducer = combineReducers({
-=======
   switch(action.type) {
     case 'DATA_LOADED':
       return action.data.cases;
@@ -88,23 +50,15 @@ function uiStateReducer(state = [], action) {
   }
 }
 
-
-
 // the keys are the names of the store property
 const rootReducer = combineReducers({
   // users: usersReducer,
->>>>>>> master
   cases: casesReducer,
   objectives: objectivesReducer,
   alternatives: alternativesReducer,
   values: valuesReducer,
-<<<<<<< HEAD
-=======
-  uistate: uiStateReducer
->>>>>>> master
+  uistate: uiStateReducer,
+  form: formReducer
 });
-
-
-
 
 export default rootReducer;

@@ -25,13 +25,6 @@ class Heading extends Component {
 
 function mapStateToProps(state) {
   return {
-
-    cases: state.cases
-  }
-}
-
-export default connect(mapStateToProps, null)(Heading)
-
   }
 }
 

@@ -13,6 +13,7 @@ import { fetchCase } from './actions/api'
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers';
 import App from './App.jsx';
+import WizardForm from './WizardForm.jsx';
 import Onboard from './Onboard.jsx';
 import { Router, Route, hashHistory } from 'react-router'
 import { combineForms } from 'react-redux-form';
@@ -43,6 +44,7 @@ ReactDOM.render((
   <Router history={hashHistory} store={store} >
     <Route path="/" component={App} />
     <Route path="/new" component={Onboard} />
+    <Route path="/wizard" component={WizardForm} />
   </Router>
   </Provider>
 ), document.getElementById('react-root'))
@@ -209,7 +211,8 @@ const test_data = {
   ],
   "uistate": {
     highlight: true,
-    selected_alternative_id: 3
+    selected_alternative_id: 3,
+    onboardform: true
   }
 }
 
