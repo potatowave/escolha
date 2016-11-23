@@ -14,6 +14,7 @@ class Nav extends Component {
           <div className="nav-links">
             <div className="home-button">Home</div>
             <div className="editor-button">Edit</div>
+            <div className="create-button">Cases</div>
             <div className="create-button">Create</div>
           </div>
 

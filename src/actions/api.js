@@ -15,6 +15,8 @@ export function requestSaveCase(data) {
 export const RECEIVE_SAVE_CASE = 'RECEIVE_SAVE_CASE'
 
 export function receiveSaveCase(json) {
+  // workaround -- adding to store!
+  // json.uistate = 3
   return {type: 'DATA_LOADED', data: json}
 }
 
@@ -50,6 +52,8 @@ export function requestCase(case_id) {
 export const RECEIVE_CASE = 'RECEIVE_CASE'
 
 export function receiveCase(case_id, json) {
+  // workaround -- adding to store!
+  // json.uistate = 3
   return {type: 'DATA_LOADED', data: json}
 }
 
