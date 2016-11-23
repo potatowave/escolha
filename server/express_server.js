@@ -45,8 +45,10 @@ new WebpackDevServer(webpack(config), {
 
 // Routes
 const apiCasesRoute = require('./routes/api/cases.js');
+const apiUsersRoute = require('./routes/api/users.js');
 
 app.use('/api/cases', apiCasesRoute(knex));
+app.use('/api/users', apiUsersRoute(knex));
 
 const PORT = process.env.PORT || 3001; // set to 3001
 app.set('view engine', 'ejs'); // Set View Engine to ejs

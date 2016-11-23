@@ -7,8 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';  // set up logging in the console so we can see how actions are fired
 
 // Actions
-import { fetchCase } from './actions/api'
-import { saveCase } from './actions/api'
+import { fetchCase, saveCase, fetchUserCases } from './actions/api'
 
 
 import { createStore, applyMiddleware } from 'redux';
@@ -43,261 +42,268 @@ ReactDOM.render(
 
 // ----------------------------------------------------------------------------
 // Actions using the API
-//Read a case
 
+// Read all Cases from current user - for the dropdown
+store.dispatch(fetchUserCases()).then(() =>
+  store.getState()
+)
+
+// Read a specific case
 store.dispatch(fetchCase(1)).then(() =>
   store.getState()
 )
+
+
+// var data_insert = {
+//   "case": {
+//     "name": "Car",
+//     "description": "I want to choose some car"
+//   },
+
+//   "objectives": [{
+//       "id_frontend":          99,
+//       "name":                 "Cost",
+//       "sub_name":             "Price",
+//       "evaluation_objective": "Just the car price",
+//       "low_is_better":        true,
+//       "unit_name":            "money",
+//       "unit_prefix":          "$",
+//       "unit_suffix":          "",
+//       "scale_type":           "this is managed on the front-end"
+//     },
+
+//     {
+//       "id_frontend":          88,
+//       "name":                 "Cost",
+//       "sub_name":             "Mainetence",
+//       "evaluation_objective": "Per year mainetence",
+//       "low_is_better":        true,
+//       "unit_name":            "money",
+//       "unit_prefix":          "$",
+//       "unit_suffix":          "",
+//       "scale_type":           "this is managed on the front-end"
+//     },
+
+//     {
+//       "id_frontend":          77,
+//       "name":                 "Condition",
+//       "sub_name":             "Body",
+//       "evaluation_objective": "Body condition",
+//       "low_is_better":        false,
+//       "unit_name":            "",
+//       "unit_prefix":          "",
+//       "unit_suffix":          "",
+//       "scale_type":           "this is managed on the front-end"
+//     },
+
+//     {
+//       "id_frontend":          66,
+//       "name":                 "Condition",
+//       "sub_name":             "Milage",
+//       "evaluation_objective": "Total miles on the odometer",
+//       "low_is_better":        false,
+//       "unit_name":            "",
+//       "unit_prefix":          "",
+//       "unit_suffix":          "",
+//       "scale_type":           "this is managed on the front-end"
+//     },
+
+//     {
+//       "id_frontend":          55,
+//       "name":                 "Cool Factor",
+//       "sub_name":             "Coolness",
+//       "evaluation_objective": "How cool this is",
+//       "low_is_better":        false,
+//       "unit_name":            "",
+//       "unit_prefix":          "",
+//       "unit_suffix":          "",
+//       "scale_type":           "this is managed on the front-end"
+//     }
+
+//   ],
+
+//   "alternatives": [{
+//       "id_frontend": 11,
+//       "name":       "Ferrari",
+//       "image_url":  "https://s-media-cache-ak0.pinimg.com/236x/89/5c/b1/895cb18bd918640844fdd3bc6297fddd.jpg"
+//     },
+
+//     {
+//       "id_frontend": 22,
+//       "name":       "Lamborghini",
+//       "image_url":  "https://s-media-cache-ak0.pinimg.com/236x/c8/71/07/c871079f871b72609735e584235f1f12.jpg"
+//     },
+
+//     {
+//       "id_frontend": 33,
+//       "name":       "Lamborghini",
+//       "image_url":  "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSyqYUmFsqlT5RtmrxJNGhq70lk2ePKuffpBILv1UtIfk71nE5X"
+//     },
+
+//     {
+//       "id_frontend": 44,
+//       "name":       "Ford",
+//       "image_url":  "https://s-media-cache-ak0.pinimg.com/236x/89/5c/b1/895cb18bd918640844fdd3bc6297fddd.jpg"
+//     },
+
+//     {
+//       "id_frontend": 55,
+//       "name":       "Chrysler",
+//       "image_url":  "https://s-media-cache-ak0.pinimg.com/236x/c8/71/07/c871079f871b72609735e584235f1f12.jpg"
+//     },
+
+//     {
+//       "id_frontend": 66,
+//       "name":       "Honda",
+//       "image_url":  "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSyqYUmFsqlT5RtmrxJNGhq70lk2ePKuffpBILv1UtIfk71nE5X"
+//     }
+
+//   ],
+
+//   "values": [{
+//       "objective_id_frontend": 99,
+//       "alternative_id_frontend": 11,
+//       "value": 150000
+//     }, {
+//       "objective_id_frontend": 99,
+//       "alternative_id_frontend": 22,
+//       "value": 390888
+//     }, {
+//       "objective_id_frontend": 99,
+//       "alternative_id_frontend": 33,
+//       "value": 420123
+//     },
+//     {
+//       "objective_id_frontend": 99,
+//       "alternative_id_frontend": 44,
+//       "value": 25000
+//     }, {
+//       "objective_id_frontend": 99,
+//       "alternative_id_frontend": 55,
+//       "value": 35000
+//     }, {
+//       "objective_id_frontend": 99,
+//       "alternative_id_frontend": 66,
+//       "value": 45000
+//     },
+
+
+//     {
+//       "objective_id_frontend": 88,
+//       "alternative_id_frontend": 11,
+//       "value": 10000
+//     }, {
+//       "objective_id_frontend": 88,
+//       "alternative_id_frontend": 22,
+//       "value": 5000
+//     }, {
+//       "objective_id_frontend": 88,
+//       "alternative_id_frontend": 33,
+//       "value": 8000
+//     },
+//     {
+//       "objective_id_frontend": 88,
+//       "alternative_id_frontend": 44,
+//       "value": 500
+//     }, {
+//       "objective_id_frontend": 88,
+//       "alternative_id_frontend": 55,
+//       "value": 400
+//     }, {
+//       "objective_id_frontend": 88,
+//       "alternative_id_frontend": 66,
+//       "value": 200
+//     },
+
+//     {
+//       "objective_id_frontend": 77,
+//       "alternative_id_frontend": 11,
+//       "value": 4
+//     }, {
+//       "objective_id_frontend": 77,
+//       "alternative_id_frontend": 22,
+//       "value": 5
+//     }, {
+//       "objective_id_frontend": 77,
+//       "alternative_id_frontend": 33,
+//       "value": 4
+//     },
+//     {
+//       "objective_id_frontend": 77,
+//       "alternative_id_frontend": 44,
+//       "value": 3
+//     }, {
+//       "objective_id_frontend": 77,
+//       "alternative_id_frontend": 55,
+//       "value": 5
+//     }, {
+//       "objective_id_frontend": 77,
+//       "alternative_id_frontend": 66,
+//       "value": 4
+//     },
+
+//     {
+//       "objective_id_frontend": 66,
+//       "alternative_id_frontend": 11,
+//       "value": 10000
+//     }, {
+//       "objective_id_frontend": 66,
+//       "alternative_id_frontend": 22,
+//       "value": 15000
+//     }, {
+//       "objective_id_frontend": 66,
+//       "alternative_id_frontend": 33,
+//       "value": 5000
+//     },
+//     {
+//       "objective_id_frontend": 66,
+//       "alternative_id_frontend": 44,
+//       "value": 50000
+//     }, {
+//       "objective_id_frontend": 66,
+//       "alternative_id_frontend": 55,
+//       "value": 100
+//     }, {
+//       "objective_id_frontend": 66,
+//       "alternative_id_frontend": 66,
+//       "value": 20000
+//     },
+
+//     {
+//       "objective_id_frontend": 55,
+//       "alternative_id_frontend": 11,
+//       "value": 4
+//     }, {
+//       "objective_id_frontend": 55,
+//       "alternative_id_frontend": 22,
+//       "value": 5
+//     }, {
+//       "objective_id_frontend": 55,
+//       "alternative_id_frontend": 33,
+//       "value": 5
+//     },
+//     {
+//       "objective_id_frontend": 55,
+//       "alternative_id_frontend": 44,
+//       "value": 1
+//     }, {
+//       "objective_id_frontend": 55,
+//       "alternative_id_frontend": 55,
+//       "value": 1
+//     }, {
+//       "objective_id_frontend": 55,
+//       "alternative_id_frontend": 66,
+//       "value": 2
+//     }
+//   ]
+// };
+
 
 // // Save a case
 // store.dispatch(saveCase(data_insert)).then(() =>
 //   store.getState()
 // )
 
-
-var data_insert = {
-  "case": {
-    "name": "Car",
-    "description": "I want to choose some car"
-  },
-
-  "objectives": [{
-      "id_frontend":          99,
-      "name":                 "Cost",
-      "sub_name":             "Price",
-      "evaluation_objective": "Just the car price",
-      "low_is_better":        true,
-      "unit_name":            "money",
-      "unit_prefix":          "$",
-      "unit_suffix":          "",
-      "scale_type":           "this is managed on the front-end"
-    },
-
-    {
-      "id_frontend":          88,
-      "name":                 "Cost",
-      "sub_name":             "Mainetence",
-      "evaluation_objective": "Per year mainetence",
-      "low_is_better":        true,
-      "unit_name":            "money",
-      "unit_prefix":          "$",
-      "unit_suffix":          "",
-      "scale_type":           "this is managed on the front-end"
-    },
-
-    {
-      "id_frontend":          77,
-      "name":                 "Condition",
-      "sub_name":             "Body",
-      "evaluation_objective": "Body condition",
-      "low_is_better":        false,
-      "unit_name":            "",
-      "unit_prefix":          "",
-      "unit_suffix":          "",
-      "scale_type":           "this is managed on the front-end"
-    },
-
-    {
-      "id_frontend":          66,
-      "name":                 "Condition",
-      "sub_name":             "Milage",
-      "evaluation_objective": "Total miles on the odometer",
-      "low_is_better":        false,
-      "unit_name":            "",
-      "unit_prefix":          "",
-      "unit_suffix":          "",
-      "scale_type":           "this is managed on the front-end"
-    },
-
-    {
-      "id_frontend":          55,
-      "name":                 "Cool Factor",
-      "sub_name":             "Coolness",
-      "evaluation_objective": "How cool this is",
-      "low_is_better":        false,
-      "unit_name":            "",
-      "unit_prefix":          "",
-      "unit_suffix":          "",
-      "scale_type":           "this is managed on the front-end"
-    }
-
-  ],
-
-  "alternatives": [{
-      "id_frontend": 11,
-      "name":       "Ferrari",
-      "image_url":  "https://s-media-cache-ak0.pinimg.com/236x/89/5c/b1/895cb18bd918640844fdd3bc6297fddd.jpg"
-    },
-
-    {
-      "id_frontend": 22,
-      "name":       "Lamborghini",
-      "image_url":  "https://s-media-cache-ak0.pinimg.com/236x/c8/71/07/c871079f871b72609735e584235f1f12.jpg"
-    },
-
-    {
-      "id_frontend": 33,
-      "name":       "Lamborghini",
-      "image_url":  "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSyqYUmFsqlT5RtmrxJNGhq70lk2ePKuffpBILv1UtIfk71nE5X"
-    },
-
-    {
-      "id_frontend": 44,
-      "name":       "Ford",
-      "image_url":  "https://s-media-cache-ak0.pinimg.com/236x/89/5c/b1/895cb18bd918640844fdd3bc6297fddd.jpg"
-    },
-
-    {
-      "id_frontend": 55,
-      "name":       "Chrysler",
-      "image_url":  "https://s-media-cache-ak0.pinimg.com/236x/c8/71/07/c871079f871b72609735e584235f1f12.jpg"
-    },
-
-    {
-      "id_frontend": 66,
-      "name":       "Honda",
-      "image_url":  "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSyqYUmFsqlT5RtmrxJNGhq70lk2ePKuffpBILv1UtIfk71nE5X"
-    }
-
-  ],
-
-  "values": [{
-      "objective_id_frontend": 99,
-      "alternative_id_frontend": 11,
-      "value": 150000
-    }, {
-      "objective_id_frontend": 99,
-      "alternative_id_frontend": 22,
-      "value": 390888
-    }, {
-      "objective_id_frontend": 99,
-      "alternative_id_frontend": 33,
-      "value": 420123
-    },
-    {
-      "objective_id_frontend": 99,
-      "alternative_id_frontend": 44,
-      "value": 25000
-    }, {
-      "objective_id_frontend": 99,
-      "alternative_id_frontend": 55,
-      "value": 35000
-    }, {
-      "objective_id_frontend": 99,
-      "alternative_id_frontend": 66,
-      "value": 45000
-    },
-
-
-    {
-      "objective_id_frontend": 88,
-      "alternative_id_frontend": 11,
-      "value": 10000
-    }, {
-      "objective_id_frontend": 88,
-      "alternative_id_frontend": 22,
-      "value": 5000
-    }, {
-      "objective_id_frontend": 88,
-      "alternative_id_frontend": 33,
-      "value": 8000
-    },
-    {
-      "objective_id_frontend": 88,
-      "alternative_id_frontend": 44,
-      "value": 500
-    }, {
-      "objective_id_frontend": 88,
-      "alternative_id_frontend": 55,
-      "value": 400
-    }, {
-      "objective_id_frontend": 88,
-      "alternative_id_frontend": 66,
-      "value": 200
-    },
-
-    {
-      "objective_id_frontend": 77,
-      "alternative_id_frontend": 11,
-      "value": 4
-    }, {
-      "objective_id_frontend": 77,
-      "alternative_id_frontend": 22,
-      "value": 5
-    }, {
-      "objective_id_frontend": 77,
-      "alternative_id_frontend": 33,
-      "value": 4
-    },
-    {
-      "objective_id_frontend": 77,
-      "alternative_id_frontend": 44,
-      "value": 3
-    }, {
-      "objective_id_frontend": 77,
-      "alternative_id_frontend": 55,
-      "value": 5
-    }, {
-      "objective_id_frontend": 77,
-      "alternative_id_frontend": 66,
-      "value": 4
-    },
-
-    {
-      "objective_id_frontend": 66,
-      "alternative_id_frontend": 11,
-      "value": 10000
-    }, {
-      "objective_id_frontend": 66,
-      "alternative_id_frontend": 22,
-      "value": 15000
-    }, {
-      "objective_id_frontend": 66,
-      "alternative_id_frontend": 33,
-      "value": 5000
-    },
-    {
-      "objective_id_frontend": 66,
-      "alternative_id_frontend": 44,
-      "value": 50000
-    }, {
-      "objective_id_frontend": 66,
-      "alternative_id_frontend": 55,
-      "value": 100
-    }, {
-      "objective_id_frontend": 66,
-      "alternative_id_frontend": 66,
-      "value": 20000
-    },
-
-    {
-      "objective_id_frontend": 55,
-      "alternative_id_frontend": 11,
-      "value": 4
-    }, {
-      "objective_id_frontend": 55,
-      "alternative_id_frontend": 22,
-      "value": 5
-    }, {
-      "objective_id_frontend": 55,
-      "alternative_id_frontend": 33,
-      "value": 5
-    },
-    {
-      "objective_id_frontend": 55,
-      "alternative_id_frontend": 44,
-      "value": 1
-    }, {
-      "objective_id_frontend": 55,
-      "alternative_id_frontend": 55,
-      "value": 1
-    }, {
-      "objective_id_frontend": 55,
-      "alternative_id_frontend": 66,
-      "value": 2
-    }
-  ]
-};
 
 
 
