@@ -18,7 +18,10 @@ class ObjectiveDescriptions extends Component {
               </div>
               { this.props.objectives.map((item, index) => {
 
-                  if(this.props.row === item.id) {
+                  // if(this.props.row === item.id) {
+                  // checks order of objectives to assign unit symbol
+                  if(this.props.row === item.order) {
+
                     if(item.unit_suffix === null) {
                       return <label key={item.id} className="units">{item.unit_suffix}</label>
                     } else {

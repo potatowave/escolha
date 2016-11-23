@@ -18,8 +18,8 @@ class TableComponent extends Component {
           <div className="objective-description-area">
 
             <div className="header">
-              <label className="header-objectives"></label>
-              <label className="header-units"></label>
+              <label className="header-objectives">Objective</label>
+              <label className="header-units">Unit</label>
             </div>
             { this.props.objectives.map(function(item, index) {
               return <ObjectiveDescriptions
