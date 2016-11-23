@@ -6,85 +6,85 @@ class Cells extends Component {
   render() {
     console.log("Rendering <Cells />");
 
-
-    function findSelectedValues(item) {
-       return item.alternative_id === this.props.alt;
+    function findSelectedCells(item) {
+      // return item.alternative_id === this.props.alt;
+      // console.log("** in findSelectedCells **");
+      // console.log("item.order", item.order)
+      // console.log("this.props.alt", this.props.alt_id);
+      
+      return item.alternative_id === this.props.alt_id;
+      // NOTE: item refers to the current cell - need to get 'order' from Alt_id, not from Cells
     }
 
     function matchingPropsRow(item) {
-      return item.objective_id === this.props.row;
+      return item.objective_id === this.props.objective_id;
     }
 
-    var thisRowsSelectedValue = this.props.cells.filter(findSelectedValues, this).find(matchingPropsRow, this);
-    console.log("selected_value", thisRowsSelectedValue)
-    // var selected_value = 130000
+    // Grab all cells in the current row
+    // console.log("this.props.cells", this.props.cells)
+    // console.log("this.props.alt_order", this.props.alt_order)
 
+    const selectedCells = this.props.cells.filter(findSelectedCells, this);
+    // console.log("selectedCells: ", selectedCells)
+
+    // Grab the selected value for the current row
+    var thisRowsSelectedValue = selectedCells.find(matchingPropsRow, this);
+
+    // console.log("thisRowsSelectedValue: ", thisRowsSelectedValue)
+
+    // var thisRowsSelectedValue = this.props.cells.filter(findSelectedCells, this).find(matchingPropsRow, this);
+    // console.log("selected_value", thisRowsSelectedValue)
 
     return (
-        <div className={"r"+this.props.row}>
+      <div className={"r"+this.props.row}>
 
-          { this.props.cells.filter(matchingPropsRow, this).map((item) => {
+      { this.props.cells.filter(matchingPropsRow, this).map((item) => {
 
-            // grab selected_value from the store
+        var test = ""
 
+        // if (item.alternative_id === this.props.alt) {
+        
+        // console.log("*************");
+        // console.log("this.props.alt_order", this.props.alt_order);
+        // console.log("this.props.alt_order === null", this.props.alt_order === null);
 
-              //var selected_value = 130000
+        if (this.props.alt_order !== null && (item.alternative_id === this.props.alt_id)) {
+          test = "highlight";
 
+        }
 
-              // if(this.props.row === item.objective_id) {
+        var compare_tag = ""
+        if (this.props.alt_order !== null) {
+          if (this.props.low_is_better) {
+            // console.log("item.value", item.value)
+            // console.log("thisRowsSelectedValue.value", thisRowsSelectedValue.value)
 
+            if (item.value < thisRowsSelectedValue.value) {
+              compare_tag = "better"
+            } else if (item.value > thisRowsSelectedValue.value) {
+              compare_tag = "worse"
+            }
 
-                var test = ""
+          } else {
+            if (item.value > thisRowsSelectedValue.value) {
+              compare_tag = "better"
+            } else if (item.value < thisRowsSelectedValue.value) {
+              compare_tag = "worse"
+            }
+          }
+        }
 
-                if (item.alternative_id === this.props.alt) {
-                  test = "highlight";
-                }
+        // var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`} className={"c"+item.alternative_id+" "+test+" "+compare_tag}>{item.value}</div>
+        // var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`} className={"c"+item.order+" "+test+" "+compare_tag}>{item.value}</div>
+        // var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`} className={"c"+this.props.alt_order+" "+test+" "+compare_tag}>{item.value}</div>
 
-                var compare_tag = ""
+        var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`} className={"c"+item.alternative_id+" "+test+" "+compare_tag}>{item.value}</div>
 
-                // var thisRowsSelectedValue = selectedValuesAcrossRows.find(matchingRow, this);
+        return stuff
 
-                  if (this.props.low_is_better) {
-                  // put logic here
+      })}
 
-                  // Put in uistate the alternative_id of the selected column
-                  // Then get the value of the cell in that column for the current objective row
-                  if (item.value < thisRowsSelectedValue.value) {
-                    compare_tag = "better"
-                  } else if (item.value > thisRowsSelectedValue.value) {
-                    compare_tag = "worse"
-                  }
-                  // Use that to compare against
-                  // If value is lower that selected value, give it a tag called 'better' - add CSS to make 'better' GREEN
-                  // If value is higher, give it a tag called 'worse' - add CSS to make 'worse' RED
-                  // For the 'else' statement below, do the opposite colour code.
-                  // STRETCH - test if the value is > or < 10% (or a user settable threshold) different - colour it WHITE if it is within that threshold
-
-                } else {
-                  if (item.value > thisRowsSelectedValue.value) {
-                    compare_tag = "better"
-                  } else if (item.value < thisRowsSelectedValue.value) {
-                    compare_tag = "worse"
-                  }
-                }
-
-                // }, this);
-
-                // var junk = this.props.low_is_better;
-
-                // if (this.props.lower_is_better === false) {
-                //   junk = "lower";
-                // }
-
-                var stuff = <div key={`c${item.alternative_id}-${item.alternative_id}`} className={"c"+item.alternative_id+" "+test+" "+compare_tag}>{item.value}</div>
-
-                // var stuff = <div key={`c-${item.objective_id}-${item.alternative_id}`} className={"c"+item.alternative_id+" "+test+" "+junk}>{item.value}</div>
-
-                return stuff
-              // }
-            })}
-        </div>
-
+      </div>
     );
   }
 }
@@ -104,7 +104,6 @@ function mapDispatchToProps(dispatch) {
   return {
     saveSelectedValue: function(value) {
       const action = { type: 'saveSelectedVal', value: value };
-      // alert('here');
       dispatch(action);
     }
   }

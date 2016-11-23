@@ -16,7 +16,11 @@ export const RECEIVE_SAVE_CASE = 'RECEIVE_SAVE_CASE'
 
 export function receiveSaveCase(json) {
   // workaround -- adding to store!
-  json.uistate = 1
+  // json.uistate = 1
+  // json.uistate = {
+  //   "order": null,
+  //   "alt_id": null
+  // }
   return {type: 'DATA_LOADED', data: json}
 }
 
@@ -54,7 +58,10 @@ export const RECEIVE_CASE = 'RECEIVE_CASE'
 
 export function receiveCase(case_id, json) {
   // workaround -- adding to store!
-  json.uistate = 3
+  json.uistate = {
+    "order": null,
+    "alt_id": null
+  }
   return {type: 'DATA_LOADED', data: json}
 }
 
