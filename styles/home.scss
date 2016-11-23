@@ -256,59 +256,62 @@ p {
  }
 
 .worse {
-/*border: 2px solid red;*/
 
-  background: #CD5555;
+  /*border: 2px solid red;*/
+  background: #FFC8CE;
   color:#AC2117;
-  color:white;
+  /*background: #CD5555;*/
+  /*color:white;*/
   font-weight: bold;
   /*font-size: 1.3em;*/
   font-family: monospace;
 }
 
 .better {
+
   /*border: 2px solid green;*/
-  /*background: #CEF1D7;*/
-  /*color:#1d781d;*/
-  background: #397314;
-  color:white;
+  background: #CEF1D7;
+  color:#1d781d;
+  /*background: #397314;*/
+  /*color:white;*/
   font-weight: bold;
   /*font-size: 1.3em;*/
   font-family: monospace;
 }
+
 .r2 .worse {
   /*background: #FFC8CE;*/
-  opacity: 0.9;
+  /*opacity: 0.9;*/
 }
 .r3 .worse {
   /*background: #FFC8CE;*/
-  opacity: 0.8;
+  /*opacity: 0.8;*/
 }
 .r4 .worse {
   /*background: #FFC8CE;*/
-  opacity: 0.7;
+  /*opacity: 0.7;*/
 }
 .r5 .worse {
   /*background: #FFC8CE;*/
-  opacity: 0.6;
+  /*opacity: 0.6;*/
 }
 
 
 .r2 .better {
   /*background: #FFC8CE;*/
-  opacity: 0.9;
+  /*opacity: 0.9;*/
 }
 .r3 .better {
   /*background: #FFC8CE;*/
-  opacity: 0.8;
+  /*opacity: 0.8;*/
 }
 .r4 .better {
   /*background: #FFC8CE;*/
-  opacity: 0.7;
+  /*opacity: 0.7;*/
 }
 .r5 .better {
   /*background: #FFC8CE;*/
-  opacity: 0.6;
+  /*opacity: 0.6;*/
 }
 // TEST
 .dropbtn {

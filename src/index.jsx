@@ -45,13 +45,13 @@ ReactDOM.render(
 
 // Read all Cases from current user - for the dropdown
 
-// THIS IS NEW:
-// store.dispatch(fetchUserCases()).then(() =>
-//   store.getState()
-// )
+// // THIS IS NEW:
+store.dispatch(fetchUserCases()).then(() =>
+  store.getState()
+)
 
 // Read a specific case
-store.dispatch(fetchCase(1)).then(() =>
+store.dispatch(fetchCase(3)).then(() =>
   store.getState()
 )
 
