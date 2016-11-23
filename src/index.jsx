@@ -49,11 +49,6 @@ store.dispatch(fetchCase(1)).then(() =>
   store.getState()
 )
 
-// // Save a case
-// store.dispatch(saveCase(data_insert)).then(() =>
-//   store.getState()
-// )
-
 
 var data_insert = {
   "case": {
@@ -298,6 +293,13 @@ var data_insert = {
     }
   ]
 };
+
+
+// // Save a case
+// store.dispatch(saveCase(data_insert)).then(() =>
+//   store.getState()
+// )
+
 
 
 

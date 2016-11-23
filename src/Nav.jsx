@@ -14,8 +14,24 @@ class Nav extends Component {
           <div className="nav-links">
             <div className="home-button">Home</div>
             <div className="editor-button">Edit</div>
-            <div className="create-button">Cases</div>
             <div className="create-button">Create</div>
+
+            <div className="dropdown">
+              <div className="dropbtn">Cases</div>
+              <div className="dropdown-content">
+              
+              {// Paulo - put your loop here :) 
+
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+                
+                }
+
+              </div>
+            </div>
+
+
           </div>
 
           <div className="search-area">Search</div>
