@@ -323,9 +323,27 @@ module.exports = (knex) => {
       });
   }
 
+  /**
+  * Return all cases by user
+  * @param {function} callback  - Callback function to run after aSync DB call
+  */
+  function casesByUser(callback) {
+    const data = {};
+    console.log("Cases for user",userId);
+
+    knex('cases')
+      .where('user_id', userId)
+      .select()
+      .then((result) => {
+        data.cases = result;
+        callback(data);
+      });
+  }
+
   return {
     insertCase,
     updateCase,
     deliverContent,
+    casesByUser
   };
 };
