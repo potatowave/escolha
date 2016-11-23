@@ -9,7 +9,6 @@ const renderError = ({ meta: { touched, error } }) => touched && error ?
 const renderObjectives = ({ props, fields, meta: { touched, error } }) => (
 
   <div>
-    <button type="button" onClick={() => fields.push({})}>Add Objective</button>
     {fields.map((objective, index) =>
       <div key={index}>
 
@@ -36,7 +35,7 @@ const renderObjectives = ({ props, fields, meta: { touched, error } }) => (
           <label><Field name={`${objective}.low_is_better`} component="input" type="radio" value="false" /> High</label>
           <Field name="low_is_better" component={renderError} />
         </div>
-
+        <hr></hr>
         <button type="button" title="Remove Objective" onClick={() => fields.remove(index)} >Remove Objective</button>
         <button type="button" onClick={() => fields.push({})}>Add Objective</button>
       </div>
@@ -45,18 +44,18 @@ const renderObjectives = ({ props, fields, meta: { touched, error } }) => (
 )
 
 
-const FieldArraysForm = (props) => {
+const ObjectivesArray = (props) => {
   const { handleSubmit, pristine, previousPage, submitting } = props
   return (
     <form onSubmit={handleSubmit}>
-      <FieldArray name="members" component={renderObjectives}/>
+      <FieldArray name="objectives"  component={renderObjectives}/>
     </form>
   )
 }
 
 
 export default reduxForm({
-  form: 'wizard',     // a unique identifier for this form
+  form: 'wizard',
   destroyOnUnmount: false,
   validate
-})(FieldArraysForm)
+})(ObjectivesArray)

@@ -27,7 +27,7 @@ class OnboardData extends React.Component {
         <Nav />
         <main className="onboardform">
 
-          <WizardForm onSubmit={postForm} initialValues={{sliderDefault: 3}} / >
+          <WizardForm onSubmit={postForm}  / >
 
         </main>
         </div>
