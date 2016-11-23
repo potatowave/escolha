@@ -45,7 +45,8 @@ ReactDOM.render(
 
 // Read all Cases from current user - for the dropdown
 
-// THIS IS NEW:
+
+// // THIS IS NEW:
 // store.dispatch(fetchUserCases()).then(() =>
 //   store.getState()
 // )
@@ -58,7 +59,7 @@ ReactDOM.render(
 
 // var data_insert = {
 //   "case": {
-//     "name": "Car",
+//     "name": "Car with more options",
 //     "description": "I want to choose some car"
 //   },
 

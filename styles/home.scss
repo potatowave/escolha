@@ -76,15 +76,19 @@ p {
 .case-description {
   display: flex;
   align-items: center;
+  justify-content: center;
   /*text-align: center;*/
-  margin: 0px 250px 8px 250px;
+  margin: 0px 250px 50px 250px;
   line-height: 1.5em;
+  font-size: 1.4em;
+   font-family: sans-serif Helvetica monospace;
 }
 
 .case-title {
     display: flex;
-    // align-items: center;
+    align-items: center;
     justify-content: center;
+    font-family: monospace;
 }
 
 .header {
@@ -99,6 +103,7 @@ p {
   padding: 10px;
   margin: 1px;
   background-color: #4285f4;
+  opacity: 0.8;
   border: 1px solid #3D75D1;
   color: white;
   text-align: center;
@@ -114,6 +119,7 @@ p {
 }
 
 .header-units {
+  text-align: center;
   min-width: $header-units-width;
   min-height: 30px;
   padding: 10px;
@@ -140,14 +146,6 @@ p {
   display: flex;
   align-items: center;
   flex-direction: column;
-}
-
-.highlight {
-  // background-color: #bbb;
-  background-color: #fcff82;
-  z-index: 99;
-  border: 1px solid #999;
-  color: black;
 }
 
 .main-container {
@@ -204,6 +202,8 @@ p {
 }
 
 .r1, .r2, .r3, .r4, .r5, .r6, .r7, .r8 {
+  font-family: monospace;
+  font-size: 1.4em;
   display: flex;
   justify-content: space-between;
 }
@@ -246,17 +246,73 @@ p {
   /*box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);*/
 }
 
+.highlight {
+
+  background-color: #B4B4B4;
+  z-index: 99;
+  border: 1px solid #999;
+  font-weight: italic bold;
+  color:white;
+ }
+
 .worse {
-  background: red;
+
+  /*border: 2px solid red;*/
+  background: #FFC8CE;
+  color:#AC2117;
+  /*background: #CD5555;*/
+  /*color:white;*/
+  font-weight: bold;
+  /*font-size: 1.3em;*/
+  font-family: monospace;
 }
 
 .better {
-  background: green;
+
+  /*border: 2px solid green;*/
+  background: #CEF1D7;
+  color:#1d781d;
+  /*background: #397314;*/
+  /*color:white;*/
+  font-weight: bold;
+  /*font-size: 1.3em;*/
+  font-family: monospace;
+}
+
+.r2 .worse {
+  /*background: #FFC8CE;*/
+  /*opacity: 0.9;*/
+}
+.r3 .worse {
+  /*background: #FFC8CE;*/
+  /*opacity: 0.8;*/
+}
+.r4 .worse {
+  /*background: #FFC8CE;*/
+  /*opacity: 0.7;*/
+}
+.r5 .worse {
+  /*background: #FFC8CE;*/
+  /*opacity: 0.6;*/
 }
 
 
-
-
+.r2 .better {
+  /*background: #FFC8CE;*/
+  /*opacity: 0.9;*/
+}
+.r3 .better {
+  /*background: #FFC8CE;*/
+  /*opacity: 0.8;*/
+}
+.r4 .better {
+  /*background: #FFC8CE;*/
+  /*opacity: 0.7;*/
+}
+.r5 .better {
+  /*background: #FFC8CE;*/
+  /*opacity: 0.6;*/
+}
 // TEST
 .dropbtn {
     background-color: #3367d6;
