@@ -14,7 +14,6 @@ export default function AlternativeHeading({alternative, uistate_order, highligh
     </label>
   )
 }
-
 // export default function AlternativeHeading(props) {
 //   var highlightedClass = "";
 //   if (props.alternative.order === props.uistate_order) {

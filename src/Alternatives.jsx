@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import Cells from './Cells.jsx'
 import AlternativeHeading from './AlternativeHeading.jsx'
 import ObjectiveRow from './ObjectiveRow.jsx'
 
@@ -29,8 +28,7 @@ class Alternatives extends Component {
           </div>
 
           { this.props.objectives.map((item) => {
-
-            var stuff = <ObjectiveRow
+            return (<ObjectiveRow
               key={`r${item.id}`}
               current_row={item.order} // Pass the 'id' for the current objective
               objective_id={item.id}
@@ -39,10 +37,8 @@ class Alternatives extends Component {
               uistate_alt_id={this.props.uistate_alt_id}
               uistate_highlight={this.props.uistate_highlight}
               cells={this.props.cells}
-               />;
-
-
-            return stuff })}
+               />);
+            })}
         </div>
       </div>
     );
