@@ -1,6 +1,5 @@
-// reducers.js
-// Define the reducer
 import { combineReducers } from 'redux';
+import * as Cellreducers from './reducers/cell'
 
 // define reducer functions.
 function userCases(state = [], action) {
@@ -72,9 +71,10 @@ const rootReducer = combineReducers({
   objectives: objectivesReducer,
   alternatives: alternativesReducer,
   cells: cellsReducer,
-  uistate: uiStateReducer
-});
+  uistate: uiStateReducer,
 
+  cellEdit: Cellreducers.cellReducer
+});
 
 
 

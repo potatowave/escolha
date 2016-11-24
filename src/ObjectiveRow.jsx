@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Cell from './Cell.jsx'
 
 class ObjectiveRow extends Component {
-
   render() {
     console.log("Rendering <Cells />");
 
@@ -33,18 +32,20 @@ class ObjectiveRow extends Component {
             cell={cell}
             cell_index={index}
             thisRowsSelectedValue={thisRowsSelectedValue}
+
+
+            cellEdit={this.props.cellEdit}
+            toggleEditCell={this.props.toggleEditCell}
+            onChangeEditCell={this.props.onChangeEditCell}
+            onKeyPressEditCell={this.props.onKeyPressEditCell}
           />)
         })}
       </div>
     );
   }
-
-  toggleIsEditVisible(item) {
-    var toog = (item.isEditVisible === true) ? false : true;
-    this.props.isEditVisible = toog
-    this.props.toggleEdit(cell)
-  }
 }
+
+
 
 function mapStateToProps(state) {
   return {
@@ -58,13 +59,23 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveSelectedValue: function(value) {
-      const action = { type: 'saveSelectedVal', value: value };
-      dispatch(action);
-    },
-    toggleEdit: function(cell) {
+    // saveSelectedValue: function(value) {
+    //   const action = { type: 'saveSelectedVal', value: value };
+    //   dispatch(action);
+    // },
+    toggleEditCell: function(cell) {
       dispatch( { type: 'CELL_TOGGLED', cell: cell})
+    },
+    onChangeEditCell: function(e) {
+      //console.log(e.target.value)
+    },
+
+    onKeyPressEditCell: function(e){
+      if (e.key == 'Enter') {
+        console.log('Press:' + e.target.value)
+      }
     }
+
   }
 }
 
