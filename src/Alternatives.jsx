@@ -37,7 +37,10 @@ class Alternatives extends Component {
               uistate_alt_id={this.props.uistate_alt_id}
               uistate_highlight={this.props.uistate_highlight}
               cells={this.props.cells}
+
+              cellEdit={this.props.cellEdit}
                />);
+
             })}
         </div>
       </div>
@@ -52,7 +55,9 @@ function mapStateToProps(state) {
     cells: state.cells,
     uistate_order: state.uistate.order,
     uistate_alt_id: state.uistate.alt_id,
-    uistate_highlight: state.uistate.highlight
+    uistate_highlight: state.uistate.highlight,
+
+    cellEdit: state.cellEdit,
   }
 }
 
