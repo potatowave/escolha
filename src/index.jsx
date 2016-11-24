@@ -55,7 +55,7 @@ store.dispatch(fetchUserCases()).then(() => {
   store.getState()
 })
 
-//Read a specific case
+// //Read a specific case
 store.dispatch(fetchCase(2)).then(() =>
   store.getState()
 )
@@ -866,7 +866,7 @@ const test_data = {
   }
 }
 // console.log("Loading data in the Store", test_data)
-store.dispatch({type: 'DATA_LOADED', data: test_data})  // calls all your reducers
+//store.dispatch({type: 'DATA_LOADED', data: test_data})  // calls all your reducers
 // store.dispatch({type: 'DATA_LOADED', data: test_bad_data})  // calls all your reducers
 
   // "uistate": {

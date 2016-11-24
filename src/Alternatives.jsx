@@ -20,6 +20,7 @@ class Alternatives extends Component {
                 key={alternative.id}
                 uistate_order={this.props.uistate_order}
                 uistate_highlight={this.props.uistate_highlight}
+                uistate_alt_id={this.props.uistate_alt_id}
                 alternative={alternative}
                 highlightFunction={this.props.highlightFunction}
               />
@@ -58,19 +59,21 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    highlightFunction: function(item) {
-      var action;
+    highlightFunction: function(alternative, uistate_highlight, uistate_alt_id) {
 
-      if (this.props.uistate_highlight && this.props.uistate_alt_id === item.id) {
-        action = { type: 'AlternativesSelected', uistate: {order: item.order, alt_id: item.id, highlight: false}};
-      } else {
-        action = { type: 'AlternativesSelected', uistate: {order: item.order, alt_id: item.id, highlight: true}};
-      }
+      var isHighlighted = ((uistate_highlight) && (uistate_alt_id === alternative.id)) ? true : false;
 
-      // const action = { type: 'AlternativesSelected', uistate: {order: item.order, alt_id: item.id }};
-      // alert('here');
-      dispatch(action);
-
+      // Dispatch a action to toggle the highlight in the table
+      // It will be called into AlternativeHeading.jsx file
+      dispatch(
+        {
+          type: 'AlternativesSelected',
+          uistate: {
+            order: alternative.order,
+            alt_id: alternative.id,
+            highlight: !isHighlighted
+          }
+        });
     }
   }
 }
