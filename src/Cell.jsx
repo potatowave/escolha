@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
 
-export default function Cell({uistate_highlight, uistate_alt_id, low_is_better, cell, cell_index, thisRowsSelectedValue, toggleEditCell, cellEdit, onChangeEditCell, onKeyPressEditCell}) {
+function updateCell(e, cellSave, cell, cellToggled) {
+  if (e.key == 'Enter') {
+    cellSave(e.target.value, cell);
+    cellToggled(false);
+  }
+}
+
+export default function Cell({uistate_highlight, uistate_alt_id, low_is_better, cell, cell_index, thisRowsSelectedValue, cellBeingEdited, cellToggled, cellSave}) {
 
   var highlightedClass = (uistate_highlight && (cell.alternative_id === uistate_alt_id)) ? "highlight" : "";
   var compare_tag = "";
@@ -21,23 +28,23 @@ export default function Cell({uistate_highlight, uistate_alt_id, low_is_better, 
     }
   }
 
-  var isEditVisible = ((cellEdit.alternative_id == cell.alternative_id) && (cellEdit.objective_id == cell.objective_id)) ? true : false;
+  var isInputVisible = ((cellBeingEdited.alternative_id == cell.alternative_id) && (cellBeingEdited.objective_id == cell.objective_id)) ? true : false;
 
   return (
     <div
-      onDoubleClick={() => toggleEditCell(cell)}
+      onDoubleClick={() => cellToggled(cell)}
       className={"c"+(cell_index+1) +" "+highlightedClass+" "+compare_tag}
       >
-      { !isEditVisible && cell.value }
+      { !isInputVisible && cell.value }
 
-      { isEditVisible &&
+      { isInputVisible &&
         <input
         autoFocus
         type="text"
         value={cell.value}
-        onBlur={() => toggleEditCell(false)}
-        onChange={onChangeEditCell}
-        onKeyPress= {onKeyPressEditCell}
+        onBlur={() => cellToggled(false)}
+        onChange={(e) => { cellSave(e.target.value, cell) }}
+        onKeyPress= {(e) => updateCell(e, cellSave, cell, cellToggled) }
         />
       }
     </div>
