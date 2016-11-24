@@ -1,0 +1,220 @@
+<!-- davidsDemo.html -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>D&D</title>
+  <style>
+    /* make sure the body is at least the height of the browser window */
+    html,
+    body {
+      background: #f5f5f5;
+      height: 100%;
+    }
+    /* center the main content area */
+    .page-container {
+      margin: 0 auto;
+      width: 960px;
+    }
+    .table-horizontal-heading-component,
+    .table-vertical-heading-component,
+    .table-cell-component {
+      background: white;
+      height: 2em;
+      line-height: 2em;
+      text-align: center;
+      flex-grow: 1;
+    }
+    .table-container-component {
+      display: flex;
+      flex-grow: 1;
+    }
+    .table-horizontal-headings-component {
+      display: flex;
+      flex-grow: 1;
+    }
+    .table-vertical-headings-component {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+    }
+    .table-main-section-component {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .table-body-component {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .table-row-component {
+      display: flex;
+      flex-grow: 1;
+    }
+    /* movable is one of the hidden tables */
+    .movable {
+      box-shadow: 5px 5px 5px rgba(0,0,0,.25);
+      cursor: move;
+      display: flex;
+      left: 0;
+      position: fixed;
+      top: 0;
+    }
+    /* hackily disable user selection on draggable things */
+    .table-container-component {
+      cursor: move;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    /* make divs with class placeholder look like they're empty */
+    .placeholder {
+      background: lightgrey;
+      color: lightgrey;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div class="page-container">
+  <div id="real-table" class="table-container-component">
+    <div class="table-vertical-headings-component">
+      <div class="table-vertical-heading-component"><!-- this is a fake heading because I didn't feel like justifying things properly using flexbox --></div>
+      <div class="table-vertical-heading-component draggable" data-heading="1">Heading 1</div>
+      <div class="table-vertical-heading-component draggable" data-heading="2">Heading 2</div>
+      <div class="table-vertical-heading-component draggable" data-heading="3">Heading 3</div>
+    </div>
+    <div class="table-main-section-component">
+      <div class="table-horizontal-headings-component">
+        <div class="table-horizontal-heading-component draggable" data-heading="1">Heading 1</div>
+        <div class="table-horizontal-heading-component draggable" data-heading="2">Heading 2</div>
+        <div class="table-horizontal-heading-component draggable" data-heading="3">Heading 3</div>
+      </div>
+      <div class="table-body-component">
+        <div class="table-row-component">
+          <div class="table-cell-component">1</div>
+          <div class="table-cell-component">1</div>
+          <div class="table-cell-component">1</div>
+        </div>
+        <div class="table-row-component">
+          <div class="table-cell-component">1</div>
+          <div class="table-cell-component">1</div>
+          <div class="table-cell-component">1</div>
+        </div>
+        <div class="table-row-component">
+          <div class="table-cell-component">1</div>
+          <div class="table-cell-component">1</div>
+          <div class="table-cell-component">1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- the data in here is rendered based on some state such as this.state.column_currently_being_dragged -->
+  <div id="moving-column" class="table-container-component movable hidden">
+    <div class="table-main-section-component">
+      <div class="table-horizontal-headings-component">
+        <div class="table-horizontal-heading-component">Heading 3</div>
+      </div>
+      <div class="table-body-component">
+        <div class="table-row-component">
+          <div class="table-cell-component">1</div>
+        </div>
+        <div class="table-row-component">
+          <div class="table-cell-component">1</div>
+        </div>
+        <div class="table-row-component">
+          <div class="table-cell-component">1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- the data in here is rendered based on some state such as this.state.row_currently_being_dragged -->
+  <div id="moving-row" class="table-container-component movable hidden">
+    <div class="table-vertical-headings-component">
+      <div class="table-vertical-heading-component">Heading 3</div>
+    </div>
+    <div class="table-main-section-component">
+      <div class="table-body-component">
+        <div class="table-row-component">
+          <div class="table-cell-component">1</div>
+          <div class="table-cell-component">1</div>
+          <div class="table-cell-component">1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var realTable = document.getElementById('real-table');
+    var movingRow = document.getElementById('moving-row');
+    movingRow.style.width = realTable.offsetWidth + 'px';
+    movingRow.style.left = realTable.offsetLeft + 'px';
+    var firstHeading = document.querySelector('#real-table .table-horizontal-heading-component');
+    var movingColumn = document.getElementById('moving-column');
+    movingColumn.style.width = firstHeading.offsetWidth + 'px';
+    movingColumn.style.top = firstHeading.offsetTop + 'px';
+    var itemBeingDragged = null;
+    var offsetX = 0;
+    var offsetY = 0;
+    function updateMovables(clientX, clientY) {
+      movingRow.style.top = clientY - offsetY + 'px';
+      movingColumn.style.left = clientX - offsetX + 'px';
+    }
+    document.body.addEventListener('mousemove', function (event) {
+      if (!itemBeingDragged) return;
+      updateMovables(event.clientX, event.clientY);
+      // hit detection for vertical
+      var target = verticalHeadings.find(function (target) {
+        return event.clientY >= target.offsetTop && event.clientY <= target.offsetTop + target.offsetHeight;
+      });
+      if (target) {
+        var newIndexForDraggedRow = Array.from(target.parentElement.children).indexOf(target);
+        // dispatch the "reorder_rows" action with this index
+        console.log(newIndexForDraggedRow);
+      }
+    });
+    var verticalHeadings = Array.from(document.querySelectorAll('.draggable.table-vertical-heading-component'));
+    verticalHeadings.forEach(function (verticalHeading) {
+      verticalHeading.addEventListener('mousedown', function (event) {
+        if (itemBeingDragged) return;
+        itemBeingDragged = verticalHeading;
+        addVerticalPlaceholderClasses(verticalHeading);
+        // these offsets make the movable tables stay where they were picked up by the mouse
+        offsetX = event.offsetX;
+        offsetY = event.offsetY;
+        // update positions before showing
+        updateMovables(event.clientX, event.clientY);
+        movingRow.classList.remove('hidden');
+      });
+    });
+    document.addEventListener('mouseup', function (event) {
+      itemBeingDragged = null;
+      movingRow.classList.add('hidden');
+      movingColumn.classList.add('hidden');
+      removePlaceholderClasses();
+    });
+    function addVerticalPlaceholderClasses(verticalHeading) {
+      // you won't need any of this because react will rerender when `this.state.item_being_dragged` changes and add the appropriate classes
+      verticalHeading.classList.add('placeholder');
+      var headingIndex = verticalHeading.dataset.heading;
+      Array.from(document.querySelectorAll(`#real-table .table-row-component:nth-child(${headingIndex}) .table-cell-component`)).forEach(function (cell) {
+        cell.classList.add('placeholder');
+      });
+    }
+    function removePlaceholderClasses() {
+      // ditto won't need this because react is in charge of the classes that these elements have
+      Array.from(document.querySelectorAll('#real-table .placeholder')).forEach(function (placeholder) {
+        placeholder.classList.remove('placeholder');
+      });
+    }
+  });
+</script>
+</body>
+</html>
