@@ -152,21 +152,24 @@
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    
     var realTable = document.getElementById('real-table');
     var movingRow = document.getElementById('moving-row');
     movingRow.style.width = realTable.offsetWidth + 'px';
     movingRow.style.left = realTable.offsetLeft + 'px';
     var firstHeading = document.querySelector('#real-table .table-horizontal-heading-component');
-    var movingColumn = document.getElementById('moving-column');
-    movingColumn.style.width = firstHeading.offsetWidth + 'px';
-    movingColumn.style.top = firstHeading.offsetTop + 'px';
+    // var movingColumn = document.getElementById('moving-column');
+    // movingColumn.style.width = firstHeading.offsetWidth + 'px';
+    // movingColumn.style.top = firstHeading.offsetTop + 'px';
     var itemBeingDragged = null;
     var offsetX = 0;
     var offsetY = 0;
+
     function updateMovables(clientX, clientY) {
       movingRow.style.top = clientY - offsetY + 'px';
       movingColumn.style.left = clientX - offsetX + 'px';
     }
+
     document.body.addEventListener('mousemove', function (event) {
       if (!itemBeingDragged) return;
       updateMovables(event.clientX, event.clientY);
@@ -180,7 +183,10 @@
         console.log(newIndexForDraggedRow);
       }
     });
+
+
     var verticalHeadings = Array.from(document.querySelectorAll('.draggable.table-vertical-heading-component'));
+    
     verticalHeadings.forEach(function (verticalHeading) {
       verticalHeading.addEventListener('mousedown', function (event) {
         if (itemBeingDragged) return;
@@ -194,12 +200,14 @@
         movingRow.classList.remove('hidden');
       });
     });
+
     document.addEventListener('mouseup', function (event) {
       itemBeingDragged = null;
       movingRow.classList.add('hidden');
       movingColumn.classList.add('hidden');
       removePlaceholderClasses();
     });
+
     function addVerticalPlaceholderClasses(verticalHeading) {
       // you won't need any of this because react will rerender when `this.state.item_being_dragged` changes and add the appropriate classes
       verticalHeading.classList.add('placeholder');
@@ -208,12 +216,14 @@
         cell.classList.add('placeholder');
       });
     }
+
     function removePlaceholderClasses() {
       // ditto won't need this because react is in charge of the classes that these elements have
       Array.from(document.querySelectorAll('#real-table .placeholder')).forEach(function (placeholder) {
         placeholder.classList.remove('placeholder');
       });
     }
+
   });
 </script>
 </body>

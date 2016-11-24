@@ -1,0 +1,34 @@
+// conditional_formatting.scss
+
+.better {
+
+  /*border: 2px solid green;*/
+  background: #CEF1D7;
+  color:#1d781d;
+  /*background: #397314;*/
+  /*color:white;*/
+  font-weight: bold;
+  /*font-size: 1.3em;*/
+  font-family: monospace;
+}
+
+.highlight {
+  background-color: #B4B4B4;
+  z-index: 99;
+  border: 1px solid #999;
+  font-weight: italic bold;
+  color:white;
+ }
+
+ .worse {
+
+  /*border: 2px solid red;*/
+  background: #FFC8CE;
+  color:#AC2117;
+  /*background: #CD5555;*/
+  /*color:white;*/
+  font-weight: bold;
+  /*font-size: 1.3em;*/
+  font-family: monospace;
+}
+
