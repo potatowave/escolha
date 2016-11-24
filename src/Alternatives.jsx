@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Cells from './Cells.jsx'
+import AlternativeHeading from './AlternativeHeading.jsx'
 
 class Alternatives extends Component {
 
@@ -13,19 +14,16 @@ class Alternatives extends Component {
         <div className="table-area">
 
           <div className="header">
-            { this.props.alternatives.map((item) => {
 
-              var test = ""
-              if (this.props.uistate_highlight && item.order === this.props.uistate_order) {
-                test = "highlight";
-              }
-
-              // var stuff = <label onClick={ () => this.props.highlightFunction(item.id) } key={item.id} className={"header"+(item.id)+" "+test}> {item.name} </label>
-              var stuff = <label onClick={ this.props.highlightFunction.bind(this, item) } key={item.id} className={"header"+(item.order)+" "+test}> {item.name} </label>              
-
-              return stuff
-              }
-            )}
+            { this.props.alternatives.map((alternative) => {
+              return <AlternativeHeading
+                key={alternative.id}
+                uistate_order={this.props.uistate_order}
+                uistate_highlight={this.props.uistate_highlight}
+                alternative={alternative}
+                highlightFunction={this.props.highlightFunction}
+              />
+            })}
           </div>
 
           { this.props.objectives.map((item) => {
