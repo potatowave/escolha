@@ -38,7 +38,7 @@ function alternativesReducer(state = [], action) {
 function cellsReducer(state = [], action) {
   switch(action.type) {
     case 'DATA_LOADED':
-      return action .data.cells.map((cell)=>{
+      return action.data.cells.map((cell)=>{
         cell.isEditVisible = false
         return cell
       });
@@ -47,7 +47,7 @@ function cellsReducer(state = [], action) {
   }
 }
 
-function uiStateReducer(state = [], action) {
+function uiStateReducer(state = {}, action) {
   switch(action.type) {
     // case 'AlternativesSelected':
     case 'DATA_LOADED':
@@ -56,6 +56,10 @@ function uiStateReducer(state = [], action) {
       return action.uistate; // How to set state from a reducer?
     case 'saveSelectedVal':
       return action.value;
+    case 'OBJECTIVE_DRAGSTART':
+      return Object.assign({}, state, action.data);
+    case 'OBJECTIVE_DRAGEND':
+      return Object.assign({}, state, action.data);
     default:
       return state
   }

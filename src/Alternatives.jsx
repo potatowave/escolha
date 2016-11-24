@@ -10,7 +10,7 @@ class Alternatives extends Component {
 
     return (
 
-      <div>
+      // <div>
         <div className="table-area">
 
           <div className="header">
@@ -43,7 +43,7 @@ class Alternatives extends Component {
 
             })}
         </div>
-      </div>
+      // </div>
     );
   }
 }
