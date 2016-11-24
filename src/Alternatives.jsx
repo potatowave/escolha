@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Cells from './Cells.jsx'
 import AlternativeHeading from './AlternativeHeading.jsx'
+import ObjectiveRow from './ObjectiveRow.jsx'
 
 class Alternatives extends Component {
 
@@ -29,15 +30,17 @@ class Alternatives extends Component {
 
           { this.props.objectives.map((item) => {
 
-            var stuff = <Cells
+            var stuff = <ObjectiveRow
               key={`r${item.id}`}
-              row={item.order} // Pass the 'id' for the current objective
+              current_row={item.order} // Pass the 'id' for the current objective
               objective_id={item.id}
-              alt_order={this.props.uistate_order} // Selected alternative
-              alt_id={this.props.uistate_alt_id}
-              highlight={this.props.uistate_highlight}
+              low_is_better = {item.low_is_better}
+              //uistate_order={this.props.uistate_order} // Selected alternative
+              uistate_alt_id={this.props.uistate_alt_id}
+              uistate_highlight={this.props.uistate_highlight}
               cells={this.props.cells}
-              low_is_better = {item.low_is_better} />;
+               />;
+
 
             return stuff })}
         </div>
