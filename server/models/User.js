@@ -4,6 +4,10 @@ const bcrypt = require("bcrypt");
 
 module.exports = (knex) => {
 
+// *****************************
+// ** Refactor to promises!!! **
+// *****************************
+
   /**
   * XXXXXXXXXXXXXXXXX
   * @returns {XXXXXXXXboolean}

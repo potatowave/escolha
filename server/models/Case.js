@@ -78,7 +78,7 @@ module.exports = (knex) => {
   * @param {function} callback    - Callback function to run after aSync DB call
   * @returns {void}               - It will call Callback function aSync
   */
-  function insertObjective(objective, caseId, order, values, callback) {
+  function insertObjective({objective, caseId, order, values, callback}) {
     knex.insert({
       name: objective.name,
       sub_name: objective.sub_name,
@@ -164,7 +164,7 @@ module.exports = (knex) => {
       // Add Objectives
       data.objectives.forEach((objective, index) => {
         const order = index + 1;
-        insertObjective(objective, caseId, order, data.values, callback);
+        insertObjective({objective, caseId, order, values: data.values, callback});
       });
 
       // Add alternatives

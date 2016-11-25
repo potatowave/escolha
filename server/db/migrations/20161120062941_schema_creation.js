@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('users', function (table) {
       table.increments('id').primary();
       table.string('name');
-      table.string('email').unique();
+      table.string('email').unique(); // set a index! help db find faster
       table.string('password');
       table.timestamps();
     }),

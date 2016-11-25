@@ -11,7 +11,6 @@ module.exports = (knex) => {
   * Update a specific value
   */
   router.post("/:id/values", (req, res) => {
-
     const case_id = req.params.id
     const data    = req.body;
     // Call the Model to interact with data
@@ -25,8 +24,6 @@ module.exports = (knex) => {
   * Add a full case
   */
   router.post("/", (req, res) => {
-    //res.json('{ "oi": "alow"}');
-
     const data = req.body.data;
     // Call the Model to interact with data
     Case(knex).insertCase(data, (msg) => {

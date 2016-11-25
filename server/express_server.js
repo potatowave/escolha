@@ -5,23 +5,17 @@ require('dotenv').config();
 const ENV = process.env.ENV || 'development';
 
 const express = require('express');
+const router  = express.Router();
 const bodyParser = require('body-parser');
-const randString = require('./scripts/randomstring');
-const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const config = require('./webpack.config');
-
 const knexConfig = require('../knexfile.js');
 const knex = require('knex')(knexConfig[ENV]);
-
-// required for passport
+// Required for passport
 const bcrypt = require("bcrypt");
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-
-// My functions
+// Models
 const User = require('./models/User');
 
 // ----------------------------------------------------------------------------
@@ -31,7 +25,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// required for passport
+// Required for passport
 app.use(session({ secret: '21321kdspakdpou9098776213$',resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -44,24 +38,7 @@ app.use(function(req, res, next) {
 });
 
 // ----------------------------------------------------------------------------
-// Webpack - Server
-
-// new WebpackDevServer(webpack(config), {
-//   publicPath: config.output.publicPath,
-//   watchOptions: {
-//     aggregateTimeout: 300,
-//     poll: 1000,
-//   },
-// }).listen(3000, '0.0.0.0', (err, result) => {
-//   if (err) {
-//     console.log(err);
-//   }
-//   console.log('Running at http://0.0.0.0:3000');
-// });
-
-// ----------------------------------------------------------------------------
 // API - Server
-
 
 // Passport Strategy
 passport.use(new LocalStrategy(
@@ -107,9 +84,6 @@ passport.deserializeUser(function(id, cb) {
   });
 });
 
-
-
-
 app.post('/login',
   passport.authenticate('local', {
     successRedirect: '/',
@@ -117,6 +91,28 @@ app.post('/login',
   })
 );
 
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
+router.get('/', (req,res) => {
+  res.send('Logged in!');
+});
+
+app.get('/login', (req,res) => {
+  res.send('You need to login')
+});
+
+const authenticatedMiddleware = (req, res, next) => {
+  if(!req.isAuthenticated()) {
+    return res.status(401).send('Not authenticated');
+  }
+  next();
+};
+
+// MUST be authenticated for access any /url in api
+app.all("/api/*", authenticatedMiddleware);
 
 // Routes
 const apiCasesRoute = require('./routes/api/cases.js');
