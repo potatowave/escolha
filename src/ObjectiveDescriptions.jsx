@@ -63,9 +63,9 @@ class ObjectiveDescriptions extends Component {
           id="moving-row" 
           onMouseDown={this.props.handle_mousedown.bind(this, this.props.objective_id)} 
           onMouseUp={this.props.handle_mouseup.bind(this, this.props.objective_id)} 
-          onMouseMove={this.props.handle_mousemove.bind(this, this.props.objective_id)} 
-          className={`r${this.props.row} table-container-component movable ${this.props.being_dragged ? '' : 'hidden' } `} 
-          style={{width: `${this.refs.REFNAME ? this.refs.REFNAME.offset : ''}` + 'px', left: `${this.refs.REFNAME ? this.refs.REFNAME.offsetLeft : ''}` + 'px', top: `${this.refs.REFNAME ? this.refs.REFNAME.offsetTop : ''}` + 'px'}} 
+          onMouseMove={this.props.handle_mousemove.bind(this, this.props.objective_id, event)} 
+          className={`r${this.props.row} table-container-component movable ${this.props.being_dragged ? '' : 'hidden' } TESTX ${this.props.clientX} TESTY ${this.props.clientY} `} 
+          style={{width: `${this.refs.REFNAME ? this.refs.REFNAME.offsetWidth : ''}` + 'px', left: `${this.refs.REFNAME ? this.refs.REFNAME.offsetLeft : ''}` + 'px', top: `${this.refs.REFNAME ? this.refs.REFNAME.offsetTop : ''}` + 'px'}} 
           >
           
           <div className="objective-name-container">

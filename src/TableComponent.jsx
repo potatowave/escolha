@@ -35,6 +35,8 @@ class TableComponent extends Component {
                 handle_mousedown={this.props.handle_mousedown}
                 handle_mouseup={this.props.handle_mouseup}
                 handle_mousemove={this.props.handle_mousemove}
+                clientX={this.props.clientX}
+                clientY={this.props.clientY}
                 />  
                 })
             }
@@ -69,7 +71,9 @@ function componentDidUnmount() {
 function mapStateToProps(state) {
   return {
     objectives: state.objectives,
-    dragged_objective_id: state.uistate.dragged_objective_id
+    dragged_objective_id: state.uistate.dragged_objective_id,
+    clientX: state.uistate.clientX,
+    clientY: state.uistate.clientY
   }
 }
 
@@ -97,36 +101,28 @@ function mapDispatchToProps(dispatch) {
     },
 
     handle_mouseup: function(objectiveId) {
-      dispatch ({ type: 'OBJECTIVE_DRAGEND', data: {dragged_objective_id: null}})
+      dispatch ({ type: 'OBJECTIVE_DRAGEND', data: {dragged_objective_id: null, clientX: null, clientY: null}})
     },
 
-    handle_mousemove: function(objectiveId) {
-      dispatch ({ type: 'OBJECTIVE_DRAGGING', data: {dragged_objective_id: objectiveId }})
+    handle_mousemove: function(objectiveId, e) {
+      console.log("e.pageX", e.pageX)
+      console.log("e.pageY", e.pageY)
+
+      console.log("e.left", e.left)
+      console.log("e.top", e.top)
+
+      console.log("e.offsetX", e.offsetX)
+      console.log("e.offsetY", e.offsetY)
+
+      console.log("e.clientX", e.clientX)
+      console.log("e.clientY", e.clientY)
+
+      // e.stopPropagation()
+      // e.preventDefault()
+
+      dispatch ({ type: 'OBJECTIVE_DRAGGING', data: {dragged_objective_id: objectiveId, clientX: e.clientX, clientY: e.clientY}})
     }
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TableComponent);
 
-/*
-  <div className="alt-image-container">
-    <div className="alt-image-1"></div>
-    <div className="alt-image-2"></div>
-    <div className="alt-image-3"></div>
-    <div className="alt-image-4"></div>
-    <div className="alt-image-5"></div>
-    <div className="alt-image-6"></div>
-  </div>
-
-
-  <div className="hide-buttons-rows">
-    <div className="hide-button-spacer"></div>
-    <div className="hide-button"></div>
-    <div className="hide-button selected"></div>
-    <div className="hide-button"></div>
-    <div className="hide-button"></div>
-    <div className="hide-button"></div>
-    <div className="hide-button"></div>
-    <div className="hide-button"></div>
-    <div className="hide-button"></div>
-  </div>
-*/

@@ -73,7 +73,7 @@ function uiStateReducer(state = {}, action) {
       return Object.assign({}, state, action.data);
     case 'OBJECTIVE_DRAGEND':
       return Object.assign({}, state, action.data);
-    case 'OBJECTIVE_DRAGING':
+    case 'OBJECTIVE_DRAGGING':
       return Object.assign({}, state, action.data);
     default:
       return state
