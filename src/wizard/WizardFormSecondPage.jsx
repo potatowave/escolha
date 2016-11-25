@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm, FieldArray } from 'redux-form';
 import validate from './validate';
 import renderField from './renderField';
-import ObjectivesArray from './ObjectivesArray'
+import ObjectivesArray from './ObjectivesArray';
 
 const renderError = ({ meta: { touched, error } }) => touched && error ?
   <span>{error}</span> : false;
@@ -12,10 +12,10 @@ const WizardFormSecondPage = (props) => {
   return (
     <form onSubmit={handleSubmit}>
 
-        <ObjectivesArray initialValues={{"objectives": [{}],"alternatives": [{}]}} / >
+      <ObjectivesArray   / >
 
       <div>
-        <hr></hr>
+        <hr />
         <button type="button" className="previous" onClick={previousPage}>Previous</button>
         <button type="submit" className="next">Next</button>
       </div>
@@ -26,7 +26,7 @@ const WizardFormSecondPage = (props) => {
 };
 
 export default reduxForm({
-  form: 'wizard',  // Form name is same
+  form: 'wizard',
   destroyOnUnmount: false,
   validate,
 })(WizardFormSecondPage);

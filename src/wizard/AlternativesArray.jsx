@@ -1,50 +1,72 @@
-import React from 'react'
-import { Field, FieldArray, reduxForm } from 'redux-form'
+import React from 'react';
+import { Field, FieldArray, reduxForm, getFormValues, formValueSelector } from 'redux-form';
 import validate from './validate';
 import renderField from './renderField';
+import store from '../index.jsx';
+import { connect } from 'react-redux';
 
 const renderError = ({ meta: { touched, error } }) => touched && error ?
   <span>{error}</span> : false;
 
-const renderAlternatives = ({ props, fields, meta: { touched, error } }) => (
+const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched, error } }) => {
+  return (
 
   <div>
-  <button type="button" onClick={() => fields.push({})}>Add Alternative</button>
     {fields.map((alternative, index) =>
       <div key={index}>
 
-      <h4>Alternative #{index + 1}</h4>
+        <h4>Alternative #{index + 1} - {(!!alternatives[index].name ? alternatives[index].name : "")}</h4>
 
-      <div>
-        <Field name={`${alternative}.name`} type="text" component={renderField} label="Name:" />
-        <Field name={`${alternative}.value`} type="text" component={renderField} label="Cost:" />
-      </div>
+        <div>
+          <Field name={`${alternative}.name`} type="text" component={renderField} label="Name:" />
+        </div>
 
-      <div>
-        <Field name={`${alternative}.appearance`} type="text" component={renderField} label="Appearance:" />
-      </div>
+            {objectives.map(function(objective, i) {
 
-        <hr></hr>
+                return (
+
+                  <div>
+
+                    <div>
+                      <Field
+                      name={`${alternative}.value`}
+                      type="text"
+                      component={renderField}
+                      label={ (!!alternatives[index].name ? alternatives[index].name + ' : ' + objective.name + ' : ' + objective.sub + ' ' + objective.criterion : "Alternative #" + (index + 1) + ' : ' + objective.name + ' : ' + objective.sub + ' ' + objective.criterion) } />
+                    </div>
+
+                  </div>
+                );
+            })}
+
+        <hr />
         <button type="button" title="Remove Alternative" onClick={() => fields.remove(index)} >Remove Alternative</button>
         <button type="button" onClick={() => fields.push({})}>Add Alternative</button>
       </div>
     )}
   </div>
-)
-
+)};
 
 const AlternativesArray = (props) => {
-  const { handleSubmit, pristine, previousPage, submitting } = props
+  const { handleSubmit, pristine, previousPage, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <FieldArray name="alternatives" component={renderAlternatives}/>
+      <FieldArray name="alternatives" component={renderAlternatives} objectives={props.objectives} alternatives={props.alternatives} />
     </form>
-  )
+  );
+};
+
+function mapStateToProps(state) {
+  return {
+    objectives: state.form.wizard.values.objectives,
+    alternatives: state.form.wizard.values.alternatives,
+  }
 }
 
-
-export default reduxForm({
+export const AlternativesForm = reduxForm({
   form: 'wizard',
   destroyOnUnmount: false,
-  validate
-})(AlternativesArray)
+  validate,
+})(AlternativesArray);
+
+export default connect(mapStateToProps)(AlternativesForm);

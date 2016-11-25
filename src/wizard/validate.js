@@ -1,5 +1,5 @@
-const validate = values => {
-  const errors = {}
+const validate = (values) => {
+  const errors = {};
   // if (!values.firstName) {
   //   errors.firstName = 'Required'
   // }
@@ -17,7 +17,7 @@ const validate = values => {
   // if (!values.favoriteColor) {
   //   errors.favoriteColor = 'Required'
   // }
-  return errors
-}
+  return errors;
+};
 
-export default validate
+export default validate;

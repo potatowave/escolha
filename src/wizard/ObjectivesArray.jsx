@@ -48,7 +48,7 @@ const ObjectivesArray = (props) => {
   const { handleSubmit, pristine, previousPage, submitting } = props
   return (
     <form onSubmit={handleSubmit}>
-      <FieldArray name="objectives"  component={renderObjectives}/>
+      <FieldArray name="objectives" component={renderObjectives}/>
     </form>
   )
 }

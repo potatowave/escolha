@@ -1,10 +1,10 @@
 // ./components/my-form-component.js'
 import React from 'react';
-import { connect } from 'react-redux';
-import { Control, Form } from 'react-redux-form';
+import { Control, Form, getFormValues, formValueSelector } from 'redux-form';
 import Nav from './Nav.jsx';
 import WizardForm from './WizardForm.jsx';
 import { OverlayTrigger, Popover, FormGroup, FormControl, ControlLabel, Radio, ButtonGroup, ButtonToolbar, Button, Modal } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 const popoverRight = (
   <Popover id="popover-positioned-right" title="Description">
@@ -12,8 +12,8 @@ const popoverRight = (
   </Popover>
 );
 
-function postForm(data) {
-  console.log(data);
+function postForm(data_insert) {
+  alert(data_insert);
 }
 
 class OnboardData extends React.Component {
@@ -27,7 +27,7 @@ class OnboardData extends React.Component {
         <Nav />
         <main className="onboardform">
 
-          <WizardForm onSubmit={postForm}  / >
+          <WizardForm onSubmit={postForm} values={this.props.values}  / >
 
         </main>
         </div>
@@ -35,16 +35,16 @@ class OnboardData extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
+// function mapStateToProps(state) {
+//   return {
+//     values: state.values
+//   }
+// }
 
-  }
-}
+// export default connect(mapStateToProps)(OnboardData);
 
-function mapDispatchToProps(dispatch) {
-  return {
-
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(OnboardData);
+export default connect(
+  state => ({
+    values: getFormValues('wizard')(state),
+  })
+)(OnboardData);

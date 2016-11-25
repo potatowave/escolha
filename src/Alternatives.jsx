@@ -6,7 +6,6 @@ class Alternatives extends Component {
 
   render() {
     console.log("Rendering <Alternatives />");
-
     return (
 
       <div>
@@ -14,13 +13,13 @@ class Alternatives extends Component {
 
           <div className="header">
             { this.props.alternatives.map((item) => {
-                
+
               var test = ""
               if (item.id === this.props.uistate) {
                 test = "highlight";
               }
 
-              var stuff = <label onClick={ () => this.props.highlightFunction(item.id) } key={item.id} className={"header"+(item.id)+" "+test}> {item.name} </label> 
+              var stuff = <label onClick={ () => this.props.highlightFunction(item.id) } key={item.id} className={"header"+(item.id)+" "+test}> {item.name} </label>
 
               return stuff
               }

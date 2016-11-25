@@ -39,6 +39,8 @@ const store = createStore(
   )
 );
 
+export default store;
+
 ReactDOM.render((
   <Provider store={store}>
   <Router history={hashHistory} store={store} >

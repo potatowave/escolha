@@ -2,7 +2,10 @@ import React from 'react';
 import { Field, reduxForm, FieldArray } from 'redux-form';
 import validate from './validate';
 import renderField from './renderField';
+import { connect } from 'react-redux';
 
+const renderError = ({ meta: { touched, error } }) => touched && error ?
+  <span>{error}</span> : false;
 
 const WizardFormFirstPage = (props) => {
   const { handleSubmit } = props;
