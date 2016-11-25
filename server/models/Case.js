@@ -187,75 +187,89 @@ module.exports = (knex) => {
     let countCase = 0;
     let countObjectives = 0;
     let countAlternatives = 0;
-    let countValues = 0;
+    let countCells = 0;
 
     const msg = 'Entire Case Updated';
+
+    caseLength = data.case || 0;
+    objectivesLength = data.objectives || 0;
+    alternativesLength = data.alternatives || 0;
+    cellsLength = data.cells || 0;
+
 
     /**
     * Check if all database operations was done
     * @returns {boolean}
     */
     function isDoneUpdating() {
-      return (countCase === 1) && (countObjectives === data.objectives.length) && (countAlternatives === data.alternatives.length) && (countValues === data.values.length);
+      return (countCase === caseLength) && (countObjectives === objectivesLength) && (countAlternatives === alternativesLength) && (countCells === cellsLength);
     }
 
-    // Update case
-    knex('cases')
-    .where('id', parseInt(caseId, 10))
-    .andWhere('user_id', parseInt(userId, 10))
-    .update(data.case)
-    .then((n) => {
-      countCase += 1;
-      console.log(`Case Updated: ${n}`);
-      if (isDoneUpdating()) {
-        callback(msg);
-      }
-    });
+    if(data.case) {
+      // Update case
+      knex('cases')
+      .where('id', parseInt(caseId, 10))
+      .andWhere('user_id', parseInt(userId, 10))
+      .update(data.case)
+      .then((n) => {
+        countCase += 1;
+        console.log(`Case Updated: ${n}`);
+        if (isDoneUpdating()) {
+          callback(msg);
+        }
+      });
+    }
 
     // Update objectives
-    data.objectives.forEach((objective) => {
-      knex('objectives')
-      .where('id', parseInt(objective.id, 10))
-      .andWhere('case_id', parseInt(caseId, 10))
-      .update(objective)
-      .then((n) => {
-        countObjectives += 1;
-        console.log(`Objective Updated: ${n}`);
-        if (isDoneUpdating()) {
-          callback(msg);
-        }
+    if(data.objectives) {
+      data.objectives.forEach((objective) => {
+        knex('objectives')
+        .where('id', parseInt(objective.id, 10))
+        .andWhere('case_id', parseInt(caseId, 10))
+        .update(objective)
+        .then((n) => {
+          countObjectives += 1;
+          console.log(`Objective Updated: ${n}`);
+          if (isDoneUpdating()) {
+            callback(msg);
+          }
+        });
       });
-    });
+    }
 
     // Update alternatives
-    data.alternatives.forEach((alternative) => {
-      knex('alternatives')
-      .where('id', parseInt(alternative.id, 10))
-      .andWhere('case_id', parseInt(caseId, 10))
-      .update(alternative)
-      .then((n) => {
-        countAlternatives += 1;
-        console.log(`Alternative Updated: ${n}`);
-        if (isDoneUpdating()) {
-          callback(msg);
-        }
+    if(data.objectives) {
+      data.alternatives.forEach((alternative) => {
+        knex('alternatives')
+        .where('id', parseInt(alternative.id, 10))
+        .andWhere('case_id', parseInt(caseId, 10))
+        .update(alternative)
+        .then((n) => {
+          countAlternatives += 1;
+          console.log(`Alternative Updated: ${n}`);
+          if (isDoneUpdating()) {
+            callback(msg);
+          }
+        });
       });
-    });
+    }
 
     // Update values
-    data.cells.forEach((value) => {
-      knex('alternatives_objectives')
-      .where('alternative_id', parseInt(value.alternative_id, 10))
-      .andWhere('objective_id', parseInt(value.objective_id, 10))
-      .update(value)
-      .then((n) => {
-        countValues += 1;
-        console.log(`Cell Updated: ${n}`);
-        if (isDoneUpdating()) {
-          callback(msg);
-        }
+    if(data.cells) {
+      data.cells.forEach((cell) => {
+        knex('alternatives_objectives')
+        .where('alternative_id', parseInt(cell.alternative_id, 10))
+        .andWhere('objective_id', parseInt(cell.objective_id, 10))
+        .update({value: cell.value})
+        .then((n) => {
+          countCells += 1;
+          console.log(`Cell Updated: ${n}`);
+          if (isDoneUpdating()) {
+            callback(msg);
+          }
+        });
       });
-    });
+    }
   }
 
   /**
@@ -283,7 +297,6 @@ module.exports = (knex) => {
       .orderBy('objectives.order', 'ASC')
       .then((result) => {
         data.objectives = result;
-        //console.log(data);
         if (isDone()) {
           callback(data);
         }
@@ -315,6 +328,7 @@ module.exports = (knex) => {
     knex.from('alternatives_objectives')
       .innerJoin('alternatives', 'alternatives_objectives.alternative_id', 'alternatives.id')
       .where('case_id', caseId)
+      .orderByRaw('alternative_id, objective_id ASC')
       .then((result) => {
         data.cells = result;
         if (isDone()) {

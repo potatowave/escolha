@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Cell from './Cell.jsx'
+import { CELL_TOGGLED, CELL_SAVE, CELL_UPDATE_DATABASE, cellBeingEdited, cellSaveAction, cellUpdateDatabaseAction } from './actions/cell'
 
 class ObjectiveRow extends Component {
   render() {
@@ -36,6 +37,7 @@ class ObjectiveRow extends Component {
             cellBeingEdited={this.props.cellBeingEdited}
             cellToggled={this.props.cellToggled}
             cellSave={this.props.cellSave}
+            cellUpdateDatabase={this.props.cellUpdateDatabase}
           />)
         })}
       </div>
@@ -58,10 +60,13 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     cellToggled: function(cell) {
-      dispatch( { type: 'CELL_TOGGLED',  cell})
+      dispatch(cellBeingEdited(cell))
     },
     cellSave: function(value, cell) {
-      dispatch( { type: 'CELL_SAVE', value: value, cell: cell})
+      dispatch(cellSaveAction(value, cell))
+    },
+    cellUpdateDatabase: function(value, cell) {
+      dispatch(cellUpdateDatabaseAction(value, cell))
     }
 
   }

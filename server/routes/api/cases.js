@@ -7,6 +7,20 @@ const Case    = require('../../models/Case');
 module.exports = (knex) => {
 
   /**
+  * ROUTE: /api/cases/:id/values
+  * Update a specific value
+  */
+  router.post("/:id/values", (req, res) => {
+
+    const case_id = req.params.id
+    const data    = req.body;
+    // Call the Model to interact with data
+    Case(knex).updateCase(case_id, data, (msg) => {
+      res.json(msg)
+    });
+  });
+
+  /**
   * ROUTE: /api/cases
   * Add a full case
   */

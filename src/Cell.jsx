@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
 
-function updateCell(e, cellSave, cell, cellToggled) {
+function onblurCell(e, cell, cellToggled, cellUpdateDatabase){
+  cellToggled(false)
+  cellUpdateDatabase(e.target.value, cell)
+}
+
+function updateCell(e, cellSave, cell, cellToggled, cellUpdateDatabase) {
   if (e.key == 'Enter') {
     cellSave(e.target.value, cell);
     cellToggled(false);
+    onblurCell(e, cell, cellToggled, cellUpdateDatabase)
   }
 }
 
-export default function Cell({uistate_highlight, uistate_alt_id, low_is_better, cell, cell_index, thisRowsSelectedValue, cellBeingEdited, cellToggled, cellSave}) {
+export default function Cell({uistate_highlight, uistate_alt_id, low_is_better, cell, cell_index, thisRowsSelectedValue, cellBeingEdited, cellToggled, cellSave, cellUpdateDatabase}) {
 
   var highlightedClass = (uistate_highlight && (cell.alternative_id === uistate_alt_id)) ? "highlight" : "";
   var compare_tag = "";
@@ -42,9 +48,9 @@ export default function Cell({uistate_highlight, uistate_alt_id, low_is_better, 
         autoFocus
         type="text"
         value={cell.value}
-        onBlur={() => cellToggled(false)}
+        onBlur={(e) => onblurCell(e, cell, cellToggled, cellUpdateDatabase)}
         onChange={(e) => { cellSave(e.target.value, cell) }}
-        onKeyPress= {(e) => updateCell(e, cellSave, cell, cellToggled) }
+        onKeyPress= {(e) => updateCell(e, cellSave, cell, cellToggled, cellUpdateDatabase) }
         />
       }
     </div>
