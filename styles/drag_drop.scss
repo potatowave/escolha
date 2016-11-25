@@ -3,3 +3,17 @@
 .being-dragged {
   border: 1px dashed darkgrey;  
 }
+
+.movable {
+  box-shadow: 5px 5px 5px rgba(0,0,0,.25);
+  cursor: move;
+  display: flex;
+  left: 0;
+  position: fixed;
+  background-color: yellow;
+}
+
+.movable.hidden {
+  display: none;
+  background-color: red;
+}

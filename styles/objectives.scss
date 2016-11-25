@@ -6,29 +6,6 @@
   justify-content: space-between;
 }
 
-
-
-.objective-name-container{
-  font-family: "Lucida Grande";
-  color:#D9DDE5;
-}
-    .objective-name{
-    }
-    .sub-objective-name {
-      font-size: 0.8em;
-    }
-
-
-.units {
-  min-width: 45px;
-  font-family: "Lucida Grande";
-  color: white;
-  text-align: center;
-  line-height: 3em;
-  margin: 1px;
-}
-
-
 .header-objectives {
   min-height: $cell-height;
   padding: 10px;
@@ -40,3 +17,24 @@
   padding: 10px;
   margin: 1px;
 }
+
+.objective-name-container{
+  font-family: "Lucida Grande";
+  color:#D9DDE5;
+}
+    .objective-name{
+    }
+    .sub-objective-name {
+      font-size: 0.8em;
+    }
+
+.units {
+  min-width: 45px;
+  font-family: "Lucida Grande";
+  color: white;
+  text-align: center;
+  line-height: 3em;
+  margin: 1px;
+}
+
+
