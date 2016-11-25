@@ -1,8 +1,9 @@
-import { cellBeingEdited, CELL_TOGGLED, CELL_SAVE } from '../actions/cell'
+import { CELL_TOGGLED, CELL_SAVE } from '../actions/cell'
 
 export function cellReducer (state = [], action) {
   switch(action.type) {
-  case CELL_TOGGLED:
+
+    case CELL_TOGGLED:
      return Object.assign({}, state, {
         alternative_id: action.cell.alternative_id,
         objective_id: action.cell.objective_id
@@ -12,8 +13,6 @@ export function cellReducer (state = [], action) {
       return Object.assign({}, state, {
         value: action.value
       });
-
-      // ->> change the value for THIS cell in the store.cells
 
     default:
       return state

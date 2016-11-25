@@ -19,8 +19,8 @@ class TableComponent extends Component {
           <div className="objective-description-area">
 
             <div className="header">
-              <label className="header-objectives">Objective</label>
-              <label className="header-units">Unit</label>
+              <label className="header-objectives"></label>
+              <label className="header-units"></label>
             </div>
             { this.props.objectives.map((item, index) => {
               return <ObjectiveDescriptions
@@ -30,7 +30,7 @@ class TableComponent extends Component {
                 name={item.name}
                 subname={item.sub_name}
                 prefix={item.unit_prefix}
-                suffix={item.unit_suffix} 
+                suffix={item.unit_suffix}
                 being_dragged={this.props.dragged_objective_id === item.id}
                 handle_mousedown={this.props.handle_mousedown}
                 handle_mouseup={this.props.handle_mouseup}
@@ -38,9 +38,10 @@ class TableComponent extends Component {
                 clientX={this.props.clientX}
                 clientY={this.props.clientY}
                 />  
+
                 })
             }
-                
+
           </div>
 
 
@@ -58,7 +59,7 @@ function componentDidMount() {
   document.body.addEventListener('mousedown', function() {
     // code that invokes our dragstart
     // instead of setting to ID set to null
-    
+
   })
 }
 
