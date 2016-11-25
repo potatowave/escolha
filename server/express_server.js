@@ -3,19 +3,22 @@
 require('dotenv').config();
 
 const ENV = process.env.ENV || 'development';
+const PORT = process.env.PORT || 3001; // set to 3001
 
 const express = require('express');
 const router  = express.Router();
 const bodyParser = require('body-parser');
 const knexConfig = require('../knexfile.js');
 const knex = require('knex')(knexConfig[ENV]);
-// Required for passport
 const bcrypt = require("bcrypt");
+
+// Required for passport
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-// Models
+
+const authHelper = require('./helpers/auth')(knex);
 const User = require('./models/User');
 
 // ----------------------------------------------------------------------------
@@ -25,8 +28,8 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Required for passport
-app.use(session({ secret: '21321kdspakdpou9098776213$',resave: true, saveUninitialized: true }));
+// Passport configuration. Intialize and also use session
+app.use(session({ secret: 'R1sM6JmAo83mPZ1l1V8rRpoKla4F1vgv',resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -37,17 +40,17 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.set('view engine', 'ejs'); // Set View Engine to ejs
+app.use(express.static('public'));
+
+
 // ----------------------------------------------------------------------------
 // API - Server
 
-// Passport Strategy
+// Passport Strategy - looking for a valid username and password
 passport.use(new LocalStrategy(
-    {
-      usernameField: 'email',
-      session: false
-    },
-
-  function(username, password, done) {
+  {usernameField: 'email', session: false},
+  (username, password, done) => {
     User(knex).findOne(username, function(err, user) {
       if (err) { return done(err); }
 
@@ -73,15 +76,24 @@ passport.use(new LocalStrategy(
 // typical implementation of this is as simple as supplying the user ID when
 // serializing, and querying the user record by ID from the database when
 // deserializing.
-passport.serializeUser(function(user, cb) {
-  cb(null, user.id);
+passport.serializeUser((user, cb) => cb(null, user.id));
+
+passport.deserializeUser(authHelper.myDeserialize);
+
+// ----------------------------------------------------------------------------
+// Unsecure routers
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/login');
 });
 
-passport.deserializeUser(function(id, cb) {
-  User(knex).findById(id, function (err, user) {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
+app.get('/', (req,res) => {
+  res.send('Logged in!');
+});
+
+app.get('/login', (req,res) => {
+  res.send('You need to login')
 });
 
 app.post('/login',
@@ -91,28 +103,10 @@ app.post('/login',
   })
 );
 
-app.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/');
-});
+// ----------------------------------------------------------------------------
+// Protected routers - MUST be authenticated for access API
 
-router.get('/', (req,res) => {
-  res.send('Logged in!');
-});
-
-app.get('/login', (req,res) => {
-  res.send('You need to login')
-});
-
-const authenticatedMiddleware = (req, res, next) => {
-  if(!req.isAuthenticated()) {
-    return res.status(401).send('Not authenticated');
-  }
-  next();
-};
-
-// MUST be authenticated for access any /url in api
-app.all("/api/*", authenticatedMiddleware);
+app.all("/api/*", authHelper.authenticatedMiddleware);
 
 // Routes
 const apiCasesRoute = require('./routes/api/cases.js');
@@ -121,12 +115,9 @@ const apiUsersRoute = require('./routes/api/users.js');
 app.use('/api/cases', apiCasesRoute(knex));
 app.use('/api/users', apiUsersRoute(knex));
 
-const PORT = process.env.PORT || 3001; // set to 3001
-app.set('view engine', 'ejs'); // Set View Engine to ejs
+// ----------------------------------------------------------------------------
+// Starting the server
 
-app.use(express.static('public'));
-
-// Tell the console the server is running
 app.listen(PORT, () => {
   console.log(`Web Server listening on port ${PORT}!`);
 });
