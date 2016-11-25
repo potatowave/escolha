@@ -32,7 +32,7 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
                       name={`${alternative}.value`}
                       type="text"
                       component={renderField}
-                      label={ (!!alternatives[index].name ? alternatives[index].name + ' : ' + objective.name + ' : ' + objective.sub + ' ' + objective.criterion : "Alternative #" + (index + 1) + ' : ' + objective.name + ' : ' + objective.sub + ' ' + objective.criterion) } />
+                      label={(!!alternatives[index].name ? alternatives[index].name + ' : ' + objective.name + ' : ' + objective.sub + ' ' + objective.criterion : "Alternative #" + (index + 1) + ' : ' + objective.name + ' : ' + objective.sub + ' ' + objective.criterion)} />
                     </div>
 
                   </div>

@@ -1,13 +1,14 @@
 import React from 'react'
-import { Field, FieldArray, reduxForm } from 'redux-form'
+import { Field, FieldArray, reduxForm, formValueSelector } from 'redux-form'
 import validate from './validate';
 import renderField from './renderField';
+import { connect } from 'react-redux';
 
 const renderError = ({ meta: { touched, error } }) => touched && error ?
   <span>{error}</span> : false;
 
-const renderObjectives = ({ props, fields, meta: { touched, error } }) => (
-
+const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
+  return (
   <div>
     {fields.map((objective, index) =>
       <div key={index}>
@@ -21,13 +22,19 @@ const renderObjectives = ({ props, fields, meta: { touched, error } }) => (
       <div>
         <label>Scale Type</label>
         <div>
-          <label><Field name={`${objective}.scaletype`} component="input" type="radio" value="numeric" /> Numeric</label>
-          <label><Field name={`${objective}.scaletype`} component="input" type="radio" value="ordinal" /> Ordinal</label>
-          <label><Field name={`${objective}.scaletype`} component="input" type="radio" value="nominal" /> Nominal</label>
+          <Field name={`${objective}.scaletype`} component="select">
+            <option value="natural">Natural</option>
+            <option value="nominal">Nominal</option>
+            <option value="ordinal">Ordinal</option>
+          </Field>
+
+          {objectives[index].scaletype === "nominal" && <div>SCALE</div>}
+          {objectives[index].scaletype === "ordinal" && <div>style score</div>}
+
+
           <Field name="scale_type" component={renderError} />
         </div>
       </div>
-
 
         <label>Target (most desirable)</label>
         <div>
@@ -41,21 +48,29 @@ const renderObjectives = ({ props, fields, meta: { touched, error } }) => (
       </div>
     )}
   </div>
-)
+)};
 
 
 const ObjectivesArray = (props) => {
   const { handleSubmit, pristine, previousPage, submitting } = props
   return (
     <form onSubmit={handleSubmit}>
-      <FieldArray name="objectives" component={renderObjectives}/>
+      <FieldArray name="objectives" component={renderObjectives} objectives={props.objectives}/>
     </form>
   )
 }
 
+function mapStateToProps(state) {
+  return {
+    objectives: state.form.wizard.values.objectives,
+  }
+}
 
-export default reduxForm({
+
+export const ObjectivesForm = reduxForm({
   form: 'wizard',
   destroyOnUnmount: false,
-  validate
-})(ObjectivesArray)
+  validate,
+})(ObjectivesArray);
+
+export default connect(mapStateToProps)(ObjectivesForm);
