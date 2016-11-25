@@ -314,7 +314,8 @@ p {
   /*opacity: 0.6;*/
 }
 // TEST
-.dropbtn {
+
+.home-button .editor-button .create-button .dropbtn {
     background-color: #3367d6;
     color: white;
     padding: 16px;
@@ -322,6 +323,7 @@ p {
     border: none;
     cursor: pointer;
 }
+
 
 .dropdown {
     position: relative;
