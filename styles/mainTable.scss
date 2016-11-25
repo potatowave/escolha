@@ -1,0 +1,84 @@
+
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.table-container {
+  min-width: $cell-width;
+  min-height: $cell-height;
+  font-family: "Lucida Grande";
+  align-items: center;
+  display: flex;
+}
+
+
+.header-alternatives {
+  min-width: $cell-width;
+  min-height: $cell-height;
+  margin: 1px;
+  border: 1px solid #3D75D1;
+  border-radius: 3px;
+  background-color: #3165AE;
+  font-family: "Lucida Grande";
+  color: white;
+  font-size: 1.4em;
+  line-height: 3.7em;
+  text-align: center;
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+
+
+
+}
+.r1, .r2, .r3, .r4, .r5, .r6, .r7, .r8 {
+  min-width: $cell-width;
+  min-height: $cell-height;
+  font-size: 1.8em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.c1, .c2, .c3, .c4, .c5, .c6 {
+  min-width: $cell-width;
+  min-height: $cell-height;
+  margin: $cell-margin;
+  background-color: #dbe8ff;
+  border: 1px solid #A7BFE8;
+  border-radius: 3px;
+  color: #353535;
+  text-align: center;
+  line-height: 3em;
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+}
+
+
+.highlight {
+  border: 1px solid #999;
+  background: #7D8089;
+  font-weight: italic bold;
+  color:#EAD575;
+  z-index: 99;
+ }
+
+.better {
+  background: #CEF1D7;
+  color:#1d781d;
+  font-weight: 600;
+}
+
+ .worse {
+  background: #FFC8CE;
+  color:#AC2117;
+  font-weight: 580;
+}
+
+.table-area input {
+  background-color: transparent;
+  text-align: center;
+  height: 40px;
+  width: 5em;
+}
