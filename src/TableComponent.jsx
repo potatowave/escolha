@@ -34,6 +34,7 @@ class TableComponent extends Component {
                 being_dragged={this.props.dragged_objective_id === item.id}
                 handle_mousedown={this.props.handle_mousedown}
                 handle_mouseup={this.props.handle_mouseup}
+                handle_mousemove={this.props.handle_mousemove}
                 />  
                 })
             }
@@ -52,7 +53,7 @@ class TableComponent extends Component {
 }
 
 function componentDidMount() {
-  document.body.addEventListener('mouseup', function() {
+  document.body.addEventListener('mousedown', function() {
     // code that invokes our dragstart
     // instead of setting to ID set to null
     
@@ -60,7 +61,7 @@ function componentDidMount() {
 }
 
 function componentDidUnmount() {
-  document.body.removeEventListener('mouseup', function() {
+  document.body.removeEventListener('mousedown', function() {
     
   })
 }
@@ -75,12 +76,32 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
 
-    handle_mousedown: function(objectiveId) {            
+    handle_mousedown: function(objectiveId) {    
+      // offsetX = event.offsetX;
+      // offsetY = event.offsetY;
+
+          // only left mouse button
+      // if (e.button !== 0) return
+      // var pos = $(this.getDOMNode()).offset()
+      // this.setState({
+      //   dragging: true,
+      //   rel: {
+      //     x: e.pageX - pos.left,
+      //     y: e.pageY - pos.top
+      //   }
+      // })
+      // e.stopPropagation()
+      // e.preventDefault()
+
       dispatch ({ type: 'OBJECTIVE_DRAGSTART', data: {dragged_objective_id: objectiveId }})
     },
 
     handle_mouseup: function(objectiveId) {
       dispatch ({ type: 'OBJECTIVE_DRAGEND', data: {dragged_objective_id: null}})
+    },
+
+    handle_mousemove: function(objectiveId) {
+      dispatch ({ type: 'OBJECTIVE_DRAGGING', data: {dragged_objective_id: objectiveId }})
     }
   }
 }

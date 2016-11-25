@@ -25,6 +25,9 @@ class ObjectiveDescriptions extends Component {
     // movingRow.style.width = realTable.offsetWidth + 'px';
     // movingRow.style.left = realTable.offsetLeft + 'px';
 
+    // setOffset() {
+    //   ReactDOM.findDOMNode(this.refs.REFNAME);
+    // }
 
     return (
       
@@ -32,7 +35,7 @@ class ObjectiveDescriptions extends Component {
         
         <div 
           id="realtable"
-          ref="realtable"
+          ref="REFNAME"
           onMouseDown={this.props.handle_mousedown.bind(this, this.props.objective_id)} 
           onMouseUp={this.props.handle_mouseup.bind(this, this.props.objective_id)} 
           className={ `r${this.props.row} draggable ${this.props.being_dragged ? 'being-dragged' : '' } ` } >
@@ -60,9 +63,10 @@ class ObjectiveDescriptions extends Component {
           id="moving-row" 
           onMouseDown={this.props.handle_mousedown.bind(this, this.props.objective_id)} 
           onMouseUp={this.props.handle_mouseup.bind(this, this.props.objective_id)} 
-          className={`r${this.props.row} table-container-component movable ${this.props.being_dragged ? '' : 'hidden' }`} 
-          // style={{width: this.refs.realtable.offsetWidth + 'px'}} >
-          style={{width: 200 + 'px'}} >
+          onMouseMove={this.props.handle_mousemove.bind(this, this.props.objective_id)} 
+          className={`r${this.props.row} table-container-component movable ${this.props.being_dragged ? '' : 'hidden' } `} 
+          style={{width: `${this.refs.REFNAME ? this.refs.REFNAME.offset : ''}` + 'px', left: `${this.refs.REFNAME ? this.refs.REFNAME.offsetLeft : ''}` + 'px', top: `${this.refs.REFNAME ? this.refs.REFNAME.offsetTop : ''}` + 'px'}} 
+          >
           
           <div className="objective-name-container">
             <div className="table-area">
