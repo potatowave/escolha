@@ -4,7 +4,8 @@
   "description": "A decision making app written in React, Redux, Express & Nodejs",
   "scripts": {
     "lint": "eslint src",
-    "start": "node server/express_server.js"
+    "api": "node server/express_server.js",
+    "frontend": "node server/webpack_server.js"
   },
   "repository": {
     "type": "git",
