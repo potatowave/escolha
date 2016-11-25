@@ -3,16 +3,27 @@ import { Field, FieldArray, reduxForm, formValueSelector } from 'redux-form'
 import validate from './validate';
 import renderField from './renderField';
 import { connect } from 'react-redux';
+import InputRange from 'react-input-range';
 
 const renderError = ({ meta: { touched, error } }) => touched && error ?
   <span>{error}</span> : false;
 
 const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
+
+  const values = {
+  min: 2,
+  max: 10
+};
+
+function onChange(component, values) {
+  console.log(values);
+}
+
   return (
   <div>
     {fields.map((objective, index) =>
       <div key={index}>
-
+      {}
       <h4>Objective #{index + 1}</h4>
 
       <Field name={`${objective}.name`} type="text" component={renderField} label={`Objective #${index + 1}`} / >
@@ -23,16 +34,37 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
         <label>Scale Type</label>
         <div>
           <Field name={`${objective}.scaletype`} component="select">
-            <option value="natural">Natural</option>
-            <option value="nominal">Nominal</option>
-            <option value="ordinal">Ordinal</option>
+            <option value="natural">Natural (Number)</option>
+            <option value="nominal">Nominal (Non-Number)</option>
+            <option value="ordinal">Ordinal (Range)</option>
           </Field>
 
-          {objectives[index].scaletype === "nominal" && <div>SCALE</div>}
-          {objectives[index].scaletype === "ordinal" && <div>style score</div>}
+          {objectives[index].scaletype === "ordinal" &&
+
+            <div>
+              <Field
+                name={`${objective}.rangemin`}
+                type="text"
+                component={renderField}
+                label={`Min`} / >
+              <Field
+                name={`${objective}.rangemax`}
+                type="text"
+                component={renderField}
+                label={`Max`} / >
+            </div>}
+
+          {objectives[index].scaletype === "nominal" &&
+            <div>
+              Sure, we will ask you about this on the next page.
+
+            </div>}
+
+
 
 
           <Field name="scale_type" component={renderError} />
+
         </div>
       </div>
 
@@ -43,7 +75,9 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
           <Field name="low_is_better" component={renderError} />
         </div>
         <hr></hr>
-        <button type="button" title="Remove Objective" onClick={() => fields.remove(index)} >Remove Objective</button>
+        {index > 0 &&
+          <button type="button" title="Remove Objective" onClick={() => fields.remove(index)} >Remove Objective</button>
+        }
         <button type="button" onClick={() => fields.push({})}>Add Objective</button>
       </div>
     )}

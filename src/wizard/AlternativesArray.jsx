@@ -27,20 +27,52 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
 
                   <div>
 
-                    <div>
-                      <Field
-                      name={`${alternative}.value`}
-                      type="text"
-                      component={renderField}
-                      label={(!!alternatives[index].name ? alternatives[index].name + ' : ' + objective.name + ' : ' + objective.sub + ' ' + objective.criterion : "Alternative #" + (index + 1) + ' : ' + objective.name + ' : ' + objective.sub + ' ' + objective.criterion)} />
-                    </div>
+
+                    {(objectives[i].scaletype === "natural") &&
+                      <div>
+                          <Field
+                          name={`${alternative}.naturalValue`}
+                          type="text"
+                          component={renderField}
+                          label={(!!alternatives[index].name ? alternatives[index].name + ' : ' + objective.name + ' : ' + objective.sub + ' ' + objective.criterion : "Alternative #" + (index + 1) + ' : ' + objective.name + ' : ' + objective.sub + ' ' + objective.criterion)} />
+                      </div>}
+
+                    {objectives[i].scaletype === "nominal" &&
+                      <div>
+                        <hr />
+                        <Field
+                        name={`${objective}.nominalName`}
+                        type="text"
+                        component={renderField}
+                        label={( objective.name + ' > ' + objective.sub + ' ' )} />
+                        <Field name={`${objective}.nominalValue`} component="select">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </Field>
+                        <hr />
+                      </div>
+                    }
+
+                    {objectives[i].scaletype === "ordinal" &&
+                      <div>
+                          <Field
+                          name={`${alternative}.ordinalValue`}
+                          type="text"
+                          component={renderField}
+                          label={(!!alternatives[index].name ? alternatives[index].name + ' : ' + objective.name + ' : ' + objective.sub + ' ' + objective.criterion : "Alternative #" + (index + 1) + ' : ' + objective.name + ' : ' + objective.sub + ' ' + (objective.criterion ? objective.criterion : ''))} />
+                      </div>}
 
                   </div>
                 );
             })}
 
         <hr />
-        <button type="button" title="Remove Alternative" onClick={() => fields.remove(index)} >Remove Alternative</button>
+        {index > 0 &&
+          <button type="button" title="Remove Alternative" onClick={() => fields.remove(index)} >Remove Alternative</button>
+        }
         <button type="button" onClick={() => fields.push({})}>Add Alternative</button>
       </div>
     )}

@@ -26,7 +26,7 @@ class WizardForm extends Component {
     const { page } = this.state;
 
     return (<div>
-      {page === 1 && <WizardFormFirstPage onSubmit={this.nextPage} initialValues={{ objectives: [{}], alternatives: [{}] }} />}
+      {page === 1 && <WizardFormFirstPage onSubmit={this.nextPage} initialValues={{ objectives: [{ scaletype: 'natural' }],alternatives: [{}]}} />}
       {page === 2 && <WizardFormSecondPage previousPage={this.previousPage} onSubmit={this.nextPage} />}
       {page === 3 && <WizardFormThirdPage previousPage={this.previousPage} onSubmit={onSubmit} values={this.props.values} />}
     </div>
