@@ -7,8 +7,9 @@ Readme.txt
 - Insert data using seeds: `knex seed:run`
 
 # Starting the application:
-- npm install
-- npm start
+- `npm install`
+- Start front-end server `npm run frontend`
+- Start back-end server `npm run api`
 
 ## Front-end and API servers
 - Front-end will be running at localhost:3000

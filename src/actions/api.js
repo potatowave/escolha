@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+// TAKE THIS OUT and let defacult JS fetch
 
 // ----------------------------------------------------------------------------
 // Save Case to Database
