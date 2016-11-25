@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Cell from './Cell.jsx'
-import { CELL_TOGGLED, CELL_SAVE, CELL_UPDATE_DATABASE, cellBeingEdited, cellSaveAction, cellUpdateDatabaseAction } from './actions/cell'
+import { cellBeingEdited, cellSaveAction, cellUpdateDatabaseAction } from './actions/cell'
 
 class ObjectiveRow extends Component {
   render() {
@@ -45,13 +45,8 @@ class ObjectiveRow extends Component {
   }
 }
 
-
-
 function mapStateToProps(state) {
   return {
-    // NOTE: This is a 'dumb' component, so instead of grabbing values from the store,
-    // we can pass these from the parent component down here
-
     objectives: state.objectives,
     cells: state.cells
   }
@@ -59,13 +54,13 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    cellToggled: function(cell) {
+    cellToggled: (cell) => {
       dispatch(cellBeingEdited(cell))
     },
-    cellSave: function(value, cell) {
+    cellSave: (value, cell) => {
       dispatch(cellSaveAction(value, cell))
     },
-    cellUpdateDatabase: function(value, cell) {
+    cellUpdateDatabase: (value, cell) => {
       dispatch(cellUpdateDatabaseAction(value, cell))
     }
 
