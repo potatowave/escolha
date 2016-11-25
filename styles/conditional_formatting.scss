@@ -12,6 +12,19 @@
   font-family: monospace;
 }
 
+.movable {
+  box-shadow: 5px 5px 5px rgba(0,0,0,.25);
+  cursor: move;
+  display: flex;
+  left: 0;
+  position: fixed;
+  top: 70px;
+}
+
+.hidden {
+  display: none;
+}
+
 .highlight {
   background-color: #B4B4B4;
   z-index: 99;
@@ -19,6 +32,8 @@
   font-weight: italic bold;
   color:white;
  }
+
+
 
  .worse {
 

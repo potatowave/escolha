@@ -158,9 +158,11 @@
     movingRow.style.width = realTable.offsetWidth + 'px';
     movingRow.style.left = realTable.offsetLeft + 'px';
     var firstHeading = document.querySelector('#real-table .table-horizontal-heading-component');
-    // var movingColumn = document.getElementById('moving-column');
-    // movingColumn.style.width = firstHeading.offsetWidth + 'px';
-    // movingColumn.style.top = firstHeading.offsetTop + 'px';
+
+    var movingColumn = document.getElementById('moving-column');
+    movingColumn.style.width = firstHeading.offsetWidth + 'px';
+    movingColumn.style.top = firstHeading.offsetTop + 'px';
+
     var itemBeingDragged = null;
     var offsetX = 0;
     var offsetY = 0;
@@ -186,7 +188,8 @@
 
 
     var verticalHeadings = Array.from(document.querySelectorAll('.draggable.table-vertical-heading-component'));
-    
+    // console.log('verticalHeadings', verticalHeadings)
+
     verticalHeadings.forEach(function (verticalHeading) {
       verticalHeading.addEventListener('mousedown', function (event) {
         if (itemBeingDragged) return;
@@ -198,6 +201,7 @@
         // update positions before showing
         updateMovables(event.clientX, event.clientY);
         movingRow.classList.remove('hidden');
+        console.log("movingRow", movingRow)
       });
     });
 

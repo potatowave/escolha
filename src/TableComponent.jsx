@@ -59,6 +59,12 @@ function componentDidMount() {
   })
 }
 
+function componentDidUnmount() {
+  document.body.removeEventListener('mouseup', function() {
+    
+  })
+}
+
 function mapStateToProps(state) {
   return {
     objectives: state.objectives,
