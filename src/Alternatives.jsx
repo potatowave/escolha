@@ -38,7 +38,7 @@ class Alternatives extends Component {
               uistate_highlight={this.props.uistate_highlight}
               cells={this.props.cells}
 
-              cellEdit={this.props.cellEdit}
+              cellBeingEdited={this.props.cellBeingEdited}
                />);
 
             })}
@@ -57,7 +57,7 @@ function mapStateToProps(state) {
     uistate_alt_id: state.uistate.alt_id,
     uistate_highlight: state.uistate.highlight,
 
-    cellEdit: state.cellEdit,
+    cellBeingEdited: state.cellBeingEdited
   }
 }
 

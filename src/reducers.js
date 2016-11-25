@@ -38,10 +38,23 @@ function alternativesReducer(state = [], action) {
 function cellsReducer(state = [], action) {
   switch(action.type) {
     case 'DATA_LOADED':
-      return action.data.cells.map((cell)=>{
-        cell.isEditVisible = false
-        return cell
-      });
+      return action.data.cells
+    case 'CELL_SAVE':
+      // update the cell
+      var cellToUpdateIndex;
+      state.forEach((cell, index) => {
+        if(cell.alternative_id === action.cell.alternative_id &&
+        cell.objective_id === action.cell.objective_id) {
+          cellToUpdateIndex =  index;
+        }
+      })
+      const newCell = {...state[cellToUpdateIndex], value: action.value}
+      return [
+        ...state.slice(0, cellToUpdateIndex),
+        newCell,
+        ...state.slice(cellToUpdateIndex + 1)
+      ]
+
     default:
       return state
   }
@@ -77,7 +90,7 @@ const rootReducer = combineReducers({
   cells: cellsReducer,
   uistate: uiStateReducer,
 
-  cellEdit: Cellreducers.cellReducer
+  cellBeingEdited: Cellreducers.cellReducer
 });
 
 

@@ -33,11 +33,9 @@ class ObjectiveRow extends Component {
             cell_index={index}
             thisRowsSelectedValue={thisRowsSelectedValue}
 
-
-            cellEdit={this.props.cellEdit}
-            toggleEditCell={this.props.toggleEditCell}
-            onChangeEditCell={this.props.onChangeEditCell}
-            onKeyPressEditCell={this.props.onKeyPressEditCell}
+            cellBeingEdited={this.props.cellBeingEdited}
+            cellToggled={this.props.cellToggled}
+            cellSave={this.props.cellSave}
           />)
         })}
       </div>
@@ -59,21 +57,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    // saveSelectedValue: function(value) {
-    //   const action = { type: 'saveSelectedVal', value: value };
-    //   dispatch(action);
-    // },
-    toggleEditCell: function(cell) {
-      dispatch( { type: 'CELL_TOGGLED', cell: cell})
+    cellToggled: function(cell) {
+      dispatch( { type: 'CELL_TOGGLED',  cell})
     },
-    onChangeEditCell: function(e) {
-      //console.log(e.target.value)
-    },
-
-    onKeyPressEditCell: function(e){
-      if (e.key == 'Enter') {
-        console.log('Press:' + e.target.value)
-      }
+    cellSave: function(value, cell) {
+      dispatch( { type: 'CELL_SAVE', value: value, cell: cell})
     }
 
   }
