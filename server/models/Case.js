@@ -1,3 +1,5 @@
+"use strict";
+
 module.exports = (knex) => {
   const userId = 1;
 

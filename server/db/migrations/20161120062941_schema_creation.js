@@ -3,9 +3,11 @@ exports.up = function(knex, Promise) {
 
   return Promise.all([
     knex.schema.createTable('users', function (table) {
-      table.increments();
-      table.string('email').unique();
+      table.increments('id').primary();
       table.string('name');
+      table.string('email').unique();
+      table.string('password');
+      table.timestamps();
     }),
 
     knex.schema.createTable('cases', function (table) {
@@ -43,9 +45,9 @@ exports.up = function(knex, Promise) {
     }),
 
     knex.schema.createTable('alternatives_objectives', function (table) {
-      table.integer('alternative_id').unsigned();
+      table.integer('alternative_id').unsigned()
       table.foreign('alternative_id').references('alternatives.id');
-      table.integer('objective_id').unsigned();
+      table.integer('objective_id').unsigned()
       table.foreign('objective_id').references('objectives.id');
       table.float('value')
     })
