@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import Cells from './Cells.jsx'
+import AlternativeHeading from './AlternativeHeading.jsx'
+import ObjectiveRow from './ObjectiveRow.jsx'
 
 class Alternatives extends Component {
 
@@ -8,36 +9,41 @@ class Alternatives extends Component {
     console.log("Rendering <Alternatives />");
     return (
 
-      <div>
+      // <div>
         <div className="table-area">
 
           <div className="header">
-            { this.props.alternatives.map((item) => {
 
-              var test = ""
-              if (item.id === this.props.uistate) {
-                test = "highlight";
-              }
+            { this.props.alternatives.map((alternative) => {
+              return <AlternativeHeading
+                key={alternative.id}
+                uistate_order={this.props.uistate_order}
+                uistate_highlight={this.props.uistate_highlight}
+                uistate_alt_id={this.props.uistate_alt_id}
+                alternative={alternative}
+                highlightFunction={this.props.highlightFunction}
+              />
+            })}
 
-              var stuff = <label onClick={ () => this.props.highlightFunction(item.id) } key={item.id} className={"header"+(item.id)+" "+test}> {item.name} </label>
-
-              return stuff
-              }
-            )}
           </div>
 
           { this.props.objectives.map((item) => {
-
-            var stuff = <Cells
+            return (<ObjectiveRow
               key={`r${item.id}`}
-              row={item.order}
-              alt={this.props.uistate}
-              values={this.props.values}
-              low_is_better = {item.low_is_better} />;
+              current_row={item.order} // Pass the 'id' for the current objective
+              objective_id={item.id}
+              low_is_better = {item.low_is_better}
+              //uistate_order={this.props.uistate_order} // Selected alternative
+              uistate_alt_id={this.props.uistate_alt_id}
+              uistate_highlight={this.props.uistate_highlight}
+              cells={this.props.cells}
 
-            return stuff })}
+              cellBeingEdited={this.props.cellBeingEdited}
+               />);
+
+            })}
         </div>
-      </div>
+      // </div>
     );
   }
 }
@@ -46,18 +52,32 @@ function mapStateToProps(state) {
   return {
     objectives: state.objectives,
     alternatives: state.alternatives,
-    values: state.values,
-    uistate: state.uistate
+    cells: state.cells,
+    uistate_order: state.uistate.order,
+    uistate_alt_id: state.uistate.alt_id,
+    uistate_highlight: state.uistate.highlight,
+
+    cellBeingEdited: state.cellBeingEdited
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    highlightFunction: function(id) {
-      const action = { type: 'AlternativesSelected', cats: id };
-      // alert('here');
-      dispatch(action);
+    highlightFunction: function(alternative, uistate_highlight, uistate_alt_id) {
 
+      var isHighlighted = ((uistate_highlight) && (uistate_alt_id === alternative.id)) ? true : false;
+
+      // Dispatch a action to toggle the highlight in the table
+      // It will be called into AlternativeHeading.jsx file
+      dispatch(
+        {
+          type: 'AlternativesSelected',
+          uistate: {
+            order: alternative.order,
+            alt_id: alternative.id,
+            highlight: !isHighlighted
+          }
+        });
     }
   }
 }

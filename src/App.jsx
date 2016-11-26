@@ -16,12 +16,16 @@ class App extends Component {
     return (
       <div className="wrapper">
 
-          <Nav />
-          <main>
-            { this.props.case.map(function(item) {
-                return <Heading key={item.id} name={item.name} description={item.description} /> })}
-            <TableComponent />
-          </main>
+
+        <Nav />
+        <main>
+
+          { this.props.case.map(function(item) {
+              return <Heading key={item.id} name={item.name} description={item.description} /> })}
+
+          <TableComponent />
+
+        </main>
 
       </div>
 
