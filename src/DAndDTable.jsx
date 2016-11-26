@@ -15,12 +15,9 @@ class DAndDTable extends Component {
       <div className="d-and-d-table-component">
         <TableContainer 
           objectives={this.props.objectives}
-          dragged_objective_id={this.props.dragged_objective_id}
-          clientX={this.props.clientX}
-          clientY={this.props.clientY}
           />
         
-        
+      
         {
           //     objectives: state.objectives,
           //     dragged_objective_id: state.uistate.dragged_objective_id,
@@ -59,9 +56,6 @@ class DAndDTable extends Component {
 function mapStateToProps(state) {
   return {
     objectives: state.objectives,
-    dragged_objective_id: state.uistate.dragged_objective_id,
-    clientX: state.uistate.clientX,
-    clientY: state.uistate.clientY
   }
 }
 
