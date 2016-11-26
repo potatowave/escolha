@@ -55,18 +55,24 @@ class TableComponent extends Component {
   }
 }
 
+// NOTE this should change - this.propos.handleMouseUp
+// 
 function componentDidMount() {
-  document.body.addEventListener('mousedown', function() {
-    // code that invokes our dragstart
-    // instead of setting to ID set to null
+  // document.body.addEventListener('mouseup', function() {
+  //   // code that invokes our dragstart
+  //   // instead of setting to ID set to null
 
-  })
+  // })
+  document.body.addEventListener('mouseup', this.props.handleMouseUp)
+  document.body.addEventListener('mouseleave', this.props.handleMouseUp) // this is in case the mouse leaves the body (OPTIONAL - see if I like it)
 }
 
 function componentDidUnmount() {
-  document.body.removeEventListener('mousedown', function() {
+  // document.body.removeEventListener('mouseup', function() {
     
-  })
+  // })
+  document.body.removeEventListener('mouseup', this.props.handleMouseUp)
+  document.body.removeEventListener('mouseleave', this.props.handleMouseUp) 
 }
 
 function mapStateToProps(state) {
@@ -101,6 +107,7 @@ function mapDispatchToProps(dispatch) {
       dispatch ({ type: 'OBJECTIVE_DRAGSTART', data: {dragged_objective_id: objectiveId }})
     },
 
+    //
     handle_mouseup: function(objectiveId) {
       dispatch ({ type: 'OBJECTIVE_DRAGEND', data: {dragged_objective_id: null, clientX: null, clientY: null}})
     },

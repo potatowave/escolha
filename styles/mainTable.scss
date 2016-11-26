@@ -1,10 +1,3 @@
-
-.better {
-  background: #CEF1D7;
-  color:#1d781d;
-  font-weight: 600;
-}
-
 .c1, .c2, .c3, .c4, .c5, .c6 {
   min-width: $cell-width;
   min-height: $cell-height;
@@ -32,15 +25,6 @@
   text-align: center;
   box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
 }
-
-.highlight {
-  border: 1px solid #999;
-  background: #7D8089;
-  //  background-color: #B4B4B4;
-  font-weight: italic bold;
-  color:#EAD575;
-  z-index: 99;
- }
 
 .main-container {
   display: flex;
@@ -73,11 +57,7 @@
   display: flex;
 }
 
-.worse {
-  background: #FFC8CE;
-  color:#AC2117;
-  font-weight: 580;
-}
+
 
 
 
