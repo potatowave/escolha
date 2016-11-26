@@ -4,7 +4,8 @@
   "description": "A decision making app written in React, Redux, Express & Nodejs",
   "scripts": {
     "lint": "eslint src",
-    "start": "node server/express_server.js"
+    "api": "node server/express_server.js",
+    "frontend": "node server/webpack_server.js"
   },
   "repository": {
     "type": "git",
@@ -49,11 +50,16 @@
     "webpack-dev-server": "1.14.1"
   },
   "dependencies": {
+    "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
+    "express-session": "^1.14.2",
     "knex": "^0.12.6",
     "knex-logger": "^0.1.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "pg": "^6.1.0",
     "react": "15.2.1",
     "react-dom": "15.2.1",
