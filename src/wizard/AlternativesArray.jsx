@@ -1,83 +1,91 @@
 import React from 'react';
 import { Field, FieldArray, reduxForm, getFormValues, formValueSelector } from 'redux-form';
 import validate from './validate';
-import renderField from './renderField';
 import store from '../index.jsx';
 import { connect } from 'react-redux';
+import MenuItem from 'material-ui/MenuItem'
+import RaisedButton from 'material-ui/RaisedButton'
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
+import { RadioButton } from 'material-ui/RadioButton'
+import {
+  Checkbox,
+  RadioButtonGroup,
+  SelectField,
+  TextField,
+  Slider,
+  Toggle
+} from 'redux-form-material-ui'
 
 const renderError = ({ meta: { touched, error } }) => touched && error ?
   <span>{error}</span> : false;
 
-const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched, error } }) => {
-  return (
+  const iconStyles = {
+  marginRight: 24,
+};
 
-  <div>
-    {fields.map((alternative, index) =>
-      <div key={index}>
+const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched, error } }) =>
+   (
 
-        <h4>Alternative #{index + 1} - {(!!alternatives[index].name ? alternatives[index].name : "")}</h4>
+     <div>
+       {fields.map((alternative, index) =>
+         <div key={index}>
 
-        <div>
-          <Field name={`${alternative}.name`} type="text" component={renderField} label="Name:" />
-        </div>
+           <h4>Option #{index + 1} {(!!alternatives[index].name ? ' - ' + alternatives[index].name : '')}{index > 0 &&
+            <IconButton iconClassName="material-icons" style={iconStyles} onClick={() => fields.remove(index)} >delete</IconButton>
+          }</h4>
 
-            {objectives.map(function(objective, i) {
+           <div>
+             <Field name={`${alternative}.name`} component={TextField} hintText="Option Name" />
+           </div>
+           {objectives.map((objective, i) =>
+               (
+                 <div>
 
-                return (
+                   {(objectives[i].scaletype === 'natural') &&
+                   <div>
+                     <Field
+                       name={`${alternative}.naturalValue`}
+                       component={TextField}
+                       hintText={(!!alternatives[index].name ? `${objective.name} : ${objective.sub} ${objective.criterion}` : `${objective.name} : ${objective.sub} ${objective.criterion}`)}
+                     />
+                   </div>}
 
-                  <div>
+                   {objectives[i].scaletype === 'nominal' &&
+                   <div>
+                     <Field
+                       name={`${alternative}.nominalName`}
+                       component={TextField}
+                       hintText={(`${objective.name} > ${objective.sub} `)}
+                     />
 
+                       <Field defaultValue={3} description="How important is this to you?" component={Slider} name={`${alternative}.nominalValue`} step={1} min={1} max={5} />
+                       <div>Value: {alternatives[index].nominalValue}</div>
 
-                    {(objectives[i].scaletype === "natural") &&
-                      <div>
-                          <Field
-                          name={`${alternative}.naturalValue`}
-                          type="text"
-                          component={renderField}
-                          label={(!!alternatives[index].name ? alternatives[index].name + ' : ' + objective.name + ' : ' + objective.sub + ' ' + objective.criterion : "Alternative #" + (index + 1) + ' : ' + objective.name + ' : ' + objective.sub + ' ' + objective.criterion)} />
-                      </div>}
-
-                    {objectives[i].scaletype === "nominal" &&
-                      <div>
-                        <hr />
-                        <Field
-                        name={`${objective}.nominalName`}
-                        type="text"
-                        component={renderField}
-                        label={( objective.name + ' > ' + objective.sub + ' ' )} />
-                        <Field name={`${objective}.nominalValue`} component="select">
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </Field>
-                        <hr />
-                      </div>
+                     <hr />
+                   </div>
                     }
 
-                    {objectives[i].scaletype === "ordinal" &&
-                      <div>
-                          <Field
-                          name={`${alternative}.ordinalValue`}
-                          type="text"
-                          component={renderField}
-                          label={(!!alternatives[index].name ? alternatives[index].name + ' : ' + objective.name + ' : ' + objective.sub + ' ' + objective.criterion : "Alternative #" + (index + 1) + ' : ' + objective.name + ' : ' + objective.sub + ' ' + (objective.criterion ? objective.criterion : ''))} />
-                      </div>}
+                   {objectives[i].scaletype === 'ordinal' &&
+                   <div>
+                     <Field
+                       name={`${alternative}.ordinalValue`}
+                       type="text"
+                       component={TextField}
+                       hintText={(!!alternatives[index].name ? `${objective.name} : ${objective.sub} ${objective.criterion}` : `Alternative #${index + 1} : ${objective.name} : ${objective.sub} ${objective.criterion ? objective.criterion : ''}`)}
+                     />
+                   </div>}
 
-                  </div>
-                );
-            })}
+                 </div>
+                )
+            )}
+            <IconButton iconClassName="material-icons" style={iconStyles} onClick={() => fields.push({})} >add circle outline</IconButton>
+           <hr />
 
-        <hr />
-        {index > 0 &&
-          <button type="button" title="Remove Alternative" onClick={() => fields.remove(index)} >Remove Alternative</button>
-        }
-        <button type="button" onClick={() => fields.push({})}>Add Alternative</button>
-      </div>
+         </div>
     )}
-  </div>
-)};
+     </div>
+);
 
 const AlternativesArray = (props) => {
   const { handleSubmit, pristine, previousPage, submitting } = props;
@@ -92,7 +100,7 @@ function mapStateToProps(state) {
   return {
     objectives: state.form.wizard.values.objectives,
     alternatives: state.form.wizard.values.alternatives,
-  }
+  };
 }
 
 export const AlternativesForm = reduxForm({

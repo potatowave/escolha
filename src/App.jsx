@@ -1,3 +1,5 @@
+const injectTouchTapEvent = require('react-tap-event-plugin');
+injectTouchTapEvent();
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Heading from './Heading.jsx';
@@ -14,12 +16,12 @@ class App extends Component {
     return (
       <div className="wrapper">
 
-        <Nav />
-        <main>
-          { this.props.case.map(function(item) {
-              return <Heading key={item.id} name={item.name} description={item.description} /> })}
-          <TableComponent />
-        </main>
+          <Nav />
+          <main>
+            { this.props.case.map(function(item) {
+                return <Heading key={item.id} name={item.name} description={item.description} /> })}
+            <TableComponent />
+          </main>
 
       </div>
 

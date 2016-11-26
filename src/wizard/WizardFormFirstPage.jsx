@@ -1,20 +1,31 @@
 import React from 'react';
 import { Field, reduxForm, FieldArray } from 'redux-form';
 import validate from './validate';
-import renderField from './renderField';
 import { connect } from 'react-redux';
-
-const renderError = ({ meta: { touched, error } }) => touched && error ?
-  <span>{error}</span> : false;
+import MenuItem from 'material-ui/MenuItem'
+import { RadioButton } from 'material-ui/RadioButton'
+import RaisedButton from 'material-ui/RaisedButton'
+import {
+  Checkbox,
+  RadioButtonGroup,
+  SelectField,
+  TextField,
+  Toggle
+} from 'redux-form-material-ui'
 
 const WizardFormFirstPage = (props) => {
   const { handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <Field name="caseName" type="text" component={renderField} label="Case" />
-      <Field name="caseDescription" type="text" component="textarea" label="Case Description" />
       <div>
-        <button type="submit" className="next">Next</button>
+        <Field name="caseName" component={TextField} hintText="Case"/>
+
+      </div>
+      <div>
+        <Field name="caseDescription" component={TextField} hintText="Case Description" multiLine={true} rows={2}/>
+      </div>
+      <div>
+        <RaisedButton label="Next" type="submit" className="next" />
       </div>
     </form>
   );

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import WizardFormFirstPage from './wizard/WizardFormFirstPage';
 import WizardFormSecondPage from './wizard/WizardFormSecondPage';
 import WizardFormThirdPage from './wizard/WizardFormThirdPage';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class WizardForm extends Component {
   constructor(props) {
@@ -21,15 +22,20 @@ class WizardForm extends Component {
     this.setState({ page: this.state.page - 1 });
   }
 
+
+
   render() {
     const { onSubmit } = this.props;
     const { page } = this.state;
 
-    return (<div>
-      {page === 1 && <WizardFormFirstPage onSubmit={this.nextPage} initialValues={{ objectives: [{ scaletype: 'natural' }],alternatives: [{}]}} />}
-      {page === 2 && <WizardFormSecondPage previousPage={this.previousPage} onSubmit={this.nextPage} />}
-      {page === 3 && <WizardFormThirdPage previousPage={this.previousPage} onSubmit={onSubmit} values={this.props.values} />}
-    </div>
+    return (
+    <MuiThemeProvider>
+      <div>
+        {page === 1 && <WizardFormFirstPage onSubmit={this.nextPage} initialValues={{ objectives: [{ scaletype: 'natural' }],alternatives: [{ nominalValue: 3 }]}} />}
+        {page === 2 && <WizardFormSecondPage previousPage={this.previousPage} onSubmit={this.nextPage} />}
+        {page === 3 && <WizardFormThirdPage previousPage={this.previousPage} onSubmit={onSubmit} values={this.props.values} />}
+      </div>
+    </MuiThemeProvider>
     );
   }
 }

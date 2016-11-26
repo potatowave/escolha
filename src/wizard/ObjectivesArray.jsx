@@ -1,103 +1,129 @@
-import React from 'react'
-import { Field, FieldArray, reduxForm, formValueSelector } from 'redux-form'
+import React from 'react';
+import { Field, FieldArray, reduxForm, formValueSelector } from 'redux-form';
 import validate from './validate';
 import renderField from './renderField';
 import { connect } from 'react-redux';
-import InputRange from 'react-input-range';
+import MenuItem from 'material-ui/MenuItem'
+import RaisedButton from 'material-ui/RaisedButton'
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
+import { RadioButton } from 'material-ui/RadioButton'
+import {red500, yellow500, green500} from 'material-ui/styles/colors';
+
+const iconStyles = {
+  marginRight: 24,
+};
+import {
+  Checkbox,
+  RadioButtonGroup,
+  SelectField,
+  TextField,
+  Toggle
+} from 'redux-form-material-ui'
+
 
 const renderError = ({ meta: { touched, error } }) => touched && error ?
   <span>{error}</span> : false;
 
 const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
-
   const values = {
-  min: 2,
-  max: 10
-};
+    min: 2,
+    max: 10,
+  };
 
-function onChange(component, values) {
-  console.log(values);
-}
+  function onChange(component, values) {
+    console.log(values);
+  }
 
   return (
-  <div>
-    {fields.map((objective, index) =>
-      <div key={index}>
-      {}
-      <h4>Objective #{index + 1}</h4>
+    <div>
+      {fields.map((objective, index) =>
+        <div key={index}>
+          <h4>Objective #{index + 1}
 
-      <Field name={`${objective}.name`} type="text" component={renderField} label={`Objective #${index + 1}`} / >
-      <Field name={`${objective}.sub`} type="text" component={renderField} label={`Sub objective #${index + 1}`} />
-      <Field name={`${objective}.criterion`} type="text" component={renderField} label={`Evaluation Criterion #${index + 1}`} />
+          {index > 0 &&
+            <IconButton iconClassName="material-icons" style={iconStyles} onClick={() => fields.remove(index)} color={red500} >delete</IconButton>
+          }</h4>
 
-      <div>
-        <label>Scale Type</label>
-        <div>
-          <Field name={`${objective}.scaletype`} component="select">
-            <option value="natural">Natural (Number)</option>
-            <option value="nominal">Nominal (Non-Number)</option>
-            <option value="ordinal">Ordinal (Range)</option>
-          </Field>
+          <div>
 
-          {objectives[index].scaletype === "ordinal" &&
-
+            <Field name={`${objective}.name`} component={SelectField} hintText="Name" value={0} >
+               <MenuItem value={"Cost"} primaryText="Cost" />
+               <MenuItem value={"Appearance"} primaryText="Appearance" />
+               <MenuItem value={"Speed"} primaryText="Speed" />
+               <MenuItem value={"toggle"} primaryText="Custom" />
+             </Field>
+            {objectives[index].toggle === 'toggle' &&
+              <Field name={`${objective}.name`} component={TextField} />
+            }
+           </div>
+          <div>
+            <Field name={`${objective}.sub`} component={TextField} hintText={`Sub objective #${index + 1}`} />
+          </div>
+          <div>
+            <Field name={`${objective}.criterion`} component={TextField} hintText={`Evaluation Criterion #${index + 1}`} />
+          </div>
+          <div>
             <div>
-              <Field
-                name={`${objective}.rangemin`}
-                type="text"
-                component={renderField}
-                label={`Min`} / >
-              <Field
-                name={`${objective}.rangemax`}
-                type="text"
-                component={renderField}
-                label={`Max`} / >
-            </div>}
+              <Field name={`${objective}.scaletype`} component={SelectField} hintText="Scale Type">
+                <MenuItem value="natural" primaryText="Natural (Number)"/>
+                <MenuItem value="nominal" primaryText="Nominal (Non-Number)"/>
+                <MenuItem value="ordinal" primaryText="Ordinal (Range)"/>
+              </Field>
 
-          {objectives[index].scaletype === "nominal" &&
-            <div>
+              {objectives[index].scaletype === 'ordinal' &&
+
+              <div>
+                <Field
+                  name={`${objective}.rangemin`}
+                  component={TextField}
+                  label={'Min'}
+                />
+                <Field
+                  name={`${objective}.rangemax`}
+                  component={TextField}
+                  label={'Max'}
+                />
+              </div>}
+
+              {objectives[index].scaletype === 'nominal' &&
+              <div>
               Sure, we will ask you about this on the next page.
 
             </div>}
+              <Field name="scale_type" component={renderError} />
 
+            </div>
+          </div>
 
+        <Field name="low_is_better" component={RadioButtonGroup}>
+          <RadioButton value="true" label="Low"/>
+          <RadioButton value="false" label="High"/>
+        </Field>
 
+          <hr />
 
-          <Field name="scale_type" component={renderError} />
+          <IconButton iconClassName="material-icons" style={iconStyles} onClick={() => fields.push({})} color={green500} >add circle outline</IconButton>
 
         </div>
-      </div>
-
-        <label>Target (most desirable)</label>
-        <div>
-          <label><Field name={`${objective}.low_is_better`} component="input" type="radio" value="true" /> Low</label>
-          <label><Field name={`${objective}.low_is_better`} component="input" type="radio" value="false" /> High</label>
-          <Field name="low_is_better" component={renderError} />
-        </div>
-        <hr></hr>
-        {index > 0 &&
-          <button type="button" title="Remove Objective" onClick={() => fields.remove(index)} >Remove Objective</button>
-        }
-        <button type="button" onClick={() => fields.push({})}>Add Objective</button>
-      </div>
     )}
-  </div>
-)};
+    </div>
+  ); };
 
 
 const ObjectivesArray = (props) => {
-  const { handleSubmit, pristine, previousPage, submitting } = props
+  const { handleSubmit, pristine, previousPage, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <FieldArray name="objectives" component={renderObjectives} objectives={props.objectives}/>
+      <FieldArray name="objectives" component={renderObjectives} objectives={props.objectives} />
     </form>
-  )
-}
+  );
+};
 
 function mapStateToProps(state) {
   return {
     objectives: state.form.wizard.values.objectives,
-  }
+  };
 }
 
 
