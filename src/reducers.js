@@ -91,9 +91,8 @@ const rootReducer = combineReducers({
   cases: casesReducer,
   objectives: objectivesReducer,
   alternatives: alternativesReducer,
-  values: valuesReducer,
   uistate: uiStateReducer,
-  form: formReducer
+  form: formReducer,
   cells: cellsReducer,
   uistate: uiStateReducer,
 

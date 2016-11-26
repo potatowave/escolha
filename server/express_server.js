@@ -15,7 +15,7 @@ const bodyParser = require('body-parser');
 // const config = require('./webpack.config');
 
 // const knexConfig = require('./knexfile.js');
-// const cors = require('cors')
+const cors = require('cors')
 
 
 // =======
@@ -37,7 +37,7 @@ const User = require('./models/User');
 const app = express();
 
 // <<<<<<< HEAD
-// app.use(cors());
+app.use(cors());
 
 // =======
 app.use(cookieParser());
