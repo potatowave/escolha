@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Heading from './Heading.jsx';
 import Nav from './Nav.jsx';
-import TableComponent from './TableComponent.jsx';
+// import TableComponent from './TableComponent.jsx';
+import DAndDTable from './DAndDTable.jsx';
 
 class App extends Component {
   render() {
@@ -17,7 +18,7 @@ class App extends Component {
           { this.props.case.map(function(item) {
               return <Heading key={item.id} name={item.name} description={item.description} /> })}
 
-          <TableComponent />
+          <DAndDTable />
           
         </main>
 
@@ -33,13 +34,4 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    somePropFunction: function() {
-      const action = { type: 'ADD_CONTACT', contact: { id: 1, name: "Bob" } };
-      dispatch(action);
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, null)(App);

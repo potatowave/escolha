@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import Alternatives from './Alternatives.jsx'
+import TableMainSection from './TableMainSection.jsx'
 
 import ObjectiveDescriptions from './ObjectiveDescriptions.jsx'
 
-class TableComponent extends Component {
+class TableContainer extends Component {
 
   render() {
     console.log("Rendering <Table />"); // Can put in logging middleware instead of this.
@@ -32,9 +32,6 @@ class TableComponent extends Component {
                 prefix={item.unit_prefix}
                 suffix={item.unit_suffix}
                 being_dragged={this.props.dragged_objective_id === item.id}
-                handle_mousedown={this.props.handle_mousedown}
-                handle_mouseup={this.props.handle_mouseup}
-                handle_mousemove={this.props.handle_mousemove}
                 clientX={this.props.clientX}
                 clientY={this.props.clientY}
                 />  
@@ -45,7 +42,7 @@ class TableComponent extends Component {
           </div>
 
 
-          <Alternatives />
+          <TableMainSection />
 
         </div>
 
@@ -75,62 +72,15 @@ function componentDidUnmount() {
   document.body.removeEventListener('mouseleave', this.props.handleMouseUp) 
 }
 
-function mapStateToProps(state) {
-  return {
-    objectives: state.objectives,
-    dragged_objective_id: state.uistate.dragged_objective_id,
-    clientX: state.uistate.clientX,
-    clientY: state.uistate.clientY
-  }
-}
+// function mapStateToProps(state) {
+//   return {
+//     objectives: state.objectives,
+//     dragged_objective_id: state.uistate.dragged_objective_id,
+//     clientX: state.uistate.clientX,
+//     clientY: state.uistate.clientY
+//   }
+// }
 
-function mapDispatchToProps(dispatch) {
-  return {
 
-    handle_mousedown: function(objectiveId) {    
-      // offsetX = event.offsetX;
-      // offsetY = event.offsetY;
-
-          // only left mouse button
-      // if (e.button !== 0) return
-      // var pos = $(this.getDOMNode()).offset()
-      // this.setState({
-      //   dragging: true,
-      //   rel: {
-      //     x: e.pageX - pos.left,
-      //     y: e.pageY - pos.top
-      //   }
-      // })
-      // e.stopPropagation()
-      // e.preventDefault()
-
-      dispatch ({ type: 'OBJECTIVE_DRAGSTART', data: {dragged_objective_id: objectiveId }})
-    },
-
-    //
-    handle_mouseup: function(objectiveId) {
-      dispatch ({ type: 'OBJECTIVE_DRAGEND', data: {dragged_objective_id: null, clientX: null, clientY: null}})
-    },
-
-    handle_mousemove: function(objectiveId, e) {
-      console.log("e.pageX", e.pageX)
-      console.log("e.pageY", e.pageY)
-
-      console.log("e.left", e.left)
-      console.log("e.top", e.top)
-
-      console.log("e.offsetX", e.offsetX)
-      console.log("e.offsetY", e.offsetY)
-
-      console.log("e.clientX", e.clientX)
-      console.log("e.clientY", e.clientY)
-
-      // e.stopPropagation()
-      // e.preventDefault()
-
-      dispatch ({ type: 'OBJECTIVE_DRAGGING', data: {dragged_objective_id: objectiveId, clientX: e.clientX, clientY: e.clientY}})
-    }
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(TableComponent);
+export default TableContainer;
 

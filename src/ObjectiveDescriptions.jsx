@@ -36,8 +36,6 @@ class ObjectiveDescriptions extends Component {
         <div 
           id="realtable"
           ref="REFNAME"
-          onMouseDown={this.props.handle_mousedown.bind(this, this.props.objective_id)} 
-          onMouseUp={this.props.handle_mouseup.bind(this, this.props.objective_id)} 
           className={ `r${this.props.row} draggable ${this.props.being_dragged ? 'being-dragged' : '' } ` } >
           <div className="objective-name-container">
             <div className="table-area">
@@ -61,9 +59,6 @@ class ObjectiveDescriptions extends Component {
 
         <div 
           id="moving-row" 
-          onMouseDown={this.props.handle_mousedown.bind(this, this.props.objective_id)} 
-          onMouseUp={this.props.handle_mouseup.bind(this, this.props.objective_id)} 
-          onMouseMove={this.props.handle_mousemove.bind(this, this.props.objective_id, event)} 
           className={`r${this.props.row} table-container-component movable ${this.props.being_dragged ? '' : 'hidden' } TESTX ${this.props.clientX} TESTY ${this.props.clientY} `} 
           style={{width: `${this.refs.REFNAME ? this.refs.REFNAME.offsetWidth : ''}` + 'px', left: `${this.refs.REFNAME ? this.refs.REFNAME.offsetLeft : ''}` + 'px', top: `${this.refs.REFNAME ? this.refs.REFNAME.offsetTop : ''}` + 'px'}} 
           >

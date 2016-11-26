@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import AlternativeHeading from './AlternativeHeading.jsx'
 import ObjectiveRow from './ObjectiveRow.jsx'
 
-class Alternatives extends Component {
+class TableMainSection extends Component {
 
   render() {
-    console.log("Rendering <Alternatives />");
+    console.log("Rendering <TableMainSection />");
 
     return (
 
@@ -82,4 +82,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Alternatives);
+export default connect(mapStateToProps, mapDispatchToProps)(TableMainSection);
