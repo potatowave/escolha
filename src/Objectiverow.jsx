@@ -1,100 +1,70 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import Cell from './Cell.jsx'
+import { cellBeingEdited, cellSaveAction, cellUpdateDatabaseAction } from './actions/cell'
 
-class Objectiverow extends Component {
-
+class ObjectiveRow extends Component {
   render() {
-    console.log("Rendering <Objectiverow />");
+    console.log("Rendering <Cells />");
+
+    function findSelectedCells(item) {
+      return item.alternative_id === this.props.uistate_alt_id;
+      // NOTE: item refers to the current cell - need to get 'order' from uistate_alt_id, not from Cells
+    }
+
+    function matchingPropsRow(item) {
+      return item.objective_id === this.props.objective_id;
+    }
+
+    // Grab all cells in the current row
+    const selectedCells = this.props.cells.filter(findSelectedCells, this);
+
+    // Grab the selected value for the current row
+    var thisRowsSelectedValue = selectedCells.find(matchingPropsRow, this);
 
     return (
+      <div className={"r"+this.props.current_row}>
+        { this.props.cells.filter(matchingPropsRow, this).map((cell , index) => {
+          return (<Cell
+            key={`c${cell.alternative_id}-${cell.alternative_id}`}
+            uistate_highlight={this.props.uistate_highlight}
+            uistate_alt_id={this.props.uistate_alt_id}
+            low_is_better={this.props.low_is_better}
+            cell={cell}
+            cell_index={index}
+            thisRowsSelectedValue={thisRowsSelectedValue}
 
-      <div className="objective-description-area">
-
-            <div className="header">
-              <label className="header-objectives"></label>
-              <label className="header-units">Units</label>
-            </div>
-
-            <div className="r1">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Purchase Price</label>
-              </div>
-
-              <label className="units"> $ </label>
-            </div>
-
-
+            cellBeingEdited={this.props.cellBeingEdited}
+            cellToggled={this.props.cellToggled}
+            cellSave={this.props.cellSave}
+            cellUpdateDatabase={this.props.cellUpdateDatabase}
+          />)
+        })}
       </div>
-
     );
   }
 }
 
-export default Objectiverow;
+function mapStateToProps(state) {
+  return {
+    objectives: state.objectives,
+    cells: state.cells
+  }
+}
 
-/*
+function mapDispatchToProps(dispatch) {
+  return {
+    cellToggled: (cell) => {
+      dispatch(cellBeingEdited(cell))
+    },
+    cellSave: (value, cell) => {
+      dispatch(cellSaveAction(value, cell))
+    },
+    cellUpdateDatabase: (value, cell) => {
+      dispatch(cellUpdateDatabaseAction(value, cell))
+    }
 
-            <div className="r2">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Upkeep</label>
-              </div>
+  }
+}
 
-              <label className="units"> $ </label>
-            </div>
-
-            <div className="r3">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Purchase Price</label>
-              </div>
-
-              <label className="units"> $ </label>
-            </div>
-
-            <div className="r4">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Upkeep</label>
-              </div>
-
-              <label className="units"> $ </label>
-            </div>
-
-            <div className="r5">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Purchase Price</label>
-              </div>
-
-              <label className="units"> $ </label>
-            </div>
-
-            <div className="r6">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Upkeep</label>
-              </div>
-
-              <label className="units"> $ </label>
-            </div>
-
-            <div className="r7">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Purchase Price</label>
-              </div>
-
-              <label className="units"> $ </label>
-            </div>
-
-            <div className="r8">
-              <div className="objective-name-container">
-                <label className="objective-name">Cost</label>
-                <label className="sub-objective-name">Upkeep</label>
-              </div>
-
-              <label className="units"> $ </label>
-            </div>
-*/
+export default connect(mapStateToProps, mapDispatchToProps)(ObjectiveRow);

@@ -68,6 +68,7 @@ p {
     font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
 }
 
+
 /*
 .hide-button {
   border-radius: 50%;
@@ -77,25 +78,31 @@ p {
   margin-top: ($cell-height - $hide-button-diameter)/2;
   margin-bottom: ($cell-height - $hide-button-diameter)/2;
 }
+
 .hide-button-spacer {
   width: $cell-height;
   height: $cell-height;
   background-color: lightgrey;
 }
+
 .hide-buttons-rows {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
+
 .alt-image-container {
   display: flex;
   // flex-flow: row wrap;
   // justify-content: space-between;
+
   align-items: center;
   margin-left: $header-units-width + $header-obj-width + (2 * $num-alts * $cell-margin);
   margin-bottom: 5px;
 }
+
 .alt-image-1, .alt-image-2, .alt-image-3, .alt-image-4, .alt-image-5, .alt-image-6{
+
   border-radius: 50%;
   width: $circle-diameter;
   height: $circle-diameter;
@@ -103,4 +110,7 @@ p {
   margin-left: ($cell-width - $circle-diameter)/2;
   margin-right: ($cell-width - $circle-diameter)/2;
 }
+
 */
+
+
