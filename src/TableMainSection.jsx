@@ -7,7 +7,7 @@ class TableMainSection extends Component {
 
   render() {
     console.log("Rendering <TableMainSection />");
-
+    console.log("TableMainSection - enablePlaceholder:", this.props.enablePlaceholder);
     return (
 
       // <div>

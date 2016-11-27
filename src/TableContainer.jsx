@@ -7,7 +7,7 @@ class TableContainer extends Component {
 
   render() {
     console.log("Rendering <Table />"); // Can put in logging middleware instead of this.
-
+    console.log("TableContainer - enablePlaceholder:", this.props.enablePlaceholder);
 
     return (
 

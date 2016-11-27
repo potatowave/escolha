@@ -20,6 +20,8 @@ class DAndDTable extends Component {
 
 
   render() {
+    console.log("Rendering <DAndDTable />");
+
     return (
       <div className="d-and-d-table-component">
         <TableContainer 

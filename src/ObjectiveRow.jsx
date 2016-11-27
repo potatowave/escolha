@@ -5,7 +5,9 @@ import { cellBeingEdited, cellSaveAction, cellUpdateDatabaseAction } from './act
 
 class ObjectiveRow extends Component {
   render() {
-    console.log("Rendering <Cells />");
+    console.log("Rendering <ObjectiveRow />");
+    console.log("ObjectiveRow - enablePlaceholder:", this.props.enablePlaceholder);
+
 
     function findSelectedCells(item) {
       return item.alternative_id === this.props.uistate_alt_id;
@@ -24,7 +26,8 @@ class ObjectiveRow extends Component {
 
     return (
       <div className={"r"+this.props.current_row}>
-        { this.props.cells.filter(matchingPropsRow, this).map((cell , index) => {
+        { 
+          this.props.cells.filter(matchingPropsRow, this).map((cell , index) => {
           return (<Cell
             key={`c${cell.alternative_id}-${cell.alternative_id}`}
             uistate_highlight={this.props.uistate_highlight}
@@ -49,7 +52,7 @@ class ObjectiveRow extends Component {
 }
 
 ObjectiveRow.defaultProps = {
-  enablePlaceholder: true
+  enablePlaceholder: false
 };
 
 
@@ -57,7 +60,7 @@ function mapStateToProps(state) {
   return {
     objectives: state.objectives,
     cells: state.cells,
-    ui: state.uistate
+    ui: state.uistate,
   }
 }
 

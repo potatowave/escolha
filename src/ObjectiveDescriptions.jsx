@@ -11,10 +11,14 @@ class ObjectiveDescriptions extends Component {
       
       <div className="objective-description-area">
 
+        {
+          this.props.showHorizontalHeadings &&
         <div className="header-objectives-container">
           <label className="header-objectives">Objectives</label>
           <label className="header-units">Units</label>
         </div>
+        
+        }
         
         { this.props.objectives.map((item) => {
           return <ObjectiveDescription 
