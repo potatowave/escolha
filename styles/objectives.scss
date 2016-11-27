@@ -9,31 +9,37 @@
   min-height: $cell-height;
   padding: 10px;
   margin: 1px;
+  color: white;
 }
 
 .header-units {
   min-height: $cell-height;
   padding: 10px;
   margin: 1px;
+  color: white;
 }
 
 .objective-name-container{
   font-family: "Lucida Grande";
+  color:black;
   color:#D9DDE5;
 }
-    .objective-name{
-    }
-    .sub-objective-name {
-      font-size: 0.8em;
-    }
+
+.objective-name {
+  font-size: 0.8em;
+}
+
+.sub-objective-name {
+  font-size: 0.6em;
+}
 
 .units {
+  font-size: 0.6em;
   min-width: 45px;
   font-family: "Lucida Grande";
+  color:black;
   color: white;
   text-align: center;
   line-height: 3em;
   margin: 1px;
 }
-
-

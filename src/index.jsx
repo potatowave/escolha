@@ -12,6 +12,13 @@ import { fetchCase, saveCase, fetchUserCases } from './actions/api'
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers';
 import App from './App.jsx';
+import WizardForm from './WizardForm.jsx';
+import Onboard from './Onboard.jsx';
+import { Router, Route, hashHistory } from 'react-router';
+import { combineForms } from 'react-redux-form';
+
+import $ from 'jquery';
+
 
 // Load up the application styles
 require('../styles/application.scss');
@@ -31,13 +38,17 @@ const store = createStore(
   )
 );
 
-// Wrap the component in a <Provider>
-ReactDOM.render(
+export default store;
+
+ReactDOM.render((
   <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('react-root')
-);
+  <Router history={hashHistory} store={store} >
+    <Route path="/" component={App} />
+    <Route path="/new" component={Onboard} />
+    <Route path="/wizard" component={WizardForm} />
+  </Router>
+  </Provider>
+), document.getElementById('react-root'));
 
 // ----------------------------------------------------------------------------
 // Actions using the API
@@ -458,6 +469,5 @@ const test_data = {
     }
   ]
 }
-// console.log("Loading data in the Store", test_data)
+
 // store.dispatch({type: 'DATA_LOADED', data: test_data})  // calls all your reducers
-// store.dispatch({type: 'DATA_LOADED', data: test_bad_data})  // calls all your reducers

@@ -1,12 +1,15 @@
-import { combineReducers } from 'redux';
+// reducers.js
+// Define the reducer
+import { createStore, combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form'
 import * as Cellreducers from './reducers/cell'
+
 
 function moveValueInArray(array, from, to) {
   const a = array.slice(0);
   a.splice(to, 0, a.splice(from, 1)[0]);
   return a;
 }
-
 
 
 function userCases(state = [], action) {
@@ -142,12 +145,12 @@ const rootReducer = combineReducers({
   cases: casesReducer,
   objectives: objectivesReducer,
   alternatives: alternativesReducer,
+  uistate: uiStateReducer,
+  form: formReducer,
   cells: cellsReducer,
   uistate: uiStateReducer,
 
   cellBeingEdited: Cellreducers.cellReducer
 });
-
-
 
 export default rootReducer;

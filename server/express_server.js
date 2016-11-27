@@ -8,7 +8,19 @@ const PORT = process.env.PORT || 3001; // set to 3001
 const express = require('express');
 const router  = express.Router();
 const bodyParser = require('body-parser');
+// <<<<<<< HEAD
+// const randString = require('./scripts/randomstring');
+// const webpack = require('webpack');
+// const WebpackDevServer = require('webpack-dev-server');
+// const config = require('./webpack.config');
+
+// const knexConfig = require('./knexfile.js');
+const cors = require('cors')
+
+
+// =======
 const knexConfig = require('../knexfile.js');
+// >>>>>>> master
 const knex = require('knex')(knexConfig[ENV]);
 const bcrypt = require("bcrypt");
 
@@ -23,8 +35,14 @@ const User = require('./models/User');
 
 // ----------------------------------------------------------------------------
 const app = express();
+app.use(express.static(__dirname + '/public'));
 
+// <<<<<<< HEAD
+app.use(cors());
+
+// =======
 app.use(cookieParser());
+// >>>>>>> master
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -33,15 +51,18 @@ app.use(session({ secret: 'R1sM6JmAo83mPZ1l1V8rRpoKla4F1vgv',resave: true, saveU
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Eanble CORS
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+// <<<<<<< HEAD
+// =======
+// // Eanble CORS
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
+// >>>>>>> master
 
 app.set('view engine', 'ejs'); // Set View Engine to ejs
-app.use(express.static('public'));
+
 
 
 // ----------------------------------------------------------------------------
@@ -87,6 +108,7 @@ app.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/login');
 });
+
 
 app.get('/', (req,res) => {
   res.send('Logged in!');

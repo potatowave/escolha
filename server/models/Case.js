@@ -25,7 +25,7 @@ module.exports = (knex) => {
 
   /**
   * Insert values into database
-  * @param {object}   values      - all cell values data from frontend
+  * @param { object}   values      - all cell values data from frontend
   * @param {function} callback    - Callback function to run after aSync DB call
   * @returns {void}               - It will call Callback function aSync
   */
@@ -193,10 +193,10 @@ module.exports = (knex) => {
 
     const msg = 'Entire Case Updated';
 
-    caseLength = data.case || 0;
-    objectivesLength = data.objectives || 0;
-    alternativesLength = data.alternatives || 0;
-    cellsLength = data.cells || 0;
+    const caseLength = data.case || 0;
+    const objectivesLength = data.objectives || 0;
+    const alternativesLength = data.alternatives || 0;
+    const cellsLength = data.cells || 0;
 
 
     /**

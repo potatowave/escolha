@@ -1,6 +1,13 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var reactDomLibPath = path.join(__dirname, "./node_modules/react-dom/lib");
+var alias = {};
+["EventPluginHub", "EventConstants", "EventPluginUtils", "EventPropagators",
+ "SyntheticUIEvent", "CSSPropertyOperations", "ViewportMetrics"].forEach(function(filename){
+    alias["react/lib/"+filename] = path.join(__dirname, "./node_modules/react-dom/lib", filename);
+});
+
 module.exports = {
   devtool: 'eval',
   entry: [
@@ -30,6 +37,10 @@ module.exports = {
         include: path.join(__dirname, 'src')
       },
       {
+        test: /\.less$/,
+        loader: "style!css!less"
+      },
+      {
         test: /\.scss$/,
         loaders: ["style", "css", "sass"]
       },
@@ -39,8 +50,7 @@ module.exports = {
     ]
   },
     resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    resolve: {alias: alias},
   },
 }
-
-
