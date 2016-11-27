@@ -23,6 +23,7 @@ const User = require('./models/User');
 
 // ----------------------------------------------------------------------------
 const app = express();
+app.use(express.static(__dirname + '/public'));
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,7 +42,7 @@ app.use(function(req, res, next) {
 });
 
 app.set('view engine', 'ejs'); // Set View Engine to ejs
-app.use(express.static('public'));
+
 
 
 // ----------------------------------------------------------------------------
@@ -87,6 +88,7 @@ app.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/login');
 });
+
 
 app.get('/', (req,res) => {
   res.send('Logged in!');
