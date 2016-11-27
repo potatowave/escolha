@@ -47,7 +47,7 @@ export default function Cell({uistate_highlight, uistate_alt_id, low_is_better, 
         className={"cell c"+(cell_index+1) +" "+(enablePlaceholder && (
               cell.alternative_id === ui.draggedAlternativeId ||
               cell.objective_id === ui.draggedObjectiveId
-            ) ? ' placeholder' : '')+" "+compare_tag}
+            ) ? ' placeholder' : '')+" "+highlightedClass+" "+compare_tag}
         >
         { !isInputVisible && cell.value }
 

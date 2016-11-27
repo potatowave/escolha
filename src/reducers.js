@@ -72,7 +72,7 @@ function uiStateReducer(state = {}, action) {
       return action.data.uistate;
       break;
     case 'AlternativesSelected':
-      return action.uistate; // How to set state from a reducer?
+      return action.uistate; 
       break;
     case 'saveSelectedVal':
       return action.value;
@@ -80,12 +80,14 @@ function uiStateReducer(state = {}, action) {
     case 'UPDATE_UI':
       return Object.assign({}, state, action.data);
       break;
-    // case 'OBJECTIVE_DRAGSTART':
-    //   return Object.assign({}, state, action.data);
-    // case 'OBJECTIVE_DRAGEND':
-    //   return Object.assign({}, state, action.data);
-    // case 'OBJECTIVE_DRAGGING':
-    //   return Object.assign({}, state, action.data);
+    case 'REORDER_OBJECTIVES':
+      const currentDraggedObjectiveIndex = state.objectiveOrder.indexOf(state.draggedObjectiveId);
+      console.log("UPDATING STATE");
+      console.log("currentDraggedObjectiveIndex", currentDraggedObjectiveIndex)
+
+      if (currentDraggedObjectiveIndex === -1) return state;
+      state.objectiveOrder = moveValueInArray(state.objectiveOrder, currentDraggedObjectiveIndex, action.data.newDraggedObjectiveIndex);
+      return state;
     default:
       return state
   }

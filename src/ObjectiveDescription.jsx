@@ -45,7 +45,6 @@ function mapDispatchToProps(dispatch) {
       const offsetY = event.pageY - event.target.offsetTop;
       const offsetX = event.pageX - event.target.offsetLeft;
 
-      console.log("MOUSE DOWN!");
       dispatch({
         type: 'UPDATE_UI',
         data: {

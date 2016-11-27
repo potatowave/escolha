@@ -33,17 +33,21 @@ class DAndDTable extends Component {
         const headingTargets = Array.from(this.mainTable.el.querySelectorAll('.objective-description'));
         const target = headingTargets.find(target => target.offsetTop <= event.pageY && target.offsetTop + target.offsetHeight >= event.pageY);
 
-        // if (target && target.dataset.fieldId != this.props.ui.draggedFieldId) {
-        //   this.props.handleReorderFields(headingTargets.indexOf(target));
-        //   this.forceUpdate();
-        // }
+        if (target && target.dataset.objectiveId != this.props.ui.draggedObjectiveId) {
+
+          console.log("OVERLAPPED!!", headingTargets.indexOf(target))
+
+          this.props.handleReorderObjectives(headingTargets.indexOf(target));
+          this.forceUpdate();
+
+        }
         
         this.floatingRow.el.style.top = event.clientY - this.props.ui.offsetY + 'px';
         this.floatingRow.el.style.left = this.draggedHeading.offsetLeft - document.body.scrollLeft + 'px';
 
-        console.log("event.clientY", event.clientY);
-        console.log("this.props.ui.offsetY", this.props.ui.offsetY)
-        console.log(event.clientY - this.props.ui.offsetY);
+        // console.log("event.clientY", event.clientY);
+        // console.log("this.props.ui.offsetY", this.props.ui.offsetY)
+        // console.log(event.clientY - this.props.ui.offsetY);
 
       }
     }
@@ -70,7 +74,6 @@ class DAndDTable extends Component {
 
   render() {
     console.log("Rendering <DAndDTable />");
-    console.log("STARTING OFFSETY", this.props.ui.offsetY)
 
     return (
       <div className="d-and-d-table-component">
@@ -121,8 +124,15 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    handleReorderObjectives(newDraggedObjectiveIndex) {
+      dispatch({
+        type: 'REORDER_OBJECTIVES',
+        data: {
+          newDraggedObjectiveIndex: newDraggedObjectiveIndex
+        }
+      });
+    },
     handleMouseUp() {
-      console.log("MOUSE UP!")
       dispatch({
         type: 'UPDATE_UI',
         data: {

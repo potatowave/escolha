@@ -44,21 +44,14 @@ ReactDOM.render(
 
 // Read all Cases from current user - for the dropdown
 
+store.dispatch(fetchUserCases()).then(() => {
+  store.getState()
+})
 
-// // THIS IS NEW:
-// store.dispatch(fetchUserCases()).then(() =>
-//   store.getState()
-// )
-
-// store.dispatch(fetchUserCases()).then(() => {
-//   store.getState()
-// })
-
-
-// // Read a specific case
-// store.dispatch(fetchCase(1)).then(() =>
-//   store.getState()
-// )
+// Read a specific case
+store.dispatch(fetchCase(1)).then(() =>
+  store.getState()
+)
 
 
 var data_insert = {
@@ -320,6 +313,7 @@ const test_data = {
     "draggedObjectiveId": null,
     "draggedAlternativeId": null,
     // "highlightAlternativeId": null,
+    "objectiveOrder": [],
     "offsetX": 0,
     "offsetY": 0
     },
@@ -468,10 +462,5 @@ const test_data = {
   ]
 }
 // console.log("Loading data in the Store", test_data)
-store.dispatch({type: 'DATA_LOADED', data: test_data})  // calls all your reducers
+// store.dispatch({type: 'DATA_LOADED', data: test_data})  // calls all your reducers
 // store.dispatch({type: 'DATA_LOADED', data: test_bad_data})  // calls all your reducers
-
-  // "uistate": {
-  //   highlight: true,
-  //   selected_alternative_id: 3
-  // }

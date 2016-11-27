@@ -43,6 +43,17 @@ p {
   margin: 5px;
 }
 
+/* hackily disable user selection on draggable things */
+.main-container {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
 
 .case-description {
   color:#D9DDE5;
