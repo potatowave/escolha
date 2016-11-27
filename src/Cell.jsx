@@ -13,11 +13,11 @@ function updateCell(e, cellSave, cell, cellToggled, cellUpdateDatabase) {
   }
 }
 
-export default function Cell({uistate_highlight, uistate_alt_id, low_is_better, cell, cell_index, thisRowsSelectedValue, cellBeingEdited, cellToggled, cellSave, cellUpdateDatabase, enablePlaceholder, ui}) {
+export default function Cell({uistate_highlight, uistate_selected_alt_id, low_is_better, cell, cell_index, thisRowsSelectedValue, cellBeingEdited, cellToggled, cellSave, cellUpdateDatabase, enablePlaceholder, ui}) {
 
   console.log("Rendering <Cell />");
 
-  var highlightedClass = (uistate_highlight && (cell.alternative_id === uistate_alt_id)) ? "highlight" : "";
+  var highlightedClass = (uistate_highlight && (cell.alternative_id === uistate_selected_alt_id)) ? "highlight" : "";
 
   var compare_tag = "";
 

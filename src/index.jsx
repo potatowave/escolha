@@ -307,7 +307,6 @@ var data_insert = {
 
 const test_data = {
   // "uistate": {
-  //   "order": null,
   //   "alt_id": null,
   //   "highlight": false,
   //   "draggedObjectiveId": null,

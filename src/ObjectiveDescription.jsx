@@ -5,7 +5,8 @@ class ObjectiveDescription extends Component {
   render() {
     console.log("Rendering <ObjectiveDescription />");
 
-    console.log("******* this.props.objective ***********", this.props.objective)
+    // console.log("******* this.props.objective ***********", this.props.objective)
+    
     return (
 
         <div 

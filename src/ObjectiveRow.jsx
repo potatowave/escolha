@@ -8,8 +8,8 @@ class ObjectiveRow extends Component {
     console.log("Rendering <ObjectiveRow />");
 
     function findSelectedCells(item) {
-      return item.alternative_id === this.props.uistate_alt_id;
-      // NOTE: item refers to the current cell - need to get 'order' from uistate_alt_id, not from Cells
+      return item.alternative_id === this.props.uistate_selected_alt_id;
+      // NOTE: item refers to the current cell - need to get 'order' from uistate_selected_alt_id, not from Cells
     }
 
     function matchingPropsRow(item) {
@@ -30,7 +30,7 @@ class ObjectiveRow extends Component {
           return (<Cell
             key={`c${cell.alternative_id}-${cell.alternative_id}`}
             uistate_highlight={this.props.uistate_highlight}
-            uistate_alt_id={this.props.uistate_alt_id}
+            uistate_selected_alt_id={this.props.uistate_selected_alt_id}
             low_is_better={this.props.low_is_better}
             cell={cell}
             cell_index={index}

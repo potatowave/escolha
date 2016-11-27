@@ -18,9 +18,9 @@ class TableMainSection extends Component {
             { this.props.showHorizontalHeadings && this.props.alternatives.map((alternative) => {
               return <AlternativeHeading
                 key={alternative.id}
-                uistate_order={this.props.uistate_order}
+                // uistate_order={this.props.uistate_order}
                 uistate_highlight={this.props.uistate_highlight}
-                uistate_alt_id={this.props.uistate_alt_id}
+                uistate_selected_alt_id={this.props.uistate_selected_alt_id}
                 alternative={alternative}
                 highlightFunction={this.props.highlightFunction}
                 enablePlaceholder={this.props.enablePlaceholder}
@@ -39,7 +39,7 @@ class TableMainSection extends Component {
 
                 // low_is_better = {item.low_is_better}
 
-                uistate_alt_id={this.props.uistate_alt_id}
+                uistate_selected_alt_id={this.props.uistate_selected_alt_id}
                 uistate_highlight={this.props.uistate_highlight}
                 cells={this.props.cells}
 
@@ -63,7 +63,7 @@ class TableMainSection extends Component {
             //     objective_id={item.id}
             //     low_is_better = {item.low_is_better}
             //     //uistate_order={this.props.uistate_order} // Selected alternative
-            //     uistate_alt_id={this.props.uistate_alt_id}
+            //     uistate_selected_alt_id={this.props.uistate_selected_alt_id}
             //     uistate_highlight={this.props.uistate_highlight}
             //     cells={this.props.cells}
 
@@ -100,8 +100,7 @@ function mapStateToProps(state) {
     objectives: state.objectives,
     alternatives: state.alternatives,
     cells: state.cells,
-    uistate_order: state.uistate.order,
-    uistate_alt_id: state.uistate.alt_id,
+    uistate_selected_alt_id: state.uistate.selected_alt_id,
     uistate_highlight: state.uistate.highlight,
     ui: state.uistate,
 
@@ -111,9 +110,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    highlightFunction: function(alternative, uistate_highlight, uistate_alt_id) {
+    highlightFunction: function(alternative, uistate_highlight, uistate_selected_alt_id) {
 
-      var isHighlighted = ((uistate_highlight) && (uistate_alt_id === alternative.id)) ? true : false;
+      var isHighlighted = ((uistate_highlight) && (uistate_selected_alt_id === alternative.id)) ? true : false;
 
       // Dispatch a action to toggle the highlight in the table
       // It will be called into AlternativeHeading.jsx file
@@ -121,8 +120,8 @@ function mapDispatchToProps(dispatch) {
         {
           type: 'ALTERNATIVES_SELECTED',
           uistate: {
-            order: alternative.order,
-            alt_id: alternative.id,
+            // order: alternative.order,
+            selected_alt_id: alternative.id,
             highlight: !isHighlighted
           }
         });

@@ -74,7 +74,6 @@ function cellsReducer(state = [], action) {
 function uiStateReducer(state = {}, action) {
   switch(action.type) {
     case 'DATA_LOADED':
-      {
         // if no 'uistate' in object from DB, set defaults
         // if no 'objectivesOrder' in object from DB, set order based on objective ids
         // else, load the 'uistate' from the DB object
@@ -89,8 +88,6 @@ function uiStateReducer(state = {}, action) {
           };
 
           const initialUI = {
-            order: null, // can probably delete this
-            alt_id: null, // can probably delete this
             highlight: false,
             draggedObjectiveId: null,
             objectivesOrder: objectiveIds,
@@ -119,10 +116,9 @@ function uiStateReducer(state = {}, action) {
           console.log("****** DATA LOADED *****")          
           return action.data.uistate;
         }
-      }
       break;
     case 'ALTERNATIVES_SELECTED':
-      return action.uistate; 
+      return Object.assign({}, state, action.uistate); 
       break;
     // case 'saveSelectedVal':
     //   return action.value;
