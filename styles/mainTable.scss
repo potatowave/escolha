@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cf0c73798825ff0001d13c83689aab7355f34ac
 .main-container {
   display: flex;
   flex-wrap: wrap;
@@ -7,7 +11,10 @@
 }
 
 .table-container {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4cf0c73798825ff0001d13c83689aab7355f34ac
   min-width: $cell-width;
   min-height: $cell-height;
   font-family: "Lucida Grande";
@@ -75,7 +82,10 @@
   color:#1d781d;
   transition-duration: 0.5s;
   transition-timing-function: ease-out;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4cf0c73798825ff0001d13c83689aab7355f34ac
 }
 
 .worse {
@@ -96,12 +106,10 @@
   opacity: 0.01;
 }
 
-
 .fade-appear.fade-appear-active {
   opacity: 1;
   transition: opacity 1s ease-in;
 }
-
 
 .cell-enter {
   opacity: 0.01;

@@ -56,29 +56,19 @@ class TableComponent extends Component {
 }
 
 // NOTE this should change - this.propos.handleMouseUp
-// 
+//
 function componentDidMount() {
   // document.body.addEventListener('mouseup', function() {
   //   // code that invokes our dragstart
   //   // instead of setting to ID set to null
-
   // })
   document.body.addEventListener('mouseup', this.props.handleMouseUp)
   document.body.addEventListener('mouseleave', this.props.handleMouseUp) // this is in case the mouse leaves the body (OPTIONAL - see if I like it)
 }
 
 function componentDidUnmount() {
-<<<<<<< HEAD
-  document.body.removeEventListener('mousedown', function() {
-
-  })
-=======
-  // document.body.removeEventListener('mouseup', function() {
-    
-  // })
   document.body.removeEventListener('mouseup', this.props.handleMouseUp)
-  document.body.removeEventListener('mouseleave', this.props.handleMouseUp) 
->>>>>>> f5160533bfc2bf060f1763d48e2af7d9304f3081
+  document.body.removeEventListener('mouseleave', this.props.handleMouseUp)
 }
 
 function mapStateToProps(state) {

@@ -12,22 +12,21 @@ class Nav extends Component {
     return (
 
         <nav className="navbar">
-            <div className="nav-links">
-              <div className="brand">Escol.ia</div>
-              <div className="dropdown">
-                <div className="dropbtn"><i className="fa fa-table" aria-hidden="true"></i></div>
-                  <div className="dropdown-content">
-                  {
-                    this.props.userCases.map((item) => {
-                        return <a key={item.id} onClick={ () => this.props.loadCase(item.id) }>{item.name}</a>
-                      })
-                  }
-                  </div>
+          <div className="nav-links">
+            <div className="brand">Escol.ia</div>
+            <div className="dropdown">
+              <div className="dropbtn"><i className="fa fa-table" aria-hidden="true"></i></div>
+                <div className="dropdown-content">
+                {
+                  this.props.userCases.map((item) => {
+                      return <a key={item.id} onClick={ () => this.props.loadCase(item.id) }>{item.name}</a>
+                    })
+                }
                 </div>
-              <div className="editor-button"><i className="fa fa-pencil" aria-hidden="true"></i></div>
-              <div className="create-button"><i className="fa fa-plus" aria-hidden="true"></i></div>
-            </div>
-
+              </div>
+            <div className="editor-button"><i className="fa fa-pencil" aria-hidden="true"></i></div>
+            <div className="create-button"><i className="fa fa-plus" aria-hidden="true"></i></div>
+          </div>
           <div className="nav-aside">
             <div className="search-area"><i className="fa fa-search"></i></div>
             <div className="login">Lighthouse-labs@gmail.com</div>
