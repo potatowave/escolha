@@ -19,16 +19,34 @@ class ObjectiveDescriptions extends Component {
         </div>
         
         }
-        
+
+        { //this.props.objectivesOrder.map((objectiveId) => {
+          // return <ObjectiveDescription 
+          //   key={objectiveId}
+
+          //   objective={this.props.objectives.find(objective => objective.id === objectiveId)}
+          //   // row={item.order}
+          //   // row={objectiveId.id}
+
+          //   // name={item.name}
+          //   // subname={item.sub_name}
+          //   // prefix={item.unit_prefix}
+          //   // suffix={item.unit_suffix}
+          //   enablePlaceholder={this.props.enablePlaceholder}
+          // />
+
+          //})
+        }
+
         { this.props.objectives.map((item) => {
           return <ObjectiveDescription 
             key={item.id}
             objective={item}
-            row={item.order}
-            name={item.name}
-            subname={item.sub_name}
-            prefix={item.unit_prefix}
-            suffix={item.unit_suffix}
+            // row={item.order}
+            // name={item.name}
+            // subname={item.sub_name}
+            // prefix={item.unit_prefix}
+            // suffix={item.unit_suffix}
             enablePlaceholder={this.props.enablePlaceholder}
           />
 
@@ -44,7 +62,7 @@ class ObjectiveDescriptions extends Component {
 ObjectiveDescriptions.defaultProps = {
   enablePlaceholder: true,
   showHorizontalHeadings: true,
-  // fields: []
+  objectivesOrder: []
 };
 
 export default ObjectiveDescriptions;

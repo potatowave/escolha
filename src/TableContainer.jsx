@@ -21,16 +21,19 @@ class TableContainer extends Component {
           {
             this.props.showVerticalHeadings &&
             <ObjectiveDescriptions
-              objectives={this.props.objectives}
+              objectivesOrder={this.props.objectivesOrder}
+              objectives={this.props.objectives} 
               enablePlaceholder={this.props.enablePlaceholder}
-              // fieldOrder={this.props.fieldOrder}
               showHorizontalHeadings={this.props.showHorizontalHeadings}
-              // fields={this.props.fields} 
             />
           }
           <TableMainSection 
             showHorizontalHeadings={this.props.showHorizontalHeadings}
             enablePlaceholder={this.props.enablePlaceholder}
+
+            objectivesOrder={this.props.objectivesOrder}
+            objectives={this.props.objectives}
+
             // itemOrder={this.props.itemOrder}
             // fieldOrder={this.props.fieldOrder}
             // items={this.props.items}

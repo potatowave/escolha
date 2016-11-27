@@ -5,20 +5,21 @@ class ObjectiveDescription extends Component {
   render() {
     console.log("Rendering <ObjectiveDescription />");
 
+    console.log("******* this.props.objective ***********", this.props.objective)
     return (
 
         <div 
           data-objective-id={this.props.objective.id}
-          className={ `r${this.props.row} objective-description ` + (this.props.enablePlaceholder && this.props.ui.draggedObjectiveId === this.props.objective.id ? ' placeholder' : '') }
+          className={ "objective-description" + (this.props.enablePlaceholder && this.props.ui.draggedObjectiveId === this.props.objective.id ? ' placeholder' : '') }
           onMouseDown={this.props.handleMouseDown.bind(this)}
           >
         
           <div className="objective-name-container">
-              <label className="objective-name">{this.props.name}</label><br />
-              <label className="sub-objective-name">*{this.props.subname}</label>
+              <label className="objective-name">{this.props.objective.name}</label><br />
+              <label className="sub-objective-name">*{this.props.objective.sub_name}</label>
           </div>
 
-          <label key={this.props.key} className="units">{this.props.prefix ? this.props.prefix : this.props.suffix}</label>
+          <label key={this.props.key} className="units">{this.props.objective.unit_prefix ? this.props.objective.unit_prefix : this.props.objective.unit_suffix}</label>
 
         </div>
 

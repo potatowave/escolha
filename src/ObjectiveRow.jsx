@@ -24,7 +24,7 @@ class ObjectiveRow extends Component {
 
 
     return (
-      <div className={"r"+this.props.current_row}>
+      <div className={"objective-row"}>
         { 
           this.props.cells.filter(matchingPropsRow, this).map((cell , index) => {
           return (<Cell

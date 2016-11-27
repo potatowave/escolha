@@ -75,26 +75,15 @@ class DAndDTable extends Component {
   render() {
     console.log("Rendering <DAndDTable />");
 
+
     return (
       <div className="d-and-d-table-component">
         <TableContainer 
           // This creates a ref to this object with the name "mainTable"
           ref={component => this.mainTable = component}
-          
+          objectivesOrder={this.props.ui.objectivesOrder}
           objectives={this.props.objectives}
           />
-        {
-          // this.props.ui.draggedItemId &&
-          // <TableContainer
-          //   ref={component => this.floatingColumn = component}
-          //   movable={true}
-          //   enablePlaceholder={false}
-          //   itemOrder={[this.props.ui.draggedItemId]}
-          //   fieldOrder={this.props.ui.fieldOrder}
-          //   items={this.props.items.filter(item => item.id === this.props.ui.draggedItemId)}
-          //   fields={this.props.fields}
-          //   showVerticalHeadings={false} />
-        }
         {
           this.props.ui.draggedObjectiveId &&
           <TableContainer
@@ -103,10 +92,10 @@ class DAndDTable extends Component {
 
             movable={true}
             enablePlaceholder={false}
-            // fieldOrder={[this.props.ui.draggedObjectiveId]}
-            // itemOrder={this.props.ui.itemOrder}
+
+            objectivesOrder={this.props.ui.objectivesOrder}
             objectives={this.props.objectives.filter(objective => objective.id === this.props.ui.draggedObjectiveId)}
-            // items={this.props.items}
+
             showHorizontalHeadings={false} 
           />
         }

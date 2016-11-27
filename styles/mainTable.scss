@@ -41,7 +41,8 @@
   justify-content: center;
 }
 
-.r1, .r2, .r3, .r4, .r5, .r6, .r7, .r8 {
+// .r1, .r2, .r3, .r4, .r5, .r6, .r7, .r8 {
+.objective-description, .objective-row {
   min-width: $cell-width;
   min-height: $cell-height;
   font-size: 1.8em;

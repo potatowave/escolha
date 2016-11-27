@@ -313,7 +313,7 @@ const test_data = {
     "draggedObjectiveId": null,
     "draggedAlternativeId": null,
     // "highlightAlternativeId": null,
-    "objectiveOrder": [],
+    "objectivesOrder": [8, 7],
     "offsetX": 0,
     "offsetY": 0
     },

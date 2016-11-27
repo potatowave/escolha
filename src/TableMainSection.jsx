@@ -7,7 +7,7 @@ class TableMainSection extends Component {
 
   render() {
     console.log("Rendering <TableMainSection />");
-    
+
     return (
 
       // <div>
@@ -24,6 +24,9 @@ class TableMainSection extends Component {
                 alternative={alternative}
                 highlightFunction={this.props.highlightFunction}
                 enablePlaceholder={this.props.enablePlaceholder}
+
+                objectivesOrder={this.props.objectivesOrder}
+                objectives={this.props.objectives}
               />
             })}
           </div>
@@ -34,6 +37,7 @@ class TableMainSection extends Component {
 
               return (<ObjectiveRow
                 key={`r${item.id}`}
+                
                 current_row={item.order} // Pass the 'id' for the current objective
                 objective_id={item.id}
                 low_is_better = {item.low_is_better}
@@ -45,6 +49,8 @@ class TableMainSection extends Component {
                 cellBeingEdited={this.props.cellBeingEdited}
                 enablePlaceholder={this.props.enablePlaceholder}
 
+                objectivesOrder={this.props.objectivesOrder}
+                objectives={this.props.objectives}
                  />);
             }
           })}
