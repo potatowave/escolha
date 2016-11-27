@@ -74,7 +74,52 @@ function cellsReducer(state = [], action) {
 function uiStateReducer(state = {}, action) {
   switch(action.type) {
     case 'DATA_LOADED':
-      return action.data.uistate;
+      {
+        // if no 'uistate' in object from DB, set defaults
+        // if no 'objectivesOrder' in object from DB, set order based on objective ids
+        // else, load the 'uistate' from the DB object
+        
+        if (action.data.uistate === undefined) {
+
+          var objectiveIds = [];
+
+          for (var item of action.data.objectives) {
+            console.log("*** No UISTATE data object ***")
+            objectiveIds.push(item["id"]);
+          };
+
+          const initialUI = {
+            order: null, // can probably delete this
+            alt_id: null, // can probably delete this
+            highlight: false,
+            draggedObjectiveId: null,
+            objectivesOrder: objectiveIds,
+            offsetX: 0,
+            offsetY: 0
+          }
+
+          return Object.assign({}, state, initialUI);
+
+        } else if (action.data.uistate.objectivesOrder === undefined) {
+ 
+          var objectiveIds = [];
+
+          for (var item of action.data.objectives) {
+            console.log("*** No objectivesOrder in UISTATE data object ***")
+            objectiveIds.push(item["id"]);
+          };
+
+          const initialUI = {
+            objectivesOrder: objectiveIds
+          }
+
+          return Object.assign({}, state, initialUI);
+
+        } else {
+          console.log("****** DATA LOADED *****")          
+          return action.data.uistate;
+        }
+      }
       break;
     case 'ALTERNATIVES_SELECTED':
       return action.uistate; 

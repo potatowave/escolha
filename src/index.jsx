@@ -44,14 +44,14 @@ ReactDOM.render(
 
 // Read all Cases from current user - for the dropdown
 
-// store.dispatch(fetchUserCases()).then(() => {
-//   store.getState()
-// })
+store.dispatch(fetchUserCases()).then(() => {
+  store.getState()
+})
 
-// // Read a specific case
-// store.dispatch(fetchCase(1)).then(() =>
-//   store.getState()
-// )
+// Read a specific case
+store.dispatch(fetchCase(1)).then(() =>
+  store.getState()
+)
 
 
 var data_insert = {
@@ -306,17 +306,17 @@ var data_insert = {
 
 
 const test_data = {
-  "uistate": {
-    "order": null,
-    "alt_id": null,
-    "highlight": false,
-    "draggedObjectiveId": null,
-    // "draggedAlternativeId": null,
-    // "highlightAlternativeId": null,
-    "objectivesOrder": [8, 7],
-    "offsetX": 0,
-    "offsetY": 0
-    },
+  // "uistate": {
+  //   "order": null,
+  //   "alt_id": null,
+  //   "highlight": false,
+  //   "draggedObjectiveId": null,
+  //   // "draggedAlternativeId": null,
+  //   // "highlightAlternativeId": null,
+  //   "objectivesOrder": [8, 7],
+  //   "offsetX": 0,
+  //   "offsetY": 0
+  //   },
   "objectives": [
     {
       "id": 7,
@@ -462,5 +462,5 @@ const test_data = {
   ]
 }
 // console.log("Loading data in the Store", test_data)
-store.dispatch({type: 'DATA_LOADED', data: test_data})  // calls all your reducers
+// store.dispatch({type: 'DATA_LOADED', data: test_data})  // calls all your reducers
 // store.dispatch({type: 'DATA_LOADED', data: test_bad_data})  // calls all your reducers
