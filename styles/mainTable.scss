@@ -26,6 +26,13 @@
   box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
 }
 
+.header-alternatives-container {
+  font-weight: 600;
+  font-kerning: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
 .main-container {
   display: flex;
   flex-wrap: wrap;

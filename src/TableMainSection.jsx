@@ -13,7 +13,7 @@ class TableMainSection extends Component {
       // <div>
         <div className="table-area">
 
-          <div className="header">
+          <div className="header-alternatives-container">
 
             { this.props.alternatives.map((alternative) => {
               return <AlternativeHeading
