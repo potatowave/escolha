@@ -26,7 +26,6 @@ body {
   background: #EEEEEE;
   background: #31384E;
   font-family: 'Roboto', sans-serif;
-  /*font-family: 'Open Sans', sans-serif;*/
 }
 
 main {
@@ -44,71 +43,24 @@ p {
 }
 
 .case-description {
+  color:black;
   color:#D9DDE5;
   display: flex;
   align-items: center;
   justify-content: center;
-  /*text-align: center;*/
   margin: 0px 250px 50px 250px;
   line-height: 1.5em;
   font-size: 1.4em;
-   font-family: Helvetica;
-   font-weight: lighter;
-   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+  font-weight: lighter;
+  font-family: "Lucida Grande";
 }
 
 .case-title {
+  color: black;
   color:white;
-    margin-top:100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Helvetica;
-    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
-}
-
-
-/*
-.hide-button {
-  border-radius: 50%;
-  width: $hide-button-diameter;
-  height: $hide-button-diameter;
-  border: 2px solid #999;
-  margin-top: ($cell-height - $hide-button-diameter)/2;
-  margin-bottom: ($cell-height - $hide-button-diameter)/2;
-}
-
-.hide-button-spacer {
-  width: $cell-height;
-  height: $cell-height;
-  background-color: lightgrey;
-}
-
-.hide-buttons-rows {
+  margin-top:100px;
   display: flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: center;
+  font-family: "Lucida Grande";
 }
-
-.alt-image-container {
-  display: flex;
-  // flex-flow: row wrap;
-  // justify-content: space-between;
-
-  align-items: center;
-  margin-left: $header-units-width + $header-obj-width + (2 * $num-alts * $cell-margin);
-  margin-bottom: 5px;
-}
-
-.alt-image-1, .alt-image-2, .alt-image-3, .alt-image-4, .alt-image-5, .alt-image-6{
-
-  border-radius: 50%;
-  width: $circle-diameter;
-  height: $circle-diameter;
-  border: 2px solid #999;
-  margin-left: ($cell-width - $circle-diameter)/2;
-  margin-right: ($cell-width - $circle-diameter)/2;
-}
-
-*/
-

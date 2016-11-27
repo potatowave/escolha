@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default function AlternativeHeading({alternative, uistate_order, highlightFunction, uistate_highlight, uistate_alt_id}) {
 
@@ -10,7 +9,7 @@ export default function AlternativeHeading({alternative, uistate_order, highligh
     <label
       onClick={ () => highlightFunction(alternative, uistate_highlight, uistate_alt_id) }
       key={alternative.id}
-      className={highlightedClass}
+      className={'hvr-icon-fade '+ highlightedClass}
     >
 
     {alternative.name}
