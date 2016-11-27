@@ -193,10 +193,10 @@ module.exports = (knex) => {
 
     const msg = 'Entire Case Updated';
 
-    caseLength = data.case || 0;
-    objectivesLength = data.objectives || 0;
-    alternativesLength = data.alternatives || 0;
-    cellsLength = data.cells || 0;
+    const caseLength = data.case || 0;
+    const objectivesLength = data.objectives || 0;
+    const alternativesLength = data.alternatives || 0;
+    const cellsLength = data.cells || 0;
 
 
     /**

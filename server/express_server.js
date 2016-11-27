@@ -35,6 +35,7 @@ const User = require('./models/User');
 
 // ----------------------------------------------------------------------------
 const app = express();
+app.use(express.static(__dirname + '/public'));
 
 // <<<<<<< HEAD
 app.use(cors());
@@ -61,7 +62,7 @@ app.use(passport.session());
 // >>>>>>> master
 
 app.set('view engine', 'ejs'); // Set View Engine to ejs
-app.use(express.static('public'));
+
 
 
 // ----------------------------------------------------------------------------
@@ -107,6 +108,7 @@ app.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/login');
 });
+
 
 app.get('/', (req,res) => {
   res.send('Logged in!');
