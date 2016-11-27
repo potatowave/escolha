@@ -1,6 +1,12 @@
 import { combineReducers } from 'redux';
 import * as Cellreducers from './reducers/cell'
 
+function moveValueInArray(array, from, to) {
+  const a = array.slice(0);
+  a.splice(to, 0, a.splice(from, 1)[0]);
+  return a;
+}
+
 // define reducer functions.
 function userCases(state = [], action) {
   switch(action.type) {
@@ -81,12 +87,16 @@ function uiStateReducer(state = {}, action) {
       return Object.assign({}, state, action.data);
       break;
     case 'REORDER_OBJECTIVES':
-      const currentDraggedObjectiveIndex = state.objectiveOrder.indexOf(state.draggedObjectiveId);
+      // console.log("state.objectivesOrder", state.objectivesOrder)
+      // console.log("state.draggedObjectiveId", state.draggedObjectiveId);
+
+      const currentDraggedObjectiveIndex = state.objectivesOrder.indexOf(state.draggedObjectiveId);
+
       console.log("UPDATING STATE");
-      console.log("currentDraggedObjectiveIndex", currentDraggedObjectiveIndex)
+      // console.log("currentDraggedObjectiveIndex", currentDraggedObjectiveIndex)
 
       if (currentDraggedObjectiveIndex === -1) return state;
-      state.objectiveOrder = moveValueInArray(state.objectiveOrder, currentDraggedObjectiveIndex, action.data.newDraggedObjectiveIndex);
+      state.objectivesOrder = moveValueInArray(state.objectivesOrder, currentDraggedObjectiveIndex, action.data.newDraggedObjectiveIndex);
       return state;
     default:
       return state

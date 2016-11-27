@@ -93,7 +93,8 @@ class DAndDTable extends Component {
             movable={true}
             enablePlaceholder={false}
 
-            objectivesOrder={this.props.ui.objectivesOrder}
+            // objectivesOrder={this.props.ui.objectivesOrder}
+            objectivesOrder={[this.props.ui.draggedObjectiveId]}
             objectives={this.props.objectives.filter(objective => objective.id === this.props.ui.draggedObjectiveId)}
 
             showHorizontalHeadings={false} 

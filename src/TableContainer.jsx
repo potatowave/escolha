@@ -34,10 +34,6 @@ class TableContainer extends Component {
             objectivesOrder={this.props.objectivesOrder}
             objectives={this.props.objectives}
 
-            // itemOrder={this.props.itemOrder}
-            // fieldOrder={this.props.fieldOrder}
-            // items={this.props.items}
-            // fields={this.props.fields} 
           />
 
         </div>
@@ -54,7 +50,7 @@ TableContainer.defaultProps = {
   showVerticalHeadings: true,
   enablePlaceholder: true,
   // items: [],
-  // fields: []
+  objectives: []
 };
 
 export default TableContainer;

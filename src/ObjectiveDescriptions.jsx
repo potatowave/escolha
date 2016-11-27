@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
 import ObjectiveDescription from './ObjectiveDescription.jsx';
 
 class ObjectiveDescriptions extends Component {
@@ -20,14 +19,22 @@ class ObjectiveDescriptions extends Component {
         
         }
 
-        { //this.props.objectivesOrder.map((objectiveId) => {
+        { 
+          this.props.objectivesOrder.map((objectiveId) => {
+          return <ObjectiveDescription 
+            key={objectiveId}
+            objective={this.props.objectives.find(objective => objective.id === objectiveId)}
+            enablePlaceholder={this.props.enablePlaceholder}
+          />
+
+          })
+        }
+
+        { //this.props.objectives.map((item) => {
           // return <ObjectiveDescription 
-          //   key={objectiveId}
-
-          //   objective={this.props.objectives.find(objective => objective.id === objectiveId)}
+          //   key={item.id}
+          //   objective={item}
           //   // row={item.order}
-          //   // row={objectiveId.id}
-
           //   // name={item.name}
           //   // subname={item.sub_name}
           //   // prefix={item.unit_prefix}
@@ -35,22 +42,7 @@ class ObjectiveDescriptions extends Component {
           //   enablePlaceholder={this.props.enablePlaceholder}
           // />
 
-          //})
-        }
-
-        { this.props.objectives.map((item) => {
-          return <ObjectiveDescription 
-            key={item.id}
-            objective={item}
-            // row={item.order}
-            // name={item.name}
-            // subname={item.sub_name}
-            // prefix={item.unit_prefix}
-            // suffix={item.unit_suffix}
-            enablePlaceholder={this.props.enablePlaceholder}
-          />
-
-          })
+         // })
         }
 
       </div>
@@ -62,7 +54,8 @@ class ObjectiveDescriptions extends Component {
 ObjectiveDescriptions.defaultProps = {
   enablePlaceholder: true,
   showHorizontalHeadings: true,
-  objectivesOrder: []
+  objectivesOrder: [],
+  objectives: []
 };
 
 export default ObjectiveDescriptions;

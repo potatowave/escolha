@@ -31,17 +31,14 @@ class TableMainSection extends Component {
             })}
           </div>
 
-          { this.props.objectives.map((item) => {
-            
-            if((this.props.enablePlaceholder || (!(this.props.enablePlaceholder) && item.id === this.props.ui.draggedObjectiveId))) {
-
+          { this.props.objectivesOrder.map((objectiveId) => {
+    
               return (<ObjectiveRow
-                key={`r${item.id}`}
-                
-                current_row={item.order} // Pass the 'id' for the current objective
-                objective_id={item.id}
-                low_is_better = {item.low_is_better}
-                //uistate_order={this.props.uistate_order} // Selected alternative
+                key={objectiveId}
+                objective_id={objectiveId}
+
+                // low_is_better = {item.low_is_better}
+
                 uistate_alt_id={this.props.uistate_alt_id}
                 uistate_highlight={this.props.uistate_highlight}
                 cells={this.props.cells}
@@ -50,10 +47,39 @@ class TableMainSection extends Component {
                 enablePlaceholder={this.props.enablePlaceholder}
 
                 objectivesOrder={this.props.objectivesOrder}
-                objectives={this.props.objectives}
+                objective={this.props.objectives.find(objective => objective.id === objectiveId)}
+                // objectives={this.props.objectives}
                  />);
-            }
           })}
+
+          { //this.props.objectives.map((item) => {
+            
+            // if((this.props.enablePlaceholder || (!(this.props.enablePlaceholder) && item.id === this.props.ui.draggedObjectiveId))) {
+
+            //   return (<ObjectiveRow
+            //     key={`r${item.id}`}
+
+            //     current_row={item.order} // Pass the 'id' for the current objective
+            //     objective_id={item.id}
+            //     low_is_better = {item.low_is_better}
+            //     //uistate_order={this.props.uistate_order} // Selected alternative
+            //     uistate_alt_id={this.props.uistate_alt_id}
+            //     uistate_highlight={this.props.uistate_highlight}
+            //     cells={this.props.cells}
+
+            //     cellBeingEdited={this.props.cellBeingEdited}
+            //     enablePlaceholder={this.props.enablePlaceholder}
+
+            //     objectivesOrder={this.props.objectivesOrder}
+            //     objectives={this.props.objectives}
+            //      />);
+            // }
+          // })
+          }
+
+
+
+
         </div>
       // </div>
     );
@@ -64,7 +90,8 @@ TableMainSection.defaultProps = {
   showHorizontalHeadings: true,
   enablePlaceholder: true,
   // items: [],
-  // fields: []
+  objectives: [],
+  objectivesOrder: []
 };
 
 
