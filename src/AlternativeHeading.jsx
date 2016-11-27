@@ -9,7 +9,7 @@ export default function AlternativeHeading({alternative, uistate_order, highligh
     <label
       onClick={ () => highlightFunction(alternative, uistate_highlight, uistate_alt_id) }
       key={alternative.id}
-      className={'hvr-icon-fade '+ highlightedClass}
+      className={'hvr-float hvr-icon-fade '+ highlightedClass}
     >
 
     {alternative.name}
