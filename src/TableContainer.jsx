@@ -16,7 +16,9 @@ class TableContainer extends Component {
 
         <div className="table-container">
 
-          <ObjectiveDescriptions />
+          <ObjectiveDescriptions
+            objectives={this.props.objectives}
+          />
 
           <TableMainSection />
 

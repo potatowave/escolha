@@ -317,7 +317,7 @@ const test_data = {
     "order": null,
     "alt_id": null,
     "highlight": false,
-    "draggedFieldId": null,
+    "draggedObjectiveId": null,
     "offsetX": 0,
     "offsetY": 0
     },

@@ -6,13 +6,14 @@ class ObjectiveDescription extends Component {
     console.log("Rendering <ObjectiveDescription ******** />");
 
     return (
-      
-      <div>
-        
+
         <div 
           id="realtable"
           ref="REFNAME"
-          className={ `r${this.props.row} draggable ` } >
+          className={ `r${this.props.row} objective` }
+          onMouseDown={this.props.handleMouseDown.bind(this)}
+          >
+
           <div className="objective-name-container">
             <div className="table-area">
               <label className="objective-name">{this.props.name}</label><br />
@@ -24,19 +25,30 @@ class ObjectiveDescription extends Component {
 
         </div>
 
-      </div>
-
       )
   }
 }
 
 function mapStateToProps(state) {
-  // objectives: state.objectives
-
+  return {}
 }
 
 function mapDispatchToProps(dispatch) {
-
+  return {
+    handleMouseDown: function (event) {
+      const offsetY = event.pageY - event.target.offsetParent.offsetTop;
+      const offsetX = event.pageX - event.target.offsetParent.offsetLeft;
+      console.log("MOUSE DOWN!");
+      dispatch({
+        type: 'UPDATE_UI',
+        data: {
+          draggedObjectiveId: this.props.objective.id,
+          offsetX: offsetX,
+          offsetY: offsetY
+        }
+      })
+    }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ObjectiveDescription);

@@ -69,12 +69,15 @@ function uiStateReducer(state = {}, action) {
       return action.uistate; // How to set state from a reducer?
     case 'saveSelectedVal':
       return action.value;
-    case 'OBJECTIVE_DRAGSTART':
+    case 'UPDATE_UI':
       return Object.assign({}, state, action.data);
-    case 'OBJECTIVE_DRAGEND':
-      return Object.assign({}, state, action.data);
-    case 'OBJECTIVE_DRAGGING':
-      return Object.assign({}, state, action.data);
+      break;
+    // case 'OBJECTIVE_DRAGSTART':
+    //   return Object.assign({}, state, action.data);
+    // case 'OBJECTIVE_DRAGEND':
+    //   return Object.assign({}, state, action.data);
+    // case 'OBJECTIVE_DRAGGING':
+    //   return Object.assign({}, state, action.data);
     default:
       return state
   }

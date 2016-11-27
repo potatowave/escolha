@@ -20,7 +20,6 @@ class ObjectiveDescriptions extends Component {
           return <ObjectiveDescription 
             key={item.id}
             objective={item}
-            objective_id={item.id}
             row={item.order}
             name={item.name}
             subname={item.sub_name}
@@ -38,10 +37,4 @@ class ObjectiveDescriptions extends Component {
 }
 
 
-function mapStateToProps(state) {
-  return {
-    objectives: state.objectives
-  }
-}
-
-export default connect(mapStateToProps, null)(ObjectiveDescriptions);
+export default ObjectiveDescriptions;
