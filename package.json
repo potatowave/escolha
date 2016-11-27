@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "eslint src",
     "api": "node server/express_server.js",
+    "start": "node server/express_server.js",
     "frontend": "node server/webpack_server.js"
   },
   "repository": {
