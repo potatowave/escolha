@@ -1,21 +1,18 @@
 
-.better {
-  background: #CEF1D7;
-  color:#1d781d;
-  font-weight: 600;
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.c1, .c2, .c3, .c4, .c5, .c6 {
+.table-container {
   min-width: $cell-width;
   min-height: $cell-height;
-  margin: $cell-margin;
-  background-color: #dbe8ff;
-  border: 1px solid #A7BFE8;
-  border-radius: 3px;
-  color: #353535;
-  text-align: center;
-  line-height: 3em;
-  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+  font-family: "Lucida Grande";
+  align-items: center;
+  display: flex;
 }
 
 .header-alternatives {
@@ -33,6 +30,27 @@
   box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
 }
 
+.r1, .r2, .r3, .r4, .r5, .r6, .r7, .r8 {
+  min-width: $cell-width;
+  min-height: $cell-height;
+  font-size: 1.8em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.c1, .c2, .c3, .c4, .c5, .c6 {
+  min-width: $cell-width;
+  min-height: $cell-height;
+  margin: $cell-margin;
+  background-color: #dbe8ff;
+  border: 1px solid #A7BFE8;
+  border-radius: 3px;
+  color: #353535;
+  text-align: center;
+  line-height: 3em;
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+}
+
 .highlight {
   border: 1px solid #999;
   background: #7D8089;
@@ -42,20 +60,16 @@
   z-index: 99;
  }
 
-.main-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  flex-direction: row;
-  justify-content: center;
+.better {
+  background: #CEF1D7;
+  color:#1d781d;
+  font-weight: 600;
 }
 
-.r1, .r2, .r3, .r4, .r5, .r6, .r7, .r8 {
-  min-width: $cell-width;
-  min-height: $cell-height;
-  font-size: 1.8em;
-  display: flex;
-  justify-content: space-between;
+.worse {
+  background: #FFC8CE;
+  color:#AC2117;
+  font-weight: 580;
 }
 
 .table-area input {
@@ -65,31 +79,34 @@
   width: 5em;
 }
 
-.table-container {
-  min-width: $cell-width;
-  min-height: $cell-height;
-  font-family: "Lucida Grande";
-  align-items: center;
-  display: flex;
+.fade-appear {
+  opacity: 0.01;
 }
 
-.worse {
-  background: #FFC8CE;
-  color:#AC2117;
-  font-weight: 580;
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity 1s ease-in;
 }
 
+.cell-enter {
+  opacity: 0.01;
+  color:purple;
+}
 
+.cell-enter.cell-enter-active {
+  opacity: 1;
+  color:purple;
+  transition: opacity 500ms ease-in;
+}
 
+.cell-leave {
 
+  color:purple;
+  opacity: 1;
+}
 
-
-
-
-
-
-
-
-
-
-
+.cell-leave.cell-leave-active {
+  color:purple;
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

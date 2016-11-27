@@ -1,16 +1,20 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default function AlternativeHeading({alternative, uistate_order, highlightFunction, uistate_highlight, uistate_alt_id}) {
 
   var highlightedClass = ( (uistate_highlight) && (alternative.order === uistate_order)) ? "header-alternatives highlight" : "header-alternatives";
 
   return (
+
     <label
       onClick={ () => highlightFunction(alternative, uistate_highlight, uistate_alt_id) }
       key={alternative.id}
       className={highlightedClass}
     >
+
     {alternative.name}
+
     </label>
   )
 }

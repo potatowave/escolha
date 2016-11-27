@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
 import Alternatives from './Alternatives.jsx'
 
@@ -37,7 +38,7 @@ class TableComponent extends Component {
                 handle_mousemove={this.props.handle_mousemove}
                 clientX={this.props.clientX}
                 clientY={this.props.clientY}
-                />  
+                />
 
                 })
             }
@@ -65,7 +66,7 @@ function componentDidMount() {
 
 function componentDidUnmount() {
   document.body.removeEventListener('mousedown', function() {
-    
+
   })
 }
 
@@ -81,7 +82,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
 
-    handle_mousedown: function(objectiveId) {    
+    handle_mousedown: function(objectiveId) {
       // offsetX = event.offsetX;
       // offsetY = event.offsetY;
 
