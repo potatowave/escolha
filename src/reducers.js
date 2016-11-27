@@ -6,6 +6,7 @@ function userCases(state = [], action) {
   switch(action.type) {
     case 'USER_CASES':
       return action.data.cases;
+      break;
     default:
       return state
   }
@@ -15,6 +16,7 @@ function casesReducer(state = [], action) {
   switch(action.type) {
     case 'DATA_LOADED':
       return action.data.cases;
+      break;
     default:
       return state
   }
@@ -23,6 +25,7 @@ function objectivesReducer(state = [], action) {
   switch(action.type) {
     case 'DATA_LOADED':
       return action.data.objectives;
+      break;
     default:
       return state
   }
@@ -31,6 +34,7 @@ function alternativesReducer(state = [], action) {
   switch(action.type) {
     case 'DATA_LOADED':
       return action.data.alternatives;
+      break;
     default:
       return state
   }
@@ -39,6 +43,7 @@ function cellsReducer(state = [], action) {
   switch(action.type) {
     case 'DATA_LOADED':
       return action.data.cells
+      break;
     case 'CELL_SAVE':
       // update the cell
       var cellToUpdateIndex;
@@ -54,7 +59,7 @@ function cellsReducer(state = [], action) {
         newCell,
         ...state.slice(cellToUpdateIndex + 1)
       ]
-
+      break;
     default:
       return state
   }
@@ -65,10 +70,13 @@ function uiStateReducer(state = {}, action) {
     // case 'AlternativesSelected':
     case 'DATA_LOADED':
       return action.data.uistate;
+      break;
     case 'AlternativesSelected':
       return action.uistate; // How to set state from a reducer?
+      break;
     case 'saveSelectedVal':
       return action.value;
+      break;
     case 'UPDATE_UI':
       return Object.assign({}, state, action.data);
       break;
