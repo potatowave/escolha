@@ -1,5 +1,9 @@
-import { combineReducers } from 'redux';
+// reducers.js
+// Define the reducer
+import { createStore, combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form'
 import * as Cellreducers from './reducers/cell'
+
 
 // define reducer functions.
 function userCases(state = [], action) {
@@ -80,8 +84,6 @@ function uiStateReducer(state = {}, action) {
   }
 }
 
-
-
 // the keys are the names of the store property
 const rootReducer = combineReducers({
   // users: usersReducer,
@@ -89,12 +91,12 @@ const rootReducer = combineReducers({
   cases: casesReducer,
   objectives: objectivesReducer,
   alternatives: alternativesReducer,
+  uistate: uiStateReducer,
+  form: formReducer,
   cells: cellsReducer,
   uistate: uiStateReducer,
 
   cellBeingEdited: Cellreducers.cellReducer
 });
-
-
 
 export default rootReducer;

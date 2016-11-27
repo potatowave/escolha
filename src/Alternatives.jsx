@@ -7,7 +7,6 @@ class Alternatives extends Component {
 
   render() {
     console.log("Rendering <Alternatives />");
-
     return (
 
       // <div>
@@ -25,6 +24,7 @@ class Alternatives extends Component {
                 highlightFunction={this.props.highlightFunction}
               />
             })}
+
           </div>
 
           { this.props.objectives.map((item) => {

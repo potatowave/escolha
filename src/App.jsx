@@ -1,15 +1,21 @@
+const injectTouchTapEvent = require('react-tap-event-plugin');
+injectTouchTapEvent();
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Heading from './Heading.jsx';
 import Nav from './Nav.jsx';
+import { Router, Route, Link } from 'react-router';
+import Onboard from './Onboard.jsx';
+
 import TableComponent from './TableComponent.jsx';
 
 class App extends Component {
   render() {
     console.log('Rendering <App/>');
-    return (
 
+    return (
       <div className="wrapper">
+
 
         <Nav />
         <main>
@@ -18,7 +24,7 @@ class App extends Component {
               return <Heading key={item.id} name={item.name} description={item.description} /> })}
 
           <TableComponent />
-          
+
         </main>
 
       </div>
@@ -36,7 +42,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     somePropFunction: function() {
-      const action = { type: 'ADD_CONTACT', contact: { id: 1, name: "Bob" } };
+      const action = { type: 'ADD_CASE', case: { id: 1, name: "Bob" } };
       dispatch(action);
     }
   }
