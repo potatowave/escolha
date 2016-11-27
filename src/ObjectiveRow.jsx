@@ -33,7 +33,6 @@ class ObjectiveRow extends Component {
             cell={cell}
             cell_index={index}
             thisRowsSelectedValue={thisRowsSelectedValue}
-
             cellBeingEdited={this.props.cellBeingEdited}
             cellToggled={this.props.cellToggled}
             cellSave={this.props.cellSave}
