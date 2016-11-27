@@ -17,3 +17,9 @@
   display: none;
   background-color: red;
 }
+
+/* make divs with class placeholder look ghostly */
+.placeholder {
+  background: #eee;
+  color: #ccc;
+}

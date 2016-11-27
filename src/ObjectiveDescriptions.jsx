@@ -25,6 +25,7 @@ class ObjectiveDescriptions extends Component {
             subname={item.sub_name}
             prefix={item.unit_prefix}
             suffix={item.unit_suffix}
+            enablePlaceholder={this.props.enablePlaceholder}
           />
 
           })
@@ -36,5 +37,10 @@ class ObjectiveDescriptions extends Component {
   }
 }
 
+ObjectiveDescriptions.defaultProps = {
+  enablePlaceholder: true,
+  showHorizontalHeadings: true,
+  // fields: []
+};
 
 export default ObjectiveDescriptions;

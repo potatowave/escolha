@@ -318,6 +318,8 @@ const test_data = {
     "alt_id": null,
     "highlight": false,
     "draggedObjectiveId": null,
+    "draggedAlternativeId": null,
+    // "highlightAlternativeId": null,
     "offsetX": 0,
     "offsetY": 0
     },

@@ -15,7 +15,7 @@ class TableMainSection extends Component {
 
           <div className="header-alternatives-container">
 
-            { this.props.alternatives.map((alternative) => {
+            { this.props.showHorizontalHeadings && this.props.alternatives.map((alternative) => {
               return <AlternativeHeading
                 key={alternative.id}
                 uistate_order={this.props.uistate_order}
@@ -23,6 +23,7 @@ class TableMainSection extends Component {
                 uistate_alt_id={this.props.uistate_alt_id}
                 alternative={alternative}
                 highlightFunction={this.props.highlightFunction}
+                enablePlaceholder={this.props.enablePlaceholder}
               />
             })}
           </div>
@@ -39,6 +40,8 @@ class TableMainSection extends Component {
               cells={this.props.cells}
 
               cellBeingEdited={this.props.cellBeingEdited}
+              enablePlaceholder={this.props.enablePlaceholder}
+
                />);
 
             })}
@@ -47,6 +50,14 @@ class TableMainSection extends Component {
     );
   }
 }
+
+TableMainSection.defaultProps = {
+  showHorizontalHeadings: true,
+  enablePlaceholder: true,
+  // items: [],
+  // fields: []
+};
+
 
 function mapStateToProps(state) {
   return {

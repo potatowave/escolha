@@ -10,21 +10,22 @@ class DAndDTable extends Component {
 
   // STUFF GOES HERE
 
+  componentDidMount() {
+    document.body.addEventListener('mouseup', this.props.handleMouseUp);
+  }
+
+  componentWillUnmount() {
+    document.body.removeEventListener('mouseup', this.props.handleMouseUp);
+  }
+
+
   render() {
     return (
       <div className="d-and-d-table-component">
         <TableContainer 
           objectives={this.props.objectives}
           />
-        
-      
         {
-          //     objectives: state.objectives,
-          //     dragged_objective_id: state.uistate.dragged_objective_id,
-          //     clientX: state.uistate.clientX,
-          //     clientY: state.uistate.clientY
-          // 
-          // 
           // this.props.ui.draggedItemId &&
           // <TableContainer
           //   ref={component => this.floatingColumn = component}
@@ -37,16 +38,17 @@ class DAndDTable extends Component {
           //   showVerticalHeadings={false} />
         }
         {
-          // this.props.ui.draggedFieldId &&
-          // <TableContainer
-          //   ref={component => this.floatingRow = component}
-          //   movable={true}
-          //   enablePlaceholder={false}
-          //   fieldOrder={[this.props.ui.draggedFieldId]}
-          //   itemOrder={this.props.ui.itemOrder}
-          //   fields={this.props.fields.filter(field => field.id === this.props.ui.draggedFieldId)}
-          //   items={this.props.items}
-          //   showHorizontalHeadings={false} />
+          this.props.ui.draggedObjectiveId &&
+          <TableContainer
+            ref={component => this.floatingRow = component}
+            movable={true}
+            enablePlaceholder={false}
+            // fieldOrder={[this.props.ui.draggedObjectiveId]}
+            // itemOrder={this.props.ui.itemOrder}
+            objectives={this.props.objectives.filter(objective => objective.id === this.props.ui.draggedObjectiveId)}
+            // items={this.props.items}
+            showHorizontalHeadings={false} 
+          />
         }
       </div>
     )
@@ -55,13 +57,23 @@ class DAndDTable extends Component {
 
 function mapStateToProps(state) {
   return {
-    objectives: state.objectives,
+    ui: state.uistate,
+    objectives: state.objectives
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    
+    handleMouseUp() {
+      console.log("MOUSE UP!")
+      dispatch({
+        type: 'UPDATE_UI',
+        data: {
+          // draggedItemId: null,
+          draggedObjectiveId: null
+        }
+      });
+    }
   }
 }
 

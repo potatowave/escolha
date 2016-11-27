@@ -38,6 +38,9 @@ class ObjectiveRow extends Component {
             cellToggled={this.props.cellToggled}
             cellSave={this.props.cellSave}
             cellUpdateDatabase={this.props.cellUpdateDatabase}
+
+            enablePlaceholder={this.props.enablePlaceholder}
+            ui={this.props.ui}
           />)
         })}
       </div>
@@ -45,10 +48,16 @@ class ObjectiveRow extends Component {
   }
 }
 
+ObjectiveRow.defaultProps = {
+  enablePlaceholder: true
+};
+
+
 function mapStateToProps(state) {
   return {
     objectives: state.objectives,
-    cells: state.cells
+    cells: state.cells,
+    ui: state.uistate
   }
 }
 
