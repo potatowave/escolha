@@ -119,7 +119,7 @@ function mapDispatchToProps(dispatch) {
       // It will be called into AlternativeHeading.jsx file
       dispatch(
         {
-          type: 'AlternativesSelected',
+          type: 'ALTERNATIVES_SELECTED',
           uistate: {
             order: alternative.order,
             alt_id: alternative.id,

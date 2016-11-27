@@ -73,16 +73,15 @@ function cellsReducer(state = [], action) {
 
 function uiStateReducer(state = {}, action) {
   switch(action.type) {
-    // case 'AlternativesSelected':
     case 'DATA_LOADED':
       return action.data.uistate;
       break;
-    case 'AlternativesSelected':
+    case 'ALTERNATIVES_SELECTED':
       return action.uistate; 
       break;
-    case 'saveSelectedVal':
-      return action.value;
-      break;
+    // case 'saveSelectedVal':
+    //   return action.value;
+    //   break;
     case 'UPDATE_UI':
       return Object.assign({}, state, action.data);
       break;
