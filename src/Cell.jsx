@@ -16,7 +16,6 @@ function updateCell(e, cellSave, cell, cellToggled, cellUpdateDatabase) {
 export default function Cell({uistate_highlight, uistate_alt_id, low_is_better, cell, cell_index, thisRowsSelectedValue, cellBeingEdited, cellToggled, cellSave, cellUpdateDatabase, enablePlaceholder, ui}) {
 
   console.log("Rendering <Cell />");
-  console.log("Cell - enablePlaceholder:", enablePlaceholder);
 
   var highlightedClass = (uistate_highlight && (cell.alternative_id === uistate_alt_id)) ? "highlight" : "";
 
@@ -47,7 +46,7 @@ export default function Cell({uistate_highlight, uistate_alt_id, low_is_better, 
         // className={"cell c"+(cell_index+1) +" "+highlightedClass+" "+compare_tag}
         className={"cell c"+(cell_index+1) +" "+(enablePlaceholder && (
               cell.alternative_id === ui.draggedAlternativeId ||
-              cell.objective_id.id === ui.draggedObjectiveId
+              cell.objective_id === ui.draggedObjectiveId
             ) ? ' placeholder' : '')+" "+compare_tag}
         >
         { !isInputVisible && cell.value }

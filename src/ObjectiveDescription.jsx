@@ -8,11 +8,11 @@ class ObjectiveDescription extends Component {
     return (
 
         <div 
-          data-field-id={this.props.objective.id}
-          className={ `r${this.props.row} objective ` + (this.props.enablePlaceholder && this.props.ui.draggedObjectiveId === this.props.objective.id ? ' placeholder' : '') }
+          data-objective-id={this.props.objective.id}
+          className={ `r${this.props.row} objective-description ` + (this.props.enablePlaceholder && this.props.ui.draggedObjectiveId === this.props.objective.id ? ' placeholder' : '') }
           onMouseDown={this.props.handleMouseDown.bind(this)}
           >
-
+        
           <div className="objective-name-container">
               <label className="objective-name">{this.props.name}</label><br />
               <label className="sub-objective-name">*{this.props.subname}</label>
@@ -39,8 +39,12 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     handleMouseDown: function (event) {
-      const offsetY = event.pageY - event.target.offsetParent.offsetTop;
-      const offsetX = event.pageX - event.target.offsetParent.offsetLeft;
+      // const offsetY = event.pageY - event.target.offsetParent.offsetTop;
+      // const offsetX = event.pageX - event.target.offsetParent.offsetLeft;     
+
+      const offsetY = event.pageY - event.target.offsetTop;
+      const offsetX = event.pageX - event.target.offsetLeft;
+
       console.log("MOUSE DOWN!");
       dispatch({
         type: 'UPDATE_UI',

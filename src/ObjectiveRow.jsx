@@ -6,8 +6,6 @@ import { cellBeingEdited, cellSaveAction, cellUpdateDatabaseAction } from './act
 class ObjectiveRow extends Component {
   render() {
     console.log("Rendering <ObjectiveRow />");
-    console.log("ObjectiveRow - enablePlaceholder:", this.props.enablePlaceholder);
-
 
     function findSelectedCells(item) {
       return item.alternative_id === this.props.uistate_alt_id;
