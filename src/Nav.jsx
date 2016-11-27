@@ -12,6 +12,7 @@ class Nav extends Component {
     return (
 
         <nav className="navbar">
+
           <div className="nav-links">
             <div className="brand">Escol.ia</div>
             <div className="dropdown">
@@ -27,6 +28,7 @@ class Nav extends Component {
             <div className="editor-button"><i className="fa fa-pencil" aria-hidden="true"></i></div>
             <div className="create-button"><i className="fa fa-plus" aria-hidden="true"></i></div>
           </div>
+
           <div className="nav-aside">
             <div className="search-area"><i className="fa fa-search"></i></div>
             <div className="login">Lighthouse-labs@gmail.com</div>

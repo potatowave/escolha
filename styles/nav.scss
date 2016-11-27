@@ -1,8 +1,7 @@
-
 .navbar {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: auto;
   position: fixed;
   top: 0;
   width: 100%;
@@ -18,6 +17,12 @@
   font-family: "Lucida Grande";
 }
 
+.navbar .nav-links {
+  min-width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .navbar .brand {
   font-family: "Lucida Grande";
   color: white;
@@ -26,11 +31,6 @@
   cursor: pointer;
 }
 
-.navbar .nav-links {
-  min-width: 200px;
-  display: flex;
-  justify-content: flex-start;
-}
 
 .create-button{
   color: #E2E7ED;
@@ -92,6 +92,7 @@
   position: relative;
   display: inline-block;
   margin-right: 20px;
+  z-index: 99;
 }
 
 .dropdown-content a:hover {
@@ -105,6 +106,7 @@
   padding-top: 5px;
   display: block;
   font-size: 1em;
+
 }
 
 .dropdown-content {
@@ -125,6 +127,7 @@
 .nav-aside {
   display: flex;
   justify-content: space-between;
+  margin-left: auto;
 }
 
 .search-area {
