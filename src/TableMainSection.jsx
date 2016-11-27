@@ -29,22 +29,25 @@ class TableMainSection extends Component {
           </div>
 
           { this.props.objectives.map((item) => {
-            return (<ObjectiveRow
-              key={`r${item.id}`}
-              current_row={item.order} // Pass the 'id' for the current objective
-              objective_id={item.id}
-              low_is_better = {item.low_is_better}
-              //uistate_order={this.props.uistate_order} // Selected alternative
-              uistate_alt_id={this.props.uistate_alt_id}
-              uistate_highlight={this.props.uistate_highlight}
-              cells={this.props.cells}
+            
+            if((this.props.enablePlaceholder || (!(this.props.enablePlaceholder) && item.id === this.props.ui.draggedObjectiveId))) {
 
-              cellBeingEdited={this.props.cellBeingEdited}
-              enablePlaceholder={this.props.enablePlaceholder}
+              return (<ObjectiveRow
+                key={`r${item.id}`}
+                current_row={item.order} // Pass the 'id' for the current objective
+                objective_id={item.id}
+                low_is_better = {item.low_is_better}
+                //uistate_order={this.props.uistate_order} // Selected alternative
+                uistate_alt_id={this.props.uistate_alt_id}
+                uistate_highlight={this.props.uistate_highlight}
+                cells={this.props.cells}
 
-               />);
+                cellBeingEdited={this.props.cellBeingEdited}
+                enablePlaceholder={this.props.enablePlaceholder}
 
-            })}
+                 />);
+            }
+          })}
         </div>
       // </div>
     );
@@ -67,6 +70,7 @@ function mapStateToProps(state) {
     uistate_order: state.uistate.order,
     uistate_alt_id: state.uistate.alt_id,
     uistate_highlight: state.uistate.highlight,
+    ui: state.uistate,
 
     cellBeingEdited: state.cellBeingEdited
   }

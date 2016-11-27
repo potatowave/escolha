@@ -40,10 +40,6 @@ export default function Cell({uistate_highlight, uistate_alt_id, low_is_better, 
 
   var isInputVisible = ((cellBeingEdited.alternative_id == cell.alternative_id) && (cellBeingEdited.objective_id == cell.objective_id)) ? true : false;
 
-
-  // NOTE this will return Cells only if enablePlaceholder is TRUE (render the full 'real' table), or if enablePlaceholder is FALSE (for the instance of the 'fake' table) where the cell obj_id = the selected obj_id
-  if((enablePlaceholder || (!enablePlaceholder && cell.objective_id === ui.draggedObjectiveId))) {
-
     return (
     
       <div
@@ -69,8 +65,5 @@ export default function Cell({uistate_highlight, uistate_alt_id, low_is_better, 
       </div> 
     )
 
-  } else {
-    return (<div></div>)
-  }
 }
 

@@ -24,6 +24,7 @@ class ObjectiveRow extends Component {
     // Grab the selected value for the current row
     var thisRowsSelectedValue = selectedCells.find(matchingPropsRow, this);
 
+
     return (
       <div className={"r"+this.props.current_row}>
         { 
