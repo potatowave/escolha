@@ -22,19 +22,4 @@ class Heading extends Component {
   }
 }
 
-
-function mapStateToProps(state) {
-  return {
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    somePropFunction: function() {
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Heading);
-
-// export default Heading;
+export default Heading;

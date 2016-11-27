@@ -43,7 +43,6 @@ export default function Cell({uistate_highlight, uistate_selected_alt_id, low_is
     
       <div
         onDoubleClick={() => cellToggled(cell)}
-        // className={"cell c"+(cell_index+1) +" "+highlightedClass+" "+compare_tag}
         className={"cell c"+(cell_index+1) +" "+(enablePlaceholder && (
               cell.alternative_id === ui.draggedAlternativeId ||
               cell.objective_id === ui.draggedObjectiveId

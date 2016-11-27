@@ -30,21 +30,6 @@ class ObjectiveDescriptions extends Component {
           })
         }
 
-        { //this.props.objectives.map((item) => {
-          // return <ObjectiveDescription 
-          //   key={item.id}
-          //   objective={item}
-          //   // row={item.order}
-          //   // name={item.name}
-          //   // subname={item.sub_name}
-          //   // prefix={item.unit_prefix}
-          //   // suffix={item.unit_suffix}
-          //   enablePlaceholder={this.props.enablePlaceholder}
-          // />
-
-         // })
-        }
-
       </div>
       
     );

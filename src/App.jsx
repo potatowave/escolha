@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Heading from './Heading.jsx';
 import Nav from './Nav.jsx';
-// import TableComponent from './TableComponent.jsx';
 import DAndDTable from './DAndDTable.jsx';
 
 class App extends Component {

@@ -17,7 +17,8 @@ class DAndDTable extends Component {
 
   resetFloatingTables() {
     if (this.floatingRow) {
-      // Grab the Div within the mainTable element that has the className "objective-description" and the appropriate "data-objective-id"
+      // Grab the Div within the mainTable element that has the className 
+      // "objective-description" and the appropriate "data-objective-id"
       this.draggedHeading = this.mainTable.el.querySelector(`.objective-description[data-objective-id="${this.props.ui.draggedObjectiveId}"]`);
 
       // Set offsets relative to the page and container
@@ -44,11 +45,6 @@ class DAndDTable extends Component {
         
         this.floatingRow.el.style.top = event.clientY - this.props.ui.offsetY + 'px';
         this.floatingRow.el.style.left = this.draggedHeading.offsetLeft - document.body.scrollLeft + 'px';
-
-        // console.log("event.clientY", event.clientY);
-        // console.log("this.props.ui.offsetY", this.props.ui.offsetY)
-        // console.log(event.clientY - this.props.ui.offsetY);
-
       }
     }
 
@@ -79,7 +75,7 @@ class DAndDTable extends Component {
     return (
       <div className="d-and-d-table-component">
         <TableContainer 
-          // This creates a ref to this object with the name "mainTable"
+          // This creates a ref to this DOM object with the name "mainTable"
           ref={component => this.mainTable = component}
           objectivesOrder={this.props.ui.objectivesOrder}
           objectives={this.props.objectives}
@@ -87,14 +83,14 @@ class DAndDTable extends Component {
         {
           this.props.ui.draggedObjectiveId &&
           <TableContainer
-            // This creates a ref to this object with the name "floatingRow"
+            // This creates a ref to this DOM object with the name "floatingRow"
             ref={component => this.floatingRow = component} 
 
             movable={true}
             enablePlaceholder={false}
 
-            // objectivesOrder={this.props.ui.objectivesOrder}
-            objectivesOrder={[this.props.ui.draggedObjectiveId]}
+            // NOTE: Important to only pass the CURRENTLY SELECTED objective here in objectivesOrder!
+            objectivesOrder={[this.props.ui.draggedObjectiveId]} 
             objectives={this.props.objectives.filter(objective => objective.id === this.props.ui.draggedObjectiveId)}
 
             showHorizontalHeadings={false} 

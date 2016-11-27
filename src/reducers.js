@@ -7,7 +7,8 @@ function moveValueInArray(array, from, to) {
   return a;
 }
 
-// define reducer functions.
+
+
 function userCases(state = [], action) {
   switch(action.type) {
     case 'USER_CASES':
@@ -120,21 +121,11 @@ function uiStateReducer(state = {}, action) {
     case 'ALTERNATIVES_SELECTED':
       return Object.assign({}, state, action.uistate); 
       break;
-    // case 'saveSelectedVal':
-    //   return action.value;
-    //   break;
     case 'UPDATE_UI':
       return Object.assign({}, state, action.data);
       break;
     case 'REORDER_OBJECTIVES':
-      // console.log("state.objectivesOrder", state.objectivesOrder)
-      // console.log("state.draggedObjectiveId", state.draggedObjectiveId);
-
       const currentDraggedObjectiveIndex = state.objectivesOrder.indexOf(state.draggedObjectiveId);
-
-      console.log("UPDATING STATE");
-      // console.log("currentDraggedObjectiveIndex", currentDraggedObjectiveIndex)
-
       if (currentDraggedObjectiveIndex === -1) return state;
       state.objectivesOrder = moveValueInArray(state.objectivesOrder, currentDraggedObjectiveIndex, action.data.newDraggedObjectiveIndex);
       return state;
@@ -142,7 +133,6 @@ function uiStateReducer(state = {}, action) {
       return state
   }
 }
-
 
 
 // the keys are the names of the store property

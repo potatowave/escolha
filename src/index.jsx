@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 // Middlewares
 import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';  // set up logging in the console so we can see how actions are fired
+import createLogger from 'redux-logger';  // console logging
 
 // Actions
 import { fetchCase, saveCase, fetchUserCases } from './actions/api'
@@ -307,11 +307,9 @@ var data_insert = {
 
 const test_data = {
   // "uistate": {
-  //   "alt_id": null,
+  //   "selected_alt_id": null,
   //   "highlight": false,
   //   "draggedObjectiveId": null,
-  //   // "draggedAlternativeId": null,
-  //   // "highlightAlternativeId": null,
   //   "objectivesOrder": [8, 7],
   //   "offsetX": 0,
   //   "offsetY": 0

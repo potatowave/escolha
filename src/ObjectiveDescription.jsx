@@ -4,8 +4,6 @@ import {connect} from 'react-redux';
 class ObjectiveDescription extends Component {
   render() {
     console.log("Rendering <ObjectiveDescription />");
-
-    // console.log("******* this.props.objective ***********", this.props.objective)
     
     return (
 
@@ -41,6 +39,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     handleMouseDown: function (event) {
+      // Will need these below if we put on 'grippers':
       // const offsetY = event.pageY - event.target.offsetParent.offsetTop;
       // const offsetX = event.pageX - event.target.offsetParent.offsetLeft;     
 
