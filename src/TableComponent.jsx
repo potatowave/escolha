@@ -37,7 +37,7 @@ class TableComponent extends Component {
                 handle_mousemove={this.props.handle_mousemove}
                 clientX={this.props.clientX}
                 clientY={this.props.clientY}
-                />  
+                />
 
                 })
             }
@@ -68,11 +68,17 @@ function componentDidMount() {
 }
 
 function componentDidUnmount() {
+<<<<<<< HEAD
+  document.body.removeEventListener('mousedown', function() {
+
+  })
+=======
   // document.body.removeEventListener('mouseup', function() {
     
   // })
   document.body.removeEventListener('mouseup', this.props.handleMouseUp)
   document.body.removeEventListener('mouseleave', this.props.handleMouseUp) 
+>>>>>>> f5160533bfc2bf060f1763d48e2af7d9304f3081
 }
 
 function mapStateToProps(state) {
@@ -87,7 +93,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
 
-    handle_mousedown: function(objectiveId) {    
+    handle_mousedown: function(objectiveId) {
       // offsetX = event.offsetX;
       // offsetY = event.offsetY;
 

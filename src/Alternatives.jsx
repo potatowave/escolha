@@ -11,7 +11,6 @@ class Alternatives extends Component {
 
       // <div>
         <div className="table-area">
-
           <div className="header">
 
             { this.props.alternatives.map((alternative) => {
