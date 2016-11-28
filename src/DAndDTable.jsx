@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import TableContainer from './TableContainer.jsx'
+import ObjectiveHiderContainer from './ObjectiveHiderContainer.jsx';
+
 
 class DAndDTable extends Component {
 // This file will point to TableComponent 3 times:
@@ -36,7 +38,7 @@ class DAndDTable extends Component {
 
         if (target && target.dataset.objectiveId != this.props.ui.draggedObjectiveId) {
 
-          console.log("OVERLAPPED!!", headingTargets.indexOf(target))
+          // console.log("OVERLAPPED!!", headingTargets.indexOf(target))
 
           this.props.handleReorderObjectives(headingTargets.indexOf(target));
           this.forceUpdate();
@@ -74,11 +76,18 @@ class DAndDTable extends Component {
 
     return (
       <div className="d-and-d-table-component">
+      <div>
+        <div className="empty-objective-header"></div>
+          <ObjectiveHiderContainer
+              objectivesOrder={this.props.objectivesOrder}
+            />
+        </div>
         <TableContainer
           // This creates a ref to this DOM object with the name "mainTable"
           ref={component => this.mainTable = component}
           objectivesOrder={this.props.ui.objectivesOrder}
           objectives={this.props.objectives}
+          hide_obj_ids_array={this.props.ui.hide_obj_ids}
           />
         {
           this.props.ui.draggedObjectiveId &&
@@ -92,8 +101,9 @@ class DAndDTable extends Component {
             // NOTE: Important to only pass the CURRENTLY SELECTED objective here in objectivesOrder!
             objectivesOrder={[this.props.ui.draggedObjectiveId]}
             objectives={this.props.objectives.filter(objective => objective.id === this.props.ui.draggedObjectiveId)}
-
             showHorizontalHeadings={false}
+            hide_obj_ids_array={this.props.ui.hide_obj_ids}
+
           />
         }
       </div>
@@ -101,10 +111,15 @@ class DAndDTable extends Component {
   }
 }
 
+DAndDTable.defaultProps = {
+  objectivesOrder: []
+};
+
 function mapStateToProps(state) {
   return {
     ui: state.uistate,
-    objectives: state.objectives
+    objectives: state.objectives,
+    objectivesOrder: state.uistate.objectivesOrder
   }
 }
 

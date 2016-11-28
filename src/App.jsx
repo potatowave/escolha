@@ -7,6 +7,8 @@ import Heading from './Heading.jsx';
 import Nav from './Nav.jsx';
 
 import DAndDTable from './DAndDTable.jsx';
+import AlternativeHiderContainer from './AlternativeHiderContainer.jsx';
+
 
 import { Router, Route, Link } from 'react-router';
 import Onboard from './Onboard.jsx';
@@ -33,8 +35,10 @@ class App extends Component {
             transitionEnterTimeout={500}
             transitionLeaveTimeout={300}>
             <DAndDTable />
+            <AlternativeHiderContainer 
+              alternatives={this.props.alternatives} 
+            />
           </ReactCSSTransitionGroup>
-
         </main>
 
         <div className="case-title">
@@ -71,6 +75,7 @@ class App extends Component {
 
 
 }
+
 
 function mapStateToProps(state) {
   return {

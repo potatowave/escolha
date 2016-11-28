@@ -133,6 +133,13 @@ function uiStateReducer(state = {}, action) {
       if (currentDraggedObjectiveIndex === -1) return state;
       state.objectivesOrder = moveValueInArray(state.objectivesOrder, currentDraggedObjectiveIndex, action.data.newDraggedObjectiveIndex);
       return state;
+      break;
+    case 'TOGGLE_HIDE_ALTERNATIVE':
+      return Object.assign({}, state, action.uistate); 
+      break;
+    case 'TOGGLE_HIDE_OBJECTIVE':
+      return Object.assign({}, state, action.uistate); 
+      break;
     default:
       return state
   }
