@@ -38,7 +38,7 @@ class DAndDTable extends Component {
 
         if (target && target.dataset.objectiveId != this.props.ui.draggedObjectiveId) {
 
-          console.log("OVERLAPPED!!", headingTargets.indexOf(target))
+          // console.log("OVERLAPPED!!", headingTargets.indexOf(target))
 
           this.props.handleReorderObjectives(headingTargets.indexOf(target));
           this.forceUpdate();

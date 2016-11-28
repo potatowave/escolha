@@ -52,8 +52,8 @@ function mapDispatchToProps(dispatch) {
       // const offsetY = event.pageY - event.target.offsetParent.offsetTop;
       // const offsetX = event.pageX - event.target.offsetParent.offsetLeft;     
 
-      console.log("*** MOUSE DOWN ***");
-      console.log("this.props.objective.id", this.props.objective.id)
+      // console.log("*** MOUSE DOWN ***");
+      // console.log("this.props.objective.id", this.props.objective.id)
       const offsetY = event.pageY - event.target.offsetTop;
       const offsetX = event.pageX - event.target.offsetLeft;
 
