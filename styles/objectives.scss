@@ -1,39 +1,57 @@
 .header-objectives-container {
+  min-height: $cell-height;
   font-weight: 600;
   font-kerning: auto;
   display: flex;
+  border:1px dotted white;
   justify-content: space-between;
+  margin: 1px;
 }
 
 .header-objectives {
-  min-height: $cell-height;
+
   padding: 10px;
-  margin: 1px;
   color: white;
 }
 
 .header-units {
-  min-height: $cell-height;
   padding: 10px;
-  margin: 1px;
   color: white;
 }
 
+.objective-description {
+  min-width: $cell-width;
+  min-height: $cell-height;
+  margin: $cell-margin;
+  align-items: center;
+  height: 10px;
+  border:2px dotted white;
+}
 .objective-name-container{
+  min-width:90px;
+  min-height: $cell-height;
+  margin: $cell-margin;
   font-family: "Lucida Grande";
+
   color:black;
   color:#D9DDE5;
 }
 
 .objective-name {
+  border:1px dotted white;
   font-size: 0.8em;
+  line-height: 1em;
 }
 
 .sub-objective-name {
+  border:1px dotted white;
   font-size: 0.6em;
+  text-align: left;
 }
 
 .units {
+  max-height: 50px;
+  border:1px dotted white;
   font-size: 0.6em;
   min-width: 45px;
   font-family: "Lucida Grande";
@@ -43,3 +61,4 @@
   line-height: 3em;
   margin: 1px;
 }
+

@@ -7,7 +7,7 @@ class ObjectiveDescriptions extends Component {
     console.log("Rendering <ObjectiveDescriptions />");
 
     return (
-      
+
       <div className="objective-description-area">
 
         {
@@ -16,12 +16,12 @@ class ObjectiveDescriptions extends Component {
           <label className="header-objectives">Objectives</label>
           <label className="header-units">Units</label>
         </div>
-        
+
         }
 
-        { 
+        {
           this.props.objectivesOrder.map((objectiveId) => {
-          return <ObjectiveDescription 
+          return <ObjectiveDescription
             key={objectiveId}
             objective={this.props.objectives.find(objective => objective.id === objectiveId)}
             enablePlaceholder={this.props.enablePlaceholder}
@@ -32,7 +32,7 @@ class ObjectiveDescriptions extends Component {
         }
 
       </div>
-      
+
     );
   }
 }

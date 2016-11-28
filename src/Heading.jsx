@@ -9,13 +9,6 @@ class Heading extends Component {
     return (
 
       <div className="heading-component">
-        <div className="case-title">
-          <h1>{this.props.name}</h1>
-        </div>
-        <div className="case-description">
-            <p>{this.props.description}</p>
-        </div>
-
       </div>
 
     );
@@ -23,3 +16,10 @@ class Heading extends Component {
 }
 
 export default Heading;
+
+// <div className="case-title">
+//   <h1>{this.props.name}</h1>
+// </div>
+// <div className="case-description">
+//   <p>{this.props.description}</p>
+// </div>
