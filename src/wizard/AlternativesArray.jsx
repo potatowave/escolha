@@ -8,6 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import { RadioButton } from 'material-ui/RadioButton'
+import { red500, yellow500, green500 } from 'material-ui/styles/colors';
 import {
   Checkbox,
   RadioButtonGroup,
@@ -20,8 +21,13 @@ import {
 const renderError = ({ meta: { touched, error } }) => touched && error ?
   <span>{error}</span> : false;
 
-  const iconStyles = {
+const iconStyles = {
   marginRight: 24,
+};
+
+const deleteStyles = {
+  marginRight: 24,
+  color: red500
 };
 
 const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched, error } }) =>
@@ -32,7 +38,8 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
          <div key={index}>
 
            <h4>Option {index + 1} {(!!alternatives[index].name ? ' - ' + alternatives[index].name : '')}{index > 0 &&
-            <IconButton iconClassName="material-icons" style={iconStyles} onClick={() => fields.remove(index)} >delete</IconButton>
+            <IconButton><FontIcon className="material-icons" color={red500} style={iconStyles} onClick={() => fields.remove(index)} >remove_circle</FontIcon></IconButton>
+
           }</h4>
 
            <div>
@@ -47,7 +54,7 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
                      <Field
                        name={`${alternative}.naturalValue`}
                        component={TextField}
-                       hintText={(!!alternatives[index].name ? `${objective.name} : ${objective.sub} ${objective.criterion}` : `${objective.name} : ${objective.sub} ${objective.criterion}`)}
+                       hintText={(!!alternatives[index].name ? `${objective.name} : ${objective.sub}` : `${objective.name} : ${objective.sub}`)}
                      />
                    </div>}
 
@@ -59,12 +66,16 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
                        hintText={(`${objective.name} > ${objective.sub} `)}
                      />
 
+                     {!!alternatives[index].nominalName &&
+                     <div>
                        <Field defaultValue={3} description="How important is this to you?" component={Slider} name={`${alternative}.nominalValue`} step={1} min={1} max={5} />
                        <div>Value: {alternatives[index].nominalValue}</div>
-
-                     <hr />
+                    </div>}
                    </div>
-                    }
+
+
+
+                  }
 
                    {objectives[i].scaletype === 'ordinal' &&
                    <div>
@@ -72,15 +83,19 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
                        name={`${alternative}.ordinalValue`}
                        type="text"
                        component={TextField}
-                       hintText={(!!alternatives[index].name ? `${objective.name} : ${objective.sub} ${objective.criterion}` : `Alternative #${index + 1} : ${objective.name} : ${objective.sub} ${objective.criterion ? objective.criterion : ''}`)}
+                       hintText={(!!alternatives[index].name ? `${objective.name} : ${objective.sub}` : `Alternative #${index + 1} : ${objective.name} : ${objective.sub} ? objective.criterion : ''}`)}
                      />
                    </div>}
 
                  </div>
                 )
             )}
-            <IconButton iconClassName="material-icons" style={iconStyles} onClick={() => fields.push({})} >add circle outline</IconButton>
-           <hr />
+          <RaisedButton
+            label="add another"
+            icon={<FontIcon className="material-icons" color={green500} style={iconStyles} >add_box</FontIcon>}
+            fullWidth={true}
+            onClick={() => fields.push({})}
+          />
 
          </div>
     )}

@@ -1,9 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm, FieldArray } from 'redux-form';
 import validate from './validate';
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
 import renderField from './renderField';
 import ObjectivesArray from './ObjectivesArray';
 import MenuItem from 'material-ui/MenuItem'
+
+import { red500, yellow500, green500 } from 'material-ui/styles/colors';
 import { RadioButton } from 'material-ui/RadioButton'
 import RaisedButton from 'material-ui/RaisedButton'
 import {
@@ -16,6 +20,20 @@ import {
 
 const renderError = ({ meta: { touched, error } }) => touched && error ?
   <span>{error}</span> : false;
+
+const iconStyles = {
+  marginRight: 24,
+};
+
+const forwardStyles = {
+  marginRight: 24,
+  float: 'right',
+};
+
+const backStyles = {
+  marginRight: '80%',
+
+};
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
   <TextField hintText={label}
@@ -55,9 +73,8 @@ const WizardFormSecondPage = (props) => {
       <ObjectivesArray / >
 
       <div>
-        <RaisedButton label="previous" type="submit" onClick={previousPage} className="previous" />
-
-        <RaisedButton label="Next" type="submit" className="next" />
+        <IconButton type="submit" onClick={previousPage} className="previous"><FontIcon className="material-icons" style={backStyles} >arrow_back</FontIcon></IconButton>
+        <IconButton type="submit" className="next"><FontIcon className="material-icons" style={forwardStyles} >arrow_forward</FontIcon></IconButton>
       </div>
 
 

@@ -24,6 +24,7 @@ import {
 } from 'redux-form-material-ui';
 
 
+
 const renderError = ({ meta: { touched, error } }) => touched && error ?
   <span>{error}</span> : false;
 
@@ -44,7 +45,7 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
           <h4>Objective #{index + 1}
 
             {index > 0 &&
-            <IconButton iconClassName="material-icons" style={iconStyles} onClick={() => fields.remove(index)} color={red500} >delete</IconButton>
+            <IconButton><FontIcon className="material-icons" color={red500} style={iconStyles} onClick={() => fields.remove(index)} >remove_circle</FontIcon></IconButton>
           }</h4>
 
           <div>
@@ -127,8 +128,12 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
             </Field>
           </div>}
 
-          <IconButton iconClassName="material-icons" style={iconStyles} onClick={() => fields.push({})} color={green500} >add circle outline</IconButton>
-
+          <RaisedButton
+            label="add another"
+            icon={<FontIcon className="material-icons" color={green500} style={iconStyles} >add_box</FontIcon>}
+            fullWidth={true}
+            onClick={() => fields.push({})}
+          />
         </div>
     )}
     </div>
