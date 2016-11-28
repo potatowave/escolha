@@ -42,7 +42,7 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
     <div>
       {fields.map((objective, index) =>
         <div key={index}>
-          <h4>Objective #{index + 1}
+          <h4>Objective {index + 1}
 
             {index > 0 &&
             <IconButton><FontIcon className="material-icons" color={red500} style={iconStyles} onClick={() => fields.remove(index)} >remove_circle</FontIcon></IconButton>
