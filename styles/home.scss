@@ -4,8 +4,6 @@
 
 $cell-width: 170px;
 $cell-height:65px;
-/*$header-obj-width: 100px;*/
-/*$header-units-width: 45px;*/
 $cell-height-table: 67px;
 $cell-margin: 1px;
 $num-alts: 6;
@@ -69,10 +67,16 @@ p {
 .case-title {
   color: black;
   color:white;
-  margin-top:70px;
-  margin-bottom:15px;
+  margin-top:100px;
+  margin-bottom:40px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Lucida Grande";
+}
+
+.case-title h1 {
+  position: absolute;
+  cursor:help;
+  z-index: 99;
 }

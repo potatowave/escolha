@@ -1,7 +1,7 @@
 // drag_drop.scss
-// 
+//
 .being-dragged {
-  border: 1px dashed darkgrey;  
+  border: 1px dashed darkgrey;
 }
 
 // .gripper {
@@ -38,23 +38,12 @@
   box-shadow: 5px 5px 5px rgba(0,0,0,.25);
   cursor: move;
   display: flex;
-  left: 0;
   position: fixed;
   background: #31384E;
   opacity: 0.9;
   // background-color: yellow;
 }
 
-/* movable is one of the hidden tables */
-// .movable {
-//   box-shadow: 2px 2px 5px rgba(0,0,0,.25);
-//   cursor: move;
-//   display: flex;
-//   left: 0;
-//   opacity: 0.9;
-//   position: fixed;
-//   top: 0;
-// }
 
 .movable.hidden {
   display: none;

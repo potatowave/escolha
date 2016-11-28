@@ -1,25 +1,35 @@
 
 .main-container {
-  width: 100%;
   height: 100%;
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
   padding-top: auto;
+  align-self: center;
   /*flex-direction: row;*/
   justify-content: center;
   border: 2px dotted yellow;
+  position: fixed;
+  top:0;
+  right:0;
+  left:0;
+
+  /*making the table dead center*/
+/*  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);*/
 }
 
 .table-container {
-
   min-width: $cell-width;
   min-height: $cell-height;
   font-family: "Lucida Grande";
   align-items: center;
   display: flex;
-}
 
+}
+.table-area .header {
+}
 
 //  FIX CONFLICTS HERE
 .table-area .header label:hover{

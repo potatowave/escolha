@@ -130,6 +130,30 @@ var data_insert = {
       "unit_prefix":          "",
       "unit_suffix":          "",
       "scale_type":           "this is managed on the front-end"
+    },
+
+    {
+      "id_frontend":          44,
+      "name":                 "Cool Factor",
+      "sub_name":             "Coolness",
+      "evaluation_objective": "How cool this is",
+      "low_is_better":        false,
+      "unit_name":            "",
+      "unit_prefix":          "",
+      "unit_suffix":          "",
+      "scale_type":           "this is managed on the front-end"
+    },
+
+    {
+      "id_frontend":          33,
+      "name":                 "Cool Factor",
+      "sub_name":             "Coolness",
+      "evaluation_objective": "How cool this is",
+      "low_is_better":        false,
+      "unit_name":            "",
+      "unit_prefix":          "",
+      "unit_suffix":          "",
+      "scale_type":           "this is managed on the front-end"
     }
 
   ],
@@ -304,6 +328,60 @@ var data_insert = {
       "value": 1
     }, {
       "objective_id_frontend": 55,
+      "alternative_id_frontend": 66,
+      "value": 2
+    },
+
+      {
+      "objective_id_frontend": 44,
+      "alternative_id_frontend": 11,
+      "value": 4
+    }, {
+      "objective_id_frontend": 44,
+      "alternative_id_frontend": 22,
+      "value": 5
+    }, {
+      "objective_id_frontend": 44,
+      "alternative_id_frontend": 33,
+      "value": 5
+    },
+    {
+      "objective_id_frontend": 44,
+      "alternative_id_frontend": 44,
+      "value": 1
+    }, {
+      "objective_id_frontend": 44,
+      "alternative_id_frontend": 55,
+      "value": 1
+    }, {
+      "objective_id_frontend": 44,
+      "alternative_id_frontend": 66,
+      "value": 2
+    },
+
+      {
+      "objective_id_frontend": 33,
+      "alternative_id_frontend": 11,
+      "value": 4
+    }, {
+      "objective_id_frontend": 33,
+      "alternative_id_frontend": 22,
+      "value": 5
+    }, {
+      "objective_id_frontend": 33,
+      "alternative_id_frontend": 33,
+      "value": 5
+    },
+    {
+      "objective_id_frontend": 33,
+      "alternative_id_frontend": 44,
+      "value": 1
+    }, {
+      "objective_id_frontend": 33,
+      "alternative_id_frontend": 55,
+      "value": 1
+    }, {
+      "objective_id_frontend": 33,
       "alternative_id_frontend": 66,
       "value": 2
     }
