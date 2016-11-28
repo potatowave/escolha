@@ -31,7 +31,7 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
        {fields.map((alternative, index) =>
          <div key={index}>
 
-           <h4>Option #{index + 1} {(!!alternatives[index].name ? ' - ' + alternatives[index].name : '')}{index > 0 &&
+           <h4>Option {index + 1} {(!!alternatives[index].name ? ' - ' + alternatives[index].name : '')}{index > 0 &&
             <IconButton iconClassName="material-icons" style={iconStyles} onClick={() => fields.remove(index)} >delete</IconButton>
           }</h4>
 

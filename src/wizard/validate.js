@@ -1,23 +1,29 @@
-const validate = (values) => {
-  const errors = {};
-  // if (!values.firstName) {
-  //   errors.firstName = 'Required'
-  // }
-  // if (!values.lastName) {
-  //   errors.lastName = 'Required'
-  // }
-  // if (!values.email) {
-  //   errors.email = 'Required'
-  // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-  //   errors.email = 'Invalid email address'
-  // }
-  // if (!values.sex) {
-  //   errors.sex = 'Required'
-  // }
-  // if (!values.favoriteColor) {
-  //   errors.favoriteColor = 'Required'
-  // }
-  return errors;
-};
+const validate = values => {
+  const errors = {}
+  if(!values.caseName) {
+    errors.caseName = 'Required'
+  }
+  if (!values.objectives || !values.objectives.length) {
+    errors.objectives = { _error: 'At least one objective must be entered' }
+  } else {
+    const objectivesArrayErrors = []
+    values.objectives.forEach((objective, objectiveIndex) => {
+      const objectiveErrors = {}
+      if (!objective || !objective.name) {
+        objectiveErrors.name = 'Required'
+        objectivesArrayErrors[objectiveIndex] = objectiveErrors
+      }
+      if (!objective || !objective.sub) {
+        objectiveErrors.sub = 'Required'
+        objectivesArrayErrors[objectiveIndex] = objectiveErrors
+      }
 
-export default validate;
+    })
+    if(objectivesArrayErrors.length) {
+      errors.objectives = objectivesArrayErrors
+    }
+  }
+  return errors
+}
+
+export default validate
