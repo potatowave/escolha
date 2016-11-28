@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import MenuItem from 'material-ui/MenuItem'
 import { RadioButton } from 'material-ui/RadioButton'
 import RaisedButton from 'material-ui/RaisedButton'
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
 import {
   Checkbox,
   RadioButtonGroup,
@@ -12,6 +14,16 @@ import {
   TextField,
   Toggle
 } from 'redux-form-material-ui'
+
+const forwardStyles = {
+  marginRight: 24,
+  float: 'right',
+};
+
+const backStyles = {
+  marginRight: '80%',
+
+};
 
 const WizardFormFirstPage = (props) => {
   const { handleSubmit } = props;
@@ -25,7 +37,7 @@ const WizardFormFirstPage = (props) => {
         <Field name="caseDescription" component={TextField} hintText="Case Description" multiLine={true} rows={2}/>
       </div>
       <div>
-        <RaisedButton label="Next" type="submit" className="next" />
+        <IconButton type="submit" className="next"><FontIcon className="material-icons" style={forwardStyles} >arrow_forward</FontIcon></IconButton>
       </div>
     </form>
   );

@@ -8,23 +8,13 @@ const PORT = process.env.PORT || 3001; // set to 3001
 const express = require('express');
 const router  = express.Router();
 const bodyParser = require('body-parser');
-// <<<<<<< HEAD
-// const randString = require('./scripts/randomstring');
-// const webpack = require('webpack');
-// const WebpackDevServer = require('webpack-dev-server');
-// const config = require('./webpack.config');
-
-// const knexConfig = require('./knexfile.js');
 const cors = require('cors')
-
-
-// =======
 const knexConfig = require('../knexfile.js');
-// >>>>>>> master
 const knex = require('knex')(knexConfig[ENV]);
-const bcrypt = require("bcrypt");
+const path = require('path');
 
 // Required for passport
+const bcrypt = require("bcrypt");
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
@@ -37,12 +27,9 @@ const User = require('./models/User');
 const app = express();
 app.use(express.static(__dirname + '/public'));
 
-// <<<<<<< HEAD
-app.use(cors());
 
-// =======
+app.use(cors());
 app.use(cookieParser());
-// >>>>>>> master
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -51,19 +38,8 @@ app.use(session({ secret: 'R1sM6JmAo83mPZ1l1V8rRpoKla4F1vgv',resave: true, saveU
 app.use(passport.initialize());
 app.use(passport.session());
 
-// <<<<<<< HEAD
-// =======
-// // Eanble CORS
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
-// >>>>>>> master
 
-app.set('view engine', 'ejs'); // Set View Engine to ejs
-
-
+app.set('view engine', 'ejs');
 
 // ----------------------------------------------------------------------------
 // API - Server
@@ -104,32 +80,18 @@ passport.deserializeUser(authHelper.myDeserialize);
 // ----------------------------------------------------------------------------
 // Unsecure routers
 
-app.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/login');
-});
+const apiUnsecureRoute = require('./routes/unsecure.js');
+app.use('/', apiUnsecureRoute(knex,passport));
 
-
-app.get('/', (req,res) => {
-  res.send('Logged in!');
-});
-
-app.get('/login', (req,res) => {
-  res.send('You need to login')
-});
-
-app.post('/login',
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-  })
-);
 
 // ----------------------------------------------------------------------------
 // Protected routers - MUST be authenticated for access API
 
-app.all("/api/*", authHelper.authenticatedMiddleware);
+app.all('/api/*', authHelper.authenticatedMiddleware);
 
+app.get('/app', authHelper.authenticatedMiddleware, (req,res) => {
+  res.sendFile(path.join(__dirname + '/public/app.html'));
+});
 // Routes
 const apiCasesRoute = require('./routes/api/cases.js');
 const apiUsersRoute = require('./routes/api/users.js');

@@ -56,5 +56,40 @@ module.exports = (knex) => {
     })
   });
 
+
+
+
+
+
+
+  /**
+  * ROUTE: /api/cases/:case_id/objectives/:id
+  * Delete a specific Objective
+  */
+  router.delete("/:case_id/objectives/:objective_id", (req, res) => {
+
+    const caseId = req.params.case_id
+    const objectiveId = req.params.objective_id
+
+    Case(knex).deleteObjective(caseId, objectiveId, (data) => {
+      res.json(data);
+    })
+  });
+
+
+  /**
+  * ROUTE: /api/cases/:case_id/alternatives/:id
+  * Delete a specific Objective
+  */
+  router.delete("/:case_id/alternatives/:alternative_id", (req, res) => {
+
+    const caseId = req.params.case_id
+    const alternativeId = req.params.alternative_id
+
+    Case(knex).deleteAlternative(caseId, alternativeId, (data) => {
+      res.json(data);
+    })
+  });
+
   return router;
 }
