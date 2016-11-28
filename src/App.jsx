@@ -11,6 +11,8 @@ import DAndDTable from './DAndDTable.jsx';
 import { Router, Route, Link } from 'react-router';
 import Onboard from './Onboard.jsx';
 
+import { deleteObjective, deleteAlternative } from './actions/delete'
+
 class App extends Component {
   render() {
     console.log('Rendering <App/>');
@@ -35,17 +37,61 @@ class App extends Component {
 
         </main>
 
+        <div className="case-title">
+          Objectives:
+          <ul>
+            {
+              this.props.objectives.map((item) => {
+                return ( <li> {item.name} - {item.id}
+                  <button key={item.id} onClick={() => this.props.deleteObjective(item)}> Delete </button>
+                  </li>
+                  )
+              })
+            }
+          </ul>
+        </div>
+
+        <div className="case-title">
+          Alternatives:
+          <ul>
+            {
+              this.props.alternatives.map((item) => {
+                return (
+                  <li> {item.name} - {item.id} <button onClick={() => this.props.deleteAlternative(item)}> Delete </button> </li>
+                  )
+              })
+            }
+          </ul>
+        </div>
+
       </div>
 
     );
   }
+
+
 }
 
 function mapStateToProps(state) {
   return {
-    case: state.cases
+    case: state.cases,
+    objectives: state.objectives,
+    alternatives: state.alternatives
   }
 }
 
-export default connect(mapStateToProps, null)(App);
+function mapDispatchToProps(dispatch) {
+  return {
+    deleteObjective: function (item) {
+      dispatch(deleteObjective(item))
+    },
+
+    deleteAlternative: function (item) {
+      dispatch(deleteAlternative(item))
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
