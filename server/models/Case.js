@@ -356,10 +356,61 @@ module.exports = (knex) => {
       });
   }
 
+  /**
+  * Delete objectives from a case
+  * @param {integer}    caseId
+  * @param {integer}    objecetiveId
+  * @param {function}   callback    - Callback function to run after aSync DB call
+  */
+  function deleteObjective(caseId, objectiveId, callback) {
+
+    // Delete values related to specific objective
+    knex('alternatives_objectives')
+    .where('objective_id', parseInt(objectiveId,10))
+    .del()
+    .then( () => {
+      knex('objectives')
+      .where('id', parseInt(objectiveId,10))
+      .andWhere('case_id', parseInt(caseId,10))
+      .del().then(() =>{
+        deliverContent(parseInt(caseId,10), callback)
+      })
+      .catch((error) => { console.error(error); });
+    })
+    .catch((error) => { console.error(error); });
+  }
+
+  /**
+  * Delete alternatives from a case
+  * @param {integer}    caseId
+  * @param {integer}    alternativeId
+  * @param {function}   callback        - Callback function to run after aSync DB call
+  */
+  function deleteAlternative(caseId, alternativeId, callback) {
+
+    // Delete values related to specific objective
+    knex('alternatives_objectives')
+    .where('alternative_id', parseInt(alternativeId,10))
+    .del()
+    .then( () => {
+      knex('alternatives')
+      .where('id', parseInt(alternativeId,10))
+      .andWhere('case_id', parseInt(caseId,10))
+      .del().then(() =>{
+        deliverContent(parseInt(caseId,10), callback)
+      })
+      .catch((error) => { console.error(error); });
+    })
+    .catch((error) => { console.error(error); });
+  }
+
+
   return {
     insertCase,
     updateCase,
     deliverContent,
-    casesByUser
+    casesByUser,
+    deleteObjective,
+    deleteAlternative
   };
 };

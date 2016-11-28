@@ -81,7 +81,7 @@ function uiStateReducer(state = {}, action) {
         // if no 'uistate' in object from DB, set defaults
         // if no 'objectivesOrder' in object from DB, set order based on objective ids
         // else, load the 'uistate' from the DB object
-        
+
         if (action.data.uistate === undefined) {
 
           var objectiveIds = [];
@@ -103,7 +103,7 @@ function uiStateReducer(state = {}, action) {
           return Object.assign({}, state, initialUI);
 
         } else if (action.data.uistate.objectivesOrder === undefined) {
- 
+
           var objectiveIds = [];
 
           for (var item of action.data.objectives) {
@@ -118,12 +118,12 @@ function uiStateReducer(state = {}, action) {
           return Object.assign({}, state, initialUI);
 
         } else {
-          console.log("****** DATA LOADED *****")          
+          console.log("****** DATA LOADED *****")
           return action.data.uistate;
         }
       break;
     case 'ALTERNATIVES_SELECTED':
-      return Object.assign({}, state, action.uistate); 
+      return Object.assign({}, state, action.uistate);
       break;
     case 'UPDATE_UI':
       return Object.assign({}, state, action.data);

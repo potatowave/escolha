@@ -25,10 +25,15 @@
 
 
   <section>
-    <h1>Login</h1>
+    <h1>Sign Up</h1>
     <hr>
 
-    <form method="POST" action="/login">
+    <form method="POST" action="/signup">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" class="form-control">
+      </div>
+
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" name="email" class="form-control">
@@ -36,7 +41,12 @@
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" name="password" class="form-control">
+        <input type="password" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="password_confirm">Re-enter your Password</label>
+        <input type="password_confirm" class="form-control">
       </div>
 
       <div class="form-group">
@@ -49,4 +59,5 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </body>
+
 </html>
