@@ -22,8 +22,12 @@ class ObjectiveRow extends Component {
     // Grab the selected value for the current row
     var thisRowsSelectedValue = selectedCells.find(matchingPropsRow, this);
 
+    var curr_obj_id = this.props.objective_id; 
+    var hide_obj_ids_array = this.props.uistate_hide_obj_ids;
+    var hiddenObjective = ( (hide_obj_ids_array.indexOf(curr_obj_id) === -1) ? "" : "hide-objective")
+
     return (
-      <div className={"objective-row"}>
+      <div className={"objective-row" + " " + hiddenObjective}>
         { 
           this.props.cells.filter(matchingPropsRow, this).map((cell , index) => {
           return (<Cell
@@ -43,6 +47,7 @@ class ObjectiveRow extends Component {
             enablePlaceholder={this.props.enablePlaceholder}
             ui={this.props.ui}
             uistate_hide_alt_ids={this.props.uistate_hide_alt_ids}
+            // uistate_hide_obj_ids={this.props.uistate_hide_obj_ids}
           />)
         })}
       </div>
@@ -52,7 +57,8 @@ class ObjectiveRow extends Component {
 
 ObjectiveRow.defaultProps = {
   enablePlaceholder: false, 
-  uistate_hide_alt_ids: []
+  uistate_hide_alt_ids: [],
+  uistate_hide_obj_ids: []
 };
 
 
@@ -61,7 +67,8 @@ function mapStateToProps(state) {
     objectives: state.objectives,
     cells: state.cells,
     ui: state.uistate,
-    uistate_hide_alt_ids: state.uistate.hide_alt_ids
+    uistate_hide_alt_ids: state.uistate.hide_alt_ids,
+    uistate_hide_obj_ids: state.uistate.hide_obj_ids
   }
 }
 

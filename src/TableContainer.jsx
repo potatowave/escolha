@@ -25,6 +25,7 @@ class TableContainer extends Component {
               objectives={this.props.objectives} 
               enablePlaceholder={this.props.enablePlaceholder}
               showHorizontalHeadings={this.props.showHorizontalHeadings}
+              hide_obj_ids_array={this.props.hide_obj_ids_array}
             />
           }
           <TableMainSection 
@@ -50,7 +51,8 @@ TableContainer.defaultProps = {
   showVerticalHeadings: true,
   enablePlaceholder: true,
   // items: [],
-  objectives: []
+  objectives: [],
+  hide_obj_ids_array: []
 };
 
 export default TableContainer;

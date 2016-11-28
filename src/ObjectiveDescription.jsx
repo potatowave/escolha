@@ -5,14 +5,23 @@ class ObjectiveDescription extends Component {
   render() {
     console.log("Rendering <ObjectiveDescription />");
     
+
+    var curr_obj_id = this.props.objective.id; 
+    var hide_obj_ids_array = this.props.hide_obj_ids_array;
+
+    var hiddenClass = ( (hide_obj_ids_array.indexOf(curr_obj_id) === -1) ? "" : "hide-objective")
+
+
     return (
 
         <div 
           data-objective-id={this.props.objective.id}
-          className={ "objective-description" + (this.props.enablePlaceholder && this.props.ui.draggedObjectiveId === this.props.objective.id ? ' placeholder' : '') }
+          className={ "objective-description" + " " + hiddenClass + (this.props.enablePlaceholder && this.props.ui.draggedObjectiveId === this.props.objective.id ? ' placeholder' : '') }
           onMouseDown={this.props.handleMouseDown.bind(this)}
           >
         
+          <div className="gripper" />
+          
           <div className="objective-name-container">
               <label className="objective-name">{this.props.objective.name}</label><br />
               <label className="sub-objective-name">*{this.props.objective.sub_name}</label>
@@ -33,7 +42,7 @@ ObjectiveDescription.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    ui: state.uistate
+    ui: state.uistate,
   };}
 
 function mapDispatchToProps(dispatch) {

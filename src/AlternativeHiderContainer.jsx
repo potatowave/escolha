@@ -11,12 +11,13 @@ class AlternativeHiderContainer extends Component {
     return (
       <div className="alt-hider-container">
       { 
-        this.props.alternatives.map((alternative) => {
+        this.props.alternatives.map((alternative, index) => {
         return <AlternativeHiderButton 
           key={alternative.id}
           alternative_id={alternative.id}
           uistate_hide_alt_ids={this.props.uistate_hide_alt_ids}
           hideAlternativeFunction={this.props.hideAlternativeFunction}
+          index={index}
         />
         })
       }

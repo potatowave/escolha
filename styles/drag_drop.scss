@@ -4,34 +4,32 @@
   border: 1px dashed darkgrey;  
 }
 
-// .gripper {
-//   background-color: transparent;
-//   background-image: radial-gradient(rgba(225,225,225,1) 0%, rgba(200,200,200,1) 25%, rgba(255,255,255,0) 26%), radial-gradient(rgba(0,0,0,0.33333) 25%, rgba(255,255,255,0) 26%);
-//   background-size: 0.66667em 0.66667em, 0.66667em 0.66667em;
-//   background-position: 1.33333em 1.33333em, 1.36667em 1.36667em;
-//   bottom: 0.5em;
-//   cursor: move;
-//   left: 0.5em;
-//   opacity: 0;
-//   // position: absolute;
-//   top: 0.5em;
-//   transition: opacity 200ms;
-//   width: 1.33333em;
-// }
+.gripper {
+  background-color: transparent;
+  background-image: radial-gradient(rgba(225,225,225,1) 0%, rgba(200,200,200,1) 25%, rgba(255,255,255,0) 26%), radial-gradient(rgba(0,0,0,0.33333) 25%, rgba(255,255,255,0) 26%);
+  background-size: 0.66667em 0.66667em, 0.66667em 0.66667em;
+  background-position: 1.33333em 1.33333em, 1.36667em 1.36667em;
+  bottom: 0.5em;
+  cursor: move;
+  left: 0.5em;
+  opacity: 0;
+  // position: absolute;
+  top: 0.5em;
+  transition: opacity 200ms;
+  width: 1.33333em;
+}
 
-// .placeholder .gripper {
-//   transition: none;
-// }
-// .movable .gripper,
-// .table-horizontal-heading-component:hover .gripper,
-// .objective-description:hover .gripper {
-//   opacity: 0.5;
-// }
-// .movable .gripper,
-// .table-horizontal-heading-component .gripper:hover,
-// .objective-description .gripper:hover {
-//   opacity: 1;
-// }
+.placeholder .gripper {
+  transition: none;
+}
+.movable .gripper,
+.objective-description:hover .gripper {
+  opacity: 0.5;
+}
+.movable .gripper,
+.objective-description .gripper:hover {
+  opacity: 1;
+}
 
 
 .movable {

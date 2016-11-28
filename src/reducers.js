@@ -137,6 +137,9 @@ function uiStateReducer(state = {}, action) {
     case 'TOGGLE_HIDE_ALTERNATIVE':
       return Object.assign({}, state, action.uistate); 
       break;
+    case 'TOGGLE_HIDE_OBJECTIVE':
+      return Object.assign({}, state, action.uistate); 
+      break;
     default:
       return state
   }

@@ -79,6 +79,7 @@ class DAndDTable extends Component {
           ref={component => this.mainTable = component}
           objectivesOrder={this.props.ui.objectivesOrder}
           objectives={this.props.objectives}
+          hide_obj_ids_array={this.props.ui.hide_obj_ids}
           />
         {
           this.props.ui.draggedObjectiveId &&
@@ -94,6 +95,7 @@ class DAndDTable extends Component {
             objectives={this.props.objectives.filter(objective => objective.id === this.props.ui.draggedObjectiveId)}
 
             showHorizontalHeadings={false} 
+            hide_obj_ids_array={this.props.ui.hide_obj_ids}
           />
         }
       </div>

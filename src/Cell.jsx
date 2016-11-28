@@ -21,12 +21,13 @@ export default function Cell({uistate_highlight, uistate_selected_alt_id, low_is
 
   var curr_alt_id = cell.alternative_id; 
   var hide_alt_ids_array = uistate_hide_alt_ids;
-  console.log("** CELL: curr_alt_id", curr_alt_id)
-  console.log("** CELL: ui", ui)
-  console.log("** CELL: hide_alt_ids_array", hide_alt_ids_array)
+  // console.log("** CELL: curr_alt_id", curr_alt_id)
+  // console.log("** CELL: ui", ui)
+  // console.log("** CELL: hide_alt_ids_array", hide_alt_ids_array)
 
 
-  var hiddenClass = ( (hide_alt_ids_array.indexOf(curr_alt_id) === -1) ? "" : "hide-alternative")
+  var hiddenAlternative = ( (hide_alt_ids_array.indexOf(curr_alt_id) === -1) ? "" : "hide-alternative")
+  
 
   var compare_tag = "";
 
@@ -55,7 +56,7 @@ export default function Cell({uistate_highlight, uistate_selected_alt_id, low_is
         className={"cell c"+(cell_index+1) +" "+(enablePlaceholder && (
               cell.alternative_id === ui.draggedAlternativeId ||
               cell.objective_id === ui.draggedObjectiveId
-            ) ? ' placeholder' : '')+" "+highlightedClass+" "+compare_tag+" "+hiddenClass}
+            ) ? ' placeholder' : '')+" "+highlightedClass+" "+compare_tag+" "+hiddenAlternative}
         >
         { !isInputVisible && cell.value }
 
