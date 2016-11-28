@@ -42,6 +42,7 @@ class ObjectiveRow extends Component {
 
             enablePlaceholder={this.props.enablePlaceholder}
             ui={this.props.ui}
+            uistate_hide_alt_ids={this.props.uistate_hide_alt_ids}
           />)
         })}
       </div>
@@ -50,7 +51,8 @@ class ObjectiveRow extends Component {
 }
 
 ObjectiveRow.defaultProps = {
-  enablePlaceholder: false
+  enablePlaceholder: false, 
+  uistate_hide_alt_ids: []
 };
 
 
@@ -59,6 +61,7 @@ function mapStateToProps(state) {
     objectives: state.objectives,
     cells: state.cells,
     ui: state.uistate,
+    uistate_hide_alt_ids: state.uistate.hide_alt_ids
   }
 }
 

@@ -13,11 +13,20 @@ function updateCell(e, cellSave, cell, cellToggled, cellUpdateDatabase) {
   }
 }
 
-export default function Cell({uistate_highlight, uistate_selected_alt_id, low_is_better, cell, cell_index, thisRowsSelectedValue, cellBeingEdited, cellToggled, cellSave, cellUpdateDatabase, enablePlaceholder, ui}) {
+export default function Cell({uistate_highlight, uistate_selected_alt_id, low_is_better, cell, cell_index, thisRowsSelectedValue, cellBeingEdited, cellToggled, cellSave, cellUpdateDatabase, enablePlaceholder, ui, uistate_hide_alt_ids}) {
 
   console.log("Rendering <Cell />");
 
   var highlightedClass = (uistate_highlight && (cell.alternative_id === uistate_selected_alt_id)) ? "highlight" : "";
+
+  var curr_alt_id = cell.alternative_id; 
+  var hide_alt_ids_array = uistate_hide_alt_ids;
+  console.log("** CELL: curr_alt_id", curr_alt_id)
+  console.log("** CELL: ui", ui)
+  console.log("** CELL: hide_alt_ids_array", hide_alt_ids_array)
+
+
+  var hiddenClass = ( (hide_alt_ids_array.indexOf(curr_alt_id) === -1) ? "" : "hide-alternative")
 
   var compare_tag = "";
 
@@ -46,7 +55,7 @@ export default function Cell({uistate_highlight, uistate_selected_alt_id, low_is
         className={"cell c"+(cell_index+1) +" "+(enablePlaceholder && (
               cell.alternative_id === ui.draggedAlternativeId ||
               cell.objective_id === ui.draggedObjectiveId
-            ) ? ' placeholder' : '')+" "+highlightedClass+" "+compare_tag}
+            ) ? ' placeholder' : '')+" "+highlightedClass+" "+compare_tag+" "+hiddenClass}
         >
         { !isInputVisible && cell.value }
 

@@ -92,6 +92,7 @@ function uiStateReducer(state = {}, action) {
           };
 
           const initialUI = {
+            selected_alt_id: null,
             highlight: false,
             draggedObjectiveId: null,
             objectivesOrder: objectiveIds,
@@ -132,6 +133,10 @@ function uiStateReducer(state = {}, action) {
       if (currentDraggedObjectiveIndex === -1) return state;
       state.objectivesOrder = moveValueInArray(state.objectivesOrder, currentDraggedObjectiveIndex, action.data.newDraggedObjectiveIndex);
       return state;
+      break;
+    case 'TOGGLE_HIDE_ALTERNATIVE':
+      return Object.assign({}, state, action.uistate); 
+      break;
     default:
       return state
   }
