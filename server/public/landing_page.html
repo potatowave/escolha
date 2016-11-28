@@ -8,45 +8,44 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
 
 	<header>
-		<h2><a href="#">Escolha</a></h2>
+		<h2><a href="#home">Escolha</a></h2>
 		<nav>
-			<li><a href="#">Home</a></li>
-			<li><a href="#">How it works?</a></li>
-			<li><a href="#">Examples</a></li>
-			<li><a href="#">Examples</a></li>
-			<li><a href="#">Sign nin</a></li>
-			<li><a href="#">Login</a></li>
+			<li><a href="#how-it-works">How it works?</a></li>
+			<li><a href="#examples">Examples</a></li>
+			<li><a href="#contact">Contact</a></li>
+			<li><a href="/signup">Sign up</a></li>
+			<li><a href="/login">Login</a></li>
 		</nav>
 	</header>
 
 
-	<section class="hero">
+	<section class="hero" id="home">
 		<div class="background-image" style="background-image: url(assets/img/hero.jpg);"></div>
 		<h1>Help the decision making process</h1>
 		<h3>Decide with us.</h3>
-		<a href="http://tutorialzine.com/2016/06/freebie-landing-page-template-with-flexbox/" class="btn">Read more</a>
+		<a href="#how-it-works" class="btn">Read more</a>
 	</section>
 
-	<section class="features">
+	<section class="features" id="how-it-works">
 		<h3 class="title">How it works?</h3>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
 		<hr>
 
 		<ul class="grid">
 			<li>
-				<i class="fa fa-camera-retro"></i>
+				<i class="fa fa-cubes"></i>
 				<h4>Create a case</h4>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae pulvinar velit.</p>
 			</li>
 			<li>
-				<i class="fa fa-cubes"></i>
+				<i class="fa fa-database"></i>
 				<h4>Enter you data</h4>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae pulvinar velit.</p>
 			</li>
@@ -60,7 +59,7 @@
 	</section>
 
 
-	<section class="our-work">
+	<section class="our-work" id="examples">
 		<h3 class="title">Examples</h3>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
 		<hr>
@@ -73,7 +72,7 @@
 		</div>
 	</section>
 
-	<section class="contact">
+	<section class="contact" id="contact">
 		<h3 class="title">Join our newsletter</h3>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
 		<hr>
@@ -85,15 +84,13 @@
 	</section>
 
 	<footer>
+		<p> Escolha - Final Project </p>
+		<p>Web Development Bootcamp </p>
+		<p>LightHouse Labs 2016</p>
+
 		<ul>
-			<li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-			<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-			<li><a href="#"><i class="fa fa-snapchat-square"></i></a></li>
-			<li><a href="#"><i class="fa fa-pinterest-square"></i></a></li>
-			<li><a href="#"><i class="fa fa-github-square""></i></a></li>
+			<li><a href="https://github.com/potatowave/escolha" target="_blank"><i class="fa fa-github-square""></i></a></li>
 		</ul>
-		<p>Made by <a href="http://tutorialzine.com/" target="_blank">tutorialzine</a>. images courtesy to <a href="http://unsplash.com/" target="_blank">unsplash</a>.</p>
-		<p>No attribution required. you can remove this footer.</p>
 	</footer>
 
 </body>

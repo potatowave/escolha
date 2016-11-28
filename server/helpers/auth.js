@@ -19,8 +19,9 @@ module.exports = (knex) => {
 
   function authenticatedMiddleware(req, res, next) {
     // Need to be !req.isAuthenticated()
-    if(req.isAuthenticated()) {
-      return res.status(401).send('Not authenticated');
+    if(!req.isAuthenticated()) {
+      return res.redirect('/login')
+      //return res.status(401).send('Not authenticated');
     }
     next();
   };
