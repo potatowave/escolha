@@ -7,7 +7,7 @@ $circle-diameter: 20px;
 .obj-hider-container {
   display: flex;
   width: 30px;
-  height: 200px;
+  min-height: 20px;
   border: solid 1px white;
   border-radius: 5px;
   background-color: #ccc;
@@ -39,6 +39,8 @@ $circle-diameter: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .obj-hide-button.clicked {

@@ -7,14 +7,14 @@ export default function AlternativeHeading({alternative, uistate_order, highligh
   var curr_alt_id = alternative.id; 
   var hide_alt_ids_array = uistate_hide_alt_ids;
 
-  var hiddenClass = ( (hide_alt_ids_array.indexOf(curr_alt_id) === -1) ? "" : "hide-alternative")
+  var hiddenAlternative = ( (hide_alt_ids_array.indexOf(curr_alt_id) === -1) ? "" : "hide-alternative")
 
   return (
 
     <label
       onClick={ () => highlightFunction(alternative, uistate_highlight, uistate_selected_alt_id) }
       key={alternative.id}
-      className={'hvr-float hvr-icon-fade '+ highlightedClass + ' ' + hiddenClass}
+      className={'hvr-float hvr-icon-fade '+ highlightedClass + ' ' + hiddenAlternative}
     >
 
     {alternative.name}
