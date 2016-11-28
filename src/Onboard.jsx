@@ -18,6 +18,10 @@ function postForm(data_insert) {
 
 class OnboardData extends React.Component {
 
+  componentDidMount() {
+    introJs().start();
+  }
+
   render() {
 
     return (
@@ -30,6 +34,9 @@ class OnboardData extends React.Component {
           <WizardForm onSubmit={postForm} values={this.props.values}  / >
 
         </main>
+
+        <a href='http://google.com/' data-intro='Hello step one!'></a>
+
         </div>
     );
   }
