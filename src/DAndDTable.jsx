@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import TableContainer from './TableContainer.jsx'
+import ObjectiveHiderContainer from './ObjectiveHiderContainer.jsx';
+
 
 class DAndDTable extends Component {
 // This file will point to TableComponent 3 times:
@@ -74,6 +76,10 @@ class DAndDTable extends Component {
 
     return (
       <div className="d-and-d-table-component">
+        <ObjectiveHiderContainer 
+            objectivesOrder={this.props.objectivesOrder} 
+          />
+
         <TableContainer 
           // This creates a ref to this DOM object with the name "mainTable"
           ref={component => this.mainTable = component}
@@ -103,10 +109,15 @@ class DAndDTable extends Component {
   }
 }
 
+DAndDTable.defaultProps = {
+  objectivesOrder: []
+};
+
 function mapStateToProps(state) {
   return {
     ui: state.uistate,
-    objectives: state.objectives
+    objectives: state.objectives,
+    objectivesOrder: state.uistate.objectivesOrder
   }
 }
 

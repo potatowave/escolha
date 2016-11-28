@@ -42,6 +42,12 @@ p {
   margin: 5px;
 }
 
+.d-and-d-table-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* hackily disable user selection on draggable things */
 .main-container {
   -webkit-touch-callout: none;

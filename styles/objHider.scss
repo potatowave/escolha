@@ -17,9 +17,18 @@ $circle-diameter: 20px;
   flex-direction: row;
   justify-content: space-around;
 
-  margin: auto;
-  margin-top: 60px;
+  // margin: auto;
+  margin-top: 50px;
+  margin: 10px;
+  opacity: 0.5;
+  transition: opacity 200ms;
 }
+
+.obj-hider-container:hover {
+  opacity:1;
+}
+
+
 
 .obj-hide-button {
   border-radius: 50%;

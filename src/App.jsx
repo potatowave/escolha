@@ -8,7 +8,6 @@ import Nav from './Nav.jsx';
 
 import DAndDTable from './DAndDTable.jsx';
 import AlternativeHiderContainer from './AlternativeHiderContainer.jsx';
-import ObjectiveHiderContainer from './ObjectiveHiderContainer.jsx';
 
 
 import { Router, Route, Link } from 'react-router';
@@ -37,9 +36,6 @@ class App extends Component {
             <AlternativeHiderContainer 
               alternatives={this.props.alternatives} 
             />
-            <ObjectiveHiderContainer 
-              objectivesOrder={this.props.objectivesOrder} 
-            />
           </ReactCSSTransitionGroup>
         </main>
 
@@ -49,15 +45,11 @@ class App extends Component {
   }
 }
 
-App.defaultProps = {
-  objectivesOrder: []
-};
 
 function mapStateToProps(state) {
   return {
     case: state.cases,
-    alternatives: state.alternatives,
-    objectivesOrder: state.uistate.objectivesOrder
+    alternatives: state.alternatives
   }
 }
 
