@@ -3,6 +3,7 @@
 const express = require('express');
 const router  = express.Router();
 const Case    = require('../../models/Case');
+const helper  = require('../../helpers/parseForm');
 
 module.exports = (knex) => {
 
@@ -12,7 +13,7 @@ module.exports = (knex) => {
   */
   router.post("/:id/values", (req, res) => {
     const case_id = req.params.id
-    const data    = req.body;
+    const data    = parseForm(req.body);
     // Call the Model to interact with data
     Case(knex).updateCase(case_id, data, (msg) => {
       res.json(msg)
@@ -24,8 +25,8 @@ module.exports = (knex) => {
   * Add a full case
   */
   router.post("/", (req, res) => {
-    const data = req.body.data;
-
+    let data = req.body.data;
+    data = helper(knex).parseForm(data);
     // Call the Model to interact with data
     Case(knex).insertCase(data, (msg) => {
       res.json(msg);
