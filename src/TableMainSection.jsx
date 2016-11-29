@@ -15,6 +15,7 @@ class TableMainSection extends Component {
 
           <div className="header-alternatives-container">
 
+
             { this.props.showHorizontalHeadings && this.props.alternatives.map((alternative) => {
               return <AlternativeHeading
                 key={alternative.id}
@@ -48,6 +49,7 @@ class TableMainSection extends Component {
             })}
 
         </div>
+
     );
   }
 }

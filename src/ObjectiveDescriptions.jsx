@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import ObjectiveDescription from './ObjectiveDescription.jsx';
+import AlternativeHiderContainer from './AlternativeHiderContainer.jsx';
 
 class ObjectiveDescriptions extends Component {
 
@@ -13,8 +15,7 @@ class ObjectiveDescriptions extends Component {
         {
           this.props.showHorizontalHeadings &&
         <div className="header-objectives-container">
-          <label className="header-objectives">Objectives</label>
-          <label className="header-units">Units</label>
+
         </div>
 
         }
@@ -45,4 +46,13 @@ ObjectiveDescriptions.defaultProps = {
   objectives: []
 };
 
-export default ObjectiveDescriptions;
+function mapStateToProps (state) {
+  return {
+    alternatives: state.alternatives
+  }
+}
+
+export default connect (mapStateToProps)(ObjectiveDescriptions);
+
+// <label className="header-objectives">Objectives</label>
+// <label className="header-units">Units</label>

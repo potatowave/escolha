@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import TableContainer from './TableContainer.jsx'
 import ObjectiveHiderContainer from './ObjectiveHiderContainer.jsx';
-
+import AlternativeHiderContainer from './AlternativeHiderContainer.jsx';
 
 class DAndDTable extends Component {
 // This file will point to TableComponent 3 times:
@@ -79,7 +79,7 @@ class DAndDTable extends Component {
 
     return (
 
-
+      <div className="all-table">
       <div className="d-and-d-table-component">
       <div>
         <div className="empty-objective-header"></div>
@@ -113,6 +113,12 @@ class DAndDTable extends Component {
             uistate_hide_alt_ids={this.props.ui.hide_obj_ids}
           />
         }
+
+      </div>
+        <div className="alt-hider">
+          <AlternativeHiderContainer
+            alternatives={this.props.alternatives}/>
+        </div>
       </div>
     )
   }
@@ -121,6 +127,7 @@ class DAndDTable extends Component {
 function mapStateToProps(state) {
   return {
     ui: state.uistate,
+    alternatives: state.alternatives,
     objectives: state.objectives,
     cases: state.cases,
   }

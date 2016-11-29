@@ -40,7 +40,7 @@ ObjectiveDescription.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    ui: state.uistate,
+    ui: state.uistate
   };}
 
 function mapDispatchToProps(dispatch) {

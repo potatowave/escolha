@@ -36,9 +36,12 @@ class App extends Component {
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={300}>
                 <DAndDTable />
+
+
               </ReactCSSTransitionGroup>
             </main>
           </div>
+
 
 
       </div>

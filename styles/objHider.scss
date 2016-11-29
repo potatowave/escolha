@@ -8,8 +8,7 @@ $circle-diameter: 20px;
   display: flex;
   width: 30px;
   min-height: 20px;
-  border: solid 1px white;
-  border-radius: 30px;
+
   background-color: #31384e;
 
   flex-wrap: wrap;
@@ -21,11 +20,13 @@ $circle-diameter: 20px;
   margin-top: 50px;
   margin: 10px;
   margin-right: 20px;
-  opacity: 0.5;
+  opacity: 0.1;
   transition: opacity 200ms;
 }
 
 .obj-hider-container:hover {
+  border: solid 1px white;
+  border-radius: 30px;
   opacity:1;
 }
 
@@ -45,7 +46,8 @@ $circle-diameter: 20px;
 }
 
 .obj-hide-button.clicked {
-  background-color: darkgrey;
+  background-color: #31384E;
+  border: 1px solid grey;
 }
 
 .hide-objective {

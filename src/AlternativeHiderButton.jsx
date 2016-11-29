@@ -8,8 +8,8 @@ class AlternativeHiderButton extends Component {
     // add click listener - get the alternative_id of the clicked element
     // then on render add 'clicked' to the circle that was clicked,
     // AlternativeDescription and TableRow will then hide the row with corresponding alternative_id
-     
-    var curr_alt_id = this.props.alternative_id; 
+
+    var curr_alt_id = this.props.alternative_id;
 
     var filledButton = ( (this.props.uistate_hide_alt_ids.indexOf(curr_alt_id) === -1) ? "alt-hide-button" : "alt-hide-button clicked")
 
@@ -18,7 +18,7 @@ class AlternativeHiderButton extends Component {
         className={filledButton}
         onClick={ () => this.props.hideAlternativeFunction(curr_alt_id, this.props.uistate_hide_alt_ids) }
       >
-        <div className="button-index">{this.props.index + 1}</div>
+        <div className="button-index"></div>
       </div>
       )
   }

@@ -10,7 +10,7 @@ class ObjectiveHiderButton extends Component {
     // then on render add 'clicked' to the circle that was clicked,
     // ObjectiveDescription and TableRow will then hide the row with corresponding objective_id
 
-    var curr_obj_id = this.props.objective_id; 
+    var curr_obj_id = this.props.objective_id;
 
     var filledButton = ( (this.props.uistate_hide_obj_ids.indexOf(curr_obj_id) === -1) ? "obj-hide-button" : "obj-hide-button clicked")
 
@@ -19,7 +19,7 @@ class ObjectiveHiderButton extends Component {
         className={filledButton}
         onClick={ () => this.props.hideObjectiveFunction(curr_obj_id, this.props.uistate_hide_obj_ids) }
       >
-        <div className="button-index">{this.props.index + 1}</div>
+        <div className="button-index"></div>
       </div>
       )
   }

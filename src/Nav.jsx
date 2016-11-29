@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { fetchCase } from './actions/api';
+import AlternativeHiderContainer from './AlternativeHiderContainer.jsx';
 
 class Nav extends Component {
 
@@ -40,7 +41,8 @@ class Nav extends Component {
 
 function mapStateToProps(state) {
   return {
-    userCases: state.userCases
+    userCases: state.userCases,
+    alternatives: state.alternatives
   }
 }
 
