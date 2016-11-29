@@ -31,6 +31,7 @@ exports.up = function(knex, Promise) {
       table.string('unit_name');
       table.string('unit_prefix');
       table.string('unit_suffix');
+      table.boolean('is_hidden');
       table.timestamps();
     }),
 
@@ -41,6 +42,7 @@ exports.up = function(knex, Promise) {
       table.string('name');
       table.string('image_url');
       table.integer('order').unsigned();
+      table.boolean('is_hidden');
       table.timestamps();
     }),
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import AlternativeHiderButton from './AlternativeHiderButton.jsx'
-// 
+import { hideAction } from './actions/hide'
 
 class AlternativeHiderContainer extends Component {
 
@@ -10,14 +10,15 @@ class AlternativeHiderContainer extends Component {
 
     return (
       <div className="alt-hider-container">
-      { 
+      {
         this.props.alternatives.map((alternative, index) => {
-        return <AlternativeHiderButton 
+        return <AlternativeHiderButton
           key={alternative.id}
           alternative_id={alternative.id}
           uistate_hide_alt_ids={this.props.uistate_hide_alt_ids}
           hideAlternativeFunction={this.props.hideAlternativeFunction}
           index={index}
+          case_id={alternative.case_id}
         />
         })
       }
@@ -38,11 +39,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    hideAlternativeFunction: function(alternative_id, uistate_hide_alt_ids) {
+    hideAlternativeFunction: function(alternative_id, uistate_hide_alt_ids, case_id) {
 
       // check - if alternative_id is in uistate_hide_alt_id, then remove it
       // if NOT in the array, push to end
-      
+
       // var isHighlighted = ((uistate_highlight) && (uistate_selected_alt_id === alternative.id)) ? true : false;
       const index_of_alt_id = uistate_hide_alt_ids.indexOf(alternative_id);
 
@@ -55,6 +56,8 @@ function mapDispatchToProps(dispatch) {
         console.log("*** SPLICE IT OUT. ***")
         console.log("uistate_hide_alt_ids", uistate_hide_alt_ids)
       }
+
+      dispatch(hideAction('alternatives',case_id, uistate_hide_alt_ids))
 
         console.log("DISPATCH TO PROPS - BUTTON CLICKED ******", alternative_id)
       dispatch(
