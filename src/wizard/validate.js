@@ -1,7 +1,7 @@
 const validate = values => {
   const errors = {}
-  if(!values.caseName) {
-    errors.caseName = 'Required'
+  if(!values.casename) {
+    errors.casename = 'Required'
   }
   if (!values.objectives || !values.objectives.length) {
     errors.objectives = { _error: 'At least one objective must be entered' }
@@ -13,8 +13,8 @@ const validate = values => {
         objectiveErrors.name = 'Required'
         objectivesArrayErrors[objectiveIndex] = objectiveErrors
       }
-      if (!objective || !objective.sub) {
-        objectiveErrors.sub = 'Required'
+      if (!objective || !objective.sub_name) {
+        objectiveErrors.sub_name = 'Required'
         objectivesArrayErrors[objectiveIndex] = objectiveErrors
       }
 

@@ -23,8 +23,6 @@ import {
   Toggle,
 } from 'redux-form-material-ui';
 
-
-
 const renderError = ({ meta: { touched, error } }) => touched && error ?
   <span>{error}</span> : false;
 
@@ -41,12 +39,13 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
   return (
     <div>
       {fields.map((objective, index) =>
+
         <div key={index}>
           <h4>Objective {index + 1}
 
             {index > 0 &&
             <IconButton><FontIcon className="material-icons" color={red500} style={iconStyles} onClick={() => fields.remove(index)} >remove_circle</FontIcon></IconButton>
-          }</h4>
+            }</h4>
 
           <div>
 
@@ -58,14 +57,10 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
               filter={MUIAutoComplete.fuzzyFilter}
               dataSource={['Cost', 'Appearance']}
             />
-
-            {objectives[index].toggle === 'toggle' &&
-              <Field name={`${objective}.name`} component={TextField} />
-            }
           </div>
           <div>
             <Field
-              name={`${objective}.sub`}
+              name={`${objective}.sub_name`}
               component={AutoComplete}
               floatingLabelText="Sub Objective"
               openOnFocus
@@ -75,7 +70,7 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
 
           </div>
           <div>
-            <Field name={`${objective}.scaletype`} component={SelectField} hintText="Scale Type">
+            <Field name={`${objective}.scale_type`} component={SelectField} floatingLabelText="Scale Type">
               <MenuItem value="natural" primaryText="Natural (Number)" />
               <MenuItem value="nominal" primaryText="Nominal (Non-Number)" />
               <MenuItem value="ordinal" primaryText="Ordinal (Range)" />
@@ -87,32 +82,32 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
               <Field
                 name={`${objective}.rangemin`}
                 component={TextField}
-                hintText={'Minimum'}
+                floatingLabelText={'Minimum'}
               />
             </div>
             <div>
               <Field
                 name={`${objective}.rangemax`}
                 component={TextField}
-                hintText={'Maximum'}
+                floatingLabelText={'Maximum'}
               />
             </div>
 
           </div>}
 
-          {objectives[index].scaletype === 'nominal' &&
+          {objectives[index].scale_type === 'nominal' &&
           <div>
 
             <p>Sure, we will ask you about this on the next page.</p>
 
           </div>}
-          {objectives[index].scaletype !== 'nominal' &&
+          {objectives[index].scale_type !== 'nominal' &&
           <div>
             <div>
-              <Field name={`${objective}.prefix`} component={TextField} hintText={'Prefix'} />
+              <Field name={`${objective}.unit_prefix`} component={TextField} floatingLabelText={'Prefix'} />
             </div>
             <div>
-              <Field name={`${objective}.postfix`} component={TextField} hintText={'Postfix'} />
+              <Field name={`${objective}.unit_suffix`} component={TextField} floatingLabelText={'Postfix'} />
             </div>
             <div>
               <div>
@@ -122,7 +117,7 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
               </div>
             </div>
 
-            <Field name="low_is_better" component={RadioButtonGroup}>
+            <Field name={`${objective}.low_is_better`} component={RadioButtonGroup}>
               <RadioButton value="true" label="Low is better" />
               <RadioButton value="false" label="High is better" />
             </Field>
@@ -131,10 +126,13 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
           <RaisedButton
             label="add another"
             icon={<FontIcon className="material-icons" color={green500} style={iconStyles} >add_box</FontIcon>}
-            fullWidth={true}
+            fullWidth
             onClick={() => fields.push({})}
           />
+
         </div>
+
+
     )}
     </div>
   ); };
