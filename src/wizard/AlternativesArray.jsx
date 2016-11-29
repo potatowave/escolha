@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, FieldArray, reduxForm, getFormValues, formValueSelector } from 'redux-form';
 import validate from './validate';
 import store from '../index.jsx';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux';
 import MenuItem from 'material-ui/MenuItem'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -43,44 +44,47 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
           }</h4>
 
            <div>
-             <Field name={`${alternative}.name`} component={TextField} hintText="Option Name" />
+             <Field name={`${alternative}.name`} component={TextField} hintText="Option Name " />
            </div>
+
+           <div>
+             <Field name={`${alternative}.image_url`} component={TextField} hintText="URL" />
+           </div>
+
            {objectives.map((objective, i) =>
                (
                  <div>
 
-                   {(objectives[i].scaletype === 'natural') &&
+                   {(objectives[i].scale_type === 'natural') &&
                    <div>
                      <Field
-                       name={`${alternative}.naturalValue`}
+                       name={`values.${i}.${index}.value`}
                        component={TextField}
-                       hintText={(!!alternatives[index].name ? `${objective.name} : ${objective.sub}` : `${objective.name} : ${objective.sub}`)}
+                       hintText={(!!alternatives[index].name ? `${objective.name} > ${objective.sub_name}` : `${objective.name} : ${objective.sub_name}`)}
                      />
                    </div>}
 
-                   {objectives[i].scaletype === 'nominal' &&
+                   {objectives[i].scale_type === 'nominal' &&
                    <div>
                      <Field
-                       name={`${alternative}.nominalName`}
+                       name={`values.${i}.${index}.value`}
                        component={TextField}
-                       hintText={(`${objective.name} > ${objective.sub} `)}
+                       hintText={(`${objective.name} > ${objective.sub_name} `)}
                      />
 
-                     {!!alternatives[index].nominalName &&
+                     {!!alternatives[index].name &&
                      <div>
-                       <Field defaultValue={3} description="How important is this to you?" component={Slider} name={`${alternative}.nominalValue`} step={1} min={1} max={5} />
-                       <div>Value: {alternatives[index].nominalValue}</div>
+                       <Field defaultValue={3} description="How important is this to you?" component={Slider} name={`values.${i}.${index}.value`} step={1} min={1} max={5} />
+                       <div>Value: {alternatives[index].value}</div>
                     </div>}
                    </div>
 
-
-
                   }
 
-                   {objectives[i].scaletype === 'ordinal' &&
+                   {objectives[i].scale_type === 'ordinal' &&
                    <div>
                      <Field
-                       name={`${alternative}.ordinalValue`}
+                       name={`values.${i}.${index}.value`}
                        type="text"
                        component={TextField}
                        hintText={(!!alternatives[index].name ? `${objective.name} : ${objective.sub}` : `Alternative #${index + 1} : ${objective.name} : ${objective.sub} ? objective.criterion : ''}`)}

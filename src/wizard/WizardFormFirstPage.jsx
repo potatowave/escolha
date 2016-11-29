@@ -30,11 +30,11 @@ const WizardFormFirstPage = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <Field name="caseName" component={TextField} hintText="Case"/>
+        <Field name="case.name" component={TextField} hintText="Case"/>
 
       </div>
       <div>
-        <Field name="caseDescription" component={TextField} hintText="Case Description" multiLine={true} rows={2}/>
+        <Field name="case.description" component={TextField} hintText="Case Description" multiLine={true} rows={2}/>
       </div>
       <div>
         <IconButton type="submit" className="next"><FontIcon className="material-icons" style={forwardStyles} >arrow_forward</FontIcon></IconButton>
