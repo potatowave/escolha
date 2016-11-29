@@ -73,6 +73,10 @@ class DAndDTable extends Component {
   render() {
     console.log("Rendering <DAndDTable />");
 
+
+    // console.log("IN D&DTABLE: this.props.ui.hide_obj_ids", this.props.ui.hide_obj_ids)
+    // console.log("IN D&DTABLE: this.props.ui.objectivesOrder", this.props.ui.objectivesOrder)
+
     return (
 
 
@@ -80,7 +84,7 @@ class DAndDTable extends Component {
       <div>
         <div className="empty-objective-header"></div>
           <ObjectiveHiderContainer
-              objectivesOrder={this.props.objectivesOrder}
+              objectivesOrder={this.props.ui.objectivesOrder}
               cases={this.props.cases[0]}
             />
         </div>
@@ -89,7 +93,7 @@ class DAndDTable extends Component {
           ref={component => this.mainTable = component}
           objectivesOrder={this.props.ui.objectivesOrder}
           objectives={this.props.objectives}
-          hide_obj_ids_array={this.props.ui.hide_obj_ids}
+          uistate_hide_alt_ids={this.props.ui.hide_obj_ids}
           />
         {
           this.props.ui.draggedObjectiveId &&
@@ -106,8 +110,7 @@ class DAndDTable extends Component {
 
 
             showHorizontalHeadings={false}
-            hide_obj_ids_array={this.props.ui.hide_obj_ids}
-
+            uistate_hide_alt_ids={this.props.ui.hide_obj_ids}
           />
         }
       </div>
@@ -115,15 +118,10 @@ class DAndDTable extends Component {
   }
 }
 
-DAndDTable.defaultProps = {
-  objectivesOrder: []
-};
-
 function mapStateToProps(state) {
   return {
     ui: state.uistate,
     objectives: state.objectives,
-    objectivesOrder: state.uistate.objectivesOrder,
     cases: state.cases,
   }
 }
@@ -142,7 +140,6 @@ function mapDispatchToProps(dispatch) {
       dispatch({
         type: 'UPDATE_UI',
         data: {
-          // draggedItemId: null,
           draggedObjectiveId: null
         }
       });

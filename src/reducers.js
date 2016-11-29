@@ -76,12 +76,25 @@ function cellsReducer(state = [], action) {
 }
 
 function uiStateReducer(state = {}, action) {
+
+  // Set to empty on page first load
+  state.objectivesOrder = state.objectivesOrder || [];
+  state.hide_obj_ids = state.hide_obj_ids || [];
+  state.hide_alt_ids = state.hide_alt_ids || [];
+  state.selected_alt_id = state.selected_alt_id || null;
+  state.highlight = state.highlight || false;
+  state.offsetX = state.offsetX || 0;
+  state.offsetY = state.offsetY || 0;
+
   switch(action.type) {
     case 'DATA_LOADED':
         // if no 'uistate' in object from DB, set defaults
         // if no 'objectivesOrder' in object from DB, set order based on objective ids
         // else, load the 'uistate' from the DB object
 
+
+
+        // *** CAN GET RID OF SOME OF THIS NOW THAT WE'VE SET DEFAULTS ABOVE ***
         if (action.data.uistate === undefined) {
 
           var objectiveIds = [];
@@ -89,7 +102,7 @@ function uiStateReducer(state = {}, action) {
           const hide_alt_ids = [];
 
           for (var item of action.data.objectives) {
-            console.log("*** No UISTATE data object ***")
+            // console.log("*** No UISTATE data object ***")
             objectiveIds.push(item["id"]);
           };
 
@@ -127,7 +140,7 @@ function uiStateReducer(state = {}, action) {
           const hide_alt_ids = [];
 
           for (var item of action.data.objectives) {
-            console.log("*** No objectivesOrder in UISTATE data object ***")
+            // console.log("*** No objectivesOrder in UISTATE data object ***")
             objectiveIds.push(item["id"]);
           };
 
