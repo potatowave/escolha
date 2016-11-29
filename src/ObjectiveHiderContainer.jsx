@@ -6,9 +6,6 @@ import ObjectiveHiderButton from './ObjectiveHiderButton.jsx'
 class ObjectiveHiderContainer extends Component {
 
   render() {
-    console.log('Rendering <ObjectiveHiderContainer/>');
-    console.log("objectivesOrder", this.props.objectivesOrder)
-
     return (
       <div className="obj-hider-container">
       { 
@@ -16,7 +13,7 @@ class ObjectiveHiderContainer extends Component {
         return <ObjectiveHiderButton 
           key={objective_id}
           objective_id={objective_id}
-          uistate_hide_obj_ids={this.props.uistate_hide_alt_ids}
+          hide_obj_ids_array={this.props.hide_obj_ids_array}
           hideObjectiveFunction={this.props.hideObjectiveFunction}
           index={index}
         />
@@ -27,42 +24,34 @@ class ObjectiveHiderContainer extends Component {
   }
 }
 
-ObjectiveHiderContainer.defaultProps = {
-  uistate_hide_obj_ids: []
-};
-
 function mapStateToProps(state) {
   return {
-    uistate_hide_obj_ids: state.uistate.hide_obj_ids
+    hide_obj_ids_array: state.uistate.hide_obj_ids
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    hideObjectiveFunction: function(objective_id, uistate_hide_obj_ids) {
-
-      // check - if alternative_id is in uistate_hide_alt_id, then remove it
-      // if NOT in the array, push to end
+    hideObjectiveFunction: function(objective_id, hide_obj_ids_array) {
       
-      // var isHighlighted = ((uistate_highlight) && (uistate_selected_alt_id === alternative.id)) ? true : false;
-      const index_of_obj_id = uistate_hide_obj_ids.indexOf(objective_id);
+      // Make a copy of what's in state, rather than a reference to it
+      let hide_obj_ids_array_copy = [ ...hide_obj_ids_array ];  
+
+      // Toggle hiding of objectives. 
+      // Check if objective_id is in hide_obj_ids_array.
+      // If it is, remove it. If it is not, add it to the array.    
+      const index_of_obj_id = hide_obj_ids_array_copy.indexOf(objective_id);
 
       if ( index_of_obj_id === -1) {
-        uistate_hide_obj_ids.push(objective_id)
-        console.log("*** ADD IT TO UISTATE ***")
-        console.log("uistate_hide_obj_ids", uistate_hide_obj_ids)
+        hide_obj_ids_array_copy.push(objective_id)
       } else {
-        uistate_hide_obj_ids.splice(index_of_obj_id,1)
-        console.log("*** SPLICE IT OUT. ***")
-        console.log("uistate_hide_alt_ids", uistate_hide_obj_ids)
+        hide_obj_ids_array_copy.splice(index_of_obj_id,1)
       }
-
-        console.log("DISPATCH TO PROPS - BUTTON CLICKED ******", objective_id)
       dispatch(
         {
           type: 'TOGGLE_HIDE_OBJECTIVE',
           uistate: {
-            hide_obj_ids: uistate_hide_obj_ids
+            hide_obj_ids: hide_obj_ids_array_copy 
           }
         }
       );

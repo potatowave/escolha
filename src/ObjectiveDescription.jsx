@@ -11,7 +11,6 @@ class ObjectiveDescription extends Component {
 
     var hiddenClass = ( (hide_obj_ids_array.indexOf(curr_obj_id) === -1) ? "" : "hide-objective")
 
-
     return (
 
         <div 

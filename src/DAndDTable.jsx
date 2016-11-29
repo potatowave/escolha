@@ -73,11 +73,13 @@ class DAndDTable extends Component {
   render() {
     console.log("Rendering <DAndDTable />");
 
+    console.log("IN D&DTABLE: this.props.ui.hide_obj_ids", this.props.ui.hide_obj_ids)
+    console.log("IN D&DTABLE: this.props.ui.objectivesOrder", this.props.ui.objectivesOrder)
 
     return (
       <div className="d-and-d-table-component">
         <ObjectiveHiderContainer 
-            objectivesOrder={this.props.objectivesOrder} 
+            objectivesOrder={this.props.ui.objectivesOrder} 
           />
 
         <TableContainer 
@@ -85,7 +87,7 @@ class DAndDTable extends Component {
           ref={component => this.mainTable = component}
           objectivesOrder={this.props.ui.objectivesOrder}
           objectives={this.props.objectives}
-          hide_obj_ids_array={this.props.ui.hide_obj_ids}
+          hide_obj_ids_array={this.props.ui.hide_obj_ids} // CHECK THIS ONE ****DIFFERENT NAME*****
           />
         {
           this.props.ui.draggedObjectiveId &&
@@ -102,6 +104,7 @@ class DAndDTable extends Component {
 
             showHorizontalHeadings={false} 
             hide_obj_ids_array={this.props.ui.hide_obj_ids}
+
           />
         }
       </div>
@@ -109,15 +112,10 @@ class DAndDTable extends Component {
   }
 }
 
-DAndDTable.defaultProps = {
-  objectivesOrder: []
-};
-
 function mapStateToProps(state) {
   return {
     ui: state.uistate,
-    objectives: state.objectives,
-    objectivesOrder: state.uistate.objectivesOrder
+    objectives: state.objectives
   }
 }
 

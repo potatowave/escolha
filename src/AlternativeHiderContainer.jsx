@@ -48,15 +48,15 @@ function mapDispatchToProps(dispatch) {
 
       if ( index_of_alt_id === -1) {
         uistate_hide_alt_ids.push(alternative_id)
-        console.log("*** ADD IT TO UISTATE ***")
-        console.log("uistate_hide_alt_ids", uistate_hide_alt_ids)
+        // console.log("*** ADD IT TO UISTATE ***")
+        // console.log("uistate_hide_alt_ids", uistate_hide_alt_ids)
       } else {
         uistate_hide_alt_ids.splice(index_of_alt_id,1)
-        console.log("*** SPLICE IT OUT. ***")
-        console.log("uistate_hide_alt_ids", uistate_hide_alt_ids)
+        // console.log("*** SPLICE IT OUT. ***")
+        // console.log("uistate_hide_alt_ids", uistate_hide_alt_ids)
       }
 
-        console.log("DISPATCH TO PROPS - BUTTON CLICKED ******", alternative_id)
+        // console.log("DISPATCH TO PROPS - BUTTON CLICKED ******", alternative_id)
       dispatch(
         {
           type: 'TOGGLE_HIDE_ALTERNATIVE',

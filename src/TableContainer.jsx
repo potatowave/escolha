@@ -6,7 +6,7 @@ import ObjectiveDescriptions from './ObjectiveDescriptions.jsx'
 class TableContainer extends Component {
 
   render() {
-    console.log("Rendering <TableContainer />"); // Can put in logging middleware instead of this.
+    console.log("Rendering <TableContainer />"); 
 
     return (
 
