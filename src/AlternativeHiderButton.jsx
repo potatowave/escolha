@@ -14,7 +14,7 @@ class AlternativeHiderButton extends Component {
     var filledButton = ( (this.props.uistate_hide_alt_ids.indexOf(curr_alt_id) === -1) ? "alt-hide-button" : "alt-hide-button clicked")
 
     return (
-      <div 
+      <div
         className={filledButton}
         onClick={ () => this.props.hideAlternativeFunction(curr_alt_id, this.props.uistate_hide_alt_ids) }
       >

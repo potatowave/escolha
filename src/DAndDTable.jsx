@@ -19,7 +19,7 @@ class DAndDTable extends Component {
 
   resetFloatingTables() {
     if (this.floatingRow) {
-      // Grab the Div within the mainTable element that has the className 
+      // Grab the Div within the mainTable element that has the className
       // "objective-description" and the appropriate "data-objective-id"
       this.draggedHeading = this.mainTable.el.querySelector(`.objective-description[data-objective-id="${this.props.ui.draggedObjectiveId}"]`);
 
@@ -44,7 +44,7 @@ class DAndDTable extends Component {
           this.forceUpdate();
 
         }
-        
+
         this.floatingRow.el.style.top = event.clientY - this.props.ui.offsetY + 'px';
         this.floatingRow.el.style.left = this.draggedHeading.offsetLeft - document.body.scrollLeft + 'px';
       }
@@ -73,16 +73,21 @@ class DAndDTable extends Component {
   render() {
     console.log("Rendering <DAndDTable />");
 
+
     // console.log("IN D&DTABLE: this.props.ui.hide_obj_ids", this.props.ui.hide_obj_ids)
     // console.log("IN D&DTABLE: this.props.ui.objectivesOrder", this.props.ui.objectivesOrder)
 
     return (
+
+
       <div className="d-and-d-table-component">
+
         <ObjectiveHiderContainer 
             objectivesOrder={this.props.ui.objectivesOrder} 
+            cases={this.props.cases[0]}
           />
 
-        <TableContainer 
+        <TableContainer
           // This creates a ref to this DOM object with the name "mainTable"
           ref={component => this.mainTable = component}
           objectivesOrder={this.props.ui.objectivesOrder}
@@ -93,18 +98,17 @@ class DAndDTable extends Component {
           this.props.ui.draggedObjectiveId &&
           <TableContainer
             // This creates a ref to this DOM object with the name "floatingRow"
-            ref={component => this.floatingRow = component} 
+            ref={component => this.floatingRow = component}
 
             movable={true}
             enablePlaceholder={false}
 
             // NOTE: Important to only pass the CURRENTLY SELECTED objective here in objectivesOrder!
-            objectivesOrder={[this.props.ui.draggedObjectiveId]} 
+            objectivesOrder={[this.props.ui.draggedObjectiveId]}
             objectives={this.props.objectives.filter(objective => objective.id === this.props.ui.draggedObjectiveId)}
 
             showHorizontalHeadings={false} 
             uistate_hide_alt_ids={this.props.ui.hide_obj_ids}
-
           />
         }
       </div>
@@ -115,7 +119,8 @@ class DAndDTable extends Component {
 function mapStateToProps(state) {
   return {
     ui: state.uistate,
-    objectives: state.objectives
+    objectives: state.objectives,
+    cases: state.cases,
   }
 }
 

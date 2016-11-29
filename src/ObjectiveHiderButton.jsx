@@ -14,7 +14,7 @@ class ObjectiveHiderButton extends Component {
     var filledButton = ( (this.props.uistate_hide_obj_ids.indexOf(curr_obj_id) === -1) ? "obj-hide-button" : "obj-hide-button clicked")
 
     return (
-      <div 
+      <div
         className={filledButton}
         onClick={ () => this.props.hideObjectiveFunction(curr_obj_id, this.props.uistate_hide_obj_ids) }
       >

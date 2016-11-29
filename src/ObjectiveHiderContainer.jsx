@@ -1,21 +1,23 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import ObjectiveHiderButton from './ObjectiveHiderButton.jsx'
-// 
+import { hideAction } from './actions/hide'
+//
 
 class ObjectiveHiderContainer extends Component {
 
   render() {
     return (
       <div className="obj-hider-container">
-      { 
+      {
         this.props.objectivesOrder.map((objective_id, index) => {
-        return <ObjectiveHiderButton 
+        return <ObjectiveHiderButton
           key={objective_id}
           objective_id={objective_id}
           uistate_hide_obj_ids={this.props.uistate_hide_obj_ids}
           hideObjectiveFunction={this.props.hideObjectiveFunction}
           index={index}
+          case_id={this.props.cases.id}
         />
         })
       }
@@ -32,7 +34,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    hideObjectiveFunction: function(objective_id, uistate_hide_obj_ids) {
+
+    hideObjectiveFunction: function(objective_id, uistate_hide_obj_ids, case_id) {
       
       // Make a copy of what's in state, rather than a reference to it
       let uistate_hide_obj_ids_copy = [ ...uistate_hide_obj_ids ];  
@@ -47,6 +50,9 @@ function mapDispatchToProps(dispatch) {
       } else {
         uistate_hide_obj_ids_copy.splice(index_of_obj_id,1)
       }
+
+      dispatch(hideAction('objectives', case_id, uistate_hide_obj_ids))
+
       dispatch(
         {
           type: 'TOGGLE_HIDE_OBJECTIVE',
