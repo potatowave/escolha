@@ -13,7 +13,7 @@ const popoverRight = (
 );
 
 function postForm(data_insert) {
-  alert(data_insert);
+  console.log(data_insert);
 }
 
 class OnboardData extends React.Component {
