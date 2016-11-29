@@ -85,10 +85,26 @@ function uiStateReducer(state = {}, action) {
         if (action.data.uistate === undefined) {
 
           var objectiveIds = [];
+          const hide_obj_ids = [];
+          const hide_alt_ids = [];
 
           for (var item of action.data.objectives) {
             console.log("*** No UISTATE data object ***")
             objectiveIds.push(item["id"]);
+          };
+
+          // Hidding objectives
+          for (let item of action.data.objectives) {
+            if(item.is_hidden) {
+              hide_obj_ids.push(item.id);
+            }
+          };
+
+          // Hidding alternatives
+          for (var item of action.data.alternatives) {
+            if(item.is_hidden) {
+              hide_alt_ids.push(item.id);
+            }
           };
 
           const initialUI = {
@@ -96,6 +112,8 @@ function uiStateReducer(state = {}, action) {
             highlight: false,
             draggedObjectiveId: null,
             objectivesOrder: objectiveIds,
+            hide_obj_ids: hide_obj_ids,
+            hide_alt_ids: hide_alt_ids,
             offsetX: 0,
             offsetY: 0
           }
@@ -105,20 +123,40 @@ function uiStateReducer(state = {}, action) {
         } else if (action.data.uistate.objectivesOrder === undefined) {
 
           var objectiveIds = [];
+          const hide_obj_ids = [];
+          const hide_alt_ids = [];
 
           for (var item of action.data.objectives) {
             console.log("*** No objectivesOrder in UISTATE data object ***")
             objectiveIds.push(item["id"]);
           };
 
+          // Hidding objectives
+          for (let item of action.data.objectives) {
+            if(item.is_hidden) {
+              hide_obj_ids.push(item.id);
+            }
+          };
+
+          // Hidding alternatives
+          for (var item of action.data.alternatives) {
+            if(item.is_hidden) {
+              hide_alt_ids.push(item.id);
+            }
+          };
+
+
           const initialUI = {
-            objectivesOrder: objectiveIds
+            objectivesOrder: objectiveIds,
+            hide_obj_ids: hide_obj_ids,
+            hide_alt_ids: hide_alt_ids
           }
 
           return Object.assign({}, state, initialUI);
 
         } else {
           console.log("****** DATA LOADED *****")
+
           return action.data.uistate;
         }
       break;
@@ -135,10 +173,10 @@ function uiStateReducer(state = {}, action) {
       return state;
       break;
     case 'TOGGLE_HIDE_ALTERNATIVE':
-      return Object.assign({}, state, action.uistate); 
+      return Object.assign({}, state, action.uistate);
       break;
     case 'TOGGLE_HIDE_OBJECTIVE':
-      return Object.assign({}, state, action.uistate); 
+      return Object.assign({}, state, action.uistate);
       break;
     default:
       return state
