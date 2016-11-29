@@ -68,7 +68,8 @@ module.exports = (knex) => {
   * Hide an array of alternatives
   */
   router.post("/:id/alternatives/hide", (req, res) => {
-    const case_id = req.params.id
+    console.log("* Posting Hide Alternatives array to DB *")
+    const case_id = req.params.id;
     const data    = req.body.data;
 
     // Call the Model to interact with data
@@ -82,7 +83,8 @@ module.exports = (knex) => {
   * Hide an array of objectives
   */
   router.post("/:id/objectives/hide", (req, res) => {
-    const case_id = req.params.id
+    console.log("* Posting Hide Objectives array to DB *")
+    const case_id = req.params.id;
     const data    = req.body.data;
 
     // Call the Model to interact with data

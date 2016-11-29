@@ -51,7 +51,7 @@ function mapDispatchToProps(dispatch) {
         uistate_hide_obj_ids_copy.splice(index_of_obj_id,1)
       }
 
-      dispatch(hideAction('objectives', case_id, uistate_hide_obj_ids))
+      dispatch(hideAction('objectives', case_id, uistate_hide_obj_ids_copy))
 
       dispatch(
         {

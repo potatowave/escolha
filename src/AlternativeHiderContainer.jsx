@@ -36,7 +36,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     hideAlternativeFunction: function(alternative_id, uistate_hide_alt_ids, case_id) {
-
+      console.log("***** CASE ID: *****", case_id)
       // Make a copy of what's in state, rather than a reference to it
       let uistate_hide_alt_ids_copy = [ ...uistate_hide_alt_ids ];  
 
@@ -56,7 +56,7 @@ function mapDispatchToProps(dispatch) {
       }
 
 
-      dispatch(hideAction('alternatives',case_id, uistate_hide_alt_ids))
+      dispatch(hideAction('alternatives',case_id, uistate_hide_alt_ids_copy))
 
       dispatch(
         {

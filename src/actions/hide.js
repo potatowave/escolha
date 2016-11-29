@@ -20,6 +20,7 @@ export function receiveHide(json) {
 
 export function hideAction(whatToHide, case_id, data) {
 
+  // Thunk allows you to use dispatch here - allows for async calls
   return dispatch => {
     dispatch(requestHide(data));
 
