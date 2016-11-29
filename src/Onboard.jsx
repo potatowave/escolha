@@ -5,6 +5,8 @@ import Nav from './Nav.jsx';
 import WizardForm from './WizardForm.jsx';
 import { OverlayTrigger, Popover, FormGroup, FormControl, ControlLabel, Radio, ButtonGroup, ButtonToolbar, Button, Modal } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { saveCase } from './actions/api'
+
 
 const popoverRight = (
   <Popover id="popover-positioned-right" title="Description">
@@ -13,7 +15,8 @@ const popoverRight = (
 );
 
 function postForm(data_insert) {
-  console.log(data_insert);
+  saveCase(data_insert);
+  // console.log(JSON.stringify(data_insert));
 }
 
 class OnboardData extends React.Component {
@@ -35,15 +38,23 @@ class OnboardData extends React.Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     values: state.values
-//   }
-// }
+function mapStateToProps(state) {
+  return {
 
-// export default connect(mapStateToProps)(OnboardData);
+  }
+}
 
-export default connect(
+function mapDispatchToProps(dispatch) {
+  return {
+    saveCase: (data) => {
+      console.log('SAVECASE', data);
+
+      // dispatch(saveCase(data))
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps,
   state => ({
     values: getFormValues('wizard')(state),
   })

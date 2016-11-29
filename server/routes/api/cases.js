@@ -5,6 +5,7 @@ const router  = express.Router();
 const Case    = require('../../models/Case');
 
 function parseForm(formObject) {
+
   const newObject = { case: {}, objectives: [], alternatives: [], values: [] };
 
   newObject.case.name = formObject.casename;
@@ -50,7 +51,7 @@ function parseForm(formObject) {
 
   formObject.objectives.forEach((objective, objectiveIndex) => {
     formObject.alternatives.forEach((alternative, alternativeIndex) => {
-      const value = formObject.values[objectiveIndex][alternativeIndex];
+      const value = formObject.values[objectiveIndex][alternativeIndex].value;
       const objective_id_frontend = objectiveIndex;
       const alternative_id_frontend = alternativeIndex;
 
