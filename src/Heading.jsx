@@ -11,6 +11,7 @@ class Heading extends Component {
 
       <div className="heading-component">
         <div className="case-title">
+          <h1 data-tip={this.props.description}>{this.props.name}</h1>
             <ReactTooltip />
         </div>
       </div>
@@ -23,4 +24,4 @@ export default Heading;
 
 
 
-// <h1 data-tip={this.props.description}>{this.props.name}</h1>
+//

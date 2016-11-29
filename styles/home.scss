@@ -45,7 +45,9 @@ p {
   align-items: center;
   justify-content: center;
 }
-
+.empty-objective-header {
+  height: $cell-height
+}
 /* hackily disable user selection on draggable things */
 .main-container {
   -webkit-touch-callout: none;
