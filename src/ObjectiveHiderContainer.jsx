@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import ObjectiveHiderButton from './ObjectiveHiderButton.jsx'
-// 
+import { hideAction } from './actions/hide'
+//
 
 class ObjectiveHiderContainer extends Component {
 
@@ -11,14 +12,15 @@ class ObjectiveHiderContainer extends Component {
 
     return (
       <div className="obj-hider-container">
-      { 
+      {
         this.props.objectivesOrder.map((objective_id, index) => {
-        return <ObjectiveHiderButton 
+        return <ObjectiveHiderButton
           key={objective_id}
           objective_id={objective_id}
           uistate_hide_obj_ids={this.props.uistate_hide_alt_ids}
           hideObjectiveFunction={this.props.hideObjectiveFunction}
           index={index}
+          case_id={this.props.cases.id}
         />
         })
       }
@@ -39,11 +41,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    hideObjectiveFunction: function(objective_id, uistate_hide_obj_ids) {
+    hideObjectiveFunction: function(objective_id, uistate_hide_obj_ids, case_id) {
 
       // check - if alternative_id is in uistate_hide_alt_id, then remove it
       // if NOT in the array, push to end
-      
+
       // var isHighlighted = ((uistate_highlight) && (uistate_selected_alt_id === alternative.id)) ? true : false;
       const index_of_obj_id = uistate_hide_obj_ids.indexOf(objective_id);
 
@@ -56,6 +58,8 @@ function mapDispatchToProps(dispatch) {
         console.log("*** SPLICE IT OUT. ***")
         console.log("uistate_hide_alt_ids", uistate_hide_obj_ids)
       }
+
+      dispatch(hideAction('objectives', case_id, uistate_hide_obj_ids))
 
         console.log("DISPATCH TO PROPS - BUTTON CLICKED ******", objective_id)
       dispatch(

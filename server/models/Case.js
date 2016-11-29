@@ -404,6 +404,55 @@ module.exports = (knex) => {
     .catch((error) => { console.error(error); });
   }
 
+  /**
+  * Hide alternatives from a case
+  * @param {integer}    caseId
+  * @param {array}    alternatives
+  * @param {function}   callback        - Callback function to run after aSync DB call
+  */
+  function hideAlternatives(caseId, alternatives, callback) {
+    knex('alternatives')
+    .where('case_id', parseInt(caseId, 10))
+    .update({is_hidden: false})
+    .then(() => {
+        alternatives.forEach(
+          (alternative_id) => {
+          knex('alternatives')
+          .where('id', parseInt(alternative_id, 10))
+          .update({is_hidden: true}).then((n) => console.log('Update Alternative to hidden', n));
+        });
+      }
+    );
+
+    callback(alternatives);
+  }
+
+  /**
+  * Hide objectives from a case
+  * @param {integer}    caseId
+  * @param {array}    objectives
+  * @param {function}   callback        - Callback function to run after aSync DB call
+  */
+  function hideObjectives(caseId, objectives, callback) {
+    console.log('CaseId:', caseId);
+    console.log('Data:', objectives);
+
+    knex('objectives')
+    .where('case_id', parseInt(caseId, 10))
+    .update({is_hidden: false})
+    .then(() => {
+        objectives.forEach(
+          (objective_id) => {
+            knex('objectives')
+            .where('id', parseInt(objective_id, 10))
+            .update({is_hidden: true}).then((n) => console.log('Update objective to hidden', n));
+        });
+      }
+    );
+
+    callback(objectives);
+  }
+
 
   return {
     insertCase,
@@ -411,6 +460,8 @@ module.exports = (knex) => {
     deliverContent,
     casesByUser,
     deleteObjective,
-    deleteAlternative
+    deleteAlternative,
+    hideAlternatives,
+    hideObjectives
   };
 };

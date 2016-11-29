@@ -73,13 +73,15 @@ class DAndDTable extends Component {
   render() {
     console.log("Rendering <DAndDTable />");
 
-
     return (
+
+
       <div className="d-and-d-table-component">
       <div>
         <div className="empty-objective-header"></div>
           <ObjectiveHiderContainer
               objectivesOrder={this.props.objectivesOrder}
+              cases={this.props.cases[0]}
             />
         </div>
         <TableContainer
@@ -101,6 +103,8 @@ class DAndDTable extends Component {
             // NOTE: Important to only pass the CURRENTLY SELECTED objective here in objectivesOrder!
             objectivesOrder={[this.props.ui.draggedObjectiveId]}
             objectives={this.props.objectives.filter(objective => objective.id === this.props.ui.draggedObjectiveId)}
+
+
             showHorizontalHeadings={false}
             hide_obj_ids_array={this.props.ui.hide_obj_ids}
 
@@ -119,7 +123,8 @@ function mapStateToProps(state) {
   return {
     ui: state.uistate,
     objectives: state.objectives,
-    objectivesOrder: state.uistate.objectivesOrder
+    objectivesOrder: state.uistate.objectivesOrder,
+    cases: state.cases,
   }
 }
 
