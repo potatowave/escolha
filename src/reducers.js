@@ -93,7 +93,8 @@ function uiStateReducer(state = {}, action) {
         // else, load the 'uistate' from the DB object
 
 
-        // CAN GET RID OF SOME OF THIS NOW THAT WE'VE SET DEFAULTS ABOVE
+
+        // *** CAN GET RID OF SOME OF THIS NOW THAT WE'VE SET DEFAULTS ABOVE ***
         if (action.data.uistate === undefined) {
 
           var objectiveIds = [];

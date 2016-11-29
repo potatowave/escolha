@@ -5,9 +5,8 @@ export default function AlternativeHeading({alternative, uistate_order, highligh
   var highlightedClass = ( (uistate_highlight) && (alternative.id === uistate_selected_alt_id)) ? "header-alternatives highlight" : "header-alternatives";
 
   var curr_alt_id = alternative.id; 
-  var hide_alt_ids_array = uistate_hide_alt_ids;
 
-  var hiddenAlternative = ( (hide_alt_ids_array.indexOf(curr_alt_id) === -1) ? "" : "hide-alternative")
+  var hiddenAlternative = ( (uistate_hide_alt_ids.indexOf(curr_alt_id) === -1) ? "" : "hide-alternative")
 
   return (
 

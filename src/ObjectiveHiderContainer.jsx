@@ -13,7 +13,7 @@ class ObjectiveHiderContainer extends Component {
         return <ObjectiveHiderButton 
           key={objective_id}
           objective_id={objective_id}
-          hide_obj_ids_array={this.props.hide_obj_ids_array}
+          uistate_hide_obj_ids={this.props.uistate_hide_obj_ids}
           hideObjectiveFunction={this.props.hideObjectiveFunction}
           index={index}
         />
@@ -26,32 +26,32 @@ class ObjectiveHiderContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    hide_obj_ids_array: state.uistate.hide_obj_ids
+    uistate_hide_obj_ids: state.uistate.hide_obj_ids
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    hideObjectiveFunction: function(objective_id, hide_obj_ids_array) {
+    hideObjectiveFunction: function(objective_id, uistate_hide_obj_ids) {
       
       // Make a copy of what's in state, rather than a reference to it
-      let hide_obj_ids_array_copy = [ ...hide_obj_ids_array ];  
+      let uistate_hide_obj_ids_copy = [ ...uistate_hide_obj_ids ];  
 
       // Toggle hiding of objectives. 
-      // Check if objective_id is in hide_obj_ids_array.
+      // Check if objective_id is in uistate_hide_obj_ids.
       // If it is, remove it. If it is not, add it to the array.    
-      const index_of_obj_id = hide_obj_ids_array_copy.indexOf(objective_id);
+      const index_of_obj_id = uistate_hide_obj_ids_copy.indexOf(objective_id);
 
       if ( index_of_obj_id === -1) {
-        hide_obj_ids_array_copy.push(objective_id)
+        uistate_hide_obj_ids_copy.push(objective_id)
       } else {
-        hide_obj_ids_array_copy.splice(index_of_obj_id,1)
+        uistate_hide_obj_ids_copy.splice(index_of_obj_id,1)
       }
       dispatch(
         {
           type: 'TOGGLE_HIDE_OBJECTIVE',
           uistate: {
-            hide_obj_ids: hide_obj_ids_array_copy 
+            hide_obj_ids: uistate_hide_obj_ids_copy 
           }
         }
       );

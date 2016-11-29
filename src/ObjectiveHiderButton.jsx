@@ -11,12 +11,12 @@ class ObjectiveHiderButton extends Component {
 
     var curr_obj_id = this.props.objective_id; 
 
-    var filledButton = ( (this.props.hide_obj_ids_array.indexOf(curr_obj_id) === -1) ? "obj-hide-button" : "obj-hide-button clicked")
+    var filledButton = ( (this.props.uistate_hide_obj_ids.indexOf(curr_obj_id) === -1) ? "obj-hide-button" : "obj-hide-button clicked")
 
     return (
       <div 
         className={filledButton}
-        onClick={ () => this.props.hideObjectiveFunction(curr_obj_id, this.props.hide_obj_ids_array) }
+        onClick={ () => this.props.hideObjectiveFunction(curr_obj_id, this.props.uistate_hide_obj_ids) }
       >
         <div className="button-index">{this.props.index + 1}</div>
       </div>

@@ -25,7 +25,7 @@ class ObjectiveDescriptions extends Component {
             key={objectiveId}
             objective={this.props.objectives.find(objective => objective.id === objectiveId)}
             enablePlaceholder={this.props.enablePlaceholder}
-            hide_obj_ids_array={this.props.hide_obj_ids_array}
+            uistate_hide_alt_ids={this.props.uistate_hide_alt_ids}
           />
 
 

@@ -7,9 +7,9 @@ class ObjectiveDescription extends Component {
     
 
     var curr_obj_id = this.props.objective.id; 
-    var hide_obj_ids_array = this.props.hide_obj_ids_array;
+    var uistate_hide_alt_ids = this.props.uistate_hide_alt_ids;
 
-    var hiddenClass = ( (hide_obj_ids_array.indexOf(curr_obj_id) === -1) ? "" : "hide-objective")
+    var hiddenClass = ( (uistate_hide_alt_ids.indexOf(curr_obj_id) === -1) ? "" : "hide-objective")
 
     return (
 
@@ -51,8 +51,6 @@ function mapDispatchToProps(dispatch) {
       // const offsetY = event.pageY - event.target.offsetParent.offsetTop;
       // const offsetX = event.pageX - event.target.offsetParent.offsetLeft;     
 
-      // console.log("*** MOUSE DOWN ***");
-      // console.log("this.props.objective.id", this.props.objective.id)
       const offsetY = event.pageY - event.target.offsetTop;
       const offsetX = event.pageX - event.target.offsetLeft;
 

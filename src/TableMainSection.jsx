@@ -54,10 +54,8 @@ class TableMainSection extends Component {
 TableMainSection.defaultProps = {
   showHorizontalHeadings: true,
   enablePlaceholder: true,
-  uistate_hide_alt_ids: [],
   // items: [],
-  objectives: [],
-  objectivesOrder: []
+  objectives: []
 };
 
 
@@ -69,7 +67,6 @@ function mapStateToProps(state) {
     uistate_selected_alt_id: state.uistate.selected_alt_id,
     uistate_highlight: state.uistate.highlight,
     uistate_hide_alt_ids: state.uistate.hide_alt_ids,
-    ui: state.uistate,
 
     cellBeingEdited: state.cellBeingEdited
   }

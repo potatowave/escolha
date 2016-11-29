@@ -73,8 +73,8 @@ class DAndDTable extends Component {
   render() {
     console.log("Rendering <DAndDTable />");
 
-    console.log("IN D&DTABLE: this.props.ui.hide_obj_ids", this.props.ui.hide_obj_ids)
-    console.log("IN D&DTABLE: this.props.ui.objectivesOrder", this.props.ui.objectivesOrder)
+    // console.log("IN D&DTABLE: this.props.ui.hide_obj_ids", this.props.ui.hide_obj_ids)
+    // console.log("IN D&DTABLE: this.props.ui.objectivesOrder", this.props.ui.objectivesOrder)
 
     return (
       <div className="d-and-d-table-component">
@@ -87,7 +87,7 @@ class DAndDTable extends Component {
           ref={component => this.mainTable = component}
           objectivesOrder={this.props.ui.objectivesOrder}
           objectives={this.props.objectives}
-          hide_obj_ids_array={this.props.ui.hide_obj_ids} // CHECK THIS ONE ****DIFFERENT NAME*****
+          uistate_hide_alt_ids={this.props.ui.hide_obj_ids} 
           />
         {
           this.props.ui.draggedObjectiveId &&
@@ -103,7 +103,7 @@ class DAndDTable extends Component {
             objectives={this.props.objectives.filter(objective => objective.id === this.props.ui.draggedObjectiveId)}
 
             showHorizontalHeadings={false} 
-            hide_obj_ids_array={this.props.ui.hide_obj_ids}
+            uistate_hide_alt_ids={this.props.ui.hide_obj_ids}
 
           />
         }
@@ -133,7 +133,6 @@ function mapDispatchToProps(dispatch) {
       dispatch({
         type: 'UPDATE_UI',
         data: {
-          // draggedItemId: null,
           draggedObjectiveId: null
         }
       });
