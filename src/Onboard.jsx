@@ -14,11 +14,6 @@ const popoverRight = (
   </Popover>
 );
 
-function postForm(data_insert) {
-  saveCase(data_insert);
-  // console.log(JSON.stringify(data_insert));
-}
-
 class OnboardData extends React.Component {
 
   render() {
@@ -30,7 +25,7 @@ class OnboardData extends React.Component {
         <Nav />
         <main className="onboardform">
 
-          <WizardForm onSubmit={postForm} values={this.props.values}  / >
+          <WizardForm onSubmit={this.props.saveCase} values={this.props.values}  / >
 
         </main>
         </div>
@@ -40,22 +35,16 @@ class OnboardData extends React.Component {
 
 function mapStateToProps(state) {
   return {
-
+    values: getFormValues('wizard')(state),
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     saveCase: (data) => {
-      console.log('SAVECASE', data);
-
-      // dispatch(saveCase(data))
+      dispatch(saveCase(data))
     },
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps,
-  state => ({
-    values: getFormValues('wizard')(state),
-  })
-)(OnboardData);
+export default connect(mapStateToProps, mapDispatchToProps)(OnboardData);
