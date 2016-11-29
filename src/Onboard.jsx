@@ -43,7 +43,7 @@ function mapDispatchToProps(dispatch) {
   return {
     saveCase: (data) => {
       dispatch(saveCase(data))
-    },
+    }
   }
 }
 
