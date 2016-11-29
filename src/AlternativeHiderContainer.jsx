@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import AlternativeHiderButton from './AlternativeHiderButton.jsx'
-// 
+import { hideAction } from './actions/hide'
 
 class AlternativeHiderContainer extends Component {
 
@@ -10,14 +10,15 @@ class AlternativeHiderContainer extends Component {
 
     return (
       <div className="alt-hider-container">
-      { 
+      {
         this.props.alternatives.map((alternative, index) => {
-        return <AlternativeHiderButton 
+        return <AlternativeHiderButton
           key={alternative.id}
           alternative_id={alternative.id}
           uistate_hide_alt_ids={this.props.uistate_hide_alt_ids}
           hideAlternativeFunction={this.props.hideAlternativeFunction}
           index={index}
+          case_id={alternative.case_id}
         />
         })
       }
@@ -25,10 +26,6 @@ class AlternativeHiderContainer extends Component {
     )
   }
 }
-
-AlternativeHiderContainer.defaultProps = {
-  uistate_hide_alt_ids: []
-};
 
 function mapStateToProps(state) {
   return {
@@ -38,30 +35,34 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    hideAlternativeFunction: function(alternative_id, uistate_hide_alt_ids) {
+    hideAlternativeFunction: function(alternative_id, uistate_hide_alt_ids, case_id) {
+      console.log("***** CASE ID: *****", case_id)
+      // Make a copy of what's in state, rather than a reference to it
+      let uistate_hide_alt_ids_copy = [ ...uistate_hide_alt_ids ];  
 
-      // check - if alternative_id is in uistate_hide_alt_id, then remove it
-      // if NOT in the array, push to end
-      
-      // var isHighlighted = ((uistate_highlight) && (uistate_selected_alt_id === alternative.id)) ? true : false;
-      const index_of_alt_id = uistate_hide_alt_ids.indexOf(alternative_id);
+      // Toggle hiding of alternatives. 
+      // Check if alternative_id is in uistate_hide_alt_ids.
+      // If it is, remove it. If it is not, add it to the array. 
+      const index_of_alt_id = uistate_hide_alt_ids_copy.indexOf(alternative_id);
 
       if ( index_of_alt_id === -1) {
-        uistate_hide_alt_ids.push(alternative_id)
-        console.log("*** ADD IT TO UISTATE ***")
-        console.log("uistate_hide_alt_ids", uistate_hide_alt_ids)
+        uistate_hide_alt_ids_copy.push(alternative_id)
+        // console.log("*** ADD IT TO UISTATE ***")
+        // console.log("uistate_hide_alt_ids_copy", uistate_hide_alt_ids_copy)
       } else {
-        uistate_hide_alt_ids.splice(index_of_alt_id,1)
-        console.log("*** SPLICE IT OUT. ***")
-        console.log("uistate_hide_alt_ids", uistate_hide_alt_ids)
+        uistate_hide_alt_ids_copy.splice(index_of_alt_id,1)
+        // console.log("*** SPLICE IT OUT. ***")
+        // console.log("uistate_hide_alt_ids_copy", uistate_hide_alt_ids_copy)
       }
 
-        console.log("DISPATCH TO PROPS - BUTTON CLICKED ******", alternative_id)
+
+      dispatch(hideAction('alternatives',case_id, uistate_hide_alt_ids_copy))
+
       dispatch(
         {
           type: 'TOGGLE_HIDE_ALTERNATIVE',
           uistate: {
-            hide_alt_ids: uistate_hide_alt_ids
+            hide_alt_ids: uistate_hide_alt_ids_copy
           }
         }
       );

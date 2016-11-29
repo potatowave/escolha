@@ -3,9 +3,7 @@
 /*should be rocking box-sizing: border-box; - otherwise any padding or border on that container and it would be wider than 100% and that's the worst.*/
 
 $cell-width: 170px;
-$cell-height: 86px;
-$header-obj-width: 100px;
-$header-units-width: 45px;
+$cell-height:65px;
 $cell-height-table: 67px;
 $cell-margin: 1px;
 $num-alts: 6;
@@ -29,7 +27,8 @@ body {
 }
 
 main {
-  margin-top: 65px;
+  margin-top: -80px;
+
 }
 
 h1 {
@@ -47,7 +46,9 @@ p {
   align-items: center;
   justify-content: center;
 }
-
+.empty-objective-header {
+  height: $cell-height
+}
 /* hackily disable user selection on draggable things */
 .main-container {
   -webkit-touch-callout: none;
@@ -65,7 +66,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0px 250px 50px 250px;
+  margin: 0px 250px 0px 250px;
   line-height: 1.5em;
   font-size: 1.4em;
   font-weight: lighter;
@@ -76,8 +77,15 @@ p {
   color: black;
   color:white;
   margin-top:100px;
+  margin-bottom:40px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Lucida Grande";
+}
+
+.case-title h1 {
+  position: absolute;
+  cursor:help;
+  z-index: 99;
 }

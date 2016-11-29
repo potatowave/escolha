@@ -23,8 +23,8 @@ class ObjectiveRow extends Component {
     var thisRowsSelectedValue = selectedCells.find(matchingPropsRow, this);
 
     var curr_obj_id = this.props.objective_id; 
-    var hide_obj_ids_array = this.props.uistate_hide_obj_ids;
-    var hiddenObjective = ( (hide_obj_ids_array.indexOf(curr_obj_id) === -1) ? "" : "hide-objective")
+    
+    var hiddenObjective = ( (this.props.uistate_hide_obj_ids.indexOf(curr_obj_id) === -1) ? "" : "hide-objective")
 
     return (
       <div className={"objective-row" + " " + hiddenObjective}>
@@ -47,7 +47,6 @@ class ObjectiveRow extends Component {
             enablePlaceholder={this.props.enablePlaceholder}
             ui={this.props.ui}
             uistate_hide_alt_ids={this.props.uistate_hide_alt_ids}
-            // uistate_hide_obj_ids={this.props.uistate_hide_obj_ids}
           />)
         })}
       </div>
@@ -56,9 +55,7 @@ class ObjectiveRow extends Component {
 }
 
 ObjectiveRow.defaultProps = {
-  enablePlaceholder: false, 
-  uistate_hide_alt_ids: [],
-  uistate_hide_obj_ids: []
+  enablePlaceholder: false
 };
 
 

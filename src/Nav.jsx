@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-
-import { Link } from 'react-router'
-import { fetchCase } from './actions/api'
+import { Link } from 'react-router';
+import { fetchCase } from './actions/api';
+import AlternativeHiderContainer from './AlternativeHiderContainer.jsx';
 
 class Nav extends Component {
 
@@ -28,14 +28,11 @@ class Nav extends Component {
             <div className="editor-button"><i className="fa fa-pencil" aria-hidden="true"></i></div>
             <div className="create-button"><i className="fa fa-plus" aria-hidden="true"></i></div>
           </div>
-
           <div className="nav-aside">
             <div className="search-area"><i className="fa fa-search"></i></div>
             <div className="login">Lighthouse-labs@gmail.com</div>
           </div>
         </nav>
-
-
 
     );
   }
@@ -44,7 +41,8 @@ class Nav extends Component {
 
 function mapStateToProps(state) {
   return {
-    userCases: state.userCases
+    userCases: state.userCases,
+    alternatives: state.alternatives
   }
 }
 

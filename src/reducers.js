@@ -75,52 +75,69 @@ function cellsReducer(state = [], action) {
   }
 }
 
-function uiStateReducer(state = {}, action) {
+
+
+const defaultUiState = {
+  selected_alt_id: null,
+  highlight: false,
+  draggedObjectiveId: null,
+  objectivesOrder: [],
+  hide_obj_ids: [],
+  hide_alt_ids: [],
+  offsetX: 0,
+  offsetY: 0
+}
+
+function uiStateReducer(state = defaultUiState, action) {
+
   switch(action.type) {
     case 'DATA_LOADED':
-        // if no 'uistate' in object from DB, set defaults
-        // if no 'objectivesOrder' in object from DB, set order based on objective ids
-        // else, load the 'uistate' from the DB object
+    
+      let objectiveIds = [];
+      let hide_obj_ids = [];
+      let hide_alt_ids = [];
 
-        if (action.data.uistate === undefined) {
+      // Update objectivesOrder from db
+      // QUESTION - IS THE DB PUTTING THE OBJECTIVES IN THE PROPER ORDER SO THAT WHEN WE GRAB
+      // THE IDS HERE THEY ARE IN THE RIGHT ORDER?
+      for (let item of action.data.objectives) {
+        objectiveIds.push(item["id"]);
+      };
 
-          var objectiveIds = [];
-
-          for (var item of action.data.objectives) {
-            console.log("*** No UISTATE data object ***")
-            objectiveIds.push(item["id"]);
-          };
-
-          const initialUI = {
-            selected_alt_id: null,
-            highlight: false,
-            draggedObjectiveId: null,
-            objectivesOrder: objectiveIds,
-            offsetX: 0,
-            offsetY: 0
-          }
-
-          return Object.assign({}, state, initialUI);
-
-        } else if (action.data.uistate.objectivesOrder === undefined) {
-
-          var objectiveIds = [];
-
-          for (var item of action.data.objectives) {
-            console.log("*** No objectivesOrder in UISTATE data object ***")
-            objectiveIds.push(item["id"]);
-          };
-
-          const initialUI = {
-            objectivesOrder: objectiveIds
-          }
-
-          return Object.assign({}, state, initialUI);
-
-        } else {
-          console.log("****** DATA LOADED *****")
-          return action.data.uistate;
+      // Update hidden objectives
+      for (let item of action.data.objectives) {
+        if(item.is_hidden) {
+          hide_obj_ids.push(item.id);
         }
+      };
+
+      // Update hidden alternatives
+      for (let item of action.data.alternatives) {
+        if(item.is_hidden) {
+          hide_alt_ids.push(item.id);
+        }
+      };
+
+      const newUiSettings = {
+        objectivesOrder: objectiveIds,
+        hide_obj_ids: hide_obj_ids,
+        hide_alt_ids: hide_alt_ids,
+        selected_alt_id: null,
+        highlight: false,
+        draggedObjectiveId: null
+      }
+
+      // NOTE: if switching cases, users, MUST reset the following to null/false
+        // const initialUI = {
+        //   selected_alt_id: null,
+        //   highlight: false,
+        //   draggedObjectiveId: null,
+
+        //   offsetX: 0,
+        //   offsetY: 0
+        // }
+
+      return Object.assign({}, state, newUiSettings);
       break;
     case 'ALTERNATIVES_SELECTED':
       return Object.assign({}, state, action.uistate);
@@ -135,10 +152,10 @@ function uiStateReducer(state = {}, action) {
       return state;
       break;
     case 'TOGGLE_HIDE_ALTERNATIVE':
-      return Object.assign({}, state, action.uistate); 
+      return Object.assign({}, state, action.uistate);
       break;
     case 'TOGGLE_HIDE_OBJECTIVE':
-      return Object.assign({}, state, action.uistate); 
+      return Object.assign({}, state, action.uistate);
       break;
     default:
       return state

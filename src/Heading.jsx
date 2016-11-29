@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactTooltip from 'react-tooltip'
 import { connect } from 'react-redux';
 
 class Heading extends Component {
@@ -10,12 +11,9 @@ class Heading extends Component {
 
       <div className="heading-component">
         <div className="case-title">
-          <h1>{this.props.name}</h1>
+          <h1 data-tip={this.props.description}>{this.props.name}</h1>
+            <ReactTooltip />
         </div>
-        <div className="case-description">
-            <p>{this.props.description}</p>
-        </div>
-
       </div>
 
     );
@@ -23,3 +21,7 @@ class Heading extends Component {
 }
 
 export default Heading;
+
+
+
+//

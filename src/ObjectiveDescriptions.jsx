@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import ObjectiveDescription from './ObjectiveDescription.jsx';
+import AlternativeHiderContainer from './AlternativeHiderContainer.jsx';
 
 class ObjectiveDescriptions extends Component {
 
@@ -7,25 +9,24 @@ class ObjectiveDescriptions extends Component {
     console.log("Rendering <ObjectiveDescriptions />");
 
     return (
-      
+
       <div className="objective-description-area">
 
         {
           this.props.showHorizontalHeadings &&
         <div className="header-objectives-container">
-          <label className="header-objectives">Objectives</label>
-          <label className="header-units">Units</label>
+
         </div>
-        
+
         }
 
-        { 
+        {
           this.props.objectivesOrder.map((objectiveId) => {
-          return <ObjectiveDescription 
+          return <ObjectiveDescription
             key={objectiveId}
             objective={this.props.objectives.find(objective => objective.id === objectiveId)}
             enablePlaceholder={this.props.enablePlaceholder}
-            hide_obj_ids_array={this.props.hide_obj_ids_array}
+            uistate_hide_alt_ids={this.props.uistate_hide_alt_ids}
           />
 
 
@@ -33,7 +34,7 @@ class ObjectiveDescriptions extends Component {
         }
 
       </div>
-      
+
     );
   }
 }
@@ -45,4 +46,13 @@ ObjectiveDescriptions.defaultProps = {
   objectives: []
 };
 
-export default ObjectiveDescriptions;
+function mapStateToProps (state) {
+  return {
+    alternatives: state.alternatives
+  }
+}
+
+export default connect (mapStateToProps)(ObjectiveDescriptions);
+
+// <label className="header-objectives">Objectives</label>
+// <label className="header-units">Units</label>

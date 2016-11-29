@@ -2,14 +2,16 @@
 
 $circle-diameter: 20px;
 
+.alt-hider{
+  margin-left: 50%;
+}
 .alt-hider-container {
   display: flex;
   min-width: 30px;
-  max-width: 300px;
+  max-width: 180px;
   height: 30px;
-  border: solid 1px white;
-  border-radius: 5px;
-  background-color: #ccc;
+
+  background-color: #31384e;
 
   flex-wrap: wrap;
   align-items: center;
@@ -18,11 +20,13 @@ $circle-diameter: 20px;
 
   // margin: auto;
   margin-top: 20px;
-  opacity: 0.5;
+  opacity: 0.1;
   transition: opacity 200ms;
 }
 
 .alt-hider-container:hover {
+  border: solid 1px white;
+  border-radius: 30px;
   opacity:1;
 }
 
@@ -38,7 +42,8 @@ $circle-diameter: 20px;
 }
 
 .alt-hide-button.clicked {
-  background-color: darkgrey;
+  background-color: #31384E;
+  border: 1px dotted grey;
 }
 
 .hide-alternative {

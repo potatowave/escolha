@@ -25,6 +25,7 @@ module.exports = (knex) => {
   */
   router.post("/", (req, res) => {
     const data = req.body.data;
+
     // Call the Model to interact with data
     Case(knex).insertCase(data, (msg) => {
       res.json(msg);
@@ -56,10 +57,41 @@ module.exports = (knex) => {
     })
   });
 
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
+// REFACTOR TO NEW FILES AND BETTER ROUTERS!
 
+  /**
+  * ROUTE: /api/cases/:id/alternatives/hide
+  * Hide an array of alternatives
+  */
+  router.post("/:id/alternatives/hide", (req, res) => {
+    console.log("* Posting Hide Alternatives array to DB *")
+    const case_id = req.params.id;
+    const data    = req.body.data;
 
+    // Call the Model to interact with data
+    Case(knex).hideAlternatives(case_id, data, (msg) => {
+      res.json(msg);
+    });
+  });
 
+  /**
+  * ROUTE: /api/cases/:id/objectives/hide
+  * Hide an array of objectives
+  */
+  router.post("/:id/objectives/hide", (req, res) => {
+    console.log("* Posting Hide Objectives array to DB *")
+    const case_id = req.params.id;
+    const data    = req.body.data;
+
+    // Call the Model to interact with data
+    Case(knex).hideObjectives(case_id, data, (msg) => {
+      res.json(msg);
+    });
+  });
 
 
   /**
@@ -75,7 +107,6 @@ module.exports = (knex) => {
       res.json(data);
     })
   });
-
 
   /**
   * ROUTE: /api/cases/:case_id/alternatives/:id

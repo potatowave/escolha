@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import AlternativeHeading from './AlternativeHeading.jsx'
-import ObjectiveRow from './ObjectiveRow.jsx'
+import AlternativeHeading from './AlternativeHeading.jsx';
+import ObjectiveRow from './ObjectiveRow.jsx';
+import AlternativeHiderContainer from './AlternativeHiderContainer.jsx';
 
 class TableMainSection extends Component {
 
@@ -13,6 +14,7 @@ class TableMainSection extends Component {
         <div className="table-area">
 
           <div className="header-alternatives-container">
+
 
             { this.props.showHorizontalHeadings && this.props.alternatives.map((alternative) => {
               return <AlternativeHeading
@@ -47,6 +49,7 @@ class TableMainSection extends Component {
             })}
 
         </div>
+
     );
   }
 }
@@ -54,10 +57,8 @@ class TableMainSection extends Component {
 TableMainSection.defaultProps = {
   showHorizontalHeadings: true,
   enablePlaceholder: true,
-  uistate_hide_alt_ids: [],
   // items: [],
-  objectives: [],
-  objectivesOrder: []
+  objectives: []
 };
 
 
@@ -69,7 +70,6 @@ function mapStateToProps(state) {
     uistate_selected_alt_id: state.uistate.selected_alt_id,
     uistate_highlight: state.uistate.highlight,
     uistate_hide_alt_ids: state.uistate.hide_alt_ids,
-    ui: state.uistate,
 
     cellBeingEdited: state.cellBeingEdited
   }

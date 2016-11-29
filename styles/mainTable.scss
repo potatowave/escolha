@@ -1,21 +1,37 @@
 
+
 .main-container {
-  display: flex;
+  height: 100%;
+  display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  flex-direction: row;
+  padding-top: auto;
+  align-self: center;
+  /*flex-direction: row;*/
   justify-content: center;
+  border: 2px dotted yellow;
+  position: fixed;
+  top:0;
+  right:1em;
+  left:0;
+  bottom:0;
+
+  /*making the table dead center*/
+/*  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);*/
 }
 
 .table-container {
-
   min-width: $cell-width;
   min-height: $cell-height;
   font-family: "Lucida Grande";
   align-items: center;
   display: flex;
-}
 
+}
+.table-area .header {
+}
 
 //  FIX CONFLICTS HERE
 .table-area .header label:hover{
@@ -42,7 +58,7 @@
   font-family: "Lucida Grande";
   color: #E2E7ED;
   font-size: 1.4em;
-  line-height: 3.7em;
+  line-height: 3em;
   text-align: center;
   box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
 }
@@ -61,7 +77,7 @@
 .objective-row {
   min-width: $cell-width;
   min-height: $cell-height;
-  font-size: 1.8em;
+  font-size: 1.5em;
   display: flex;
   justify-content: space-between;
 }
