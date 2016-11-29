@@ -31,12 +31,9 @@ class TableContainer extends Component {
           <TableMainSection
             showHorizontalHeadings={this.props.showHorizontalHeadings}
             enablePlaceholder={this.props.enablePlaceholder}
-
             objectivesOrder={this.props.objectivesOrder}
             objectives={this.props.objectives}
-
           />
-
         </div>
 
 

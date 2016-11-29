@@ -36,9 +36,6 @@ class App extends Component {
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={300}>
                 <DAndDTable />
-                <AlternativeHiderContainer
-                  alternatives={this.props.alternatives}
-                />
               </ReactCSSTransitionGroup>
             </main>
           </div>
