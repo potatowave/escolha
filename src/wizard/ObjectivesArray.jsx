@@ -70,7 +70,7 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
 
           </div>
           <div>
-            <Field name={`${objective}.scale_type`} component={SelectField} hintText="Scale Type">
+            <Field name={`${objective}.scale_type`} component={SelectField} floatingLabelText="Scale Type">
               <MenuItem value="natural" primaryText="Natural (Number)" />
               <MenuItem value="nominal" primaryText="Nominal (Non-Number)" />
               <MenuItem value="ordinal" primaryText="Ordinal (Range)" />
@@ -82,14 +82,14 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
               <Field
                 name={`${objective}.rangemin`}
                 component={TextField}
-                hintText={'Minimum'}
+                floatingLabelText={'Minimum'}
               />
             </div>
             <div>
               <Field
                 name={`${objective}.rangemax`}
                 component={TextField}
-                hintText={'Maximum'}
+                floatingLabelText={'Maximum'}
               />
             </div>
 
@@ -104,10 +104,10 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
           {objectives[index].scale_type !== 'nominal' &&
           <div>
             <div>
-              <Field name={`${objective}.unit_prefix`} component={TextField} hintText={'Prefix'} />
+              <Field name={`${objective}.unit_prefix`} component={TextField} floatingLabelText={'Prefix'} />
             </div>
             <div>
-              <Field name={`${objective}.unit_suffix`} component={TextField} hintText={'Postfix'} />
+              <Field name={`${objective}.unit_suffix`} component={TextField} floatingLabelText={'Postfix'} />
             </div>
             <div>
               <div>

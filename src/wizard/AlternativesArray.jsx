@@ -44,11 +44,11 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
           }</h4>
 
            <div>
-             <Field name={`${alternative}.name`} component={TextField} hintText="Option Name " />
+             <Field name={`${alternative}.name`} component={TextField} floatingLabelText="Option Name " />
            </div>
 
            <div>
-             <Field name={`${alternative}.image_url`} component={TextField} hintText="URL" />
+             <Field name={`${alternative}.image_url`} component={TextField} floatingLabelText="URL" />
            </div>
 
            {objectives.map((objective, i) =>
@@ -60,7 +60,7 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
                      <Field
                        name={`values.${i}.${index}.value`}
                        component={TextField}
-                       hintText={(!!alternatives[index].name ? `${objective.name} > ${objective.sub_name}` : `${objective.name} : ${objective.sub_name}`)}
+                       floatingLabelText={(!!alternatives[index].name ? `${objective.name} > ${objective.sub_name}` : `${objective.name} : ${objective.sub_name}`)}
                      />
                    </div>}
 
@@ -69,7 +69,7 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
                      <Field
                        name={`values.${i}.${index}.value`}
                        component={TextField}
-                       hintText={(`${objective.name} > ${objective.sub_name} `)}
+                       floatingLabelText={(`${objective.name} > ${objective.sub_name} `)}
                      />
 
                      {!!alternatives[index].name &&
@@ -87,7 +87,7 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
                        name={`values.${i}.${index}.value`}
                        type="text"
                        component={TextField}
-                       hintText={(!!alternatives[index].name ? `${objective.name} : ${objective.sub}` : `Alternative #${index + 1} : ${objective.name} : ${objective.sub} ? objective.criterion : ''}`)}
+                       floatingLabelText={(!!alternatives[index].name ? `${objective.name} : ${objective.sub}` : `Alternative #${index + 1} : ${objective.name} : ${objective.sub} ? objective.criterion : ''}`)}
                      />
                    </div>}
 
