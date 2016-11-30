@@ -76,7 +76,6 @@ passport.use(new LocalStrategy(
 passport.serializeUser((user, cb) => cb(null, user.id));
 
 passport.deserializeUser(authHelper.myDeserialize);
-
 // ----------------------------------------------------------------------------
 // Unsecure routers
 

@@ -1,6 +1,12 @@
 "use strict";
 
 module.exports = (knex) => {
+
+  const passport = require('passport')
+  const authHelper = require('../helpers/auth')(knex);
+
+  const HELLO = passport.deserializeUser(authHelper.myDeserialize);
+
   const userId = 1;
 
   // Mapping id from front-end to database id in order to be able to add values

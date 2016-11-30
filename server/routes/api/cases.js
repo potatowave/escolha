@@ -38,6 +38,10 @@ module.exports = (knex) => {
   * Return all cases that an user have
   */
   router.get("/", (req, res) => {
+
+    console.log('SESSION', req.session.passport.user);
+
+
     Case(knex).casesByUser((data) => {
       res.json(data);
     })
