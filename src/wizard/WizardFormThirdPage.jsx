@@ -5,7 +5,7 @@ import renderField from './renderField';
 import ReactBootstrapSlider from 'react-bootstrap-slider';
 import AlternativesArray from './AlternativesArray';
 import { connect } from 'react-redux';
-import RaisedButton from 'material-ui/RaisedButton'
+import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 
