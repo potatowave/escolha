@@ -26,7 +26,7 @@ class Nav extends Component {
                 </div>
               </div>
             <div className="editor-button"><i className="fa fa-pencil" aria-hidden="true"></i></div>
-            <div className="create-button"><i className="fa fa-plus" aria-hidden="true"></i></div>
+            <div className="create-button"><Link to='/new'><i className="fa fa-plus" aria-hidden="true"></i></Link></div>
           </div>
           <div className="nav-aside">
             <div className="search-area"><i className="fa fa-search"></i></div>

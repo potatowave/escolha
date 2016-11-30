@@ -32,10 +32,10 @@ const WizardFormThirdPage = (props) => {
 
       <div>
 
-      <div>
-        <IconButton type="submit" onClick={previousPage} className="previous"><FontIcon className="material-icons" style={backStyles} >arrow_back</FontIcon></IconButton>
-        <IconButton type="submit" disabled={pristine || submitting}><FontIcon className="material-icons" style={forwardStyles} >save</FontIcon></IconButton>
-      </div>
+        <div>
+          <IconButton type="submit" onClick={previousPage} className="previous"><FontIcon className="material-icons" style={backStyles} >arrow_back</FontIcon></IconButton>
+          <IconButton type="submit" disabled={pristine || submitting}><FontIcon className="material-icons" style={forwardStyles} >save</FontIcon></IconButton>
+        </div>
 
       </div>
 
