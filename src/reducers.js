@@ -1,16 +1,30 @@
-// reducers.js
 // Define the reducer
 import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form'
-import * as Cellreducers from './reducers/cell'
 
+function cellReducer (state = [], action) {
+  switch(action.type) {
+    case 'CELL_TOGGLED':
+     return Object.assign({}, state, {
+        alternative_id: action.cell.alternative_id,
+        objective_id: action.cell.objective_id
+      });
+
+    case 'CELL_SAVE':
+      return Object.assign({}, state, {
+        value: action.value
+      });
+
+    default:
+      return state
+  }
+}
 
 function moveValueInArray(array, from, to) {
   const a = array.slice(0);
   a.splice(to, 0, a.splice(from, 1)[0]);
   return a;
 }
-
 
 function userCases(state = [], action) {
   switch(action.type) {
@@ -75,8 +89,6 @@ function cellsReducer(state = [], action) {
   }
 }
 
-
-
 const defaultUiState = {
   selected_alt_id: null,
   highlight: false,
@@ -92,7 +104,7 @@ function uiStateReducer(state = defaultUiState, action) {
 
   switch(action.type) {
     case 'DATA_LOADED':
-    
+
       let objectiveIds = [];
       let hide_obj_ids = [];
       let hide_alt_ids = [];
@@ -174,8 +186,7 @@ const rootReducer = combineReducers({
   form: formReducer,
   cells: cellsReducer,
   uistate: uiStateReducer,
-
-  cellBeingEdited: Cellreducers.cellReducer
+  cellBeingEdited: cellReducer
 });
 
 export default rootReducer;

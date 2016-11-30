@@ -4,35 +4,32 @@ const bcrypt = require("bcrypt");
 
 module.exports = (knex) => {
 
-// *****************************
-// ** Refactor to promises!!! **
-// *****************************
-
   /**
-  * XXXXXXXXXXXXXXXXX
-  * @returns {XXXXXXXXboolean}
+  * Insert user into database
   */
   function insertUserInDatabase(user, callback) {
     bcrypt.hash(user.password, 10, (err, hash) => {
-      knex('users').insert({
+
+      const userData = {
         name: user.name,
         email: user.email,
         password: hash
-      })
-      .then(function (result) {
-        if (result.rowCount) {
-          return callback({success: true, message: 'User Created!'})
+      }
+
+      knex('users').insert(userData)
+      .returning('id')
+      .then(function (userId) {
+        if (userId[0] > 0) {
+          callback(false, userId[0])
+        } else {
+          callback(true, userId[0])
         }
-      }).catch((err) => {
-        callback({success: false, message: 'Something went wrong, try again'})
-        console.log(err)
-      });
+      })
     });
   }
 
   /**
-  * XXXXXXXXXXXXXXXXX
-  * @returns {XXXXXXXXboolean}
+  * Check if an email already exists
   */
   function userExists(user, callback) {
       knex
@@ -50,8 +47,7 @@ module.exports = (knex) => {
   }
 
   /**
-  * XXXXXXXXXXXXXXXXX
-  * @returns {XXXXXXXXboolean}
+  * Creating a new user into database
   */
   function createUser(user, callback) {
     if (user.password !== user.password_confirm) {
@@ -62,8 +58,7 @@ module.exports = (knex) => {
   }
 
   /**
-  * XXXXXXXXXXXXXXXXX
-  * @returns {XXXXXXXXboolean}
+  * Search for a specific user by email
   */
   function findOne(email, callback) {
       knex
@@ -73,16 +68,15 @@ module.exports = (knex) => {
       .then((user) => {
         if (user.length !== 0) {
           return callback(null, user[0]);
-        } else {
-          return callback(null, null);
         }
+
+        return callback(null, null);
       })
       .catch((err) => callback(err, null));
   }
 
   /**
-  * XXXXXXXXXXXXXXXXX
-  * @returns {XXXXXXXXboolean}
+  * Find user by id
   */
   function findById(id, callback) {
       knex
@@ -92,9 +86,9 @@ module.exports = (knex) => {
       .then((user) => {
         if (user.length !== 0) {
           return callback(null, user[0]);
-        } else {
-          return callback(null, null);
         }
+        return callback(null, null);
+
       })
       .catch((err) => callback(err, null));
   }

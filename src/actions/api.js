@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import {reset} from 'redux-form';
 
-// TAKE THIS OUT and let defacult JS fetch
+const API_URL = 'http://localhost:3001';
 
 // ----------------------------------------------------------------------------
 // Save Case to Database
@@ -9,33 +9,21 @@ import {reset} from 'redux-form';
 export const REQUEST_SAVE_CASE = 'REQUEST_SAVE_CASE'
 
 export function requestSaveCase(data) {
-  return {
-    type: REQUEST_SAVE_CASE,
-    data
-  }
+  return { type: REQUEST_SAVE_CASE, data }
 }
 
-export const RECEIVE_SAVE_CASE = 'RECEIVE_SAVE_CASE'
-
 export function receiveSaveCase(json) {
-  // workaround -- adding to store!
-  // json.uistate = 1
-  // json.uistate = {
-  //   "order": null,
-  //   "alt_id": null
-  // }
   return {type: 'DATA_LOADED', data: json}
 }
 
-export function saveCase(data) {
+export function saveCaseAction(data) {
   return dispatch => {
     dispatch(requestSaveCase(data));
-    return fetch('http://localhost:3001/api/cases', {
+    return fetch(API_URL + '/api/cases', {
       method: 'post',
       body: JSON.stringify({data}),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include'
     })
     .then(res => res.json())
     .then(json => {
@@ -48,89 +36,96 @@ export function saveCase(data) {
 // ----------------------------------------------------------------------------
 // Read Case from Database
 
-
-// Trigger this action when REQUEST to fetch data from API
-export const REQUEST_CASE = 'REQUEST_CASE'
-
 export function requestCase(case_id) {
-  return {
-    type: REQUEST_CASE,
-    case_id
-  }
+  return { type: 'REQUEST_CASE', case_id }
 }
 
-// After the aSync call to API is done this function is called
-export const RECEIVE_CASE = 'RECEIVE_CASE'
-
 export function receiveCase(case_id, json) {
-  // workaround -- adding to store!
-  json.uistate = {
-    "order": null,
-    "alt_id": null
-  }
   return {type: 'DATA_LOADED', data: json}
 }
 
-// This function is called from index to load the first Case
 export function fetchCase(case_id) {
   return dispatch => {
 
-    // First dispatch: the app state is updated to inform
-    // that the API call is starting.
     dispatch(requestCase(case_id));
 
-    // The function called by the thunk middleware can return a value,
-    // that is passed on as the return value of the dispatch method.
-
-    return fetch(`http://localhost:3001/api/cases/${case_id}`)
+    return fetch(`${API_URL}/api/cases/${case_id}`, {credentials: 'include'})
       .then(response => response.json())
-      .then(json =>
-        // We can dispatch many times!
-        // Here, we update the app state with the results of the API call.
-        dispatch(receiveCase(case_id, json))
-      )
+      .then(json => dispatch(receiveCase(case_id, json)))
   }
 }
-
-
 // ----------------------------------------------------------------------------
 // Read all Cases by Id from Database
 
-
-// Trigger this action when REQUEST to fetch data from API
-export const REQUEST_USER_CASE = 'REQUEST_USER_CASE'
-
 export function requestUserCases() {
-  return {
-    type: REQUEST_USER_CASE,
-  }
+  return { type: 'REQUEST_USER_CASE' }
 }
 
-// After the aSync call to API is done this function is called
-export const RECEIVE_USER_CASE = 'RECEIVE_USER_CASE'
-
 export function receiveUserCases(json) {
-  console.log(json);
-  return {type: 'USER_CASES', data: json}
+  return { type: 'USER_CASES', data: json }
 }
 
 // This function is called from index to load the first Case
 export function fetchUserCases() {
   return dispatch => {
-
-    // First dispatch: the app state is updated to inform
-    // that the API call is starting.
     dispatch(requestUserCases());
 
-    // The function called by the thunk middleware can return a value,
-    // that is passed on as the return value of the dispatch method.
-
-    return fetch(`http://localhost:3001/api/users/1/cases`)
+    return fetch(`${API_URL}/api/cases`, {credentials: 'include'})
       .then(response => response.json())
-      .then(json =>
-        // We can dispatch many times!
-        // Here, we update the app state with the results of the API call.
-        dispatch(receiveUserCases(json))
-      )
+      .then(json => dispatch(receiveUserCases(json)))
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Editing CELL
+
+export function cellBeingEdited(cell) {
+  return { type: 'CELL_TOGGLED', cell }
+}
+
+export function cellSaveAction(value, cell) {
+  return {
+    type: 'CELL_SAVE',
+    value: value,
+    cell: cell
+  }
+}
+
+export function cellUpdateDatabaseAction(value, cell) {
+  return dispatch => {
+    return fetch(`${API_URL}/api/cases/${cell.case_id}/values`, {
+      method: 'post',
+      body: JSON.stringify({cells: [cell]}),
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(json => json)
+  }
+}
+
+// ----------------------------------------------------------------------------
+// HIDE elements
+
+export function requestHide(data) {
+  return { type: 'REQUEST_HIDE', data }
+}
+
+export function receiveHide(json) {
+  return { type: 'DATA_LOADED', data: json }
+}
+
+export function hideAction(whatToHide, case_id, data) {
+  return dispatch => {
+    dispatch(requestHide(data));
+
+    return fetch(`${API_URL}/api/cases/${case_id}/${whatToHide}/hide`, {
+      method: 'post',
+      body: JSON.stringify({data}),
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(json => json)
   }
 }
