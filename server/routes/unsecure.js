@@ -8,9 +8,6 @@ const path    = require('path');
 
 module.exports = (knex, passport) => {
 
-  function makeLogin() {
-
-  }
   router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/login');
@@ -31,10 +28,23 @@ module.exports = (knex, passport) => {
   * ROUTE: /api/users/signup
   * Create a new user (name, email, password)
   */
-  router.post("/signup", (req, res) => {
-    const user = req.body;
-
-    User(knex).createUser(user, (message) => res.json(message));
+  router.post("/signup",
+    (req, res) => {
+      const user = req.body;
+      User(knex).createUser(
+          user,
+          (error, userId) => {
+            const user = { id: userId };
+            if (error) {
+              return res.json({message: 'Something went wrong, try again', user: user})
+            }
+            req.login(user, function(err) {
+              if (err) {
+                return res.json({message: 'Something went wrong, try again', user: user})
+              }
+              return res.redirect('/app');
+            });
+      });
   });
 
   return router;

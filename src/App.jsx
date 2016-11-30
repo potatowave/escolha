@@ -13,8 +13,6 @@ import AlternativeHiderContainer from './AlternativeHiderContainer.jsx';
 import { Router, Route, Link } from 'react-router';
 import Onboard from './Onboard.jsx';
 
-import { deleteObjective, deleteAlternative } from './actions/delete'
-
 class App extends Component {
   render() {
     console.log('Rendering <App/>');
@@ -72,34 +70,4 @@ function mapDispatchToProps(dispatch) {
     }
   }
 }
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-// <div className="case-title">
-//   Objectives:
-//   <ul>
-//     {
-//       this.props.objectives.map((item) => {
-//         return ( <li> {item.name} - {item.id}
-//           <button key={item.id} onClick={() => this.props.deleteObjective(item)}> Delete </button>
-//           </li>
-//         )
-//       })
-//     }
-//   </ul>
-// </div>
-
-// <div className="case-title">
-//   Alternatives:
-//   <ul>
-//     {
-//       this.props.alternatives.map((item) => {
-//         return (
-//           <li> {item.name} - {item.id} <button onClick={() => this.props.deleteAlternative(item)}> Delete </button> </li>
-//         )
-//       })
-//     }
-//   </ul>
-// </div>
-

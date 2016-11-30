@@ -32,6 +32,7 @@ module.exports = (knex) => {
       alternative_id: parseInt(value.alternative_id, 10),
       objective_id: parseInt(value.objective_id, 10),
       value: value.value,
+      nominal_name: value.nominal_name
     })
     .into('alternatives_objectives')
     .then(() => {
@@ -82,6 +83,9 @@ module.exports = (knex) => {
       unit_name: objective.unit_name,
       unit_prefix: objective.unit_prefix,
       unit_suffix: objective.unit_suffix,
+      is_hidden: false,
+      ordinal_minimum: objective.ordinal_minimum,
+      ordinal_maximum: objective.ordinal_maximum,
       created_at: new Date().toLocaleString()
     }, 'id')
     .into('objectives')
@@ -408,8 +412,6 @@ module.exports = (knex) => {
     updateCase,
     deliverContent,
     casesByUser,
-    deleteObjective,
-    deleteAlternative,
     hideAlternatives,
     hideObjectives
   };

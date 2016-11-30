@@ -10,20 +10,21 @@ module.exports = (knex) => {
   function insertUserInDatabase(user, callback) {
     bcrypt.hash(user.password, 10, (err, hash) => {
 
-      console.log(hash);
-      knex('users').insert({
+      const userData = {
         name: user.name,
         email: user.email,
         password: hash
-      })
-      .then(function (result) {
-        if (result.rowCount) {
-          return callback({success: true, message: 'User Created!'})
+      }
+
+      knex('users').insert(userData)
+      .returning('id')
+      .then(function (userId) {
+        if (userId[0] > 0) {
+          callback(false, userId[0])
+        } else {
+          callback(true, userId[0])
         }
-      }).catch((err) => {
-        callback({success: false, message: 'Something went wrong, try again'})
-        console.log(err)
-      });
+      })
     });
   }
 
