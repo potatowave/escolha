@@ -11,7 +11,7 @@ exports.up = function(knex, Promise) {
     }),
 
     knex.schema.createTable('cases', function (table) {
-      table.increments();
+      table.increments('id').primary();
       table.integer('user_id').unsigned();
       table.foreign('user_id').references('users.id');
       table.string('name');
@@ -20,7 +20,7 @@ exports.up = function(knex, Promise) {
     }),
 
     knex.schema.createTable('objectives', function (table) {
-      table.increments();
+      table.increments('id').primary();
       table.integer('case_id').unsigned();
       table.foreign('case_id').references('cases.id');
       table.string('name');
@@ -32,11 +32,13 @@ exports.up = function(knex, Promise) {
       table.string('unit_prefix');
       table.string('unit_suffix');
       table.boolean('is_hidden');
+      table.integer('ordinal_minimum').unsigned();
+      table.integer('ordinal_maximum').unsigned();
       table.timestamps();
     }),
 
     knex.schema.createTable('alternatives', function (table) {
-      table.increments();
+      table.increments('id').primary();
       table.integer('case_id').unsigned();
       table.foreign('case_id').references('cases.id');
       table.string('name');
@@ -47,11 +49,13 @@ exports.up = function(knex, Promise) {
     }),
 
     knex.schema.createTable('alternatives_objectives', function (table) {
+      table.increments('id').primary();
       table.integer('alternative_id').unsigned()
       table.foreign('alternative_id').references('alternatives.id');
       table.integer('objective_id').unsigned()
       table.foreign('objective_id').references('objectives.id');
-      table.float('value')
+      table.float('value');
+      table.string('nominal_name');
     })
   ]);
 };

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import ObjectiveHiderButton from './ObjectiveHiderButton.jsx'
-import { hideAction } from './actions/hide'
+import { hideAction } from './actions/api'
 //
 
 class ObjectiveHiderContainer extends Component {
@@ -36,13 +36,13 @@ function mapDispatchToProps(dispatch) {
   return {
 
     hideObjectiveFunction: function(objective_id, uistate_hide_obj_ids, case_id) {
-      
-      // Make a copy of what's in state, rather than a reference to it
-      let uistate_hide_obj_ids_copy = [ ...uistate_hide_obj_ids ];  
 
-      // Toggle hiding of objectives. 
+      // Make a copy of what's in state, rather than a reference to it
+      let uistate_hide_obj_ids_copy = [ ...uistate_hide_obj_ids ];
+
+      // Toggle hiding of objectives.
       // Check if objective_id is in uistate_hide_obj_ids.
-      // If it is, remove it. If it is not, add it to the array.    
+      // If it is, remove it. If it is not, add it to the array.
       const index_of_obj_id = uistate_hide_obj_ids_copy.indexOf(objective_id);
 
       if ( index_of_obj_id === -1) {
@@ -57,7 +57,7 @@ function mapDispatchToProps(dispatch) {
         {
           type: 'TOGGLE_HIDE_OBJECTIVE',
           uistate: {
-            hide_obj_ids: uistate_hide_obj_ids_copy 
+            hide_obj_ids: uistate_hide_obj_ids_copy
           }
         }
       );

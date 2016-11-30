@@ -1,5 +1,5 @@
 .header-objectives-container {
-  min-height: $cell-height;
+  min-height: 68px;
   font-weight: 600;
   font-kerning: auto;
   display: flex;
@@ -21,16 +21,15 @@
 
 .objective-description {
   min-width: $cell-width;
-  min-height: $cell-height;
+  min-height: 74px;
   margin: $cell-margin;
   align-items: center;
-  height: 10px;
+  // height: 10px;
   // border:2px dotted white;
 }
 .objective-name-container{
-
-  min-width:90px;
-  min-height: $cell-height;
+  left: 0;
+  min-width:120px;
   margin: $cell-margin;
   // font-family: "Lucida Grande";
   color:black;

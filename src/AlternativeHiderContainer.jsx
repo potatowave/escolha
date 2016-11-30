@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import AlternativeHiderButton from './AlternativeHiderButton.jsx'
-import { hideAction } from './actions/hide'
+import { hideAction } from './actions/api'
 
 class AlternativeHiderContainer extends Component {
 
@@ -38,11 +38,11 @@ function mapDispatchToProps(dispatch) {
     hideAlternativeFunction: function(alternative_id, uistate_hide_alt_ids, case_id) {
       console.log("***** CASE ID: *****", case_id)
       // Make a copy of what's in state, rather than a reference to it
-      let uistate_hide_alt_ids_copy = [ ...uistate_hide_alt_ids ];  
+      let uistate_hide_alt_ids_copy = [ ...uistate_hide_alt_ids ];
 
-      // Toggle hiding of alternatives. 
+      // Toggle hiding of alternatives.
       // Check if alternative_id is in uistate_hide_alt_ids.
-      // If it is, remove it. If it is not, add it to the array. 
+      // If it is, remove it. If it is not, add it to the array.
       const index_of_alt_id = uistate_hide_alt_ids_copy.indexOf(alternative_id);
 
       if ( index_of_alt_id === -1) {

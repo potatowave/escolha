@@ -1,11 +1,9 @@
 "use strict";
 
 module.exports = (knex) => {
-  const userId = 1;
 
   // Mapping id from front-end to database id in order to be able to add values
   // Format should be: [idFrontEnd: idBackEnd]
-
   const objectivesMap = {};
   const alternativesMap = {};
   let countInsertedValues = 0;
@@ -13,7 +11,6 @@ module.exports = (knex) => {
   // To be track of numbers of aSync request and know when is done
   let totalObjectives;
   let totalAlternatives;
-
 
   /**
   * Checking if Alternatives AND objectives were ALL added
@@ -35,6 +32,7 @@ module.exports = (knex) => {
       alternative_id: parseInt(value.alternative_id, 10),
       objective_id: parseInt(value.objective_id, 10),
       value: value.value,
+      nominal_name: value.nominal_name
     })
     .into('alternatives_objectives')
     .then(() => {
@@ -44,7 +42,7 @@ module.exports = (knex) => {
         deliverContent(parseInt(caseId,10), callback)
       }
     })
-    .catch((error) => { console.error(error); });
+    .catch((error) => console.error(error));
   }
 
   /**
@@ -61,12 +59,8 @@ module.exports = (knex) => {
       objBackEnd.value = obj.value;
       return objBackEnd;
     });
-
     console.log('Swap front-end ids to backend ids');
-
-    valuesWithDatabaseId.forEach((value) => {
-      insertValue(value, caseId, callback);
-    });
+    valuesWithDatabaseId.forEach((value) => insertValue(value, caseId, callback));
   }
 
   /**
@@ -89,6 +83,9 @@ module.exports = (knex) => {
       unit_name: objective.unit_name,
       unit_prefix: objective.unit_prefix,
       unit_suffix: objective.unit_suffix,
+      is_hidden: false,
+      ordinal_minimum: objective.ordinal_minimum,
+      ordinal_maximum: objective.ordinal_maximum,
       created_at: new Date().toLocaleString()
     }, 'id')
     .into('objectives')
@@ -104,7 +101,7 @@ module.exports = (knex) => {
         swapFrontendIdToDatabaseId(values, caseId, callback);
       }
     })
-    .catch((error) => { console.error(error); });
+    .catch((error) => console.error(error));
   }
 
   /**
@@ -137,16 +134,17 @@ module.exports = (knex) => {
         swapFrontendIdToDatabaseId(values, caseId, callback);
       }
     })
-    .catch((error) => { console.error(error); });
+    .catch((error) => console.error(error));
   }
 
   /**
   * Insert a case
+  * @param {integer} userId     - userId
   * @param {object} data        - Json data with all case data
   * @param {function} callback  - Callback function to run after aSync DB call
   * @returns {void}             - It will call Callback function aSync
   */
-  function insertCase(data, callback) {
+  function insertCase(userId, data, callback) {
     knex.insert({
       user_id: userId,
       name: data.case.name,
@@ -155,11 +153,10 @@ module.exports = (knex) => {
     }, 'id')
     .into('cases')
     .then((caseId) => {
+      console.log('Insert Case');
       // To be track of numbers of aSync request and know when is done
       totalObjectives = data.objectives.length;
       totalAlternatives = data.alternatives.length;
-
-      console.log('Insert Case');
 
       // Add Objectives
       data.objectives.forEach((objective, index) => {
@@ -173,18 +170,19 @@ module.exports = (knex) => {
         insertAlternative(alternative, caseId, order, data.values, callback);
       });
     })
-    .catch((error) => { console.error(error); });
+    .catch((error) => console.error(error));
   }
 
   /**
   * Update entire case. Since all data is already in database is it possible
   * to call all queries at same time.
-  * @param {integer} case_id    - Which Case to update
+  * @param {integer} userId    - userId
+  * @param {integer} caseId    - Which Case to update
   * @param {object} data        - Json data with all case data
   * @param {function} callback  - Callback function to run after aSync DB call
   * @returns {void} - It will call Callback function aSync
   */
-  function updateCase(caseId, data, callback) {
+  function updateCase(userId, caseId, data, callback) {
     // Keep track on database operations
     let countCase = 0;
     let countObjectives = 0;
@@ -276,11 +274,12 @@ module.exports = (knex) => {
 
   /**
   * Delivery JSON to front-end
+  * @param {integer} userId     - userId
   * @param {integer} caseId     - Getting all data from a specific caseId
   * @param {function} callback  - Callback function to run after aSync DB call
   * @returns {void}             - It will call Callback function aSync
   */
-  function deliverContent(caseId, callback) {
+  function deliverContent(userId, caseId, callback) {
     const data = {};
     console.log("Delivering content",caseId);
 
@@ -341,9 +340,10 @@ module.exports = (knex) => {
 
   /**
   * Return all cases by user
+  * @param {integer}  userId
   * @param {function} callback  - Callback function to run after aSync DB call
   */
-  function casesByUser(callback) {
+  function casesByUser(userId, callback) {
     const data = {};
     console.log("Cases for user",userId);
 
@@ -354,54 +354,6 @@ module.exports = (knex) => {
         data.cases = result;
         callback(data);
       });
-  }
-
-  /**
-  * Delete objectives from a case
-  * @param {integer}    caseId
-  * @param {integer}    objecetiveId
-  * @param {function}   callback    - Callback function to run after aSync DB call
-  */
-  function deleteObjective(caseId, objectiveId, callback) {
-
-    // Delete values related to specific objective
-    knex('alternatives_objectives')
-    .where('objective_id', parseInt(objectiveId,10))
-    .del()
-    .then( () => {
-      knex('objectives')
-      .where('id', parseInt(objectiveId,10))
-      .andWhere('case_id', parseInt(caseId,10))
-      .del().then(() =>{
-        deliverContent(parseInt(caseId,10), callback)
-      })
-      .catch((error) => { console.error(error); });
-    })
-    .catch((error) => { console.error(error); });
-  }
-
-  /**
-  * Delete alternatives from a case
-  * @param {integer}    caseId
-  * @param {integer}    alternativeId
-  * @param {function}   callback        - Callback function to run after aSync DB call
-  */
-  function deleteAlternative(caseId, alternativeId, callback) {
-
-    // Delete values related to specific objective
-    knex('alternatives_objectives')
-    .where('alternative_id', parseInt(alternativeId,10))
-    .del()
-    .then( () => {
-      knex('alternatives')
-      .where('id', parseInt(alternativeId,10))
-      .andWhere('case_id', parseInt(caseId,10))
-      .del().then(() =>{
-        deliverContent(parseInt(caseId,10), callback)
-      })
-      .catch((error) => { console.error(error); });
-    })
-    .catch((error) => { console.error(error); });
   }
 
   /**
@@ -417,9 +369,10 @@ module.exports = (knex) => {
     .then(() => {
         alternatives.forEach(
           (alternative_id) => {
-          knex('alternatives')
-          .where('id', parseInt(alternative_id, 10))
-          .update({is_hidden: true}).then((n) => console.log('Update Alternative to hidden', n));
+            console.log('Hide Alternative: ', alternative_id)
+            knex('alternatives')
+            .where('id', parseInt(alternative_id, 10))
+            .update({is_hidden: true}).then((n) => console.log('Update Alternative to hidden', n));
         });
       }
     );
@@ -443,6 +396,7 @@ module.exports = (knex) => {
     .then(() => {
         objectives.forEach(
           (objective_id) => {
+            console.log('Hide objectives: ', objective_id)
             knex('objectives')
             .where('id', parseInt(objective_id, 10))
             .update({is_hidden: true}).then((n) => console.log('Update objective to hidden', n));
@@ -454,13 +408,41 @@ module.exports = (knex) => {
   }
 
 
+  /**
+  * Change the order of objectives
+  * @param {integer}    caseId
+  * @param {array}    objectives
+  * @param {function}   callback        - Callback function to run after aSync DB call
+  */
+  function orderObjectives(caseId, objectives, callback) {
+    console.log('CaseId:', caseId);
+    console.log('Order Data:', objectives);
+
+    /*
+    knex('objectives')
+    .where('case_id', parseInt(caseId, 10))
+    .update({is_hidden: false})
+    .then(() => {
+        objectives.forEach(
+          (objective_id) => {
+            console.log('Hide objectives: ', objective_id)
+            knex('objectives')
+            .where('id', parseInt(objective_id, 10))
+            .update({is_hidden: true}).then((n) => console.log('Update objective to hidden', n));
+        });
+      }
+    );
+    */
+
+    callback(objectives);
+  }
+
+
   return {
     insertCase,
     updateCase,
     deliverContent,
     casesByUser,
-    deleteObjective,
-    deleteAlternative,
     hideAlternatives,
     hideObjectives
   };

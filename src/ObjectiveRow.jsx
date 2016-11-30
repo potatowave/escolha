@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Cell from './Cell.jsx'
-import { cellBeingEdited, cellSaveAction, cellUpdateDatabaseAction } from './actions/cell'
+import { cellBeingEdited, cellSaveAction, cellUpdateDatabaseAction } from './actions/api'
 
 class ObjectiveRow extends Component {
   render() {
@@ -22,15 +22,15 @@ class ObjectiveRow extends Component {
     // Grab the selected value for the current row
     var thisRowsSelectedValue = selectedCells.find(matchingPropsRow, this);
 
-    var curr_obj_id = this.props.objective_id; 
-    
+    var curr_obj_id = this.props.objective_id;
+
     var hiddenObjective = ( (this.props.uistate_hide_obj_ids.indexOf(curr_obj_id) === -1) ? "" : "hide-objective")
 
     console.log("*** OBJECTIVE ***", this.props.objective)
 
     return (
       <div className={"objective-row" + " " + hiddenObjective}>
-        { 
+        {
           this.props.cells.filter(matchingPropsRow, this).map((cell , index) => {
           return (<Cell
             key={`c${cell.alternative_id}-${cell.alternative_id}`}

@@ -103,11 +103,13 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   // font-family: "Lucida Grande";
 }
 
 .case-title h1 {
   position: absolute;
+  bottom: 3px;
   cursor:help;
   z-index: 99;
 }

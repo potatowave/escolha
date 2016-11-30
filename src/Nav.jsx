@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { fetchCase } from './actions/api';
+import ReactTooltip from 'react-tooltip';
 import AlternativeHiderContainer from './AlternativeHiderContainer.jsx';
 
 class Nav extends Component {
@@ -31,6 +32,10 @@ class Nav extends Component {
           <div className="nav-aside">
             <div className="search-area"><i className="fa fa-search"></i></div>
             <div className="login">Lighthouse-labs@gmail.com</div>
+            <div className="logout">
+            <i className="fa fa-sign-out" data-tip="Logout" aria-hidden="true"></i>
+            </div>
+              <ReactTooltip />
           </div>
         </nav>
 

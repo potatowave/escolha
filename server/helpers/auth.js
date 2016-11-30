@@ -18,10 +18,10 @@ module.exports = (knex) => {
   */
 
   function authenticatedMiddleware(req, res, next) {
-    // Need to be !req.isAuthenticated()
-    if(req.isAuthenticated()) {
-      return res.redirect('/login')
-      //return res.status(401).send('Not authenticated');
+    res.header('Access-Control-Allow-Credentials', true);
+    if(!req.isAuthenticated()) {
+      console.log('NOT AUTH!!');
+      return res.status(401).send('Not authenticated');
     }
     next();
   };
