@@ -24,9 +24,11 @@ const authHelper = require('./helpers/auth')(knex);
 const User = require('./models/User');
 
 // ----------------------------------------------------------------------------
-const app = express();
-app.use(express.static(__dirname + '/public'));
+// Configuring server
 
+const app = express();
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
 
 app.use(cors());
 app.use(cookieParser());
@@ -37,12 +39,6 @@ app.use(bodyParser.json());
 app.use(session({ secret: 'R1sM6JmAo83mPZ1l1V8rRpoKla4F1vgv',resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-app.set('view engine', 'ejs');
-
-// ----------------------------------------------------------------------------
-// API - Server
 
 // Passport Strategy - looking for a valid username and password
 passport.use(new LocalStrategy(
@@ -79,10 +75,8 @@ passport.deserializeUser(authHelper.myDeserialize);
 // ----------------------------------------------------------------------------
 // Unsecure routers
 
-
 const apiUnsecureRoute = require('./routes/unsecure.js');
 app.use('/', apiUnsecureRoute(knex,passport));
-
 
 // ----------------------------------------------------------------------------
 // Protected routers - MUST be authenticated for access API
@@ -92,7 +86,7 @@ app.all('/api/*', authHelper.authenticatedMiddleware);
 app.get('/app', authHelper.authenticatedMiddleware, (req,res) => {
   res.sendFile(path.join(__dirname + '/public/app.html'));
 });
-// Routes
+
 const apiCasesRoute = require('./routes/api/cases.js');
 
 app.use('/api/cases', apiCasesRoute(knex));

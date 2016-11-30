@@ -8,28 +8,22 @@ const path    = require('path');
 
 module.exports = (knex, passport) => {
 
+  function makeLogin() {
+
+  }
   router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/login');
   });
 
-  router.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname + '/../public/landing_page.html'));
-  });
-
-
-  router.get('/signup', (req,res) => {
-    res.sendFile(path.join(__dirname + '/../public/signup.html'));
-  });
-
-  router.get('/login', (req,res) => {
-    res.sendFile(path.join(__dirname + '/../public/login.html'));
-  });
+  router.get('/', (req,res) => res.sendFile(path.join(__dirname + '/../public/landing_page.html')));
+  router.get('/signup', (req,res) => res.sendFile(path.join(__dirname + '/../public/signup.html')));
+  router.get('/login', (req,res) => res.sendFile(path.join(__dirname + '/../public/login.html')));
 
   router.post('/login',
-    passport.authenticate('local', {
-      successRedirect: '/app',
-      failureRedirect: '/login'
+      passport.authenticate('local', {
+        successRedirect: '/app',
+        failureRedirect: '/login'
     })
   );
 
@@ -40,10 +34,7 @@ module.exports = (knex, passport) => {
   router.post("/signup", (req, res) => {
     const user = req.body;
 
-    console.log(user);
-    User(knex).createUser(user, (message) => {
-      res.json(message);
-    })
+    User(knex).createUser(user, (message) => res.json(message));
   });
 
   return router;

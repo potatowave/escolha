@@ -4,13 +4,8 @@ const bcrypt = require("bcrypt");
 
 module.exports = (knex) => {
 
-// *****************************
-// ** Refactor to promises!!! **
-// *****************************
-
   /**
-  * XXXXXXXXXXXXXXXXX
-  * @returns {XXXXXXXXboolean}
+  * Insert user into database
   */
   function insertUserInDatabase(user, callback) {
     bcrypt.hash(user.password, 10, (err, hash) => {
@@ -33,8 +28,7 @@ module.exports = (knex) => {
   }
 
   /**
-  * XXXXXXXXXXXXXXXXX
-  * @returns {XXXXXXXXboolean}
+  * Check if an email already exists
   */
   function userExists(user, callback) {
       knex
@@ -52,8 +46,7 @@ module.exports = (knex) => {
   }
 
   /**
-  * XXXXXXXXXXXXXXXXX
-  * @returns {XXXXXXXXboolean}
+  * Creating a new user into database
   */
   function createUser(user, callback) {
     if (user.password !== user.password_confirm) {
@@ -64,8 +57,7 @@ module.exports = (knex) => {
   }
 
   /**
-  * XXXXXXXXXXXXXXXXX
-  * @returns {XXXXXXXXboolean}
+  * Search for a specific user by email
   */
   function findOne(email, callback) {
       knex
@@ -75,16 +67,15 @@ module.exports = (knex) => {
       .then((user) => {
         if (user.length !== 0) {
           return callback(null, user[0]);
-        } else {
-          return callback(null, null);
         }
+
+        return callback(null, null);
       })
       .catch((err) => callback(err, null));
   }
 
   /**
-  * XXXXXXXXXXXXXXXXX
-  * @returns {XXXXXXXXboolean}
+  * Find user by id
   */
   function findById(id, callback) {
       knex
@@ -94,9 +85,9 @@ module.exports = (knex) => {
       .then((user) => {
         if (user.length !== 0) {
           return callback(null, user[0]);
-        } else {
-          return callback(null, null);
         }
+        return callback(null, null);
+
       })
       .catch((err) => callback(err, null));
   }
