@@ -2,9 +2,9 @@ import React from 'react';
 import { Field, reduxForm, FieldArray } from 'redux-form';
 import validate from './validate';
 import { connect } from 'react-redux';
-import MenuItem from 'material-ui/MenuItem'
-import { RadioButton } from 'material-ui/RadioButton'
-import RaisedButton from 'material-ui/RaisedButton'
+import MenuItem from 'material-ui/MenuItem';
+import { RadioButton } from 'material-ui/RadioButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import {
@@ -12,8 +12,8 @@ import {
   RadioButtonGroup,
   SelectField,
   TextField,
-  Toggle
-} from 'redux-form-material-ui'
+  Toggle,
+} from 'redux-form-material-ui';
 
 const forwardStyles = {
   marginRight: 24,
@@ -30,11 +30,11 @@ const WizardFormFirstPage = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <Field name="casename" component={TextField} floatingLabelText="Case"/>
+        <Field name="casename" component={TextField} floatingLabelText="Case" />
 
       </div>
       <div>
-        <Field name="case_description" component={TextField} floatingLabelText="Case Description" multiLine={true} rows={2}/>
+        <Field name="case_description" component={TextField} floatingLabelText="Case Description" multiLine rows={2} />
       </div>
       <div>
         <IconButton type="submit" className="next"><FontIcon className="material-icons" style={forwardStyles} >arrow_forward</FontIcon></IconButton>
