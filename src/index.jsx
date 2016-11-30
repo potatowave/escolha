@@ -45,8 +45,7 @@ ReactDOM.render((
 ), document.getElementById('react-root'));
 
 // ----------------------------------------------------------------------------
-// Actions using the API
+// Index page
 
 // Read all Cases from current user - for the dropdown
-
 store.dispatch(fetchUserCases()).then();
