@@ -56,21 +56,14 @@ module.exports = (knex) => {
         const value = formObject.values[objectiveIndex][alternativeIndex].value;
         const objective_id_frontend = objectiveIndex;
         const alternative_id_frontend = alternativeIndex;
-        const nominal = formObject.values[objectiveIndex][alternativeIndex].nominal_name;
-        let nominal_name;
-        if (formObject.values[objectiveIndex][alternativeIndex].nominal !== null) {
-          nominal_name = nominal;
-        } else {
-          nominal_name = null;
-        }
-
+        const nominal_name = formObject.values[objectiveIndex][alternativeIndex].nominal_name;
 
         const cells = { value,
           nominal_name,
           objective_id_frontend,
           alternative_id_frontend };
 
-
+        console.log(cells);
 
         newObject.values.push(cells);
       });

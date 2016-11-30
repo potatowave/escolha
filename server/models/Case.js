@@ -28,6 +28,7 @@ module.exports = (knex) => {
   */
   function insertValue(value, caseId, callback) {
     // Insert values into database
+    console.log("TEST", value)
     knex.insert({
       alternative_id: parseInt(value.alternative_id, 10),
       objective_id: parseInt(value.objective_id, 10),
@@ -57,6 +58,7 @@ module.exports = (knex) => {
       objBackEnd.objective_id = objectivesMap[obj.objective_id_frontend];
       objBackEnd.alternative_id = alternativesMap[obj.alternative_id_frontend];
       objBackEnd.value = obj.value;
+      objBackEnd.nominal_name = obj.nominal_name;
       return objBackEnd;
     });
     console.log('Swap front-end ids to backend ids');
