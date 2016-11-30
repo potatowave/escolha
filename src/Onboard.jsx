@@ -6,7 +6,7 @@ import WizardForm from './WizardForm.jsx';
 import { OverlayTrigger, Popover, FormGroup, FormControl, ControlLabel, Radio, ButtonGroup, ButtonToolbar, Button, Modal } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { saveCase } from './actions/api'
-
+import { router, hashHistory } from 'react-router';
 
 const popoverRight = (
   <Popover id="popover-positioned-right" title="Description">
@@ -43,6 +43,7 @@ function mapDispatchToProps(dispatch) {
   return {
     saveCase: (data) => {
       dispatch(saveCase(data))
+      hashHistory.push('/')
     }
   }
 }
