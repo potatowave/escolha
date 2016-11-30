@@ -486,6 +486,10 @@ footer p a{
 
 }
 
+.header_login {
+	font-family: 'Open Sans', sans-serif;
+}
+
 .header_login a:hover {
 	text-decoration: none;
 	opacity: 1;
@@ -493,7 +497,6 @@ footer p a{
 }
 
 .header_login h2 {
-	font-family: 'Open Sans', sans-serif;
 	font-size: 2em;
 	font-weight: 200;
 

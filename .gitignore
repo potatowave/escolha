@@ -6,3 +6,4 @@ server/.env
 npm-debug.log
 npm-debug.log
 /server/routes/expectedjson.js
+/server/public/assets/js/

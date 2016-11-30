@@ -1,3 +1,8 @@
+a {color:white; opacity:0.9;}      /* unvisited link */
+a:visited {color:white; opacity:0.9;}  /* visited link */
+a:hover {color:white; opacity:1;}  /* mouse over link */
+// a:active {color:#0000FF;}  /* selected link */
+
 .navbar {
   display: flex;
   flex-flow: row wrap;

@@ -1,3 +1,12 @@
+a {color:white; opacity:0.9;}      /* unvisited link */
+a:visited {color:white; opacity:0.9;}  /* visited link */
+a:hover {color:white; opacity:1;}  /* mouse over link */
+/*a:active {color:#0000FF;}  /* selected link */
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .container {
   margin: 50px auto;
   width: 640px;

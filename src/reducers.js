@@ -160,6 +160,7 @@ function uiStateReducer(state = defaultUiState, action) {
     case 'REORDER_OBJECTIVES':
       const currentDraggedObjectiveIndex = state.objectivesOrder.indexOf(state.draggedObjectiveId);
       if (currentDraggedObjectiveIndex === -1) return state;
+      // THIS MIGHT BE MUTATING STATE - CHECK IT AND REFACTOR IF NECESSARY
       state.objectivesOrder = moveValueInArray(state.objectivesOrder, currentDraggedObjectiveIndex, action.data.newDraggedObjectiveIndex);
       return state;
       break;

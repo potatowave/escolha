@@ -33,7 +33,7 @@ class Nav extends Component {
             <div className="search-area"><i className="fa fa-search"></i></div>
             <div className="login">Lighthouse-labs@gmail.com</div>
             <div className="logout">
-            <i className="fa fa-sign-out" data-tip="Logout" aria-hidden="true"></i>
+              <a href="/logout"><i className="fa fa-sign-out" data-tip="Logout" aria-hidden="true"></i></a>
             </div>
               <ReactTooltip />
           </div>
