@@ -111,10 +111,6 @@ export function requestHide(data) {
   return { type: 'REQUEST_HIDE', data }
 }
 
-export function receiveHide(json) {
-  return { type: 'DATA_LOADED', data: json }
-}
-
 export function hideAction(whatToHide, case_id, data) {
   return dispatch => {
     dispatch(requestHide(data));
@@ -127,5 +123,31 @@ export function hideAction(whatToHide, case_id, data) {
     })
     .then(res => res.json())
     .then(json => json)
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Order objectives
+
+export function requestOrder(data) {
+  return { type: 'REQUEST_ORDER', data }
+}
+
+export function receiveOrder(json) {
+  return { type: 'RECEIVE_ORDER', data: json }
+}
+
+export function orderAction(case_id, data) {
+  return dispatch => {
+    dispatch(requestOrder(data));
+
+    return fetch(`${API_URL}/api/cases/${case_id}/objectives/order`, {
+      method: 'post',
+      body: JSON.stringify({data}),
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(json => dispatch(receiveOrder(json)))
   }
 }
