@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import TableContainer from './TableContainer.jsx'
 import ObjectiveHiderContainer from './ObjectiveHiderContainer.jsx';
 import AlternativeHiderContainer from './AlternativeHiderContainer.jsx';
+import { orderAction } from './actions/api'
+
 
 class DAndDTable extends Component {
 // This file will point to TableComponent 3 times:
@@ -53,7 +55,7 @@ class DAndDTable extends Component {
 
   componentDidMount() {
     this.resetFloatingTables();
-    document.body.addEventListener('mouseup', this.props.handleMouseUp);
+    document.body.addEventListener('mouseup', () => this.props.handleMouseUp(this.props.cases[0].id, this.props.ui.objectivesOrder));
     document.body.addEventListener('mousemove', this.handleDrag);
     document.addEventListener('scroll', this.handleDrag);
   }
@@ -63,7 +65,7 @@ class DAndDTable extends Component {
   }
 
   componentWillUnmount() {
-    document.body.removeEventListener('mouseup', this.props.handleMouseUp);
+    document.body.removeEventListener('mouseup', () => this.props.handleMouseUp(this.props.cases[0].id, this.props.ui.objectivesOrder));
     document.body.removeEventListener('mousemove', this.handleDrag);
     document.removeEventListener('scroll', this.handleDrag);
   }
@@ -143,13 +145,18 @@ function mapDispatchToProps(dispatch) {
         }
       });
     },
-    handleMouseUp() {
+    handleMouseUp(caseId, objectivesOrder) {
+
+      dispatch(orderAction(caseId, objectivesOrder));
+
       dispatch({
         type: 'UPDATE_UI',
         data: {
           draggedObjectiveId: null
         }
       });
+
+
     }
   }
 }
