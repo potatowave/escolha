@@ -53,7 +53,7 @@ export default function Cell({uistate_highlight, uistate_selected_alt_id, low_is
               cell.objective_id === ui.draggedObjectiveId
             ) ? ' placeholder' : '')+" "+highlightedClass+" "+compare_tag+" "+hiddenAlternative}
         >
-        { !isInputVisible && cell.value }
+        { !isInputVisible && (cell.nominal_name ? cell.nominal_name : cell.value)}
 
         { isInputVisible &&
           <input
