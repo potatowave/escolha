@@ -15,7 +15,8 @@ module.exports = {
     './src/index.jsx'
   ],
   output: {
-    path: path.join(__dirname, 'dist'), // This is the path where the bundle.js is actually written
+    // path: path.join(__dirname, 'dist'), // This is the path where the bundle.js is actually written
+    path: path.join(__dirname, 'public/assets/js'), // This is the path where the bundle.js is actually written when you run 'webpack' - this will put the production version of bundle.js in the proper folder.
     filename: 'bundle.js',
     publicPath: '/build/'// This is the config for where we want the dev server to pretend where the file is
   },
