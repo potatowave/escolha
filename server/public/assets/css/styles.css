@@ -115,6 +115,10 @@ header h2{
 	font-family: 'Quicksand', sans-serif;
 }
 
+#home {
+	font-family: 'Quicksand', sans-serif;
+}
+
 header nav{
 	display: flex;
 }
@@ -183,11 +187,12 @@ header nav li:last-child{
 	width: 100%;
 	height: 100%;
 	background-color: #414a4f;
+	/*background-color: #31384E;*/
 	opacity: 0.75;
 }
 
 .hero h1{
-	font: bold 60px 'Open Sans', sans-serif;
+	font: bold 80px 'Open Sans', sans-serif;
 	margin-bottom: 15px;
 }
 
@@ -457,7 +462,22 @@ footer p a{
 }
 
 .header_login {
-	background-color: #414a4f
+	/*background-color: #414a4f*/
+	height: 50px;
+	background-color: #3165AE;
+	box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+}
+
+.header_login a:hover {
+	text-decoration: none;
+	opacity: 1;
+	color: white;
+}
+
+.header_login h2 {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 2em;
+	font-weight: 200;
 }
 
 .login label {

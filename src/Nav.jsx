@@ -14,7 +14,7 @@ class Nav extends Component {
         <nav className="navbar">
 
           <div className="nav-links">
-            <div className="brand">Escol.ia</div>
+            <div className="brand">Escolia</div>
             <div className="dropdown">
               <div className="dropbtn"><i className="fa fa-table" aria-hidden="true"></i></div>
                 <div className="dropdown-content">
