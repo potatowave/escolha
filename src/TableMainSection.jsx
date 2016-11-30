@@ -9,6 +9,8 @@ class TableMainSection extends Component {
   render() {
     console.log("Rendering <TableMainSection />");
 
+    console.log("*** Objectives ***", this.props.objectives)
+
     return (
 
         <div className="table-area">
@@ -33,11 +35,13 @@ class TableMainSection extends Component {
           </div>
 
           { this.props.objectivesOrder.map((objectiveId) => {
+              console.log("*** objectiveId ***", objectiveId)
+
               return (<ObjectiveRow
                 key={objectiveId}
                 objective_id={objectiveId}
                 objectivesOrder={this.props.objectivesOrder}
-                objective={this.props.objectives.find(objective => objective.id === objectiveId)}
+                objective={() => this.props.objectives.find(objective => objective.id === objectiveId)}
 
                 uistate_selected_alt_id={this.props.uistate_selected_alt_id}
                 uistate_highlight={this.props.uistate_highlight}
@@ -58,7 +62,7 @@ TableMainSection.defaultProps = {
   showHorizontalHeadings: true,
   enablePlaceholder: true,
   // items: [],
-  objectives: []
+  objectives: []  
 };
 
 

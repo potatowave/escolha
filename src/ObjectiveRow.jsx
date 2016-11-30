@@ -26,6 +26,8 @@ class ObjectiveRow extends Component {
     
     var hiddenObjective = ( (this.props.uistate_hide_obj_ids.indexOf(curr_obj_id) === -1) ? "" : "hide-objective")
 
+    console.log("*** OBJECTIVE ***", this.props.objective)
+
     return (
       <div className={"objective-row" + " " + hiddenObjective}>
         { 
@@ -34,7 +36,7 @@ class ObjectiveRow extends Component {
             key={`c${cell.alternative_id}-${cell.alternative_id}`}
             uistate_highlight={this.props.uistate_highlight}
             uistate_selected_alt_id={this.props.uistate_selected_alt_id}
-            low_is_better={this.props.low_is_better}
+            low_is_better={this.props.objective.low_is_better}
             cell={cell}
             cell_index={index}
             thisRowsSelectedValue={thisRowsSelectedValue}
