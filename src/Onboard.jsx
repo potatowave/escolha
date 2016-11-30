@@ -43,7 +43,7 @@ function mapDispatchToProps(dispatch) {
   return {
     saveCase: (data) => {
       dispatch(saveCaseAction(data));
-      hashHistory.push('/');
+      hashHistory.push('/');  // React-Router redirect
 
     },
   };
