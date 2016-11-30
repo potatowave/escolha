@@ -1,31 +1,11 @@
 
 
-.main-container {
-  height: 100%;
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding-top: auto;
-  align-self: center;
-  /*flex-direction: row;*/
-  justify-content: center;
-  border: 2px dotted yellow;
-  position: fixed;
-  top:0;
-  right:1em;
-  left:0;
-  bottom:0;
 
-  /*making the table dead center*/
-/*  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);*/
-}
 
 .table-container {
   min-width: $cell-width;
   min-height: $cell-height;
-  font-family: "Lucida Grande";
+  // font-family: "Lucida Grande";
   align-items: center;
   display: flex;
 
@@ -55,7 +35,7 @@
   border: 1px solid #3D75D1;
   border-radius: 3px;
   background-color: #3165AE;
-  font-family: "Lucida Grande";
+  // font-family: "Lucida Grande";
   color: #E2E7ED;
   font-size: 1.4em;
   line-height: 3em;

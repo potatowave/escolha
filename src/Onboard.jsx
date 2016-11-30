@@ -6,6 +6,7 @@ import WizardForm from './WizardForm.jsx';
 import { OverlayTrigger, Popover, FormGroup, FormControl, ControlLabel, Radio, ButtonGroup, ButtonToolbar, Button, Modal } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { saveCase } from './actions/api';
+import { saveCaseAction } from './actions/api'
 import { router, hashHistory } from 'react-router';
 
 const popoverRight = (
@@ -19,10 +20,10 @@ class OnboardData extends React.Component {
   render() {
     return (
 
-      <div className="wrapper main-container">
+      <div className="wrapper">
 
         <Nav />
-        <main className="onboardform">
+        <main className="form-container">
 
           <WizardForm onSubmit={this.props.saveCase} values={this.props.values} / >
 
@@ -46,6 +47,7 @@ function mapDispatchToProps(dispatch) {
 
     },
   };
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(OnboardData);

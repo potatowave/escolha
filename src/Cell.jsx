@@ -25,7 +25,7 @@ export default function Cell({uistate_highlight, uistate_selected_alt_id, low_is
   var hiddenAlternative = ( (hide_alt_ids_array.indexOf(curr_alt_id) === -1) ? "" : "hide-alternative")
   
   var compare_tag = "";
-
+  
   if (uistate_highlight) {
     if (low_is_better) {
       if (cell.value < thisRowsSelectedValue.value) {

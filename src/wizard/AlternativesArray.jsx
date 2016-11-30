@@ -67,7 +67,7 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
                    {objectives[i].scale_type === 'nominal' &&
                    <div>
                      <Field
-                       name={`values.${i}.${index}.value`}
+                       name={`values.${i}.${index}.nominal_name`}
                        component={TextField}
                        floatingLabelText={(`${objective.name} > ${objective.sub_name} `)}
                      />
@@ -75,7 +75,6 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
                      {!!alternatives[index].name &&
                      <div>
                        <Field defaultValue={3} description="How important is this to you?" component={Slider} name={`values.${i}.${index}.value`} step={1} min={1} max={5} />
-                       <div>Value: {alternatives[index].value}</div>
                     </div>}
                    </div>
 
