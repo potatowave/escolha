@@ -76,7 +76,7 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
               <MenuItem value="ordinal" primaryText="Ordinal (Range)" />
             </Field>
           </div>
-          {objectives[index].scaletype === 'ordinal' &&
+          {objectives[index].scale_type === 'ordinal' &&
           <div>
             <div>
               <Field

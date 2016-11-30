@@ -86,7 +86,7 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
                        name={`values.${i}.${index}.value`}
                        type="text"
                        component={TextField}
-                       floatingLabelText={(!!alternatives[index].name ? `${objective.name} : ${objective.sub}` : `Alternative #${index + 1} : ${objective.name} : ${objective.sub} ? objective.criterion : ''}`)}
+                       floatingLabelText={`${objectives[i].name} value between ${objectives[i].rangemin} and ${objectives[i].rangemax}`}
                      />
                    </div>}
 
