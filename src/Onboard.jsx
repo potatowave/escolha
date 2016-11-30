@@ -19,10 +19,10 @@ class OnboardData extends React.Component {
   render() {
     return (
 
-      <div className="wrapper main-container">
+      <div className="wrapper">
 
         <Nav />
-        <main className="onboardform">
+        <main className="form-container">
 
           <WizardForm onSubmit={this.props.saveCase} values={this.props.values} / >
 

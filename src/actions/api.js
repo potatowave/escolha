@@ -36,7 +36,11 @@ export function saveCase(data) {
       }
     })
     .then(res => res.json())
-    .then(json => dispatch(receiveSaveCase(json)))
+    .then(json => {
+      dispatch(receiveSaveCase(json))
+      dispatch(saveCase(data))
+      }
+      )
   }
 }
 
