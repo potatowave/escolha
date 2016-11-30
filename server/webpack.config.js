@@ -18,6 +18,7 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/build/'
+    // publicPath: '/server/public/assets/js/'
   },
   module: {
     loaders: [

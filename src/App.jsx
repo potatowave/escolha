@@ -24,28 +24,25 @@ class App extends Component {
 
 
         <Nav />
-          <div className="main-container">
-            <main>
-              { this.props.case.map(function(item) {
-                  return <Heading key={item.id} name={item.name} description={item.description} /> })}
+        <div className="main-container">
+          <main>
+            { this.props.case.map(function(item) {
+                return <Heading key={item.id} name={item.name} description={item.description} /> })}
 
-              <ReactCSSTransitionGroup
-                transitionName='fade'
-                transitionAppear={true}
-                transitionAppearTimeout={3000}
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={300}>
-                <DAndDTable />
+            <ReactCSSTransitionGroup
+              transitionName='fade'
+              transitionAppear={true}
+              transitionAppearTimeout={3000}
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={300}>
+              <DAndDTable />
 
-
-              </ReactCSSTransitionGroup>
-            </main>
-          </div>
-
-
+            </ReactCSSTransitionGroup>
+          </main>
+        </div>
 
       </div>
-
+ 
     );
   }
 

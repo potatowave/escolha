@@ -1,4 +1,6 @@
 import fetch from 'isomorphic-fetch'
+import {reset} from 'redux-form';
+
 // TAKE THIS OUT and let defacult JS fetch
 
 // ----------------------------------------------------------------------------
@@ -36,7 +38,10 @@ export function saveCase(data) {
       }
     })
     .then(res => res.json())
-    .then(json => dispatch(receiveSaveCase(json)))
+    .then(json => {
+      dispatch(receiveSaveCase(json))
+      dispatch(reset('wizard'));
+    })
   }
 }
 
