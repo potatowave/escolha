@@ -13,15 +13,12 @@ var alias = {};
 module.exports = {
   devServer: {
     outputPath: path.join(__dirname, './public/assets/js'),
-    // outputPath: path.join(__dirname, './dist'),
-    // filename: 'bundle.js',
-    // publicPath: '/build/'
+     filename: 'bundle.js',
   },
   output: {
     path: path.join(__dirname, './public/assets/js'),
-    // filename: 'bundle.js',
-    // publicPath: '/build/'
-    // publicPath: '/server/public/assets/js/'
+    filename: 'bundle.js',
+    publicPath: '/build/'
   },
   plugins: [
       new WriteFilePlugin()
@@ -31,6 +28,7 @@ module.exports = {
     'webpack-dev-server/client?http://localhost:3000',
     './src/index.jsx'
   ],
+
   module: {
     loaders: [
       {

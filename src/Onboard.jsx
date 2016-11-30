@@ -42,7 +42,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     saveCase: (data) => {
-      dispatch(saveCase(data));
+      dispatch(saveCaseAction(data));
       hashHistory.push('/');
 
     },

@@ -75,5 +75,16 @@ module.exports = (knex) => {
     Case(knex).hideObjectives(case_id, data, (msg) => res.json(msg));
   });
 
+  /**
+  * ROUTE: /api/cases/:id/objectives/order
+  * Re-order objectives
+  */
+  router.post("/:id/objectives/order", (req, res) => {
+    const case_id = req.params.id;
+    const data    = req.body.data;
+
+    Case(knex).orderObjectives(case_id, data, (msg) => res.json(msg));
+  });
+
   return router;
 }

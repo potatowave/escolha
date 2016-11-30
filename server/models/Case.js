@@ -407,32 +407,21 @@ module.exports = (knex) => {
     callback(objectives);
   }
 
-
   /**
   * Change the order of objectives
   * @param {integer}    caseId
-  * @param {array}    objectives
+  * @param {array}      objectives
   * @param {function}   callback        - Callback function to run after aSync DB call
   */
   function orderObjectives(caseId, objectives, callback) {
     console.log('CaseId:', caseId);
     console.log('Order Data:', objectives);
 
-    /*
-    knex('objectives')
-    .where('case_id', parseInt(caseId, 10))
-    .update({is_hidden: false})
-    .then(() => {
-        objectives.forEach(
-          (objective_id) => {
-            console.log('Hide objectives: ', objective_id)
-            knex('objectives')
-            .where('id', parseInt(objective_id, 10))
-            .update({is_hidden: true}).then((n) => console.log('Update objective to hidden', n));
-        });
-      }
-    );
-    */
+    objectives.forEach((objective_id, index) => {
+      knex('objectives')
+      .where('id', parseInt(objective_id, 10))
+      .update({order: index + 1}).then((n) => console.log('Update objective order', n));
+    });
 
     callback(objectives);
   }
@@ -444,6 +433,7 @@ module.exports = (knex) => {
     deliverContent,
     casesByUser,
     hideAlternatives,
-    hideObjectives
+    hideObjectives,
+    orderObjectives
   };
 };

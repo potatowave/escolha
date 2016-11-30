@@ -2,6 +2,7 @@ module.exports = (knex) => {
 
 
   function parseForm(formObject) {
+    console.log('Parse form data', formObject);
 
     const newObject = { case: {}, objectives: [], alternatives: [], values: [] };
 
