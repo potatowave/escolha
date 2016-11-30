@@ -14,6 +14,8 @@ module.exports = (knex) => {
   */
   function insertUserInDatabase(user, callback) {
     bcrypt.hash(user.password, 10, (err, hash) => {
+
+      console.log(hash);
       knex('users').insert({
         name: user.name,
         email: user.email,

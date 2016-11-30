@@ -40,6 +40,7 @@ module.exports = (knex, passport) => {
   router.post("/signup", (req, res) => {
     const user = req.body;
 
+    console.log(user);
     User(knex).createUser(user, (message) => {
       res.json(message);
     })

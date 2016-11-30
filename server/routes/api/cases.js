@@ -34,6 +34,16 @@ module.exports = (knex) => {
   });
 
   /**
+  * ROUTE: /api/cases
+  * Return all cases that an user have
+  */
+  router.get("/", (req, res) => {
+    Case(knex).casesByUser((data) => {
+      res.json(data);
+    })
+  });
+
+  /**
   * ROUTE: /api/cases/:id
   * Update a specific case
   */
