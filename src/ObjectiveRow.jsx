@@ -34,7 +34,8 @@ class ObjectiveRow extends Component {
             key={`c${cell.alternative_id}-${cell.alternative_id}`}
             uistate_highlight={this.props.uistate_highlight}
             uistate_selected_alt_id={this.props.uistate_selected_alt_id}
-            low_is_better={this.props.objective().low_is_better}
+            low_is_better={this.props.objective} //THIS MIGHT BE A PROBLEM??
+            // low_is_better={false}
             cell={cell}
             cell_index={index}
             thisRowsSelectedValue={thisRowsSelectedValue}
