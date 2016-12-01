@@ -11,7 +11,7 @@ import rootReducer from './reducers';
 import App from './App.jsx';
 import WizardForm from './WizardForm.jsx';
 import Onboard from './Onboard.jsx';
-import { fetchUserCases } from './actions/api'
+import { fetchUserCases, fetchCase} from './actions/api'
 
 // Load up the application styles
 require('../styles/application.scss');
@@ -53,6 +53,9 @@ store
   if (currentState.userCases.length === 0) {
     hashHistory.push('/new')
   } else {
-    hashHistory.push('/')
+    // Getting the last case to show
+    var last = currentState.userCases.length - 1;
+    store.dispatch(fetchCase(currentState.userCases[last].id));
+    hashHistory.push('/');
   }
 });

@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { fetchCase } from './actions/api';
 import ReactTooltip from 'react-tooltip';
 import AlternativeHiderContainer from './AlternativeHiderContainer.jsx';
-import { deleteCaseAction } from './actions/api'
+import { deleteCaseAction, fetchCase } from './actions/api'
 
 class Nav extends Component {
 
