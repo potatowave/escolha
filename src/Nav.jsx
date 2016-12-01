@@ -18,12 +18,14 @@ class Nav extends Component {
             <div className="brand">Escolia</div>
             <div className="dropdown">
               <div className="dropbtn"><i className="fa fa-table" aria-hidden="true"></i></div>
+
               <div className="dropdown-content">
               {
                 this.props.userCases.map((item) => {
-                    return <a key={item.id} onClick={ () => this.props.loadCase(item.id) }>{item.name}</a>
+                    return <a key={item.id} onClick={ () => this.props.loadCase(item.id) }>{item.name}<i className="fa fa-trash-o" aria-hidden="true"></i></a>
                   })
               }
+
               </div>
             </div>
 
