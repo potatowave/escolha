@@ -33,8 +33,8 @@ module.exports = (knex) => {
   */
   function userExists(user, callback) {
       knex
-      .select("email")
-      .from("users")
+      .select('email')
+      .from('users')
       .where('email', user.email)
       .then((result) => {
 
@@ -62,8 +62,8 @@ module.exports = (knex) => {
   */
   function findOne(email, callback) {
       knex
-      .select("*")
-      .from("users")
+      .select('*')
+      .from('users')
       .where('email', email)
       .then((user) => {
         if (user.length !== 0) {
@@ -80,8 +80,8 @@ module.exports = (knex) => {
   */
   function findById(id, callback) {
       knex
-      .select("*")
-      .from("users")
+      .select('*')
+      .from('users')
       .where('id', id)
       .then((user) => {
         if (user.length !== 0) {
@@ -93,10 +93,29 @@ module.exports = (knex) => {
       .catch((err) => callback(err, null));
   }
 
+  /**
+  * Getting information an user
+  */
+  function userInfomation(id, callback) {
+
+      knex
+      .select('name', 'email')
+      .from('users')
+      .where('id', id)
+      .then((user) => {
+        if (user.length !== 0) {
+          return callback(null, user[0]);
+        }
+        return callback(null, null);
+
+      })
+      .catch((err) => callback(err, null));
+  }
 
   return {
     createUser,
     findOne,
-    findById
+    findById,
+    userInfomation
   };
 };

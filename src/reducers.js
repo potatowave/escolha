@@ -36,6 +36,19 @@ function userCases(state = [], action) {
   }
 }
 
+function userInfomation(state = [], action) {
+  switch(action.type) {
+    case 'RECEIVE_USER_INFORMATION':
+      return Object.assign({}, state, {
+        name: action.data.name,
+        email: action.data.email
+      });
+      break;
+    default:
+      return state
+  }
+}
+
 function casesReducer(state = [], action) {
   switch(action.type) {
     case 'DATA_LOADED':
@@ -45,6 +58,7 @@ function casesReducer(state = [], action) {
       return state
   }
 }
+
 function objectivesReducer(state = [], action) {
   switch(action.type) {
     case 'DATA_LOADED':
@@ -187,7 +201,8 @@ const rootReducer = combineReducers({
   form: formReducer,
   cells: cellsReducer,
   uistate: uiStateReducer,
-  cellBeingEdited: cellReducer
+  cellBeingEdited: cellReducer,
+  userInfomation: userInfomation
 });
 
 export default rootReducer;

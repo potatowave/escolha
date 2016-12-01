@@ -174,3 +174,28 @@ export function deleteCaseAction(case_id) {
       });
   }
 }
+
+// ----------------------------------------------------------------------------
+// Read User infomation
+
+export function requestUserInformation() {
+  return { type: 'REQUEST_USER_INFORMATION' }
+}
+
+export function receiveUserInformation(json) {
+  return {type: 'RECEIVE_USER_INFORMATION', data: json}
+}
+
+export function userInformationCase() {
+  return dispatch => {
+
+    dispatch(requestUserInformation());
+
+    return fetch(`${API_URL}/api/users/me`, {credentials: 'include'})
+      .then(response => response.json())
+      .then(json => {
+        console.log('=======>', json);
+        return dispatch(receiveUserInformation(json))
+      })
+  }
+}

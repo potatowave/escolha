@@ -11,7 +11,7 @@ import rootReducer from './reducers';
 import App from './App.jsx';
 import WizardForm from './WizardForm.jsx';
 import Onboard from './Onboard.jsx';
-import { fetchUserCases, fetchCase} from './actions/api'
+import { fetchUserCases, fetchCase, userInformationCase} from './actions/api'
 
 // Load up the application styles
 require('../styles/application.scss');
@@ -59,3 +59,5 @@ store
     hashHistory.push('/');
   }
 });
+
+store.dispatch(userInformationCase());

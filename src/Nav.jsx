@@ -46,7 +46,7 @@ class Nav extends Component {
           </div>
           <div className="nav-aside">
             <div className="search-area"><i className="fa fa-search"></i></div>
-            <div className="login">Lighthouse-labs@gmail.com</div>
+            <div className="login">{this.props.userInfomation.name}</div>
             <div className="logout">
               <a href="/logout"><i className="fa fa-sign-out" data-tip="Logout" aria-hidden="true"></i></a>
             </div>
@@ -62,7 +62,8 @@ class Nav extends Component {
 function mapStateToProps(state) {
   return {
     userCases: state.userCases,
-    alternatives: state.alternatives
+    alternatives: state.alternatives,
+    userInfomation: state.userInfomation
   }
 }
 

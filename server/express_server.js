@@ -88,8 +88,10 @@ app.get('/app', authHelper.authenticatedMiddleware, (req,res) => {
 });
 
 const apiCasesRoute = require('./routes/api/cases.js');
+const apiUsersRoute = require('./routes/api/users.js');
 
 app.use('/api/cases', apiCasesRoute(knex));
+app.use('/api/users', apiUsersRoute(knex));
 
 // ----------------------------------------------------------------------------
 // Starting the server
