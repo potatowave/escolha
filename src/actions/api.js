@@ -1,7 +1,8 @@
 import fetch from 'isomorphic-fetch'
 import {reset} from 'redux-form';
 
-const API_URL = 'http://localhost:3001';
+// Leave it empty if the API server is the same of the views
+const API_URL = '';
 
 // ----------------------------------------------------------------------------
 // Save Case to Database
