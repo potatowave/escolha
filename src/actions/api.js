@@ -27,7 +27,8 @@ export function saveCaseAction(data) {
     })
     .then(res => res.json())
     .then(json => {
-      dispatch(receiveSaveCase(json))
+      dispatch(receiveSaveCase(json));
+      dispatch(fetchUserCases());
       dispatch(reset('wizard'));
     })
   }
