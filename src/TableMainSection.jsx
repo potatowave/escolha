@@ -49,7 +49,8 @@ class TableMainSection extends Component {
                 key={objectiveId}
                 objective_id={objectiveId}
                 objectivesOrder={this.props.objectivesOrder}
-                objective={() => this.props.objectives.find(objective => objective.id === objectiveId)}
+                //objective={() => this.props.objectives.find(objective => objective.id === objectiveId)}
+                objective={this.props.objectives.find(objective => objective.id === objectiveId)}
 
                 uistate_selected_alt_id={this.props.uistate_selected_alt_id}
                 uistate_highlight={this.props.uistate_highlight}
