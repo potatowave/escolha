@@ -23,9 +23,14 @@ module.exports = (knex) => {
   router.post("/", (req, res) => {
     const userId = req.session.passport.user;
     let data = req.body.data;
+
+    console.log('=======================');
+    console.log(data);
     data = helper(knex).parseForm(data);
 
-    Case(knex).insertCase(userId, data, (msg) => res.json(msg));
+    Case(knex).insertCase(userId, data,
+      (msg) => res.json(msg)
+    );
   });
 
   /**

@@ -20,6 +20,8 @@ module.exports = (knex) => {
       const unit_prefix = objective.unit_prefix;
       const unit_suffix = objective.unit_suffix;
       const scale_type = objective.scale_type;
+      const ordinal_minimum = objective.rangemin;
+      const ordinal_maximum = objective.rangemax;
 
       const objectives = { id_frontend,
         name,
@@ -29,7 +31,9 @@ module.exports = (knex) => {
         unit_name,
         unit_prefix,
         unit_suffix,
-        scale_type };
+        scale_type,
+        ordinal_minimum,
+        ordinal_maximum };
 
       newObject.objectives.push(objectives);
     });
@@ -52,12 +56,14 @@ module.exports = (knex) => {
         const value = formObject.values[objectiveIndex][alternativeIndex].value;
         const objective_id_frontend = objectiveIndex;
         const alternative_id_frontend = alternativeIndex;
+        const nominal_name = formObject.values[objectiveIndex][alternativeIndex].nominal_name;
 
         const cells = { value,
+          nominal_name,
           objective_id_frontend,
           alternative_id_frontend };
 
-
+        console.log(cells);
 
         newObject.values.push(cells);
       });
