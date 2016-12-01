@@ -19,12 +19,10 @@ module.exports = {
     seeds: {
       directory: './server/db/seeds'
     }
-  }
-  /*
-  ,
+  },
   production: {
     client: 'postgresql',
-    connection: process.env.DATABASE_URL + '?ssl=true',
+    connection: process.env.DATABASE_PRODUCTION + '?ssl=true',
     pool: {
       min: 2,
       max: 10
@@ -33,6 +31,4 @@ module.exports = {
       tableName: 'migrations'
     }
   }
-  */
-
 };
