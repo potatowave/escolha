@@ -48,12 +48,12 @@ a:hover {color:white; opacity:1;}  /* mouse over link */
 
 .create-button:hover{
   color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5em;
-  padding-top: 7px;
-  transition-duration: 0.5s;
-  transition-timing-function: ease-out;
+  // border: none;
+  // cursor: pointer;
+  // font-size: 1.5em;
+  // padding-top: 7px;
+  // transition-duration: 0.5s;
+  // transition-timing-function: ease-out;
 }
 
 .editor-button{
@@ -67,13 +67,6 @@ a:hover {color:white; opacity:1;}  /* mouse over link */
 
 .editor-button:hover {
   color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5em;
-  margin-right: 30px;
-  padding-top: 6px;
-  transition-duration: 0.5s;
-  transition-timing-function: ease-out;
 }
 
 .dropbtn {
@@ -119,7 +112,7 @@ a:hover {color:white; opacity:1;}  /* mouse over link */
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  min-width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
@@ -171,3 +164,11 @@ a:hover {color:white; opacity:1;}  /* mouse over link */
 
 }
 
+.dropdown-content a i {
+  float: right;
+}
+
+
+.dropdown-content a i:hover {
+  color: red;
+}

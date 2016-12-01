@@ -79,6 +79,9 @@ class DAndDTable extends Component {
     // console.log("IN D&DTABLE: this.props.ui.hide_obj_ids", this.props.ui.hide_obj_ids)
     // console.log("IN D&DTABLE: this.props.ui.objectivesOrder", this.props.ui.objectivesOrder)
 
+    console.log("D&DTABLE - uistate_hide_alt_ids:", this.props.ui.hide_obj_ids)
+    console.log("D&DTABLE - highlight", this.props.ui.highlight)
+    
     return (
 
       <div className="all-table">
