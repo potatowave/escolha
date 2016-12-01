@@ -9,8 +9,6 @@ class TableMainSection extends Component {
   render() {
     console.log("Rendering <TableMainSection />");
 
-    console.log("*** Objectives ***", this.props.objectives)
-
     return (
 
         <div className="table-area">
@@ -35,7 +33,6 @@ class TableMainSection extends Component {
           </div>
 
           { this.props.objectivesOrder.map((objectiveId) => {
-              console.log("*** objectiveId ***", objectiveId)
 
               return (<ObjectiveRow
                 key={objectiveId}
