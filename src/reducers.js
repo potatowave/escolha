@@ -90,7 +90,7 @@ function cellsReducer(state = [], action) {
 }
 
 const defaultUiState = {
-  selected_alt_id: null,
+  selected_alt_id: 1,
   highlight: false,
   draggedObjectiveId: null,
   objectivesOrder: [],

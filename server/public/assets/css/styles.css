@@ -109,12 +109,13 @@ header{
 	align-items: center;
 	color: #fff;
 	padding: 35px 100px 0;
+	font-family: 'Open Sans', sans-serif;
 }
 
-header h2{
+/*header h2{
 	font-family: 'Quicksand', sans-serif;
 }
-
+*/
 #home {
 	font-family: 'Quicksand', sans-serif;
 }
@@ -467,7 +468,7 @@ footer p a{
 	background-color: #3165AE;
 	box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
 
-	 display: flex;
+	display: flex;
   flex-flow: row wrap;
   justify-content: auto;
   position: fixed;
@@ -490,6 +491,11 @@ footer p a{
 	font-family: 'Open Sans', sans-serif;
 }
 
+.header_login a {
+	font-size:1.5em;
+	line-height: 1.25;
+}
+
 .header_login a:hover {
 	text-decoration: none;
 	opacity: 1;
@@ -497,13 +503,10 @@ footer p a{
 }
 
 .header_login h2 {
-	font-size: 2em;
-	font-weight: 200;
-
-	/*color: white;*/
-  margin-right: 1.5em;
-  font-size: 2em;
+	font-size: 1.7em;
+	/*font-weight: 200;*/
   cursor: pointer;
+  margin-top: 5px;
 }
 
 .login label {

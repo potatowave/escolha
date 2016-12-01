@@ -9,7 +9,16 @@ class TableMainSection extends Component {
   render() {
     console.log("Rendering <TableMainSection />");
 
-    console.log("*** Objectives ***", this.props.objectives)
+    var uistate_selected_alt_id = this.props.uistate_selected_alt_id;
+    var uistate_hide_alt_ids = this.props.uistate_hide_alt_ids;
+    var uistate_highlight = this.props.uistate_highlight;
+
+    function matchingSelectId(item) {
+      return item === uistate_selected_alt_id;
+    }
+
+    // Turn off column highlighting if you hide the selected alternative
+    if (uistate_highlight && uistate_hide_alt_ids.find(matchingSelectId)) {this.props.highlightFunction({id: uistate_selected_alt_id}, uistate_highlight, uistate_selected_alt_id)}
 
     return (
 
@@ -35,7 +44,6 @@ class TableMainSection extends Component {
           </div>
 
           { this.props.objectivesOrder.map((objectiveId) => {
-              console.log("*** objectiveId ***", objectiveId)
 
               return (<ObjectiveRow
                 key={objectiveId}
@@ -62,7 +70,7 @@ TableMainSection.defaultProps = {
   showHorizontalHeadings: true,
   enablePlaceholder: true,
   // items: [],
-  objectives: []  
+  objectives: []
 };
 
 
