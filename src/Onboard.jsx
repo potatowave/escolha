@@ -44,7 +44,6 @@ function mapDispatchToProps(dispatch) {
     saveCase: (data) => {
       dispatch(saveCaseAction(data));
       hashHistory.push('/');
-
     },
   };
 

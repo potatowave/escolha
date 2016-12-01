@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, hashHistory, browserHistory } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
@@ -44,5 +44,15 @@ ReactDOM.render((
 // ----------------------------------------------------------------------------
 // Index page
 
-// Read all Cases from current user - for the dropdown
-store.dispatch(fetchUserCases()).then();
+// Read all Cases from current user and changing the router
+store
+.dispatch(fetchUserCases())
+.then(() => {
+  var currentState = store.getState();
+
+  if (currentState.userCases.length === 0) {
+    hashHistory.push('/new')
+  } else {
+    hashHistory.push('/')
+  }
+});

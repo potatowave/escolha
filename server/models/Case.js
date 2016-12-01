@@ -26,7 +26,7 @@ module.exports = (knex) => {
   * @param {function} callback    - Callback function to run after aSync DB call
   * @returns {void}               - It will call Callback function aSync
   */
-  function insertValue(value, caseId, callback) {
+  function insertValue(userId, value, caseId, callback) {
     // Insert values into database
     knex.insert({
       alternative_id: parseInt(value.alternative_id, 10),
@@ -39,7 +39,7 @@ module.exports = (knex) => {
       console.log('Insert Value');
       countInsertedValues += 1;
       if (countInsertedValues === totalObjectives * totalAlternatives) {
-        deliverContent(parseInt(caseId,10), callback)
+        deliverContent(userId, parseInt(caseId,10), callback)
       }
     })
     .catch((error) => console.error(error));
@@ -51,7 +51,7 @@ module.exports = (knex) => {
   * @param {function} callback    - Callback function to run after aSync DB call
   * @returns {void}               - It will call Callback function aSync
   */
-  function swapFrontendIdToDatabaseId(values, caseId, callback) {
+  function swapFrontendIdToDatabaseId(userId, values, caseId, callback) {
     const valuesWithDatabaseId = values.map((obj) => {
       const objBackEnd = {};
       objBackEnd.objective_id = objectivesMap[obj.objective_id_frontend];
@@ -60,7 +60,7 @@ module.exports = (knex) => {
       return objBackEnd;
     });
     console.log('Swap front-end ids to backend ids');
-    valuesWithDatabaseId.forEach((value) => insertValue(value, caseId, callback));
+    valuesWithDatabaseId.forEach((value) => insertValue(userId, value, caseId, callback));
   }
 
   /**
@@ -72,7 +72,7 @@ module.exports = (knex) => {
   * @param {function} callback    - Callback function to run after aSync DB call
   * @returns {void}               - It will call Callback function aSync
   */
-  function insertObjective({objective, caseId, order, values, callback}) {
+  function insertObjective({userId, objective, caseId, order, values, callback}) {
     knex.insert({
       name: objective.name,
       sub_name: objective.sub_name,
@@ -98,7 +98,7 @@ module.exports = (knex) => {
       // Insert to alternatives_objectives only if all other data is alredy
       // inserted
       if (isDoneInserting()) {
-        swapFrontendIdToDatabaseId(values, caseId, callback);
+        swapFrontendIdToDatabaseId(userId, values, caseId, callback);
       }
     })
     .catch((error) => console.error(error));
@@ -113,7 +113,7 @@ module.exports = (knex) => {
   * @param {function} callback    - Callback function to run after aSync DB call
   * @returns {void}               - It will call Callback function aSync
   */
-  function insertAlternative(alternative, caseId, order, values, callback) {
+  function insertAlternative(userId, alternative, caseId, order, values, callback) {
     knex.insert({
       case_id: parseInt(caseId, 10),
       name: alternative.name,
@@ -131,7 +131,7 @@ module.exports = (knex) => {
       // Insert to alternatives_objectives only if all other data is alredy
       // inserted
       if (isDoneInserting()) {
-        swapFrontendIdToDatabaseId(values, caseId, callback);
+        swapFrontendIdToDatabaseId(userId, values, caseId, callback);
       }
     })
     .catch((error) => console.error(error));
@@ -161,13 +161,13 @@ module.exports = (knex) => {
       // Add Objectives
       data.objectives.forEach((objective, index) => {
         const order = index + 1;
-        insertObjective({objective, caseId, order, values: data.values, callback});
+        insertObjective({userId, objective, caseId, order, values: data.values, callback});
       });
 
       // Add alternatives
       data.alternatives.forEach((alternative, index) => {
         const order = index + 1;
-        insertAlternative(alternative, caseId, order, data.values, callback);
+        insertAlternative(userId, alternative, caseId, order, data.values, callback);
       });
     })
     .catch((error) => console.error(error));
