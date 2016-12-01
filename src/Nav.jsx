@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { fetchCase } from './actions/api';
 import ReactTooltip from 'react-tooltip';
 import AlternativeHiderContainer from './AlternativeHiderContainer.jsx';
+import { deleteCaseAction } from './actions/api'
 
 class Nav extends Component {
 
@@ -22,7 +23,7 @@ class Nav extends Component {
               <div className="dropdown-content">
               {
                 this.props.userCases.map((item) => {
-                    return <a key={item.id} onClick={ () => this.props.loadCase(item.id) }>{item.name}<i className="fa fa-trash-o" aria-hidden="true"></i></a>
+                    return <a key={item.id} onClick={ () => this.props.loadCase(item.id) }>{item.name}<i className="fa fa-trash-o" aria-hidden="true" onClick={(e)=>this.props.deleteCase(e, item.id)}></i></a>
                   })
               }
 
@@ -37,7 +38,7 @@ class Nav extends Component {
             </div>
 
             <div className="dropdown">
-              <div className="create-button"><Link to="/new"><i className="fa fa-plus" aria-hidden="true"></i></Link></div>              
+              <div className="create-button"><Link to="/new"><i className="fa fa-plus" aria-hidden="true"></i></Link></div>
               <div className="dropdown-content">
                 <Link to="/new">Create a new case</Link>
               </div>
@@ -70,8 +71,14 @@ function mapDispatchToProps(dispatch) {
   return {
     loadCase: function(id) {
       const action = { type: 'REQUEST_CASE', case_id: id };
-      dispatch(fetchCase(id)).then()
+      dispatch(fetchCase(id));
 
+    },
+    deleteCase: function(e, caseId) {
+      e.stopPropagation();
+      if (confirm("Are you sure?")) {
+        dispatch(deleteCaseAction(caseId))
+      }
     }
   }
 }

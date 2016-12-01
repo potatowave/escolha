@@ -428,6 +428,20 @@ module.exports = (knex) => {
     callback(objectives);
   }
 
+  /**
+  * Delete Case
+  * @param {integer}    caseId
+  * @param {array}      objectives
+  * @param {function}   callback        - Callback function to run after aSync DB call
+  */
+  function deleteCase(userId, caseId, callback) {
+    console.log('Delete: CaseId:', caseId, 'UserId:', userId);
+    knex('cases')
+    .where('user_id', parseInt(userId, 10))
+    .andWhere('id', parseInt(caseId, 10))
+    .del()
+    .then((res) => callback(res));
+  }
 
   return {
     insertCase,
@@ -436,6 +450,7 @@ module.exports = (knex) => {
     casesByUser,
     hideAlternatives,
     hideObjectives,
-    orderObjectives
+    orderObjectives,
+    deleteCase
   };
 };

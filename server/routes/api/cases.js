@@ -23,9 +23,6 @@ module.exports = (knex) => {
   router.post("/", (req, res) => {
     const userId = req.session.passport.user;
     let data = req.body.data;
-
-    console.log('=======================');
-    console.log(data);
     data = helper(knex).parseForm(data);
 
     Case(knex).insertCase(userId, data,
@@ -63,10 +60,10 @@ module.exports = (knex) => {
   * Hide an array of alternatives
   */
   router.post("/:id/alternatives/hide", (req, res) => {
-    const case_id = req.params.id;
+    const caseId  = req.params.id;
     const data    = req.body.data;
 
-    Case(knex).hideAlternatives(case_id, data, (msg) => res.json(msg));
+    Case(knex).hideAlternatives(caseId, data, (msg) => res.json(msg));
   });
 
   /**
@@ -74,10 +71,10 @@ module.exports = (knex) => {
   * Hide an array of objectives
   */
   router.post("/:id/objectives/hide", (req, res) => {
-    const case_id = req.params.id;
+    const caseId  = req.params.id;
     const data    = req.body.data;
 
-    Case(knex).hideObjectives(case_id, data, (msg) => res.json(msg));
+    Case(knex).hideObjectives(caseId, data, (msg) => res.json(msg));
   });
 
   /**
@@ -85,10 +82,21 @@ module.exports = (knex) => {
   * Re-order objectives
   */
   router.post("/:id/objectives/order", (req, res) => {
-    const case_id = req.params.id;
+    const caseId  = req.params.id;
     const data    = req.body.data;
 
-    Case(knex).orderObjectives(case_id, data, (msg) => res.json(msg));
+    Case(knex).orderObjectives(caseId, data, (msg) => res.json(msg));
+  });
+
+  /**
+  * ROUTE: /api/cases/:id/
+  * Delete a case
+  */
+  router.delete("/:id", (req, res) => {
+    const userId = req.session.passport.user;
+    const caseId = req.params.id;
+
+    Case(knex).deleteCase(userId, caseId, (msg) => res.json(msg));
   });
 
   return router;

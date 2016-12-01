@@ -152,3 +152,25 @@ export function orderAction(case_id, data) {
     .then(json => dispatch(receiveOrder(json)))
   }
 }
+
+// ----------------------------------------------------------------------------
+// Delete case from Database
+
+export function requestDeleteCase(case_id) {
+  return { type: 'REQUEST_DELETE_CASE', case_id }
+}
+
+export function deleteCaseAction(case_id) {
+  return dispatch => {
+    dispatch(requestDeleteCase(case_id));
+
+    return fetch(`${API_URL}/api/cases/${case_id}`, {
+      credentials: 'include',
+      method: 'delete'
+    })
+      .then(response => response.json())
+      .then(json => {
+        dispatch(fetchUserCases());
+      });
+  }
+}
