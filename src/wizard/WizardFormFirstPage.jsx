@@ -24,9 +24,10 @@ const WizardFormFirstPage = (props) => {
       <div className="close-button">
         <IconButton type="button" disabled={submitting} onClick={reset}><FontIcon color={red500} className="material-icons" onClick={() => {hashHistory.push('/')}} >close</FontIcon></IconButton>
       </div>
+      <h3>Define your case</h3>
       <div>
-        <Field name="casename" component={TextField} floatingLabelText="Case" />
 
+        <Field name="casename" component={TextField} floatingLabelText="Case" />
       </div>
       <div>
         <Field name="case_description" component={TextField} floatingLabelText="Case Description" multiLine rows={2} />

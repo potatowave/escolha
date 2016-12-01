@@ -38,9 +38,11 @@ const renderObjectives = ({ objectives, fields, meta: { touched, error } }) => {
 
   return (
     <div>
+
       {fields.map((objective, index) =>
 
         <div key={index}>
+          <hr />
           <h4>Objective {index + 1}
 
             {index > 0 &&

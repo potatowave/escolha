@@ -78,6 +78,8 @@ const WizardFormSecondPage = (props) => {
         <div className="close-button">
           <IconButton type="button" onClick={reset}><FontIcon color={red500} className="material-icons" onClick={() => {hashHistory.push('/')}} >close</FontIcon></IconButton>
         </div>
+
+        <h3>Define your objectives</h3>
         <ObjectivesArray / >
 
         <div>

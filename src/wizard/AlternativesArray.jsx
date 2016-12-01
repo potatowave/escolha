@@ -8,6 +8,7 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
+import Divider from 'material-ui/Divider';
 import { RadioButton } from 'material-ui/RadioButton';
 import { red500, yellow500, green500 } from 'material-ui/styles/colors';
 import {
@@ -37,7 +38,7 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
      <div>
        {fields.map((alternative, index) =>
          <div key={index}>
-
+           <hr />
            <h4>Option {index + 1} {(!!alternatives[index].name ? ` - ${alternatives[index].name}` : '')}{index > 0 &&
            <IconButton><FontIcon className="material-icons" color={red500} style={iconStyles} onClick={() => fields.remove(index)} >remove_circle</FontIcon></IconButton>
 
@@ -45,10 +46,6 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
 
            <div>
              <Field name={`${alternative}.name`} component={TextField} floatingLabelText="Option Name " />
-           </div>
-
-           <div>
-             <Field name={`${alternative}.image_url`} component={TextField} floatingLabelText="URL" />
            </div>
 
            {objectives.map((objective, i) =>
@@ -60,7 +57,7 @@ const renderAlternatives = ({ alternatives, objectives, fields, meta: { touched,
                      <Field
                        name={`values.${i}.${index}.value`}
                        component={TextField}
-                       floatingLabelText={(!!alternatives[index].name ? `${objective.name} > ${objective.sub_name}` : `${objective.name} : ${objective.sub_name}`)}
+                       floatingLabelText={(!!objective.unit_prefix ? `Enter ${objective.name} > ${objective.sub_name} (${objective.unit_prefix})` : `Enter ${objective.name} > ${objective.sub_name}`)}
                      />
                    </div>}
 

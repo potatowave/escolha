@@ -5,6 +5,7 @@ import renderField from './renderField';
 import AlternativesArray from './AlternativesArray';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import { Link, hashHistory } from 'react-router';
 import FontIcon from 'material-ui/FontIcon';
@@ -31,14 +32,19 @@ const WizardFormThirdPage = (props) => {
       <div className="close-button">
         <IconButton type="button" disabled={submitting} onClick={reset}><FontIcon color={red500} className="material-icons" onClick={() => {hashHistory.push('/')}} >close</FontIcon></IconButton>
       </div>
-
+      <h3>What are your options?</h3>
       <AlternativesArray / >
 
       <div>
 
-        <div>
+        <div className="form-button-row">
           <IconButton type="submit" onClick={previousPage} className="previous"><FontIcon className="material-icons" style={backStyles} >arrow_back</FontIcon></IconButton>
-          <IconButton type="submit" disabled={pristine || submitting}><FontIcon className="material-icons" style={forwardStyles} >save</FontIcon></IconButton>
+           <FlatButton
+              label="SUBMIT"
+              type="submit"
+              disabled={pristine || submitting}
+              icon={<FontIcon className="material-icons" >save</FontIcon>}
+            />
         </div>
 
       </div>
