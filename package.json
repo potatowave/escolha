@@ -52,7 +52,7 @@
     "write-file-webpack-plugin": "^3.4.2"
   },
   "dependencies": {
-    "bcrypt": "^0.8.7",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.1",
